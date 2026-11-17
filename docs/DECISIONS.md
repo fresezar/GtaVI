@@ -11,6 +11,9 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 | Karar | Neden | Durum |
 |---|---|---|
+| Sızıntı kuralı sorusu kapandı: oyun 2026-11-19'da çıkıyor, çıkış öncesi materyal konusu fiilen bitti | Kurucu: "24 saat içinde hiçbir şey olmaz" | Kapandı |
+| Cloudflare Web Analytics açık (token `SITE.analytics`) | Çıkış günü trafiği ölçmek | Kabul, uygulandı |
+| ~~Domain ve markada oyun markası yok~~ → Kurucu domainde "gta6" (ya da onu çağrıştıran bir ad) istiyor; domain çıkış günü alınacak. Öneri: görünen marka "Atlas" kalsın (logo gibi "GTA" kullanılmaz), gta6'lı domain + markasız yedek domain birlikte alınsın; itiraz gelirse 301 ile yedeğe geçilir. Araştırma: Take-Two oyun kodu/varlığı dağıtanları, sahte sızıntıyı, hile satışını ve dolandırıcı domainleri hedefliyor; bilgi/rehber siteleri (GTAForums, GTABase, GTA BOOM) yıllardır duruyor. UDRP'de hayran sitesi savunması "aktif, gerçekten ticari olmayan, resmî siteden açıkça ayrı" olmayı istiyor; reklam bu savunmayı zayıflatır | Akılda kalıcılık; risk = domaini kaybetmek, siteyi değil | Önerildi |
 | Harita kaynağı çıkıştan sonraki ilk 2 günde piyasanın hareketine göre seçilir (hangi topluluk haritası öne çıkarsa) | Kurucunun kararı; çıkış öncesi seçim tahmin olurdu | Kabul |
 | Harita gelene kadar bulgular **konumsuz** yayınlanır: pin sayfası, listeler, ilerleme; haritada görünmez. Konum sonra verilir, aynı liste tekrar gönderilince içe aktarma konumu mevcut pine yazar (yeni pin açmaz) | İlk gün içerik kaçmasın; harita gecikmesi içeriği durdurmasın | Kabul, uygulandı |
 | Veri girişine "Hızlı not" eklendi: yalnızca link + zaman + birkaç kelime (taslak). Taslak sonra listeden açılır, kategori/başlık yazılır, haritaya tıklanarak yerleştirilir. "Sıradakini aç" bekleyenleri sırayla getirir | Kurucu yayın izlerken hızlı not almak istedi | Kabul, uygulandı |

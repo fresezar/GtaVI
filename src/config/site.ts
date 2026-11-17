@@ -25,7 +25,7 @@ export const SITE = {
    * Cloudflare Web Analytics (cookieless, free). Dashboard > Analytics & Logs > Web Analytics > Add a site >
    * hostname > "Manage site" shows a JS snippet: paste only its token here. Empty = no analytics script.
    */
-  analytics: { cloudflareToken: "" },
+  analytics: { cloudflareToken: "b5385201f20c4f16b6d8a34cee3cca22" },
   /** Community links: empty = hidden. Fill when the accounts exist. */
   links: {
     tiktok: "",
