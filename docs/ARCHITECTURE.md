@@ -56,7 +56,10 @@ docs/                     this file, DATA_SCHEMA.md
 - No service worker yet (manifest only): add offline caching after launch.
 - Ads, analytics: not started.
 
-## Deploy (Cloudflare Pages, static)
-`npm run build:static` -> `./out` (plain files). Set `NEXT_PUBLIC_SITE_URL` to the real domain before building (sitemap/metadata use it).
-Tested: static export serves all routes; checklists and map share progress both ways.
-Pages needs: build command `npm run build:static`, output dir `out`. Verify current Pages settings at deploy time.
+## Deploy (Cloudflare Workers Static Assets)
+Chosen over Pages (2026-11-17): Cloudflare recommends Workers Static Assets for new static sites; Pages gets no new features.
+`npm run build:static` -> `./out` (plain files); `wrangler.jsonc` serves `./out` with no Worker script.
+Set `NEXT_PUBLIC_SITE_URL` to the public URL before building (sitemap/metadata use it).
+Tested: static export serves all routes; checklists and map share progress both ways; `wrangler deploy --dry-run` passes.
+Workers Builds (Git): build command `npm run build:static`, deploy command `npx wrangler deploy`, build env var `NEXT_PUBLIC_SITE_URL`.
+Worker name must stay trademark-free (it becomes a public `*.workers.dev` URL).

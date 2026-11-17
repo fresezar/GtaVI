@@ -1,6 +1,6 @@
 # Proje Brief: GTA VI (Leonida / Vice City) Oyuncu Platformu
 
-> Durum: NOT ALINDI, kod henüz yazılmadı. Kod için onay: "Tamam, koda geçelim" / "Uygula".
+> Durum: Faz 1 MVP kodlandı (2026-11-17). Güncel durum için `CONTEXT.md`.
 
 ## Rol
 Kıdemli Full-Stack Yazılım Mimarı ve Ürün Tasarımcısı.
@@ -95,7 +95,7 @@ tarayıcı tabanlı mini oyunlar) sıfır yeniden yazım (zero-refactor) ile kar
 
 ## Takvim Notu (2026-11-16, doğrulandı)
 - GTA VI çıkış: 19 Kasım 2026 (Rockstar duyurusu); pre-load 10 Kasım. Hafta 0 planı: domain + handle + Discord + coming-soon/e-posta; çıkış günü veri ham tabloda (pin ID, zaman, kaynak, doğrulandı mı).
-- Repo erişimi: fresezar/GtaVI oturuma eklenemedi (private/bağlantı eksik). GitHub connector bağlanınca tekrar denenecek.
+- Repo: fresezar/GtaVI, Faz 1 push edildi (2026-11-17).
 
 ## Araç Verisi Stratejisi (taslak)
 - Gerçek: GTA oyunlarında hız/ivme sayısal gösterilmez; veri topluluk ölçümünden gelir. Lansmanda ilk saatlerde ölçüm yok, fotoğraf/isim/fiyat önce gelir.

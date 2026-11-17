@@ -1,0 +1,13 @@
+{
+  // Static-only Worker: serves the Next.js static export in ./out (no Worker script).
+  // Build: npm run build:static   Deploy: npx wrangler deploy
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // No game trademarks here: the name becomes a public <name>.<subdomain>.workers.dev URL.
+  "name": "atlas",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

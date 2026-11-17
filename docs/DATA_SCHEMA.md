@@ -1,6 +1,6 @@
 # Veri Şeması Taslağı v0.1 (kodsuz)
 
-Durum: taslak, onay bekliyor. TypeScript'e dönüşüm "Uygula" komutundan sonra.
+Durum: F1 kısmı TypeScript'e dönüştürüldü (`src/domain`). Kod ile çelişirse kod esastır.
 Faz etiketleri: [F1] lansman, [F2] ay 1-3, [F3] ay 3-12.
 
 ## Temel Kurallar (zero-refactor için)
