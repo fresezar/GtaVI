@@ -36,8 +36,11 @@ Put the community map in BEFORE the first real pins (pins live in its coordinate
 Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build:static`.
 
 ## Decisions made
-- Visual identity: 80s Florida brochure (cream/coral/turquoise, thick borders, offset shadows). Avoid generic AI-site look.
-- Language: English only at launch; i18n ready. Add a language only when it reaches ~10% of traffic.
+Full, dated log: `docs/DECISIONS.md` (record every accepted proposal there). Ideas: `docs/BACKLOG.md`. Competitors: `docs/COMPETITORS.md`.
+- Scope: everything GTA VI over the years, community + online focus; the map is only the start. Compete at least at rival level, always fresh.
+- Visual identity: moving to a LeonidaMap-like hub (news, confirmed timeline, countdown) with a neon-sunset look (2026-11-17, plan awaiting "Uygula"). Previous: 80s Florida brochure.
+- Language: EN + TR from the start (changed 2026-11-17). Social media: one English account only.
+- Revenue: decided later by product quality/scope; donations first.
 - Domain: undecided (candidates considered: amirvc.com preferred over viceamir.com for trademark safety). Final brand after launch.
 - Hosting: Cloudflare Workers Static Assets (not Pages), static export, `wrangler.jsonc`, Worker name `atlas`. Decided 2026-11-17.
 - Ads: after traffic exists; check current ad-network thresholds before applying.
