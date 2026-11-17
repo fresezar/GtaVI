@@ -2,105 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---- Design tokens: 80s Florida brochure. Light = sun-bleached paper, dark = neon night. ---- */
+/* ---- Design tokens: neon sunset over Leonida. One dark theme (game-at-night companion). ---- */
 :root {
-  --bg: #fff1d6;
-  --surface: #fffaef;
-  --ink: #1d2b3a;
-  --muted: #5e6e7a;
-  --line: #1d2b3a;
-  --shadow: #1d2b3a;
-  --accent: #ff6a55;
-  --accent-2: #0e9a8b;
-  --sun: #ffc857;
-  --sea: #bfe9e2;
-  color-scheme: light;
-}
-:root[data-theme="dark"] {
-  --bg: #14192b;
-  --surface: #1e2542;
-  --ink: #fdefd5;
-  --muted: #a6abc6;
-  --line: #fdefd5;
-  --shadow: #07091a;
-  --accent: #ff7a66;
-  --accent-2: #2fd3c1;
-  --sun: #ffd36e;
-  --sea: #0f1a33;
+  --bg: #120b1e;
+  --bg-2: #1b1030;
+  --surface: rgba(30, 18, 52, 0.72);
+  --surface-solid: #1f1335;
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --ink: #fff4ec;
+  --muted: #b9a7c9;
+  --line: rgba(255, 236, 250, 0.14);
+  --line-strong: rgba(255, 236, 250, 0.3);
+  --accent: #ff3d8b; /* neon pink */
+  --accent-2: #2ee6d0; /* neon turquoise */
+  --sun: #ffb547;
+  --violet: #8b5cf6;
+  --sea: #0f1830;
+  --shadow: rgba(5, 2, 12, 0.6);
   color-scheme: dark;
 }
 
-html,
-body {
+/* Background only on html: a body background would paint over the fixed -z-10 backdrop scene. */
+html {
   background-color: var(--bg);
-  color: var(--ink);
 }
 body {
+  color: var(--ink);
   font-family: "DM Sans Variable", system-ui, sans-serif;
-  background-image: radial-gradient(color-mix(in srgb, var(--ink) 11%, transparent) 1px, transparent 1.6px);
-  background-size: 14px 14px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* never let a wide child create sideways scroll on phones */
 }
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--accent-2);
   outline-offset: 2px;
 }
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
 kbd {
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   padding: 0 4px;
   font-size: 11px;
   font-weight: 700;
 }
+code {
+  font-size: 0.92em;
+  color: var(--accent-2);
+}
 
 @layer components {
   .card {
-    @apply rounded-2xl border-2 border-line bg-surface p-4 shadow-sticker;
+    @apply rounded-2xl border border-line bg-surface p-4 shadow-sticker backdrop-blur-md;
+  }
+  .card-solid {
+    @apply rounded-2xl border border-line bg-surface-solid p-4;
   }
   .sticker {
-    @apply rounded-md border-2 border-line px-2 py-1 text-xs font-extrabold tracking-widest shadow-sticker-sm;
+    @apply inline-flex items-center rounded-full border border-line-strong bg-surface-2 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-muted;
   }
   .btn {
-    @apply inline-flex min-h-[40px] items-center justify-center rounded-xl border-2 border-line bg-surface px-3 text-sm font-bold shadow-sticker-sm transition active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-40;
+    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full border border-line-strong bg-surface-2 px-4 text-sm font-bold text-ink transition hover:border-accent2 hover:text-accent2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
   }
   .btn-primary {
-    @apply bg-accent text-[#1d2b3a];
+    @apply border-transparent bg-accent text-white shadow-neon hover:border-transparent hover:bg-[#ff5a9e] hover:text-white;
   }
   .btn-icon {
     @apply w-10 px-0 text-lg;
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-line px-2.5 py-0.5 text-xs font-bold;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line-strong px-2.5 py-0.5 text-xs font-bold;
   }
   .chip::before {
     content: "";
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 9999px;
     background: var(--dot, var(--accent));
-    border: 1.5px solid var(--line);
+    box-shadow: 0 0 8px var(--dot, var(--accent));
   }
   .chip-btn {
-    @apply min-h-[32px] cursor-pointer bg-surface;
+    @apply min-h-[32px] cursor-pointer bg-surface-2;
   }
   .chip-on {
-    @apply bg-sun text-[#1d2b3a] shadow-sticker-sm;
+    @apply border-accent bg-accent/20 text-ink;
   }
   .row {
-    @apply flex min-h-[44px] w-full items-center gap-3 rounded-xl border-2 border-line bg-surface px-3 font-semibold shadow-sticker-sm transition;
+    @apply flex min-h-[44px] w-full items-center gap-3 rounded-xl border border-line bg-surface-2 px-3 font-semibold transition hover:border-line-strong;
   }
   .row-off {
-    @apply opacity-45 shadow-none;
+    @apply opacity-40;
   }
   .dot {
-    @apply h-4 w-4 shrink-0 rounded-full border-2 border-line;
+    @apply h-3.5 w-3.5 shrink-0 rounded-full;
+    box-shadow: 0 0 10px currentColor;
   }
   .field {
     @apply flex flex-col gap-1 text-xs font-bold uppercase tracking-wider text-muted;
   }
   .field input,
   .field select {
-    @apply min-h-[38px] rounded-lg border-2 border-line bg-surface px-2 text-sm font-normal normal-case tracking-normal text-ink;
+    @apply min-h-[40px] rounded-xl border border-line-strong bg-[#140c22] px-3 text-sm font-normal normal-case tracking-normal text-ink placeholder:text-muted;
+  }
+  /* Status badges: the same vocabulary everywhere (pins, news, timeline). */
+  .badge {
+    @apply inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider;
+  }
+  .badge-confirmed,
+  .badge-verified {
+    @apply bg-accent2/15 text-accent2;
+  }
+  .badge-rumor,
+  .badge-unverified {
+    @apply bg-sun/15 text-sun;
+  }
+  .badge-disputed {
+    @apply bg-accent/15 text-accent;
+  }
+  .badge-launch {
+    @apply bg-accent text-white;
+  }
+  .neon {
+    color: var(--accent);
+    text-shadow: 0 0 18px rgba(255, 61, 139, 0.55);
+  }
+  .section-title {
+    @apply font-display text-2xl leading-tight sm:text-3xl;
+  }
+  .eyebrow {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.2em] text-muted;
+  }
+  .scroll-x {
+    @apply -mx-4 flex gap-2 overflow-x-auto px-4 pb-1;
+    scrollbar-width: none;
+  }
+  .scroll-x::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -118,18 +156,18 @@ kbd {
 }
 .leaflet-bar a,
 .leaflet-bar a:hover {
-  background: var(--surface);
+  background: var(--surface-solid);
   color: var(--ink);
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--line);
   width: 40px;
   height: 40px;
   line-height: 40px;
   font-weight: 800;
 }
 .leaflet-bar {
-  border: 2px solid var(--line) !important;
-  border-radius: 12px !important;
-  box-shadow: 3px 3px 0 var(--shadow) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px -10px var(--shadow) !important;
   overflow: hidden;
 }
 .leaflet-bar a:last-child {
@@ -138,31 +176,50 @@ kbd {
 .leaflet-control-attribution.leaflet-control-attribution {
   background: var(--surface);
   color: var(--muted);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   margin: 0 0 10px 10px;
-  padding: 2px 8px;
+  padding: 2px 10px;
   font-size: 11px;
   font-weight: 700;
+  backdrop-filter: blur(8px);
 }
 .leaflet-control-attribution a {
   color: var(--ink);
   text-decoration: underline;
 }
-.atlas-popup .leaflet-popup-content-wrapper {
-  background: var(--surface);
+.leaflet-tooltip {
+  background: var(--surface-solid);
   color: var(--ink);
-  border: 2px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 4px 4px 0 var(--shadow);
+  border: 1px solid var(--line-strong);
+  font-weight: 800;
+}
+/* Cluster bubble (count of pins hidden at this zoom). */
+.atlas-cluster {
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #ff6fa9, var(--accent) 60%, #b5185a);
+  color: #fff;
+  font-weight: 900;
+  font-size: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 4px rgba(255, 61, 139, 0.25), 0 6px 18px -4px rgba(0, 0, 0, 0.6);
+}
+.atlas-popup .leaflet-popup-content-wrapper {
+  background: var(--surface-solid);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px -12px var(--shadow);
 }
 .atlas-popup .leaflet-popup-tip {
-  background: var(--surface);
-  border: 2px solid var(--line);
+  background: var(--surface-solid);
+  border: 1px solid var(--line-strong);
   box-shadow: none;
 }
 .atlas-popup .leaflet-popup-close-button {
-  color: var(--ink);
+  color: var(--muted);
   width: 32px;
   height: 32px;
   font-size: 22px;
@@ -181,7 +238,7 @@ kbd {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 2px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 9999px;
   padding: 1px 9px;
   font-size: 11px;
@@ -189,18 +246,18 @@ kbd {
 }
 .atlas-pop .chip::before {
   content: "";
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 9999px;
   background: var(--dot);
-  border: 1.5px solid var(--line);
+  box-shadow: 0 0 8px var(--dot);
 }
 .atlas-pop .status {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--sun);
 }
 .atlas-pop .status-verified {
   color: var(--accent-2);
@@ -239,6 +296,7 @@ kbd {
   font-size: 12px;
   font-weight: 700;
   text-decoration: underline;
+  color: var(--accent-2) !important;
 }
 @media (prefers-reduced-motion: reduce) {
   * {

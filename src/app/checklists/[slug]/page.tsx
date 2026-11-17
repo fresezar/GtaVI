@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import SiteHeader from "@/components/ui/SiteHeader";
+import PageShell from "@/components/ui/PageShell";
 import { CHECKLISTS } from "@/data/checklists";
 import ChecklistView from "@/features/checklists/ChecklistView";
 import { t } from "@/i18n";
@@ -25,12 +25,9 @@ export default async function ChecklistPage({ params }: Params) {
   const checklist = find((await params).slug);
   if (!checklist) notFound();
   return (
-    <>
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-8">
-        <Link href="/checklists" className="mb-4 inline-block text-sm font-bold underline">← {t("ui.checklist.index")}</Link>
-        <ChecklistView checklist={checklist} />
-      </main>
-    </>
+    <PageShell width="max-w-3xl">
+      <Link href="/checklists" className="mb-4 inline-block text-sm font-bold text-muted underline hover:text-ink">← {t("ui.checklist.index")}</Link>
+      <ChecklistView checklist={checklist} />
+    </PageShell>
   );
 }

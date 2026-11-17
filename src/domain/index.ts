@@ -11,3 +11,4 @@ export * from "./story";
 export * from "./community";
 export * from "./account";
 export * from "./minigame";
+export * from "./editorial";

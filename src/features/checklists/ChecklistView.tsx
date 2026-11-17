@@ -27,8 +27,8 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
           <p className="font-display text-5xl leading-none">{percent}%</p>
           <p className="pb-1 text-sm font-bold uppercase tracking-wider">{t("ui.progress.complete")}</p>
         </div>
-        <div className="mt-3 h-4 overflow-hidden rounded-full border-2 border-line bg-bg" role="progressbar" aria-valuenow={percent} aria-valuemin={0} aria-valuemax={100}>
-          <div className="h-full bg-accent2 transition-[width] duration-300" style={{ width: `${percent}%` }} />
+        <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-surface-2" role="progressbar" aria-valuenow={percent} aria-valuemin={0} aria-valuemax={100}>
+          <div className="h-full rounded-full bg-gradient-to-r from-accent to-sun transition-[width] duration-300" style={{ width: `${percent}%` }} />
         </div>
         <label className="mt-3 flex items-center gap-2 text-sm">
           <input type="checkbox" checked={hideDone} onChange={(e) => setHideDone(e.target.checked)} />
@@ -61,7 +61,7 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       disabled={!ready}
                       className={`row flex-1 ${done ? "row-off" : ""}`}
                     >
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md border-2 border-line bg-bg text-sm font-black" aria-hidden="true">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-line-strong bg-[#140c22] text-sm font-black text-accent2" aria-hidden="true">
                         {done ? "✓" : ""}
                       </span>
                       <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import SiteHeader from "@/components/ui/SiteHeader";
+import PageShell from "@/components/ui/PageShell";
 import { CATEGORIES } from "@/data/categories";
 import { CHECKLISTS } from "@/data/checklists";
 import { PINS } from "@/data/pins";
@@ -10,7 +10,6 @@ import { CATEGORY_COLORS } from "@/features/map/tokens";
 import { t } from "@/i18n";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { formatTimestamp, parseSource, type SourceInfo } from "@/lib/source";
-import { SITE } from "@/config/site";
 
 export const dynamicParams = false;
 
@@ -56,7 +55,7 @@ function SourceBlock({ source }: { source: SourceInfo }) {
     const start = source.start ? `?start=${source.start}` : "";
     return (
       <div className="mt-5">
-        <div className="aspect-video overflow-hidden rounded-xl border-2 border-line bg-bg">
+        <div className="aspect-video overflow-hidden rounded-xl border border-line-strong bg-bg">
           <iframe
             className="h-full w-full"
             src={`https://www.youtube-nocookie.com/embed/${source.videoId}${start}`}
@@ -104,10 +103,8 @@ export default async function PinPage({ params }: Params) {
     pin.status === "unverified" ? t("ui.pin.status.unverifiedHint") : pin.status === "disputed" ? t("ui.pin.status.disputedHint") : "";
 
   return (
-    <>
-      <SiteHeader />
-      <main className="mx-auto max-w-2xl px-4 py-10">
-        <Link href="/map" className="text-sm font-bold underline">{t("ui.pin.backToMap")}</Link>
+    <PageShell width="max-w-2xl">
+        <Link href="/map" className="text-sm font-bold text-muted underline hover:text-ink">{t("ui.pin.backToMap")}</Link>
 
         <article className="card mt-4">
           <div className="flex flex-wrap items-center gap-2">
@@ -116,9 +113,7 @@ export default async function PinPage({ params }: Params) {
                 {t(categoryKey(category.id))}
               </span>
             )}
-            <span className={`text-xs font-extrabold uppercase tracking-widest ${pin.status === "verified" ? "text-accent2" : "text-muted"}`}>
-              {t(`ui.pin.status.${pin.status}`)}
-            </span>
+            <span className={`badge badge-${pin.status}`}>{t(`ui.pin.status.${pin.status}`)}</span>
           </div>
 
           <h1 className="mt-3 font-display text-4xl leading-tight">{title}</h1>
@@ -145,7 +140,7 @@ export default async function PinPage({ params }: Params) {
             </p>
           )}
 
-          {hint && <p className="mt-3 rounded-lg border-2 border-dashed border-line p-2 text-xs text-muted">{hint}</p>}
+          {hint && <p className="mt-3 rounded-xl border border-dashed border-line-strong p-2 text-xs text-muted">{hint}</p>}
 
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href={`/map?pin=${pin.id}`} className="btn btn-primary">{t("ui.pin.showOnMap")}</Link>
@@ -177,8 +172,6 @@ export default async function PinPage({ params }: Params) {
           </section>
         )}
 
-        <p className="mt-10 text-xs text-muted">{SITE.disclaimer}</p>
-      </main>
-    </>
+    </PageShell>
   );
 }

@@ -7,13 +7,16 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 
 ## Giriş bileti (rakip seviyesi, çıkış haftası)
 
-- [ ] Hub ana sayfa: geri sayım (çıkıştan sonra "Gün N"), son haberler, doğrulananlar zaman çizelgesi, harita CTA (LeonidaMap)
-- [ ] Haber akışı: her maddede CONFIRMED/RUMOR rozeti, tarih ve birincil kaynak linki (LeonidaMap, bizim kuralımızla daha sıkı)
+- [x] Hub ana sayfa: geri sayım (çıkıştan sonra "Gün N"), son bulgular, doğrulananlar zaman çizelgesi, harita CTA (2026-11-17)
+- [ ] Haber akışı: her maddede CONFIRMED/RUMOR rozeti, tarih ve birincil kaynak linki. Altyapı hazır (`content/news.json`, ana sayfada otomatik görünür); içerik ve arşiv sayfası yok
 - [ ] "What's confirmed" sayfası ve söylenti takibi (LeonidaMap)
 - [ ] Site geneli arama (⌘K): pinler, sayfalar, veritabanı (LeonidaMap, GTABase)
-- [ ] Harita: kümeleme (cluster), lejant paneli, "sıradaki bulunmamış" oku, pin linki paylaşma (GTABase, LeonidaMap)
+- [x] Harita: kümeleme, lejant paneli, "sıradaki bulunmamış" oku (2026-11-17)
+- [ ] Harita: pin linki paylaşma butonu (link zaten çalışıyor: `/map?pin=<id>`)
+- [ ] Harita görseli gelince ana sayfa sahnesine uyumlu renk ayarı (yer tutucu harita eski broşür renklerinde)
 - [x] Harita: arama, All/None, gizli katmanlar, ücretsiz sınırsız takip (2026-11-17)
-- [ ] Mobil kusursuz: yatay taşma yok, başparmakla kullanım (rakiplerin zayıf noktası)
+- [x] Mobil: 390 px'te taşma yok, menü kaydırılabilir satır, harita üstte panel altta (2026-11-17)
+- [ ] Discord ve bağış hesapları açılınca `src/config/site.ts` > `links` doldurulur (alt bilgide otomatik görünür)
 - [ ] EN + TR çift dil, dil seçici, hreflang (karar: DECISIONS)
 - [ ] Discord, X ve bağış linkleri; e-posta veya push kaydı (değer gösterildikten sonra sorulur)
 - [ ] SSS, çıkış saati (bölgelere göre), karakterler, mekanlar (Leonida, Vice City, Keys) sayfaları

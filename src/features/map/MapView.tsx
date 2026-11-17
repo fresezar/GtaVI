@@ -28,6 +28,10 @@ interface Props {
 
 export type MapFocus = NonNullable<Props["focus"]>;
 
+/** Screen-space clustering: below this many zoom levels under native, nearby pins merge into a counted bubble. */
+const CLUSTER_BELOW = 1;
+const CLUSTER_CELL_PX = 56;
+
 function markerStyle(pin: Pin, category: Category | undefined, done: boolean): L.CircleMarkerOptions {
   const color = category ? CATEGORY_COLORS[category.colorToken] : "#888888";
   return {
@@ -100,6 +104,7 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
   const rendererRef = useRef<L.Canvas | null>(null);
   const markersRef = useRef(new Map<PinId, L.CircleMarker>());
   const focusedRef = useRef<number | null>(null);
+  const renderRef = useRef<() => void>(() => {});
 
   // Latest callbacks/state for event handlers without re-binding.
   const live = useRef({ isDone, onToggle, onMapClick, categories });
@@ -173,6 +178,9 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
       handler(proj.toCoord(e.latlng), image);
     });
 
+    // Re-cluster after every zoom/pan (cheap: a grid pass over the pins in view).
+    map.on("zoomend moveend", () => renderRef.current());
+
     mapRef.current = map;
     const markers = markersRef.current;
     return () => {
@@ -183,13 +191,58 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
     };
   }, [def]);
 
-  // 2) Rebuild markers when the visible pin set changes.
+  // 2) Rebuild markers when the visible pin set changes, then place them (clustered or not).
   useEffect(() => {
     const map = mapRef.current;
     const proj = projRef.current;
     const group = pinGroupRef.current;
     const renderer = rendererRef.current;
     if (!map || !proj || !group || !renderer) return;
+
+    renderRef.current = () => {
+      group.clearLayers();
+      const markers = markersRef.current;
+      const zoom = map.getZoom();
+      if (zoom >= proj.nativeZoom - CLUSTER_BELOW) {
+        markers.forEach((m) => group.addLayer(m));
+        return;
+      }
+      const view = map.getBounds().pad(0.3);
+      const buckets = new Map<string, L.CircleMarker[]>();
+      markers.forEach((m) => {
+        if (!view.contains(m.getLatLng())) return;
+        const p = map.project(m.getLatLng(), zoom);
+        const key = `${Math.floor(p.x / CLUSTER_CELL_PX)}:${Math.floor(p.y / CLUSTER_CELL_PX)}`;
+        const list = buckets.get(key);
+        if (list) list.push(m);
+        else buckets.set(key, [m]);
+      });
+      buckets.forEach((members) => {
+        if (members.length === 1) {
+          group.addLayer(members[0]);
+          return;
+        }
+        const lls = members.map((m) => m.getLatLng());
+        const pts = lls.map((ll) => map.project(ll, zoom));
+        const center = map.unproject(
+          L.point(pts.reduce((s, p) => s + p.x, 0) / pts.length, pts.reduce((s, p) => s + p.y, 0) / pts.length),
+          zoom,
+        );
+        const size = Math.round(28 + Math.min(20, Math.log2(members.length) * 5));
+        L.marker(center, {
+          icon: L.divIcon({
+            className: "",
+            // Only a number goes into this HTML: no user text.
+            html: `<div class="atlas-cluster" style="width:${size}px;height:${size}px">${members.length}</div>`,
+            iconSize: [size, size],
+          }),
+          title: `${members.length} pins: zoom in`,
+          keyboard: true,
+        })
+          .on("click", () => map.fitBounds(L.latLngBounds(lls), { padding: [48, 48], maxZoom: proj.nativeZoom - CLUSTER_BELOW }))
+          .addTo(group);
+      });
+    };
 
     group.clearLayers();
     markersRef.current.clear();
@@ -207,9 +260,9 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
           .setContent(buildPopup(pin, category, live.current.isDone, live.current.onToggle))
           .openOn(map);
       });
-      marker.addTo(group);
       markersRef.current.set(pin.id, marker);
     }
+    renderRef.current();
   }, [pins, def]);
 
   // 3) Cheap restyle when only progress changes.

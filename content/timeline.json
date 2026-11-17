@@ -1,0 +1,8 @@
+[
+  { "id": "tl_dev_confirmed", "date": "2022-02-04", "kind": "confirmed", "sourceName": "Rockstar Newswire", "sourceUrl": "https://www.rockstargames.com/newswire" },
+  { "id": "tl_trailer_1", "date": "2023-12-04", "kind": "confirmed", "sourceName": "Rockstar Games", "sourceUrl": "https://www.rockstargames.com/VI" },
+  { "id": "tl_delay_may_2026", "date": "2025-05-02", "kind": "confirmed", "sourceName": "Rockstar Newswire", "sourceUrl": "https://www.rockstargames.com/newswire" },
+  { "id": "tl_trailer_2", "date": "2025-05-06", "kind": "confirmed", "sourceName": "Rockstar Games", "sourceUrl": "https://www.rockstargames.com/VI" },
+  { "id": "tl_delay_nov_2026", "date": "2025-11-06", "kind": "confirmed", "sourceName": "Rockstar Newswire", "sourceUrl": "https://www.rockstargames.com/newswire" },
+  { "id": "tl_launch", "date": "2026-11-19", "kind": "launch", "sourceName": "Rockstar Games", "sourceUrl": "https://www.rockstargames.com/VI" }
+]

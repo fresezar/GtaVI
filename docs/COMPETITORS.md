@@ -39,7 +39,8 @@ Yapı:
 Görsel dil: koyu zemin üstünde gün batımı ve palmiye fotoğrafı, neon pembe butonlar, turkuaz noktalar, yuvarlak kartlar, kalın sans-serif başlıklar. Oyunun atmosferine uyuyor, yoğun ve "canlı" görünüyor.
 
 Zayıf noktaları (bizim fırsatımız):
-- Mobilde yatay taşma: metinler sağdan kesiliyor.
+- ~~Mobilde yatay taşma~~ (düzeltme, 2026-11-17: ekran görüntüsü aracımızın hatasıydı; headless Chrome'un asgari
+  pencere genişliği 390 px'ten büyük. Site iframe'e izin vermediği için gerçek 390 px'te doğrulanamadı.)
 - "Confirmed" etiketli maddelerin bir kısmı Rockstar'a değil üçüncü taraf sitelere dayanıyor.
 - Harita görseli "Map © Rockstar Games" notuyla Rockstar'ın haritası. Hukuki risk; bunu kopyalamayız.
 - Bildirim ve çerez pencereleri ilk saniyede ekranı kapatıyor.
@@ -67,7 +68,8 @@ Zayıf noktaları (bizim fırsatımız):
 6. **Derinlik kazanır.** Genel kapsamı koruyup her alanda "en iyi" olabilecek bir derinlik katmanı eklenmeli (rota üretici, ölçüm yöntemi, envanter değeri).
 7. **Ölçülmüş veri, ölçeni ortak yapmakla gelir.** PS5 olmadan araç verisi için test yapan biriyle atıflı ortaklık gerekir.
 8. **Hukuki çizgi:** Rockstar'ın harita ve sanat görselleri kullanılmaz. Topluluk haritası lisansla ve atıfla kullanılır.
-9. **Mobil kusursuz olmalı.** Rakipler bile mobilde taşıyor; oyuncu siteyi telefonda, oyun açıkken kullanır.
+9. **Mobil kusursuz olmalı.** Oyuncu siteyi telefonda, oyun açıkken kullanır. Mobil test gerçek genişlikte yapılır
+   (390 px iframe ya da cihaz emülasyonu); dar pencereli headless ekran görüntüsü yanıltıcıdır.
 10. **Rahatsız etme.** İlk saniyede bildirim ve çerez pencereleri çıkmamalı; değer gösterildikten sonra sorulmalı.
 
 ## Kaynaklar

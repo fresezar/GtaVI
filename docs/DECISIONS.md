@@ -11,6 +11,13 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 | Karar | Neden | Durum |
 |---|---|---|
+| Rockstar'ın resmi GTA VI sanatı (kurucunun `.next/Media` klasörüne koyduğu 18 görsel) arka plan veya marka öğesi olarak KULLANILMAZ. Görseller git dışında `media-src/` klasöründe saklanır | Rockstar politikası yalnızca ticari olmayan kullanıma göz yumuyor; sitemiz bağış/reklam hedefliyor. Logo kullanımı ayrıca marka kuralımıza aykırı | Kabul |
+| Atmosfer kendi çizdiğimiz SVG sahneyle (gün batımı, şehir silueti, palmiyeler) kurulur | Telif riski yok, hafif (~6 KB) | Kabul, uygulandı |
+| Açık konu: resmi görsellerin haber sayfalarında "© Rockstar Games" atfıyla haber amaçlı kullanımı | Haber sitelerinde yaygın; ticari risk değerlendirilmeli | Açık |
+| Tek, koyu tema (açık tema kaldırıldı) | Oyun gecesi atmosferi; tasarım işini yarıya indirir | Kabul, uygulandı |
+| Hub tasarımı uygulandı: ana sayfa (geri sayım → "Gün N", istatistikler, son bulgular, Road to GTA VI zaman çizelgesi, keşfet kartları), yapışkan üst menü, harita kümeleme, lejant, "sıradaki bulunmamış" | "Uygula" onayı | Kabul, uygulandı |
+| Zaman çizelgesine yalnızca birinci elden (Rockstar) kaynaklı olaylar girer; 2026 ön sipariş/ön yükleme tarihleri kaynaklar çeliştiği için girmedi | Kaynak şeffaflığı farkımız | Kabul |
+| Uygulama sırası: tasarım + ana sayfa + harita (yapıldı) → Türkçe → haber arşivi | Çıkışa 2 gün | Kabul |
 | Site yıllar içinde GTA VI ile ilgili her şeyi kapsayacak; tek bir nişe kısıtlanmayacak. Harita yalnızca başlangıç | Kurucunun vizyonu; hub sayfa görüntülemesi ve arama girişi üretir | Kabul |
 | Ağırlık topluluk ve online tarafında: oyuncuların güncel tükettiği, etkileşimle büyüyen içerik | Tekrar eden trafik değişen içerikten gelir (rakip analizi) | Kabul |
 | Hedef: rakiplerle en az eşit seviye (giriş bileti), üstüne sürekli güncel ve bol içerik. Farklılaşma şart değil ama fırsat oldukça eklenir | Pazarda yer tutmak | Kabul |
@@ -48,6 +55,6 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 ## Açık konular
 
 - Çift dilli topluluk modeli: önerildi (2026-11-17), kurucunun görüşü bekleniyor.
-- Hub tasarımına geçiş planı: önerildi (2026-11-17), "Uygula" bekleniyor.
+- ~~Hub tasarımına geçiş planı~~ → uygulandı (2026-11-17).
 - Topluluk haritası kaynağı (GTADB / Leonida Atlas / diğer) ve lisans doğrulaması.
 - Domain ve nihai marka.

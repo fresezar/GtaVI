@@ -10,6 +10,8 @@ export const PATHS = {
   pins: join(CONTENT, "pins.json"),
   categories: join(CONTENT, "categories.json"),
   text: join(CONTENT, "text.en.json"),
+  timeline: join(CONTENT, "timeline.json"),
+  news: join(CONTENT, "news.json"),
 };
 
 export const STATUSES = ["verified", "unverified", "disputed", "deprecated"];

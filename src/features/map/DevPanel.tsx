@@ -12,7 +12,7 @@ function CalibrationPanel({ dev }: { dev: DevTool }) {
   const { calib, landmarks, calibResult } = dev;
   if (!calib.active) {
     return (
-      <div className="mt-4 border-t-2 border-dashed border-line pt-3">
+      <div className="mt-4 border-t border-dashed border-line-strong pt-3">
         <h3 className="text-xs font-bold uppercase tracking-widest text-muted">New map image?</h3>
         <p className="mt-1 text-xs text-muted">
           Swap the image in <code>src/data/maps.ts</code>, then click {landmarks.length} landmark pins where they really are on the new art.
@@ -27,7 +27,7 @@ function CalibrationPanel({ dev }: { dev: DevTool }) {
 
   const target = landmarks[calib.index];
   return (
-    <div className="mt-4 rounded-xl border-2 border-line bg-bg p-3">
+    <div className="mt-4 rounded-xl border border-line-strong bg-[#140c22] p-3">
       <h3 className="text-xs font-bold uppercase tracking-widest text-accent2">Calibrating · {calib.points.length} points</h3>
       {target ? (
         <p className="mt-1 text-sm">
@@ -125,7 +125,7 @@ export default function DevPanel({ dev, categories }: { dev: DevTool; categories
             Last: <strong className="text-ink">{last.coordText}</strong>
           </p>
           {settings.copyFormat === "json" && (
-            <pre className="mt-1 max-h-32 overflow-auto rounded-lg border-2 border-line bg-bg p-2 text-[11px] leading-tight">{last.json}</pre>
+            <pre className="mt-1 max-h-32 overflow-auto rounded-lg border border-line-strong bg-[#140c22] p-2 text-[11px] leading-tight">{last.json}</pre>
           )}
         </div>
       )}

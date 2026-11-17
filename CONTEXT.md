@@ -38,7 +38,7 @@ Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build
 ## Decisions made
 Full, dated log: `docs/DECISIONS.md` (record every accepted proposal there). Ideas: `docs/BACKLOG.md`. Competitors: `docs/COMPETITORS.md`.
 - Scope: everything GTA VI over the years, community + online focus; the map is only the start. Compete at least at rival level, always fresh.
-- Visual identity: moving to a LeonidaMap-like hub (news, confirmed timeline, countdown) with a neon-sunset look (2026-11-17, plan awaiting "Uygula"). Previous: 80s Florida brochure.
+- Visual identity: LeonidaMap-like hub with a neon-sunset look, single dark theme, own SVG scene (2026-11-17, done). No Rockstar art as decoration (raw images kept untracked in `media-src/`).
 - Language: EN + TR from the start (changed 2026-11-17). Social media: one English account only.
 - Revenue: decided later by product quality/scope; donations first.
 - Domain: undecided (candidates considered: amirvc.com preferred over viceamir.com for trademark safety). Final brand after launch.

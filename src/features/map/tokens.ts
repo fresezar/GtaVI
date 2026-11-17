@@ -16,4 +16,5 @@ export const CATEGORY_COLORS: Record<ColorToken, string> = {
   slate: "#7A8CA0",
 };
 
-export const PIN_OUTLINE = "#1D2B3A";
+/** Light outline reads on both dark night tiles and bright community map art. */
+export const PIN_OUTLINE = "#FFF4EC";

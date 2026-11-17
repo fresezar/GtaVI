@@ -77,6 +77,24 @@ for (const p of pins) {
   if (p.status !== "deprecated" && !text[`pin.${p.id}.title`]) err(`${at}: missing title in text.en.json`);
 }
 
+// ---- editorial: timeline + news ----
+for (const [file, prefix, fields] of [
+  [PATHS.timeline, "timeline", ["title", "body"]],
+  [PATHS.news, "news", ["title", "summary"]],
+]) {
+  const ids = new Set();
+  for (const e of readJson(file)) {
+    const at = `${prefix} ${e.id ?? "(no id)"}`;
+    if (!/^[a-z0-9_]+$/.test(e.id ?? "")) err(`${at}: id must be snake_case`);
+    if (ids.has(e.id)) err(`${at}: duplicate id`);
+    ids.add(e.id);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date ?? "")) err(`${at}: date must be YYYY-MM-DD`);
+    if (!["confirmed", "rumor", "launch"].includes(e.kind)) err(`${at}: kind must be confirmed/rumor/launch`);
+    if (!e.sourceName || !isHttpUrl(e.sourceUrl ?? "")) err(`${at}: needs sourceName and an http(s) sourceUrl`);
+    for (const f of fields) if (!text[`${prefix}.${e.id}.${f}`]) err(`${at}: missing ${prefix}.${e.id}.${f} in text.en.json`);
+  }
+}
+
 // ---- text: orphan keys are harmless but usually a typo ----
 for (const key of Object.keys(text)) {
   const m = key.match(/^pin\.(pin_[^.]+)\./);

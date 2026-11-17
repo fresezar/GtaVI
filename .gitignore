@@ -6,3 +6,6 @@ next-env.d.ts
 .env*.local
 .DS_Store
 .wrangler
+
+# Raw photos pending license check (never commit unreviewed images)
+/media-src/

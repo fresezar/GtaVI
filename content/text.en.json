@@ -10,5 +10,17 @@
   "category.cat_weapon_pickups.name": "Weapon pickups",
   "category.cat_safehouses.name": "Safehouses",
   "category.cat_shops.name": "Shops & services",
-  "category.cat_landmarks.name": "Landmarks"
+  "category.cat_landmarks.name": "Landmarks",
+  "timeline.tl_dev_confirmed.title": "Rockstar confirms the next GTA is in development",
+  "timeline.tl_dev_confirmed.body": "A short Newswire post says active development of the next Grand Theft Auto is well underway.",
+  "timeline.tl_trailer_1.title": "Trailer 1: back to Vice City",
+  "timeline.tl_trailer_1.body": "The reveal trailer introduces the state of Leonida and Lucia, with PS5 and Xbox Series X|S named as platforms.",
+  "timeline.tl_delay_may_2026.title": "Release date set: May 26, 2026",
+  "timeline.tl_delay_may_2026.body": "The first firm date, already later than the original 2025 window.",
+  "timeline.tl_trailer_2.title": "Trailer 2 and the two leads",
+  "timeline.tl_trailer_2.body": "Jason Duval and Lucia Caminos take center stage, alongside official character and location pages.",
+  "timeline.tl_delay_nov_2026.title": "Moved to November 19, 2026",
+  "timeline.tl_delay_nov_2026.body": "Rockstar delays the game by about six months to finish it at the level of polish it wants.",
+  "timeline.tl_launch.title": "Launch day",
+  "timeline.tl_launch.body": "GTA VI releases on PlayStation 5 and Xbox Series X|S."
 }

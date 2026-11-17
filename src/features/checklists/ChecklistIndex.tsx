@@ -20,8 +20,8 @@ export default function ChecklistIndex() {
             <Link href={`/checklists/${c.slug}`} className="card block transition hover:-translate-y-0.5">
               <h2 className="font-display text-2xl leading-tight">{t(checklistKey(c.id))}</h2>
               <p className="mt-3 font-display text-4xl leading-none">{percent}%</p>
-              <div className="mt-2 h-3 overflow-hidden rounded-full border-2 border-line bg-bg">
-                <div className="h-full bg-accent2" style={{ width: `${percent}%` }} />
+              <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-surface-2">
+                <div className="h-full rounded-full bg-gradient-to-r from-accent to-sun" style={{ width: `${percent}%` }} />
               </div>
             </Link>
           </li>
