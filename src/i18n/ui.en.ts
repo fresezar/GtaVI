@@ -127,6 +127,7 @@ export const UI_EN = {
   "ui.explore.radio": "Radio",
   "ui.explore.radio.desc": "Every station and track list.",
   "ui.footer.links": "Links",
+  "ui.footer.artCredit": "GTA VI artwork © Rockstar Games, shown for fan commentary.",
   "ui.footer.disclaimer":
     "Unofficial fan project. Not affiliated with, endorsed by, or connected to Rockstar Games or Take-Two Interactive. All trademarks belong to their owners.",
 } as const;

@@ -129,6 +129,7 @@ export const UI_TR: Record<UiKey, string> = {
   "ui.explore.radio": "Radyo",
   "ui.explore.radio.desc": "Tüm istasyonlar ve şarkı listeleri.",
   "ui.footer.links": "Bağlantılar",
+  "ui.footer.artCredit": "GTA VI çizimleri © Rockstar Games; hayran içeriği amacıyla gösterilmektedir.",
   "ui.footer.disclaimer":
     "Resmî olmayan hayran projesi. Rockstar Games ya da Take-Two Interactive ile bağlantılı değildir, onlar tarafından desteklenmez veya onaylanmaz. Tüm ticari markalar sahiplerine aittir.",
 };

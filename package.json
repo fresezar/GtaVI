@@ -11,7 +11,8 @@
     "validate": "node scripts/validate-content.mjs",
     "import:pins": "node scripts/import-pins.mjs",
     "prebuild": "npm run validate",
-    "prebuild:static": "npm run validate"
+    "prebuild:static": "npm run validate",
+    "media": "node scripts/optimize-media.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
@@ -29,6 +30,7 @@
     "autoprefixer": "^10.6.2",
     "cross-env": "^7.0.3",
     "postcss": "^8.5.33",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.19",
     "typescript": "^7.0.2"
   }

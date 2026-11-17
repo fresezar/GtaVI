@@ -51,7 +51,7 @@ export default function MapExplorer() {
   }, []);
 
   const { ready, progress, isDone, toggle, exportCode, importCode } = useProgress(SITE.gameId);
-  const devTool = useDevTool(dev, DEF, CATEGORIES, LANDMARKS);
+  const devTool = useDevTool(dev, CATEGORIES, LANDMARKS);
 
   const focusPin = useCallback((id: PinId) => setFocus((f) => ({ id, nonce: (f?.nonce ?? 0) + 1 })), []);
 
@@ -127,7 +127,7 @@ export default function MapExplorer() {
     }
   };
 
-  const devMarkers = useMemo(() => devTool.captures.map((c) => c.coord), [devTool.captures]);
+  const devMarkers = devTool.markers;
   const calibrationMarkers = useMemo(() => devTool.calib.points.map((p) => p.image), [devTool.calib.points]);
 
   return (
@@ -150,7 +150,7 @@ export default function MapExplorer() {
         />
         {dev && (
           <span className="pointer-events-none absolute right-3 top-3 z-[500] rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-white shadow-neon">
-            {devTool.calib.active ? "Calibrating" : "Dev mode"}
+            {devTool.calib.active ? "Kalibrasyon" : "Veri girişi"}
           </span>
         )}
         {selectedPin && (

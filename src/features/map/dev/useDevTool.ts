@@ -1,26 +1,37 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { Category, CategoryId, ControlPoint, MapDef, Pin, PinSource } from "@/domain";
+import type { Category, CategoryId, ControlPoint, Pin } from "@/domain";
 import { t } from "@/i18n";
 import { pinKey } from "@/i18n/keys";
 import { fitAffine, maxResidual } from "@/lib/affine";
 import { copyText } from "@/lib/clipboard";
-import { buildPinTemplate, type PinTemplate } from "./template";
+import { formatCoord, toCsv } from "./template";
 
-export type CopyFormat = "coord" | "json";
+/**
+ * In-site data entry (replaces the Google Sheet): click the map for the coordinate, fill the form,
+ * add to the list, download one CSV for `npm run import:pins`. Also runs map calibration.
+ * Everything is kept in this browser (localStorage) until downloaded.
+ */
 
-export interface DevSettings {
+export interface EntryFields {
   categoryId: CategoryId | null;
-  source: PinSource;
-  credit: string;
-  autoCopy: boolean;
-  /** "coord" = text for the import table (default), "json" = full pin literal. */
-  copyFormat: CopyFormat;
+  title: string;
+  titleTr: string;
+  description: string;
+  descriptionTr: string;
+  sourceUrl: string;
+  timestamp: string;
+  finder: string;
+  finderUrl: string;
+  spoiler: "none" | "mild" | "major";
+  status: "unverified" | "verified" | "disputed";
+  confidence: "low" | "medium" | "high";
+  region: string;
 }
 
-export interface DevCapture extends PinTemplate {
-  coord: [number, number];
+export interface EntryRow extends EntryFields {
+  coord: [number, number] | null;
   at: number;
 }
 
@@ -30,8 +41,27 @@ export interface Calibration {
   points: ControlPoint[];
 }
 
-const SETTINGS_KEY = "atlas:dev:settings";
-const CAPTURES_KEY = "atlas:dev:captures";
+/** Kept after "add": one stream session = same VOD, streamer and usually category. */
+const STICKY: (keyof EntryFields)[] = ["categoryId", "sourceUrl", "finder", "finderUrl", "status", "confidence", "region"];
+
+const EMPTY = (categoryId: CategoryId | null): EntryFields => ({
+  categoryId,
+  title: "",
+  titleTr: "",
+  description: "",
+  descriptionTr: "",
+  sourceUrl: "",
+  timestamp: "",
+  finder: "",
+  finderUrl: "",
+  spoiler: "none",
+  status: "unverified",
+  confidence: "medium",
+  region: "",
+});
+
+const FIELDS_KEY = "atlas:dev:fields";
+const ROWS_KEY = "atlas:dev:rows";
 const round4 = (n: number) => Math.round(n * 10000) / 10000;
 
 function load<T>(key: string, fallback: T): T {
@@ -46,24 +76,14 @@ function save(key: string, value: unknown) {
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    /* storage unavailable: dev tool still works for this session */
+    /* storage unavailable: still works for this session */
   }
 }
 
-/**
- * Click map -> coordinate (or pin JSON) on the clipboard in one action. Built for speed while
- * watching a stream. Also runs map calibration: click known landmarks on a new map image.
- */
-export function useDevTool(enabled: boolean, def: MapDef, categories: readonly Category[], landmarks: readonly Pin[]) {
-  const [settings, setSettings] = useState<DevSettings>({
-    categoryId: categories[0]?.id ?? null,
-    source: "stream",
-    credit: "",
-    autoCopy: true,
-    copyFormat: "coord",
-  });
-  const [captures, setCaptures] = useState<DevCapture[]>([]);
-  const [title, setTitle] = useState("");
+export function useDevTool(enabled: boolean, categories: readonly Category[], landmarks: readonly Pin[]) {
+  const [fields, setFields] = useState<EntryFields>(() => EMPTY(categories[0]?.id ?? null));
+  const [coord, setCoord] = useState<[number, number] | null>(null);
+  const [rows, setRows] = useState<EntryRow[]>([]);
   const [toast, setToast] = useState("");
   const [calib, setCalib] = useState<Calibration>({ active: false, index: 0, points: [] });
   const loaded = useRef(false);
@@ -72,84 +92,107 @@ export function useDevTool(enabled: boolean, def: MapDef, categories: readonly C
   const flash = useCallback((msg: string) => {
     setToast(msg);
     clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(""), 1800);
+    toastTimer.current = setTimeout(() => setToast(""), 2000);
   }, []);
 
   useEffect(() => {
     if (!enabled || loaded.current) return;
     loaded.current = true;
-    setSettings((s) => ({ ...s, ...load<Partial<DevSettings>>(SETTINGS_KEY, {}) }));
-    setCaptures(load<DevCapture[]>(CAPTURES_KEY, []).filter((c) => typeof c.coordText === "string"));
+    setFields((f) => ({ ...f, ...load<Partial<EntryFields>>(FIELDS_KEY, {}) }));
+    setRows(load<EntryRow[]>(ROWS_KEY, []));
   }, [enabled]);
-
   useEffect(() => {
-    if (enabled && loaded.current) save(SETTINGS_KEY, settings);
-  }, [enabled, settings]);
+    if (enabled && loaded.current) save(FIELDS_KEY, fields);
+  }, [enabled, fields]);
   useEffect(() => {
-    if (enabled && loaded.current) save(CAPTURES_KEY, captures);
-  }, [enabled, captures]);
+    if (enabled && loaded.current) save(ROWS_KEY, rows);
+  }, [enabled, rows]);
 
-  const copy = useCallback(
-    async (text: string, label: string) => {
-      flash((await copyText(text)) ? `${label} copied` : "Copy failed: select manually");
-    },
-    [flash],
-  );
+  const set = useCallback(<K extends keyof EntryFields>(key: K, value: EntryFields[K]) => setFields((f) => ({ ...f, [key]: value })), []);
 
-  const live = useRef({ settings, title, calib });
+  const live = useRef({ calib });
   useEffect(() => {
-    live.current = { settings, title, calib };
+    live.current = { calib };
   });
 
-  const payload = (c: PinTemplate, format: CopyFormat) => (format === "coord" ? c.coordText : c.json);
-
+  /** Map click: sets the draft coordinate, or records a calibration point. */
   const capture = useCallback(
-    (coord: readonly [number, number], image: readonly [number, number]) => {
-      const { settings: s, title: currentTitle, calib: cal } = live.current;
-
+    (frame: readonly [number, number], image: readonly [number, number]) => {
+      const cal = live.current.calib;
       if (cal.active) {
         const target = landmarks[cal.index];
         if (!target) return;
-        const point: ControlPoint = {
-          label: t(pinKey(target.id, "title")),
-          frame: target.coord,
-          image: [round4(image[0]), round4(image[1])],
-        };
+        const point: ControlPoint = { label: t(pinKey(target.id, "title")), frame: target.coord, image: [round4(image[0]), round4(image[1])] };
         setCalib({ ...cal, index: cal.index + 1, points: [...cal.points, point] });
-        flash(`Point ${cal.points.length + 1} set`);
+        flash(`Nokta ${cal.points.length + 1} alındı`);
         return;
       }
-
-      if (!s.categoryId) return;
-      const tpl = buildPinTemplate({
-        mapId: def.id,
-        categoryId: s.categoryId,
-        coord,
-        source: s.source,
-        credit: s.credit,
-        title: currentTitle,
-      });
-      setCaptures((prev) => [...prev, { ...tpl, coord: [coord[0], coord[1]], at: Date.now() }]);
-      setTitle("");
-      if (s.autoCopy) void copy(payload(tpl, s.copyFormat), s.copyFormat === "coord" ? "Coord" : "Pin JSON");
-      else flash("Captured");
+      setCoord([round4(frame[0]), round4(frame[1])]);
     },
-    [def.id, landmarks, copy, flash],
+    [landmarks, flash],
   );
 
-  const last = captures[captures.length - 1] ?? null;
-  const copyLast = useCallback(
-    () => last && copy(payload(last, live.current.settings.copyFormat), "Last"),
-    [last, copy],
-  );
-  const copyLastI18n = useCallback(() => last && copy(last.i18n, "Text lines"), [last, copy]);
-  const copyAll = useCallback(() => {
-    const format = live.current.settings.copyFormat;
-    const sep = format === "coord" ? "\n" : ",\n";
-    return copy(captures.map((c) => payload(c, format)).join(sep), `${captures.length} captures`);
-  }, [captures, copy]);
-  const undo = useCallback(() => setCaptures((p) => p.slice(0, -1)), []);
-  const clear = useCallback(() => setCaptures([]), []);
+  const canAdd = Boolean(fields.categoryId && fields.title.trim());
+  const add = useCallback(() => {
+    if (!fields.categoryId || !fields.title.trim()) {
+      flash("Kategori ve başlık gerekli");
+      return;
+    }
+    setRows((r) => [...r, { ...fields, title: fields.title.trim(), coord, at: Date.now() }]);
+    setFields((f) => {
+      const next = EMPTY(f.categoryId);
+      for (const k of STICKY) (next as unknown as Record<string, unknown>)[k] = f[k];
+      return next;
+    });
+    setCoord(null);
+    flash(coord ? "Listeye eklendi" : "Konumsuz eklendi (sonra konum verilebilir)");
+  }, [fields, coord, flash]);
+
+  const remove = useCallback((at: number) => setRows((r) => r.filter((x) => x.at !== at)), []);
+  const clearRows = useCallback(() => setRows([]), []);
+
+  const csv = useMemo(() => {
+    const slug = (id: CategoryId | null) => categories.find((c) => c.id === id)?.slug ?? "";
+    return toCsv(
+      rows.map((r) => ({
+        category: slug(r.categoryId),
+        title: r.title,
+        title_tr: r.titleTr,
+        description: r.description,
+        description_tr: r.descriptionTr,
+        coord: r.coord ? formatCoord(r.coord) : "",
+        source_url: r.sourceUrl,
+        timestamp: r.timestamp,
+        finder: r.finder,
+        finder_url: r.finderUrl,
+        spoiler: r.spoiler,
+        status: r.status,
+        confidence: r.confidence,
+        region: r.region,
+      })),
+    );
+  }, [rows, categories]);
+
+  const download = useCallback(() => {
+    if (!rows.length) return;
+    // Digits only (no bracket regex here: Tailwind's class scanner would read "[x:y]" as a CSS property).
+    const stamp = new Date().toISOString().slice(0, 16).replace(/\D/g, "");
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `pins-${stamp}.csv`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    flash(`${rows.length} satır indirildi: inbox/ klasörüne koy`);
+  }, [csv, rows.length, flash]);
+
+  const copyCsv = useCallback(async () => {
+    flash((await copyText(csv)) ? "CSV kopyalandı: sohbete yapıştırabilirsin" : "Kopyalanamadı");
+  }, [csv, flash]);
+
+  const copyCoord = useCallback(async () => {
+    if (coord) flash((await copyText(formatCoord(coord))) ? "Koordinat kopyalandı" : "Kopyalanamadı");
+  }, [coord, flash]);
 
   // ---- calibration ----
   const startCalibration = useCallback(() => setCalib({ active: true, index: 0, points: [] }), []);
@@ -164,15 +207,16 @@ export function useDevTool(enabled: boolean, def: MapDef, categories: readonly C
     try {
       const pairs = calib.points.map((p) => ({ from: p.frame, to: p.image }));
       const residual = maxResidual(fitAffine(pairs), pairs);
-      const json = `calibration: ${JSON.stringify({ points: calib.points }, null, 2)},`;
-      return { residual, json, error: null as string | null };
+      return { residual, json: `calibration: ${JSON.stringify({ points: calib.points }, null, 2)},`, error: null as string | null };
     } catch (e) {
       return { residual: 0, json: "", error: e instanceof Error ? e.message : String(e) };
     }
   }, [calib.points]);
-  const copyCalibration = useCallback(() => calibResult?.json && copy(calibResult.json, "Calibration"), [calibResult, copy]);
+  const copyCalibration = useCallback(async () => {
+    if (calibResult?.json) flash((await copyText(calibResult.json)) ? "Kalibrasyon kopyalandı" : "Kopyalanamadı");
+  }, [calibResult, flash]);
 
-  // Hotkeys: 1-9 and 0 pick category 1-10, C copy last, Z undo
+  // Hotkeys outside inputs: 1-9 and 0 pick category 1-10, Esc drops the draft coordinate.
   useEffect(() => {
     if (!enabled) return;
     const onKey = (e: KeyboardEvent) => {
@@ -181,31 +225,35 @@ export function useDevTool(enabled: boolean, def: MapDef, categories: readonly C
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (/^[0-9]$/.test(e.key)) {
         const cat = categories[e.key === "0" ? 9 : Number(e.key) - 1];
-        if (cat) setSettings((s) => ({ ...s, categoryId: cat.id }));
-      } else if (e.key === "c") void copyLast();
-      else if (e.key === "z") {
-        if (live.current.calib.active) undoLandmark();
-        else undo();
-      }
+        if (cat) set("categoryId", cat.id);
+      } else if (e.key === "Escape") setCoord(null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [enabled, categories, copyLast, undo, undoLandmark]);
+  }, [enabled, categories, set]);
+
+  /** Markers to draw: listed rows (small) + the draft (big, last). */
+  const markers = useMemo(
+    () => [...rows.filter((r) => r.coord).map((r) => r.coord as [number, number]), ...(coord ? [coord] : [])],
+    [rows, coord],
+  );
 
   return {
-    settings,
-    setSettings,
-    title,
-    setTitle,
-    captures,
+    fields,
+    set,
+    coord,
+    setCoord,
+    rows,
+    canAdd,
+    add,
+    remove,
+    clearRows,
+    download,
+    copyCsv,
+    copyCoord,
     capture,
-    last,
+    markers,
     toast,
-    copyLast,
-    copyLastI18n,
-    copyAll,
-    undo,
-    clear,
     landmarks,
     calib,
     calibResult,

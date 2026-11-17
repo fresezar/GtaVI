@@ -1,3 +1,6 @@
+import { SITE } from "@/config/site";
+import Art from "./Art";
+
 /**
  * Our own neon-sunset scene (sky, striped sun, skyline, palms, water). Pure SVG, generated
  * deterministically: no photos, no Rockstar art, ~6 KB, no network request.
@@ -61,7 +64,20 @@ function Palm({ x, height, lean, scale = 1 }: { x: number; height: number; lean:
   );
 }
 
+/** Photo backdrop when official art is on; our own SVG scene otherwise (and as the takedown fallback). */
 export default function Backdrop() {
+  if (SITE.officialArt) {
+    return (
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <Art name="backdrop" sizes="100vw" priority className="h-full w-full object-[50%_45%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#120b1e]/55 via-[#120b1e]/70 to-[#120b1e]/95" />
+      </div>
+    );
+  }
+  return <SvgBackdrop />;
+}
+
+function SvgBackdrop() {
   const stripes = Array.from({ length: 7 }, (_, i) => ({ y: 600 + i * 15, h: 2 + i * 1.6 }));
   const reflections = Array.from({ length: 9 }, (_, i) => ({ y: HORIZON + 14 + i * 20, w: 420 - i * 38, o: 0.55 - i * 0.055 }));
 

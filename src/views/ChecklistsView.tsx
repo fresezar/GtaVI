@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageBanner from "@/components/ui/PageBanner";
 import PageShell from "@/components/ui/PageShell";
 import { CHECKLISTS } from "@/data/checklists";
 import ChecklistIndex from "@/features/checklists/ChecklistIndex";
@@ -23,7 +24,7 @@ export function checklistMetadata(locale: Locale, slug: string): Metadata {
 export function ChecklistsIndexView({ locale }: { locale: Locale }) {
   return (
     <PageShell locale={locale} path="/checklists" width="max-w-4xl">
-      <h1 className="mb-6 font-display text-4xl sm:text-5xl">{tFor(locale)("ui.nav.checklists")}</h1>
+      <PageBanner art="banner-checklists" title={tFor(locale)("ui.nav.checklists")} />
       <ChecklistIndex />
     </PageShell>
   );

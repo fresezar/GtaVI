@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NewsList, RoadTimeline } from "@/components/editorial";
+import PageBanner from "@/components/ui/PageBanner";
 import PageShell from "@/components/ui/PageShell";
 import { NEWS, TIMELINE } from "@/data/editorial";
 import { alternates, tFor, type Locale } from "@/i18n";
@@ -14,10 +15,9 @@ export default function NewsView({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   return (
     <PageShell locale={locale} path="/news">
-      <h1 className="font-display text-4xl sm:text-5xl">{t("ui.news.title")}</h1>
-      <p className="mt-2 max-w-2xl text-muted">{t("ui.news.lead")}</p>
+      <PageBanner art="banner-news" title={t("ui.news.title")} lead={t("ui.news.lead")} />
 
-      <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         <section aria-label={t("ui.news.title")}>
           {NEWS.length ? (
             <NewsList items={NEWS} locale={locale} t={t} />

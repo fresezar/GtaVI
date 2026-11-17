@@ -17,6 +17,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
         <div>
           <p className="neon font-display text-2xl">{SITE.name}</p>
           <p className="mt-2 max-w-xl text-xs leading-relaxed text-muted">{t("ui.footer.disclaimer")}</p>
+          {SITE.officialArt && <p className="mt-1 max-w-xl text-xs text-muted">{t("ui.footer.artCredit")}</p>}
         </div>
         <nav aria-label={t("ui.footer.links")} className="flex flex-wrap items-start gap-x-5 gap-y-2 text-sm font-bold text-muted">
           <Link href={localePath(locale, "/map")} className="hover:text-ink">{t("ui.nav.map")}</Link>

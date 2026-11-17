@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { dateFmt, NewsList, RoadTimeline } from "@/components/editorial";
+import Art from "@/components/ui/Art";
 import LaunchCountdown from "@/components/ui/LaunchCountdown";
+import type { ArtName } from "@/config/art";
 import PageShell from "@/components/ui/PageShell";
 import { SITE } from "@/config/site";
 import { CATEGORIES } from "@/data/categories";
@@ -49,7 +51,7 @@ function Stats({ t }: { t: Translate }) {
   return (
     <dl className="grid grid-cols-2 gap-2">
       {items.map((s) => (
-        <div key={s.key} className="rounded-2xl border border-line bg-surface-2 px-3 py-2">
+        <div key={s.key} className="rounded-2xl border border-line bg-[#120b1e]/70 px-3 py-2 backdrop-blur-md">
           <dt className="text-[10px] font-extrabold uppercase tracking-widest text-muted">{t(s.key)}</dt>
           <dd className="font-display text-2xl leading-tight">{s.value}</dd>
         </div>
@@ -133,17 +135,20 @@ function Explore({ locale, t }: { locale: Locale; t: Translate }) {
         {EXPLORE.map((e) => {
           const body = (
             <>
-              <span className={`badge ${e.live ? "badge-verified" : "bg-surface-2 text-muted"}`}>{t(e.live ? "ui.home.live" : "ui.home.soon")}</span>
-              <p className="mt-2 font-display text-lg leading-tight">{t(`ui.explore.${e.key}`)}</p>
-              <p className="mt-1 text-xs leading-snug text-muted">{t(`ui.explore.${e.key}.desc`)}</p>
+              <Art name={`card-${e.key}` as ArtName} sizes="(min-width: 1024px) 280px, 50vw" className="aspect-[16/10] w-full" />
+              <div className="p-3">
+                <span className={`badge ${e.live ? "badge-verified" : "bg-surface-2 text-muted"}`}>{t(e.live ? "ui.home.live" : "ui.home.soon")}</span>
+                <p className="mt-2 font-display text-lg leading-tight">{t(`ui.explore.${e.key}`)}</p>
+                <p className="mt-1 text-xs leading-snug text-muted">{t(`ui.explore.${e.key}.desc`)}</p>
+              </div>
             </>
           );
           return (
             <li key={e.key}>
               {"path" in e ? (
-                <Link href={localePath(locale, e.path)} className="card block h-full !p-3 transition hover:-translate-y-0.5 hover:border-accent">{body}</Link>
+                <Link href={localePath(locale, e.path)} className="card block h-full overflow-hidden !p-0 transition hover:-translate-y-0.5 hover:border-accent">{body}</Link>
               ) : (
-                <div className="card h-full !p-3 opacity-70">{body}</div>
+                <div className="card h-full overflow-hidden !p-0 [&_img]:opacity-60 [&_img]:saturate-50">{body}</div>
               )}
             </li>
           );
@@ -157,7 +162,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   return (
     <PageShell locale={locale} path="/">
-      <section className="grid items-center gap-8 lg:grid-cols-[1.25fr_1fr]">
+      <section className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <p className="sticker">{t("ui.home.eyebrow")}</p>
           <h1 className="mt-4 font-display text-5xl leading-[0.98] sm:text-6xl lg:text-7xl">{t("ui.home.title")}</h1>
@@ -166,11 +171,23 @@ export default function HomeView({ locale }: { locale: Locale }) {
             <Link href={localePath(locale, "/map")} className="btn btn-primary min-h-[48px] px-6 text-base">{t("ui.nav.openMap")} →</Link>
             <Link href={localePath(locale, "/checklists")} className="btn min-h-[48px] px-6 text-base">{t("ui.home.ctaChecklists")}</Link>
           </div>
+          <div className="mt-8">
+            <LaunchCountdown />
+          </div>
         </div>
-        <div className="card space-y-4 !p-5">
-          <LaunchCountdown />
-          <Stats t={t} />
-        </div>
+        {SITE.officialArt ? (
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line-strong shadow-neon">
+            <Art name="hero" sizes="(min-width: 1024px) 460px, 100vw" priority className="absolute inset-0 h-full w-full" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#120b1e]/90 via-transparent to-transparent" aria-hidden="true" />
+            <div className="absolute inset-x-3 bottom-3">
+              <Stats t={t} />
+            </div>
+          </div>
+        ) : (
+          <div className="card !p-5">
+            <Stats t={t} />
+          </div>
+        )}
       </section>
 
       <div className="mt-14 grid gap-10 lg:grid-cols-[1.4fr_1fr]">

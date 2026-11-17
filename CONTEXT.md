@@ -15,7 +15,7 @@ Revenue/time-to-market beats polish. Flag work with no path to revenue.
 - Paywalls only via `src/config/entitlements.ts` feature keys.
 - New data starts `unverified`; AI-collected data needs a source URL + confidence and stays unverified until confirmed (verified = 2 independent sources or community).
 - No copying other sites' text (facts only, original wording). No leaked/stolen pre-release material.
-- Do not add Rockstar/Take-Two images without checking their fan-content policy.
+- Copyright: no self-imposed rule (2026-11-17). Official art is used with a "© Rockstar Games" credit; `SITE.officialArt=false` removes it all at once. No GTA VI logo as decoration (looks official).
 
 ## Stack and status (Phase 1 done)
 Next.js (App Router) + TypeScript + Tailwind 3 + Leaflet (CRS.Simple). No backend.
@@ -24,7 +24,8 @@ Data is SAMPLE ONLY until the first real pin (automatic switch), placeholder map
 See `docs/ARCHITECTURE.md`, `docs/DATA_SCHEMA.md`, `docs/PROJECT_BRIEF.md`.
 
 ## Data pipeline (ready for launch, 2026-11-17)
-Sezar sends a table (Google Sheets CSV, template `content/import-template.csv`); Claude runs
+Sezar enters pins in the site's own form at `/map?dev=true` (click map, fill, add, "CSV indir") and drops the CSV
+in `inbox/` (or a Google Sheet CSV from `content/import-template.csv`); Claude runs
 `npm run import:pins -- file.csv` (dry run), then `--write`, `npm run validate`, build, deploy. Guide: `docs/INGEST.md`.
 Content is JSON in `content/`. 12 categories (story/side missions, activities, collectibles, stunt jumps, random events,
 rare vehicles, easter eggs, weapon pickups, safehouses, shops, landmarks); add/remove after launch.
