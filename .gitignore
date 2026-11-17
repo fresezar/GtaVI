@@ -9,3 +9,7 @@ next-env.d.ts
 
 # Raw photos pending license check (never commit unreviewed images)
 /media-src/
+
+# Drop zone for tables and link lists Sezar sends (raw, may contain spoilers): processed into content/, never committed
+/inbox/*
+!/inbox/README.md

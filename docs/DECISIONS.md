@@ -11,6 +11,10 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 | Karar | Neden | Durum |
 |---|---|---|
+| Bulgu: GTADB / map.gtadb.org GTA VI haritası çıkış öncesi bir rekonstrüksiyon (fragman ve ekran görüntülerinden üçgenleme, gerçek Florida eşleştirmesi, kısmen sızıntı verisi). Lisans: kod MIT, veri CC BY 4.0 ("gtadb.org and all contributors"); döşemelerin lisansı belirtilmemiş | Kurucu sordu | Bilgi |
+| GTADB haritası taban harita olarak KULLANILMAZ | Kısmen sızıntıya dayanıyor (kuralımız: sızıntı materyali yok); çıkışta gerçek haritayla eskiyecek; döşeme lisansı belirsiz | Önerildi, kurucunun yanıtı bekleniyor |
+| Harita planı önerisi: (1) çıkış haftası: topluluğun oyundan birleştirdiği harita, izin + atıfla, site reklamsız ve bağışsızken; (2) paralelde kendi vektör haritamız (referanstan su/kara/yol otomatik çıkarım + elle düzeltme, kendi stilimiz); (3) kendi haritamız hazır olunca kalibrasyonla geçiş, ancak ondan sonra reklam/bağış | Rockstar'ın harita çizimi telifli; ticari olmayan kullanım hoş görülüyor | Önerildi, kurucunun yanıtı bekleniyor |
+| `inbox/` klasörü: kurucunun gönderdiği CSV ve link listeleri buraya bırakılır, git'e girmez; Google Sheet'te iki sekme: pins + news | Claude Google Drive'ı okuyamıyor; tek, basit teslim yolu | Kabul, uygulandı |
 | Türkçe sürüm: İngilizce kökte (`/map`), Türkçe `/tr/` altında; hreflang ve sitemap iki dili bağlar; sayfada EN/TR geçiş düğmesi | Arama motorlarında iki dil ayrı sayfa; İngilizce adresler değişmedi | Kabul, uygulandı |
 | Türkçe arayüz metinleri tam; içerik metinleri (pin başlığı/açıklaması) tabloda isteğe bağlı `title_tr` / `description_tr` sütunlarıyla gelir, yoksa İngilizcesi gösterilir | Türkçe iş yükü kurucunun zamanını yemesin | Kabul, uygulandı |
 | Türkçe dizgide tipografik kesme işareti (’) kullanılır | Başlık fontunda düz kesme bozuk görünüyor; Türkçe dizgide doğrusu da bu | Kabul |

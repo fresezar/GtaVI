@@ -4,9 +4,18 @@ Sezar kaynakları tabloya yazar, Claude tabloyu içe aktarır, doğrular, build 
 
 ## 1. Tablo (Google Sheets)
 
-Şablon: `content/import-template.csv`. Sheets'te **File > Import** ile aç, örnek satırı sil.
-Gönderirken: **File > Download > CSV** ya da satırları kopyalayıp yapıştır (sekmeyle ayrılmış metin de kabul edilir).
-Her seferinde yalnızca **yeni ya da değişen satırları** gönder.
+Kurulum (bir kez):
+1. Tarayıcıda `sheets.new` aç (boş tablo açılır). Adını ver, ör. "Atlas veri".
+2. **File > Import > Upload** > `content/import-template.csv` dosyasını seç > "Replace spreadsheet" > **Import data**.
+3. Alttaki sekmenin adını **pins** yap. Örnek satırı sil, başlık satırı kalsın. Başlık satırını dondur: **View > Freeze > 1 row**.
+4. Yine **File > Import > Upload** > `content/news-template.csv` > bu sefer **"Insert new sheet(s)"** seç. Yeni sekmenin adını **news** yap, örnek satırı sil.
+
+Gönderme:
+- **File > Download > Comma-separated values (.csv)**: yalnızca açık olan sekmeyi indirir. Dosyayı
+  `inbox/` klasörüne koy (ör. `inbox/pins-2026-11-19.csv`) ve "inbox'a koydum" de.
+- Az satır için: hücreleri seçip kopyala, sohbete yapıştır (sekmeyle ayrılmış metin de kabul edilir).
+- Her seferinde yalnızca **yeni ya da değişen satırları** gönder (ya da gönderdiklerine "notes" sütununda "gönderildi" yaz).
+- Claude Google Drive'ı doğrudan okuyamaz; dosya `inbox/` üzerinden ya da sohbetle gelir.
 
 | Sütun | Zorunlu | Örnek | Not |
 |---|---|---|---|
@@ -62,7 +71,8 @@ Kurallar (otomatik denetlenir):
 
 ## 4. Haberler
 
-Haber linkini gönder (ve istersen "doğrulandı mı, söylenti mi" notunu). Claude:
+Haber linkini gönder: sohbete yapıştır (en kolayı) ya da Sheet'in **news** sekmesini (`url, kind, note`) CSV olarak
+`inbox/` klasörüne koy. "Doğrulandı mı, söylenti mi" notu isteğe bağlı; karar kaynağa göre verilir. Claude:
 - özgün bir başlık ve 1-2 cümlelik özet yazar (kaynak metin kopyalanmaz), EN ve TR;
 - `content/news.json` kaydı açar: tarih, `confirmed` / `rumor`, kaynak adı ve linki;
 - metinleri `content/text.en.json` ve `text.tr.json` dosyalarına `news.<id>.title|summary` anahtarlarıyla yazar.
