@@ -35,7 +35,9 @@ Checks: `npm run typecheck`, `npm run build`, `npm run build:static`.
 - Ads: after traffic exists; check current ad-network thresholds before applying.
 
 ## Next
-1. Pushed to GitHub (`fresezar/GtaVI`). Deploy to Cloudflare Workers, set `NEXT_PUBLIC_SITE_URL`.
+1. Live: https://atlas.theshamsfr.workers.dev (Cloudflare account theshamsfr; GitHub fresezar). Deploys are manual for now:
+   `NEXT_PUBLIC_SITE_URL=https://atlas.theshamsfr.workers.dev npm run build:static` then `npx wrangler deploy`.
+   Optional: connect the repo to Workers Builds (Worker name must stay `atlas`) for auto-deploy on push.
 2. Analytics (Cloudflare Web Analytics), robots, OG image.
 3. Launch day: real map art + pins from streamers via dev tool; each pin -> short video.
 4. Phase 2: vehicle/weapon DB (stats carry method + sample size), economy calculators, ads, accounts/Supabase.
