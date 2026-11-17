@@ -2,7 +2,17 @@
 
 Sezar kaynakları tabloya yazar, Claude tabloyu içe aktarır, doğrular, build alır ve yayınlar.
 
-## 1. Tablo (Google Sheets)
+## 1. Site içi veri girişi (önerilen)
+
+`/map?dev=true` (Türkçe: `/tr/map?dev=true`) aç:
+1. Kategoriyi seç (kısayol `1`-`0`), haritada yere tıkla: konum forma düşer. Konum bilinmiyorsa boş bırak.
+2. Başlık (EN zorunlu, TR isteğe bağlı), açıklama, kaynak linki, zaman, bulan: **Listeye ekle** (Enter).
+   Kaynak linki, bulan, kategori ve durum bir sonraki pin için hatırlanır; aynı yayında yalnızca başlık ve zaman değişir.
+3. Bitince **CSV indir** → dosyayı `inbox/` klasörüne koy → "inbox'a koydum" de. Az satırsa **CSV kopyala** → sohbete yapıştır.
+
+Liste bu tarayıcıda saklanır (sayfayı kapatsan da durur), ama tarayıcı verisi silinirse gider: sık indir.
+
+## 1b. Tablo (Google Sheets, isteğe bağlı)
 
 Kurulum (bir kez):
 1. Tarayıcıda `sheets.new` aç (boş tablo açılır). Adını ver, ör. "Atlas veri".
