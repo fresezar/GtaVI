@@ -5,7 +5,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Category, CategoryId, Coord, MapDef, Pin, PinId } from "@/domain";
 import type { Translate } from "@/i18n";
-import { categoryKey, pinKey } from "@/i18n/keys";
 import { createProjection, type MapProjection } from "./projection";
 import { CATEGORY_COLORS, PIN_OUTLINE } from "./tokens";
 
@@ -15,11 +14,11 @@ interface Props {
   pins: readonly Pin[];
   categories: Readonly<Record<CategoryId, Category>>;
   isDone: (ref: string) => boolean;
-  onToggle: (ref: string) => void;
-  /** Translator for the page's language (popups are built outside React). */
+  /** Pin tapped (id) or empty map tapped (null). The card itself is rendered by the parent. */
+  onSelect: (id: PinId | null) => void;
+  selectedId: PinId | null;
+  /** Translator for the page's language (map controls are built outside React). */
   t: Translate;
-  /** Link to a pin's own page in the page's language. */
-  pinHref: (slug: string) => string;
   /** Present only in dev mode. `coord` = pin frame coordinate, `image` = raw position on this image. */
   onMapClick?: (coord: [number, number], image: [number, number]) => void;
   /** Captured pins, in frame coordinates. */
@@ -36,15 +35,15 @@ export type MapFocus = NonNullable<Props["focus"]>;
 const CLUSTER_BELOW = 1;
 const CLUSTER_CELL_PX = 56;
 
-function markerStyle(pin: Pin, category: Category | undefined, done: boolean): L.CircleMarkerOptions {
+function markerStyle(pin: Pin, category: Category | undefined, done: boolean, selected: boolean): L.CircleMarkerOptions {
   const color = category ? CATEGORY_COLORS[category.colorToken] : "#888888";
   return {
-    radius: 8,
-    color: done ? color : PIN_OUTLINE,
-    weight: done ? 3 : 2,
+    radius: selected ? 12 : 8,
+    color: selected ? "#ffffff" : done ? color : PIN_OUTLINE,
+    weight: selected ? 4 : done ? 3 : 2,
     fillColor: color,
-    fillOpacity: done ? 0.22 : 1,
-    dashArray: pin.status === "verified" ? undefined : "2 3",
+    fillOpacity: done && !selected ? 0.22 : 1,
+    dashArray: pin.status === "verified" || selected ? undefined : "2 3",
   };
 }
 
@@ -55,53 +54,7 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string, t
   return node;
 }
 
-function buildPopup(
-  pin: Pin,
-  category: Category | undefined,
-  isDone: (ref: string) => boolean,
-  onToggle: (ref: string) => void,
-  t: Translate,
-  pinHref: (slug: string) => string,
-): HTMLElement {
-  const root = el("div", "atlas-pop");
-  const chip = el("span", "chip", category ? t(categoryKey(category.id)) : "");
-  if (category) chip.style.setProperty("--dot", CATEGORY_COLORS[category.colorToken]);
-  const status = el("span", `status status-${pin.status}`, t(`ui.pin.status.${pin.status}`));
-  const head = el("div", "atlas-pop-head");
-  head.append(chip, status);
-
-  root.append(head, el("h3", "atlas-pop-title", t(pinKey(pin.id, "title"))));
-
-  const descKey = pinKey(pin.id, "description");
-  const desc = t(descKey);
-  if (desc !== descKey && desc) {
-    if (pin.spoilerLevel === "none") {
-      root.append(el("p", "atlas-pop-desc", desc));
-    } else {
-      const details = el("details", "atlas-pop-spoiler");
-      details.append(el("summary", undefined, t("ui.pin.spoiler")), el("p", "atlas-pop-desc", desc));
-      root.append(details);
-    }
-  }
-  if (pin.credit) root.append(el("p", "atlas-pop-credit", t("ui.pin.foundBy", { name: pin.credit.name })));
-
-  let done = isDone(pin.id);
-  const btn = el("button", "btn btn-primary", done ? t("ui.pin.markUndone") : t("ui.pin.markDone"));
-  btn.type = "button";
-  btn.addEventListener("click", () => {
-    onToggle(pin.id);
-    done = !done;
-    btn.textContent = done ? t("ui.pin.markUndone") : t("ui.pin.markDone");
-  });
-  const link = el("a", "atlas-pop-link", t("ui.pin.openPage"));
-  link.href = pinHref(pin.slug);
-  const actions = el("div", "atlas-pop-actions");
-  actions.append(btn, link);
-  root.append(actions);
-  return root;
-}
-
-export default function MapView({ def, pins, categories, isDone, onToggle, t, pinHref, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
+export default function MapView({ def, pins, categories, isDone, onSelect, selectedId, t, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const projRef = useRef<MapProjection | null>(null);
@@ -113,9 +66,9 @@ export default function MapView({ def, pins, categories, isDone, onToggle, t, pi
   const renderRef = useRef<() => void>(() => {});
 
   // Latest callbacks/state for event handlers without re-binding.
-  const live = useRef({ isDone, onToggle, onMapClick, categories, t, pinHref });
+  const live = useRef({ isDone, onSelect, onMapClick, categories, selectedId });
   useEffect(() => {
-    live.current = { isDone, onToggle, onMapClick, categories, t, pinHref };
+    live.current = { isDone, onSelect, onMapClick, categories, selectedId };
   });
 
   // 1) Create the map once per map definition.
@@ -178,7 +131,10 @@ export default function MapView({ def, pins, categories, isDone, onToggle, t, pi
 
     map.on("click", (e: L.LeafletMouseEvent) => {
       const handler = live.current.onMapClick;
-      if (!handler) return;
+      if (!handler) {
+        live.current.onSelect(null); // tapping empty map closes the card
+        return;
+      }
       const image = proj.toImageCoord(e.latlng);
       if (image[0] < 0 || image[0] > 1 || image[1] < 0 || image[1] > 1) return; // clicked outside the artwork
       handler(proj.toCoord(e.latlng), image);
@@ -256,29 +212,26 @@ export default function MapView({ def, pins, categories, isDone, onToggle, t, pi
       const category = live.current.categories[pin.categoryId];
       const latlng = proj.toLatLng(pin.coord);
       const marker = L.circleMarker(latlng, {
-        ...markerStyle(pin, category, live.current.isDone(pin.id)),
+        ...markerStyle(pin, category, live.current.isDone(pin.id), live.current.selectedId === pin.id),
         renderer,
         bubblingMouseEvents: false,
       });
-      marker.on("click", () => {
-        L.popup({ className: "atlas-popup", maxWidth: 260, autoPanPadding: [24, 24] })
-          .setLatLng(latlng)
-          .setContent(buildPopup(pin, category, live.current.isDone, live.current.onToggle, live.current.t, live.current.pinHref))
-          .openOn(map);
-      });
+      marker.on("click", () => live.current.onSelect(pin.id));
       markersRef.current.set(pin.id, marker);
     }
     renderRef.current();
   }, [pins, def]);
 
-  // 3) Cheap restyle when only progress changes.
+  // 3) Cheap restyle when only progress or the selection changes.
   useEffect(() => {
     const byId = new Map(pins.map((p) => [p.id, p] as const));
     markersRef.current.forEach((marker, id) => {
       const pin = byId.get(id);
-      if (pin) marker.setStyle(markerStyle(pin, live.current.categories[pin.categoryId], isDone(pin.id)));
+      if (!pin) return;
+      marker.setStyle(markerStyle(pin, live.current.categories[pin.categoryId], isDone(pin.id), id === selectedId));
+      if (id === selectedId) marker.bringToFront();
     });
-  }, [isDone, pins]);
+  }, [isDone, pins, selectedId]);
 
   // 4) Focus a pin: deep link /map?pin=<id> or a search pick. Waits until the marker exists.
   useEffect(() => {

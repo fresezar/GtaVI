@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/map",
     "/checklists",
+    "/news",
     ...CHECKLISTS.filter((c) => c.status !== "deprecated").map((c) => `/checklists/${c.slug}`),
     ...PINS.map((p) => `/pins/${p.slug}`),
   ];

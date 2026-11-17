@@ -31,6 +31,9 @@ rare vehicles, easter eggs, weapon pickups, safehouses, shops, landmarks); add/r
 Map: community map first (permission + attribution), our own later; switching maps = calibration, pins untouched.
 Put the community map in BEFORE the first real pins (pins live in its coordinate frame).
 
+Map UX: tapping a pin opens `src/features/map/PinCard.tsx` (not a Leaflet popup); `?pin=<id>` mirrors the selection.
+News: `/news` (+ `/tr/news`) from `content/news.json`; Claude writes original summaries from links Sezar sends.
+
 ## Run
 `npm install` then `npm run dev` (http://localhost:3000). Dev capture tool: `/map?dev=true`.
 Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build:static`.

@@ -21,6 +21,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
         <nav aria-label={t("ui.footer.links")} className="flex flex-wrap items-start gap-x-5 gap-y-2 text-sm font-bold text-muted">
           <Link href={localePath(locale, "/map")} className="hover:text-ink">{t("ui.nav.map")}</Link>
           <Link href={localePath(locale, "/checklists")} className="hover:text-ink">{t("ui.nav.checklists")}</Link>
+          <Link href={localePath(locale, "/news")} className="hover:text-ink">{t("ui.nav.news")}</Link>
           {social.map((s) => (
             <a key={s.key} href={SITE.links[s.key]} target="_blank" rel="noopener" className="hover:text-ink">
               {s.label}

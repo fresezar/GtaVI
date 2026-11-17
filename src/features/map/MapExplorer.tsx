@@ -12,6 +12,7 @@ import { computeProgress } from "@/lib/progress";
 import { copyText } from "@/lib/clipboard";
 import DevPanel from "./DevPanel";
 import MapView, { type MapFocus } from "./MapView";
+import PinCard from "./PinCard";
 import SiteHeader from "@/components/ui/SiteHeader";
 import { useDevTool } from "./dev/useDevTool";
 import { useProgress } from "@/hooks/useProgress";
@@ -37,6 +38,17 @@ export default function MapExplorer() {
   const [hideDone, setHideDone] = useState(false);
   const [query, setQuery] = useState("");
   const [note, setNote] = useState("");
+  const [selectedId, setSelectedId] = useState<PinId | null>(null);
+  const selectedPin = selectedId ? MAP_PINS.find((p) => p.id === selectedId) ?? null : null;
+
+  /** Select a pin (or clear) and mirror it in the address bar, so a copied URL opens the same card. */
+  const select = useCallback((id: PinId | null) => {
+    setSelectedId(id);
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set("pin", id);
+    else url.searchParams.delete("pin");
+    window.history.replaceState(null, "", url);
+  }, []);
 
   const { ready, progress, isDone, toggle, exportCode, importCode } = useProgress(SITE.gameId);
   const devTool = useDevTool(dev, DEF, CATEGORIES, LANDMARKS);
@@ -52,13 +64,16 @@ export default function MapExplorer() {
 
   const summary = useMemo(() => computeProgress(MAP_PINS, CATEGORIES, progress), [progress]);
 
-  // A focused pin always shows, even if its layer is off or it is completed.
+  // A focused or selected pin always shows, even if its layer is off or it is completed.
   const visiblePins = useMemo(
     () =>
       MAP_PINS.filter(
-        (p) => p.id === focus?.id || (!hidden.has(p.categoryId) && !(hideDone && progress[p.id]?.done === true)),
+        (p) =>
+          p.id === focus?.id ||
+          p.id === selectedId ||
+          (!hidden.has(p.categoryId) && !(hideDone && progress[p.id]?.done === true)),
       ),
-    [hidden, hideDone, progress, focus],
+    [hidden, hideDone, progress, focus, selectedId],
   );
 
   const results = useMemo(() => {
@@ -125,20 +140,29 @@ export default function MapExplorer() {
           pins={visiblePins}
           categories={CATEGORY_MAP}
           isDone={isDone}
-          onToggle={toggle}
+          onSelect={select}
+          selectedId={selectedId}
           t={t}
-          pinHref={(slug) => (locale === "en" ? `/pins/${slug}` : `/${locale}/pins/${slug}`)}
           onMapClick={dev ? devTool.capture : undefined}
           devMarkers={dev ? devMarkers : undefined}
           calibrationMarkers={dev && devTool.calib.active ? calibrationMarkers : undefined}
           focus={focus}
         />
         {dev && (
-          <span className="pointer-events-none absolute left-3 top-3 z-[500] rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-white shadow-neon">
+          <span className="pointer-events-none absolute right-3 top-3 z-[500] rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-white shadow-neon">
             {devTool.calib.active ? "Calibrating" : "Dev mode"}
           </span>
         )}
-        <details className="absolute right-3 top-3 z-[500] rounded-2xl border border-line-strong bg-[#1f1335]/90 px-3 py-2 text-xs backdrop-blur-md">
+        {selectedPin && (
+          <PinCard
+            pin={selectedPin}
+            category={CATEGORY_MAP[selectedPin.categoryId]}
+            done={isDone(selectedPin.id)}
+            onToggle={() => toggle(selectedPin.id)}
+            onClose={() => select(null)}
+          />
+        )}
+        <details className="absolute left-3 top-3 z-[500] rounded-2xl border border-line-strong bg-[#1f1335]/90 px-3 py-2 text-xs backdrop-blur-md">
           <summary className="cursor-pointer font-extrabold uppercase tracking-widest text-muted">{t("ui.map.legend")}</summary>
           <ul className="mt-2 space-y-1.5">
             <li className="flex items-center gap-2"><span className="h-3.5 w-3.5 rounded-full border-2 border-[#fff4ec] bg-accent2" />{t("ui.map.legend.verified")}</li>

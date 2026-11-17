@@ -60,7 +60,17 @@ Kurallar (otomatik denetlenir):
 - Checklist'ler pinlerden üretilir: `/checklists/100-percent-completion/` ve ilerlemeye sayılan her kategori için bir liste.
 - Sitemap tüm pin ve checklist sayfalarını içerir.
 
-## 4. Harita
+## 4. Haberler
+
+Haber linkini gönder (ve istersen "doğrulandı mı, söylenti mi" notunu). Claude:
+- özgün bir başlık ve 1-2 cümlelik özet yazar (kaynak metin kopyalanmaz), EN ve TR;
+- `content/news.json` kaydı açar: tarih, `confirmed` / `rumor`, kaynak adı ve linki;
+- metinleri `content/text.en.json` ve `text.tr.json` dosyalarına `news.<id>.title|summary` anahtarlarıyla yazar.
+
+`confirmed` yalnızca birinci elden kaynakla (Rockstar, Take-Two) verilir; diğer her şey `rumor` olarak etiketlenir.
+Haber ana sayfada (son 5) ve `/news` sayfasında görünür.
+
+## 5. Harita
 
 İlk harita: topluluk haritası. Kaynak sahibinden izin alınır ve atıf verilir (`src/data/maps.ts` > `attribution`).
 Pin koordinatları **ilk gerçek haritanın** çerçevesindedir. Bu yüzden ilk pinler girmeden önce harita yerine konmalı.

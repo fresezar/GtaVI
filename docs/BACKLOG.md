@@ -8,17 +8,20 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 ## Giriş bileti (rakip seviyesi, çıkış haftası)
 
 - [x] Hub ana sayfa: geri sayım (çıkıştan sonra "Gün N"), son bulgular, doğrulananlar zaman çizelgesi, harita CTA (2026-11-17)
-- [ ] Haber akışı: her maddede CONFIRMED/RUMOR rozeti, tarih ve birincil kaynak linki. Altyapı hazır (`content/news.json`, ana sayfada otomatik görünür); içerik ve arşiv sayfası yok
+- [x] Haber arşivi `/news` + `/tr/news`, rozet ve kaynak; ana sayfada son 5 haber (2026-11-17). İçerik yok, ilk haberler bekleniyor
+- [ ] Haberler için tablo aktarımı (`import:news`), haber sayısı artınca
+- [ ] Haber başına ayrı sayfa (SEO), haber sayısı artınca
 - [ ] "What's confirmed" sayfası ve söylenti takibi (LeonidaMap)
 - [ ] Site geneli arama (⌘K): pinler, sayfalar, veritabanı (LeonidaMap, GTABase)
 - [x] Harita: kümeleme, lejant paneli, "sıradaki bulunmamış" oku (2026-11-17)
-- [ ] Harita: pin linki paylaşma butonu (link zaten çalışıyor: `/map?pin=<id>`)
+- [x] Harita: pin linki paylaşma butonu (2026-11-17, kartta)
 - [ ] Harita görseli gelince ana sayfa sahnesine uyumlu renk ayarı (yer tutucu harita eski broşür renklerinde)
 - [x] Harita: arama, All/None, gizli katmanlar, ücretsiz sınırsız takip (2026-11-17)
 - [x] Mobil: 390 px'te taşma yok, menü kaydırılabilir satır, harita üstte panel altta (2026-11-17)
 - [ ] Discord ve bağış hesapları açılınca `src/config/site.ts` > `links` doldurulur (alt bilgide otomatik görünür)
 - [x] EN + TR çift dil, dil seçici, hreflang, iki dilli sitemap (2026-11-17)
-- [ ] Haritada zengin pin kartı: görsel veya video küçük resmi, açıklama, kaynak, "Found by", paylaş butonu (kurucunun fikri; pin sayfası arama/paylaşım katmanı olarak kalır)
+- [x] Haritada zengin pin kartı: video küçük resmi, açıklama, kaynak, "Found by", paylaş (2026-11-17)
+- [ ] Pin kartında kendi ekran görüntülerimiz (`media` alanı hazır; görsel yükleme akışı yok)
 - [ ] Footer'daki "Support us" gibi sosyal link etiketlerini çevir (linkler açılınca)
 - [ ] İçerik büyüyünce: her dilin sözlüğünü yalnızca kendi sayfasına yükle (şu an iki dil de istemci paketinde)
 - [ ] Discord, X ve bağış linkleri; e-posta veya push kaydı (değer gösterildikten sonra sorulur)

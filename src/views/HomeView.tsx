@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { dateFmt, NewsList, RoadTimeline } from "@/components/editorial";
 import LaunchCountdown from "@/components/ui/LaunchCountdown";
 import PageShell from "@/components/ui/PageShell";
 import { SITE } from "@/config/site";
 import { CATEGORIES } from "@/data/categories";
 import { NEWS, TIMELINE } from "@/data/editorial";
 import { PINS, SAMPLE_MODE } from "@/data/pins";
-import type { EditorialKind, Pin } from "@/domain";
+import type { Pin } from "@/domain";
 import { CATEGORY_COLORS } from "@/features/map/tokens";
-import { alternates, LOCALE_TAG, localePath, tFor, type Locale, type Translate } from "@/i18n";
+import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n";
 import { categoryKey, pinKey } from "@/i18n/keys";
 
 const LATEST = 6;
@@ -31,13 +32,6 @@ export function homeMetadata(locale: Locale): Metadata {
     description: t("ui.meta.description"),
     alternates: alternates(locale, "/"),
   };
-}
-
-const dateFmt = (locale: Locale) => (iso: string) =>
-  new Date(`${iso}T12:00:00Z`).toLocaleDateString(LOCALE_TAG[locale], { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
-
-function Badge({ kind, t }: { kind: EditorialKind; t: Translate }) {
-  return <span className={`badge badge-${kind}`}>{t(`ui.badge.${kind}`)}</span>;
 }
 
 function latestPins(): Pin[] {
@@ -103,55 +97,30 @@ function LatestFinds({ locale, t }: { locale: Locale; t: Translate }) {
 }
 
 function Road({ locale, t }: { locale: Locale; t: Translate }) {
-  const fmt = dateFmt(locale);
   return (
     <section id="road" className="card scroll-mt-24 !p-5" aria-labelledby="road-title">
       <h2 id="road-title" className="section-title">{t("ui.home.road")}</h2>
       <p className="mt-1 text-sm text-muted">{t("ui.home.roadLead")}</p>
-      <ol className="mt-5 space-y-5 border-l border-line-strong pl-5">
-        {TIMELINE.map((e) => (
-          <li key={e.id} className="relative">
-            <span
-              className={`absolute -left-[27px] top-1 h-3 w-3 rounded-full ${e.kind === "launch" ? "bg-accent shadow-neon" : "bg-accent2"}`}
-              aria-hidden="true"
-            />
-            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-muted">
-              <time dateTime={e.date}>{fmt(e.date)}</time>
-              <Badge kind={e.kind} t={t} />
-            </div>
-            <p className={`mt-1 font-bold leading-snug ${e.kind === "launch" ? "neon text-lg" : ""}`}>{t(`timeline.${e.id}.title`)}</p>
-            <p className="mt-1 text-sm text-muted">{t(`timeline.${e.id}.body`)}</p>
-            <a href={e.sourceUrl} target="_blank" rel="noopener" className="mt-1 inline-block text-xs font-bold text-muted underline hover:text-ink">
-              {t("ui.source")}: {e.sourceName}
-            </a>
-          </li>
-        ))}
-      </ol>
+      <div className="mt-5">
+        <RoadTimeline events={TIMELINE} locale={locale} t={t} />
+      </div>
     </section>
   );
 }
 
+const HOME_NEWS = 5;
+
 function News({ locale, t }: { locale: Locale; t: Translate }) {
   if (NEWS.length === 0) return null;
-  const fmt = dateFmt(locale);
   return (
     <section aria-labelledby="news-title">
-      <h2 id="news-title" className="section-title">{t("ui.home.news")}</h2>
-      <ul className="mt-4 space-y-2">
-        {NEWS.slice(0, 8).map((n) => (
-          <li key={n.id} className="card !p-3">
-            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-muted">
-              <time dateTime={n.date}>{fmt(n.date)}</time>
-              <Badge kind={n.kind} t={t} />
-            </div>
-            <p className="mt-1 font-bold">{t(`news.${n.id}.title`)}</p>
-            <p className="mt-1 text-sm text-muted">{t(`news.${n.id}.summary`)}</p>
-            <a href={n.sourceUrl} target="_blank" rel="noopener" className="mt-1 inline-block text-xs font-bold text-muted underline">
-              {t("ui.source")}: {n.sourceName}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="flex flex-wrap items-end justify-between gap-2">
+        <h2 id="news-title" className="section-title">{t("ui.home.news")}</h2>
+        <Link href={localePath(locale, "/news")} className="text-sm font-bold text-accent2 underline">{t("ui.news.all")} →</Link>
+      </div>
+      <div className="mt-4">
+        <NewsList items={NEWS.slice(0, HOME_NEWS)} locale={locale} t={t} />
+      </div>
     </section>
   );
 }
