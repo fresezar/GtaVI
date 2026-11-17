@@ -5,15 +5,16 @@ import Link from "next/link";
 import type { Checklist } from "@/domain";
 import { useProgress } from "@/hooks/useProgress";
 import { SITE } from "@/config/site";
-import { t } from "@/i18n";
+import { useHref, useT } from "@/i18n/client";
 import { checklistItemKey, checklistKey, checklistSectionKey, pinKey } from "@/i18n/keys";
 import { checklistRef, computeChecklistProgress } from "@/lib/progress";
 import type { ChecklistItem } from "@/domain";
 
-/** Pin-linked items reuse the pin's title, so text is written once. */
-const itemLabel = (item: ChecklistItem) => t(item.linkedPinId ? pinKey(item.linkedPinId, "title") : checklistItemKey(item.id));
-
 export default function ChecklistView({ checklist }: { checklist: Checklist }) {
+  const t = useT();
+  const href = useHref();
+  /** Pin-linked items reuse the pin's title, so text is written once. */
+  const itemLabel = (item: ChecklistItem) => t(item.linkedPinId ? pinKey(item.linkedPinId, "title") : checklistItemKey(item.id));
   const { ready, progress, isDone, toggle } = useProgress(SITE.gameId);
   const [hideDone, setHideDone] = useState(false);
   const summary = useMemo(() => computeChecklistProgress(checklist, progress), [checklist, progress]);
@@ -67,7 +68,7 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>
                     </button>
                     {item.linkedPinId && (
-                      <Link href={`/map?pin=${item.linkedPinId}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
+                      <Link href={`${href("/map")}?pin=${item.linkedPinId}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
                     )}
                   </li>
                 );

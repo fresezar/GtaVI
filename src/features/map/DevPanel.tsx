@@ -1,7 +1,7 @@
 "use client";
 
 import type { Category, PinSource } from "@/domain";
-import { t } from "@/i18n";
+import { useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { CATEGORY_COLORS } from "./tokens";
 import type { CopyFormat, DevTool } from "./dev/useDevTool";
@@ -9,6 +9,7 @@ import type { CopyFormat, DevTool } from "./dev/useDevTool";
 const SOURCES: PinSource[] = ["stream", "community", "self", "datamine", "official"];
 
 function CalibrationPanel({ dev }: { dev: DevTool }) {
+  const t = useT();
   const { calib, landmarks, calibResult } = dev;
   if (!calib.active) {
     return (
@@ -56,6 +57,7 @@ function CalibrationPanel({ dev }: { dev: DevTool }) {
 }
 
 export default function DevPanel({ dev, categories }: { dev: DevTool; categories: readonly Category[] }) {
+  const t = useT();
   const { settings, setSettings, title, setTitle, captures, last, toast } = dev;
   return (
     <section className="card border-dashed" aria-label="Developer capture tool">

@@ -43,6 +43,7 @@ const ALIASES = {
   category: "category", kategori: "category",
   title: "title", name: "title", baslik: "title",
   description: "description", desc: "description", aciklama: "description",
+  title_tr: "title_tr", baslik_tr: "title_tr", description_tr: "description_tr", aciklama_tr: "description_tr",
   coord: "coord", coords: "coord", coordinate: "coord", koordinat: "coord",
   x: "x", y: "y",
   source_url: "source_url", source: "source_url", url: "source_url", link: "source_url", kaynak: "source_url",
@@ -73,6 +74,12 @@ if (!headers.includes("category") || !headers.includes("title")) {
 const pins = readJson(PATHS.pins);
 const categories = readJson(PATHS.categories);
 const text = readJson(PATHS.text);
+const textTr = readJson(PATHS.textTr);
+/** Optional Turkish text (title_tr / description_tr columns). Missing Turkish falls back to English on the site. */
+const setTr = (id, get) => {
+  if (get("title_tr")) textTr[`pin.${id}.title`] = get("title_tr");
+  if (get("description_tr")) textTr[`pin.${id}.description`] = get("description_tr");
+};
 
 // Category lookup by id, slug or English name (case-insensitive, & / and tolerant).
 const catKey = (s) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "");
@@ -172,6 +179,7 @@ for (let r = 1; r < rows.length; r++) {
     if (sourceType) (pin.source = sourceType), changes.push("source type");
     if (get("title")) (text[`pin.${pin.id}.title`] = get("title")), changes.push("title");
     if (get("description")) (text[`pin.${pin.id}.description`] = get("description")), changes.push("description");
+    if (get("title_tr") || get("description_tr")) setTr(pin.id, get), changes.push("turkish text");
     if (changes.length) {
       pin.updatedAt = today();
       pin.dataVersion = (pin.dataVersion ?? 1) + 1;
@@ -220,6 +228,7 @@ for (let r = 1; r < rows.length; r++) {
   };
   text[`pin.${id}.title`] = get("title");
   if (get("description")) text[`pin.${id}.description`] = get("description");
+  setTr(id, get);
   batch.push(pin);
   report.created.push({ rowNo, id, title: get("title"), category: text[`category.${category.id}.name`] ?? category.slug });
 }
@@ -253,7 +262,8 @@ if (report.updated.length) {
 if (WRITE) {
   writeJson(PATHS.pins, [...pins, ...batch]);
   writeJson(PATHS.text, text);
-  line(`\nWrote content/pins.json and content/text.en.json. Next: npm run validate`);
+  writeJson(PATHS.textTr, textTr);
+  line(`\nWrote content/pins.json, text.en.json and text.tr.json. Next: npm run validate`);
 } else {
   line(`\nNothing written. Re-run with --write to apply.`);
 }

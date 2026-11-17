@@ -10,6 +10,7 @@ export const PATHS = {
   pins: join(CONTENT, "pins.json"),
   categories: join(CONTENT, "categories.json"),
   text: join(CONTENT, "text.en.json"),
+  textTr: join(CONTENT, "text.tr.json"),
   timeline: join(CONTENT, "timeline.json"),
   news: join(CONTENT, "news.json"),
 };

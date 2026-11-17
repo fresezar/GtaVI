@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SITE } from "@/config/site";
-import { t } from "@/i18n";
+import { useT } from "@/i18n/client";
 
 type State = { kind: "before"; d: number; h: number; m: number; s: number } | { kind: "after"; day: number };
 
@@ -32,6 +32,7 @@ function Box({ value, label }: { value: string; label: string }) {
 
 /** Before launch: a ticking countdown. After: "Day N". Renders "--" until mounted so SSR and client agree. */
 export default function LaunchCountdown() {
+  const t = useT();
   const [state, setState] = useState<State | null>(null);
 
   useEffect(() => {

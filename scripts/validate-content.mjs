@@ -95,11 +95,17 @@ for (const [file, prefix, fields] of [
   }
 }
 
-// ---- text: orphan keys are harmless but usually a typo ----
+// ---- text: orphan keys are harmless but usually a typo. Turkish keys must also exist in English. ----
+const textTr = readJson(PATHS.textTr);
 for (const key of Object.keys(text)) {
   const m = key.match(/^pin\.(pin_[^.]+)\./);
   if (m && !pinIds.has(m[1])) warn(`text key ${key}: no such pin`);
 }
+for (const key of Object.keys(textTr)) {
+  if (!(key in text)) warn(`text.tr.json key ${key}: not in text.en.json (English is the source of truth)`);
+}
+const trCategoryGaps = categories.filter((c) => !textTr[`category.${c.id}.name`]).map((c) => c.id);
+if (trCategoryGaps.length) warn(`Turkish category names missing (English shown): ${trCategoryGaps.join(", ")}`);
 
 // ---- never delete: every pin id that is committed must still exist ----
 try {

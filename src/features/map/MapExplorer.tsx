@@ -6,7 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { MAPS } from "@/data/maps";
 import { PINS } from "@/data/pins";
 import { SITE } from "@/config/site";
-import { t } from "@/i18n";
+import { useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { computeProgress } from "@/lib/progress";
 import { copyText } from "@/lib/clipboard";
@@ -22,10 +22,15 @@ const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Rec
 const MAP_PINS = PINS.filter((p) => p.mapId === DEF.id);
 const LANDMARKS = MAP_PINS.filter((p) => p.categoryId === "cat_landmarks");
 const DEFAULT_HIDDEN = new Set(CATEGORIES.filter((c) => c.hiddenByDefault).map((c) => c.id));
-const SEARCH_INDEX = MAP_PINS.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLowerCase() }));
 const SEARCH_LIMIT = 8;
 
 export default function MapExplorer() {
+  const t = useT();
+  const locale = useLocale();
+  const searchIndex = useMemo(
+    () => MAP_PINS.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
+    [t, locale],
+  );
   const [dev, setDev] = useState(false);
   const [focus, setFocus] = useState<MapFocus | null>(null);
   const [hidden, setHidden] = useState<ReadonlySet<CategoryId>>(DEFAULT_HIDDEN);
@@ -57,10 +62,10 @@ export default function MapExplorer() {
   );
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim().toLocaleLowerCase(locale);
     if (q.length < 2) return [];
-    return SEARCH_INDEX.filter((r) => r.haystack.includes(q)).slice(0, SEARCH_LIMIT);
-  }, [query]);
+    return searchIndex.filter((r) => r.haystack.includes(q)).slice(0, SEARCH_LIMIT);
+  }, [query, searchIndex, locale]);
 
   /** Jump to the next not-yet-found pin in a category (cycles), turning the layer on if needed. */
   const nextUnfound = useCallback(
@@ -112,7 +117,7 @@ export default function MapExplorer() {
 
   return (
     <div className="flex h-dvh flex-col">
-      <SiteHeader compact />
+      <SiteHeader compact locale={locale} path="/map" />
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
       <main className="relative order-1 min-h-0 flex-1 md:order-2">
         <MapView
@@ -121,6 +126,8 @@ export default function MapExplorer() {
           categories={CATEGORY_MAP}
           isDone={isDone}
           onToggle={toggle}
+          t={t}
+          pinHref={(slug) => (locale === "en" ? `/pins/${slug}` : `/${locale}/pins/${slug}`)}
           onMapClick={dev ? devTool.capture : undefined}
           devMarkers={dev ? devMarkers : undefined}
           calibrationMarkers={dev && devTool.calib.active ? calibrationMarkers : undefined}
@@ -250,7 +257,7 @@ export default function MapExplorer() {
           <p className="h-4 text-xs font-bold text-accent2" role="status" aria-live="polite">{note}</p>
         </section>
 
-        <footer className="text-[11px] leading-snug text-muted">{SITE.disclaimer}</footer>
+        <footer className="text-[11px] leading-snug text-muted">{t("ui.footer.disclaimer")}</footer>
       </aside>
       </div>
     </div>

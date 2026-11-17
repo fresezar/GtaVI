@@ -39,7 +39,7 @@ Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build
 Full, dated log: `docs/DECISIONS.md` (record every accepted proposal there). Ideas: `docs/BACKLOG.md`. Competitors: `docs/COMPETITORS.md`.
 - Scope: everything GTA VI over the years, community + online focus; the map is only the start. Compete at least at rival level, always fresh.
 - Visual identity: LeonidaMap-like hub with a neon-sunset look, single dark theme, own SVG scene (2026-11-17, done). No Rockstar art as decoration (raw images kept untracked in `media-src/`).
-- Language: EN + TR from the start (changed 2026-11-17). Social media: one English account only.
+- Language: EN + TR (done 2026-11-17). EN at root, TR under `/tr/`; thin route files in `src/app` and `src/app/tr` call shared views in `src/views/` with a `locale`. UI text: `src/i18n/ui.en.ts` + `ui.tr.ts` (TR is type-checked complete). Client components use `useT()` / `useHref()` from `src/i18n/client.tsx`. Social media: one English account only.
 - Revenue: decided later by product quality/scope; donations first.
 - Domain: undecided (candidates considered: amirvc.com preferred over viceamir.com for trademark safety). Final brand after launch.
 - Hosting: Cloudflare Workers Static Assets (not Pages), static export, `wrangler.jsonc`, Worker name `atlas`. Decided 2026-11-17.

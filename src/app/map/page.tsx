@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
-import MapLoader from "@/features/map/MapLoader";
+import MapPageView, { mapMetadata } from "@/views/MapPageView";
 
-export const metadata: Metadata = { title: "Interactive map" };
+export const metadata = mapMetadata("en");
 
-export default function MapPage() {
-  return <MapLoader />;
+export default function Page() {
+  return <MapPageView locale="en" />;
 }

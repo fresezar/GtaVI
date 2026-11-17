@@ -1,2 +1,2 @@
-category,title,description,coord,source_url,timestamp,finder,finder_url,spoiler,status,confidence,region,id,notes
-Collectibles,Rooftop package behind the motel sign,Climb the fire escape on the north side.,"0.4512, 0.3381",https://www.youtube.com/watch?v=XXXXXXXXXXX,1:02:33,StreamerName,https://www.twitch.tv/streamername,none,unverified,medium,,,example row: delete me
+category,title,title_tr,description,description_tr,coord,source_url,timestamp,finder,finder_url,spoiler,status,confidence,region,id,notes
+Collectibles,Rooftop package behind the motel sign,Motel tabelasının arkasındaki çatı paketi,Climb the fire escape on the north side.,Kuzey taraftaki yangın merdiveninden tırman.,"0.4512, 0.3381",https://www.youtube.com/watch?v=XXXXXXXXXXX,1:02:33,StreamerName,https://www.twitch.tv/streamername,none,unverified,medium,,,example row: delete me

@@ -11,6 +11,10 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 | Karar | Neden | Durum |
 |---|---|---|
+| Türkçe sürüm: İngilizce kökte (`/map`), Türkçe `/tr/` altında; hreflang ve sitemap iki dili bağlar; sayfada EN/TR geçiş düğmesi | Arama motorlarında iki dil ayrı sayfa; İngilizce adresler değişmedi | Kabul, uygulandı |
+| Türkçe arayüz metinleri tam; içerik metinleri (pin başlığı/açıklaması) tabloda isteğe bağlı `title_tr` / `description_tr` sütunlarıyla gelir, yoksa İngilizcesi gösterilir | Türkçe iş yükü kurucunun zamanını yemesin | Kabul, uygulandı |
+| Türkçe dizgide tipografik kesme işareti (’) kullanılır | Başlık fontunda düz kesme bozuk görünüyor; Türkçe dizgide doğrusu da bu | Kabul |
+| Pin sayfaları kalır (Google, paylaşım, sayfa görüntülemesi); oyuncunun asıl deneyimi haritadaki zengin kart olacak (görsel/video küçük resmi, açıklama, kaynak, bulan) | Kurucu "pin sayfasına gerek var mı" diye sordu; 2026-11-16 kararıyla uyumlu | Önerildi, kurucunun yanıtı bekleniyor |
 | Rockstar'ın resmi GTA VI sanatı (kurucunun `.next/Media` klasörüne koyduğu 18 görsel) arka plan veya marka öğesi olarak KULLANILMAZ. Görseller git dışında `media-src/` klasöründe saklanır | Rockstar politikası yalnızca ticari olmayan kullanıma göz yumuyor; sitemiz bağış/reklam hedefliyor. Logo kullanımı ayrıca marka kuralımıza aykırı | Kabul |
 | Atmosfer kendi çizdiğimiz SVG sahneyle (gün batımı, şehir silueti, palmiyeler) kurulur | Telif riski yok, hafif (~6 KB) | Kabul, uygulandı |
 | Açık konu: resmi görsellerin haber sayfalarında "© Rockstar Games" atfıyla haber amaçlı kullanımı | Haber sitelerinde yaygın; ticari risk değerlendirilmeli | Açık |

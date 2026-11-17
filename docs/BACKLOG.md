@@ -17,7 +17,10 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [x] Harita: arama, All/None, gizli katmanlar, ücretsiz sınırsız takip (2026-11-17)
 - [x] Mobil: 390 px'te taşma yok, menü kaydırılabilir satır, harita üstte panel altta (2026-11-17)
 - [ ] Discord ve bağış hesapları açılınca `src/config/site.ts` > `links` doldurulur (alt bilgide otomatik görünür)
-- [ ] EN + TR çift dil, dil seçici, hreflang (karar: DECISIONS)
+- [x] EN + TR çift dil, dil seçici, hreflang, iki dilli sitemap (2026-11-17)
+- [ ] Haritada zengin pin kartı: görsel veya video küçük resmi, açıklama, kaynak, "Found by", paylaş butonu (kurucunun fikri; pin sayfası arama/paylaşım katmanı olarak kalır)
+- [ ] Footer'daki "Support us" gibi sosyal link etiketlerini çevir (linkler açılınca)
+- [ ] İçerik büyüyünce: her dilin sözlüğünü yalnızca kendi sayfasına yükle (şu an iki dil de istemci paketinde)
 - [ ] Discord, X ve bağış linkleri; e-posta veya push kaydı (değer gösterildikten sonra sorulur)
 - [ ] SSS, çıkış saati (bölgelere göre), karakterler, mekanlar (Leonida, Vice City, Keys) sayfaları
 

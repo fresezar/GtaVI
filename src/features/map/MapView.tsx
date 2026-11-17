@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Category, CategoryId, Coord, MapDef, Pin, PinId } from "@/domain";
-import { t } from "@/i18n";
+import type { Translate } from "@/i18n";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { createProjection, type MapProjection } from "./projection";
 import { CATEGORY_COLORS, PIN_OUTLINE } from "./tokens";
@@ -16,6 +16,10 @@ interface Props {
   categories: Readonly<Record<CategoryId, Category>>;
   isDone: (ref: string) => boolean;
   onToggle: (ref: string) => void;
+  /** Translator for the page's language (popups are built outside React). */
+  t: Translate;
+  /** Link to a pin's own page in the page's language. */
+  pinHref: (slug: string) => string;
   /** Present only in dev mode. `coord` = pin frame coordinate, `image` = raw position on this image. */
   onMapClick?: (coord: [number, number], image: [number, number]) => void;
   /** Captured pins, in frame coordinates. */
@@ -56,6 +60,8 @@ function buildPopup(
   category: Category | undefined,
   isDone: (ref: string) => boolean,
   onToggle: (ref: string) => void,
+  t: Translate,
+  pinHref: (slug: string) => string,
 ): HTMLElement {
   const root = el("div", "atlas-pop");
   const chip = el("span", "chip", category ? t(categoryKey(category.id)) : "");
@@ -88,14 +94,14 @@ function buildPopup(
     btn.textContent = done ? t("ui.pin.markUndone") : t("ui.pin.markDone");
   });
   const link = el("a", "atlas-pop-link", t("ui.pin.openPage"));
-  link.href = `/pins/${pin.slug}`;
+  link.href = pinHref(pin.slug);
   const actions = el("div", "atlas-pop-actions");
   actions.append(btn, link);
   root.append(actions);
   return root;
 }
 
-export default function MapView({ def, pins, categories, isDone, onToggle, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
+export default function MapView({ def, pins, categories, isDone, onToggle, t, pinHref, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const projRef = useRef<MapProjection | null>(null);
@@ -107,9 +113,9 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
   const renderRef = useRef<() => void>(() => {});
 
   // Latest callbacks/state for event handlers without re-binding.
-  const live = useRef({ isDone, onToggle, onMapClick, categories });
+  const live = useRef({ isDone, onToggle, onMapClick, categories, t, pinHref });
   useEffect(() => {
-    live.current = { isDone, onToggle, onMapClick, categories };
+    live.current = { isDone, onToggle, onMapClick, categories, t, pinHref };
   });
 
   // 1) Create the map once per map definition.
@@ -257,7 +263,7 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
       marker.on("click", () => {
         L.popup({ className: "atlas-popup", maxWidth: 260, autoPanPadding: [24, 24] })
           .setLatLng(latlng)
-          .setContent(buildPopup(pin, category, live.current.isDone, live.current.onToggle))
+          .setContent(buildPopup(pin, category, live.current.isDone, live.current.onToggle, live.current.t, live.current.pinHref))
           .openOn(map);
       });
       markersRef.current.set(pin.id, marker);

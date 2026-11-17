@@ -12,7 +12,9 @@ Her seferinde yalnızca **yeni ya da değişen satırları** gönder.
 |---|---|---|---|
 | category | evet | Collectibles | Kategori adı ya da slug'ı (liste aşağıda) |
 | title | evet | Rooftop package behind the motel sign | İngilizce, kendi cümlemiz (kopya metin yok) |
+| title_tr | | Motel tabelasının arkasındaki çatı paketi | Türkçe başlık; boşsa Türkçe sayfada İngilizcesi görünür |
 | description | | Climb the fire escape, north side. | Kısa tarif |
+| description_tr | | Kuzey taraftaki yangın merdiveninden tırman. | Türkçe tarif (isteğe bağlı) |
 | coord | evet* | 0.4512, 0.3381 | `/map?dev=true` ekranında haritaya tıkla, kopyalanan değeri yapıştır |
 | source_url | önerilir | YouTube/Twitch/Reddit linki | Video sayfada gömülü gösterilir |
 | timestamp | | 1:02:33 | Videoda anın zamanı; linke otomatik eklenir |
@@ -52,6 +54,8 @@ Kurallar (otomatik denetlenir):
 ## 3. Otomatik olanlar
 
 - İlk gerçek pin girdiği anda örnek veri sitenin her yerinden kalkar (ayrıca temizlik adımı yok).
+- Her sayfa iki dilde: İngilizce kökte (`/map`), Türkçe `/tr/` altında (`/tr/map`). Arayüz metinleri
+  `src/i18n/ui.en.ts` ve `ui.tr.ts`'de (TR'de eksik anahtar derlemeyi durdurur); içerik metinleri `content/text.<dil>.json`.
 - Her pin için `/pins/<slug>/` sayfası: video (zaman damgalı), "Found by", doğrulama rozeti, yakındaki pinler.
 - Checklist'ler pinlerden üretilir: `/checklists/100-percent-completion/` ve ilerlemeye sayılan her kategori için bir liste.
 - Sitemap tüm pin ve checklist sayfalarını içerir.
