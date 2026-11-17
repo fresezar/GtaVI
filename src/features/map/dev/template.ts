@@ -12,27 +12,38 @@ export interface TemplateInput {
 
 export interface PinTemplate {
   id: PinId;
+  /** "0.4512, 0.3381": paste into the `coord` column of the import table. */
+  coordText: string;
   json: string;
   i18n: string;
 }
 
 const round4 = (n: number) => Math.round(n * 10000) / 10000;
-const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
+
+export function formatCoord(c: readonly [number, number]): string {
+  return `${round4(c[0]).toFixed(4)}, ${round4(c[1]).toFixed(4)}`;
+}
 
 export function slugify(text: string): string {
   return text
+    .replace(/[ıİ]/g, "i") // dotless i has no NFKD decomposition
     .toLowerCase()
     .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 60);
 }
 
-/** Builds a ready-to-paste Pin literal plus its i18n lines. Always `unverified` until confirmed. */
+/**
+ * Builds a ready-to-paste Pin literal plus its text lines. Always `unverified` until confirmed.
+ * The import table (docs/INGEST.md) is the main path; this JSON is for one-off manual edits.
+ */
 export function buildPinTemplate(input: TemplateInput): PinTemplate {
   const id: PinId = `pin_${ulid()}`;
   const title = input.title?.trim() ?? "";
-  const coord: Coord = [round4(clamp01(input.coord[0])), round4(clamp01(input.coord[1]))];
+  // Frame coordinates may fall slightly outside 0..1 on a calibrated map: round, never clamp.
+  const coord: Coord = [round4(input.coord[0]), round4(input.coord[1])];
   const credit = input.credit?.trim();
 
   const pin: Pin = {
@@ -49,8 +60,7 @@ export function buildPinTemplate(input: TemplateInput): PinTemplate {
     dataVersion: 1,
   };
 
-  const i18n =
-    `"pin.${id}.title": ${JSON.stringify(title || "TODO title")},\n` + `"pin.${id}.description": "",`;
+  const i18n = `"pin.${id}.title": ${JSON.stringify(title || "TODO title")},\n"pin.${id}.description": "",`;
 
-  return { id, json: JSON.stringify(pin, null, 2), i18n };
+  return { id, coordText: formatCoord(coord), json: JSON.stringify(pin, null, 2), i18n };
 }

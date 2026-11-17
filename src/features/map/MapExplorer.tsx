@@ -8,11 +8,11 @@ import { MAPS } from "@/data/maps";
 import { PINS } from "@/data/pins";
 import { SITE } from "@/config/site";
 import { t } from "@/i18n";
-import { categoryKey } from "@/i18n/keys";
+import { categoryKey, pinKey } from "@/i18n/keys";
 import { computeProgress } from "@/lib/progress";
 import { copyText } from "@/lib/clipboard";
 import DevPanel from "./DevPanel";
-import MapView from "./MapView";
+import MapView, { type MapFocus } from "./MapView";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { useDevTool } from "./dev/useDevTool";
 import { useProgress } from "@/hooks/useProgress";
@@ -20,31 +20,48 @@ import { CATEGORY_COLORS } from "./tokens";
 
 const DEF = MAPS[0];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
-const MAP_PINS = PINS.filter((p) => p.mapId === DEF.id && p.status !== "deprecated");
+const MAP_PINS = PINS.filter((p) => p.mapId === DEF.id);
+const LANDMARKS = MAP_PINS.filter((p) => p.categoryId === "cat_landmarks");
+const DEFAULT_HIDDEN = new Set(CATEGORIES.filter((c) => c.hiddenByDefault).map((c) => c.id));
+const SEARCH_INDEX = MAP_PINS.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLowerCase() }));
+const SEARCH_LIMIT = 8;
 
 export default function MapExplorer() {
   const [dev, setDev] = useState(false);
-  const [focusPin, setFocusPin] = useState<PinId | null>(null);
-  const [hidden, setHidden] = useState<ReadonlySet<CategoryId>>(new Set());
+  const [focus, setFocus] = useState<MapFocus | null>(null);
+  const [hidden, setHidden] = useState<ReadonlySet<CategoryId>>(DEFAULT_HIDDEN);
   const [hideDone, setHideDone] = useState(false);
+  const [query, setQuery] = useState("");
   const [note, setNote] = useState("");
 
   const { ready, progress, isDone, toggle, exportCode, importCode } = useProgress(SITE.gameId);
-  const devTool = useDevTool(dev, DEF, CATEGORIES);
+  const devTool = useDevTool(dev, DEF, CATEGORIES, LANDMARKS);
+
+  const focusPin = useCallback((id: PinId) => setFocus((f) => ({ id, nonce: (f?.nonce ?? 0) + 1 })), []);
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setDev(q.get("dev") === "true");
     const pin = q.get("pin");
-    if (pin) setFocusPin(pin as PinId);
-  }, []);
+    if (pin) focusPin(pin as PinId);
+  }, [focusPin]);
 
   const summary = useMemo(() => computeProgress(MAP_PINS, CATEGORIES, progress), [progress]);
 
+  // A focused pin always shows, even if its layer is off or it is completed.
   const visiblePins = useMemo(
-    () => MAP_PINS.filter((p) => !hidden.has(p.categoryId) && !(hideDone && progress[p.id]?.done === true)),
-    [hidden, hideDone, progress],
+    () =>
+      MAP_PINS.filter(
+        (p) => p.id === focus?.id || (!hidden.has(p.categoryId) && !(hideDone && progress[p.id]?.done === true)),
+      ),
+    [hidden, hideDone, progress, focus],
   );
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (q.length < 2) return [];
+    return SEARCH_INDEX.filter((r) => r.haystack.includes(q)).slice(0, SEARCH_LIMIT);
+  }, [query]);
 
   const toggleCategory = useCallback((id: CategoryId) => {
     setHidden((prev) => {
@@ -75,6 +92,7 @@ export default function MapExplorer() {
   };
 
   const devMarkers = useMemo(() => devTool.captures.map((c) => c.coord), [devTool.captures]);
+  const calibrationMarkers = useMemo(() => devTool.calib.points.map((p) => p.image), [devTool.calib.points]);
 
   return (
     <div className="flex h-dvh flex-col md:flex-row">
@@ -87,10 +105,13 @@ export default function MapExplorer() {
           onToggle={toggle}
           onMapClick={dev ? devTool.capture : undefined}
           devMarkers={dev ? devMarkers : undefined}
-          focusPinId={focusPin}
+          calibrationMarkers={dev && devTool.calib.active ? calibrationMarkers : undefined}
+          focus={focus}
         />
         {dev && (
-          <span className="sticker pointer-events-none absolute left-3 top-3 z-[500] bg-accent text-bg">DEV MODE</span>
+          <span className="sticker pointer-events-none absolute left-3 top-3 z-[500] bg-accent text-bg">
+            {devTool.calib.active ? "CALIBRATING" : "DEV MODE"}
+          </span>
         )}
       </main>
 
@@ -125,8 +146,44 @@ export default function MapExplorer() {
 
         {dev && <DevPanel dev={devTool} categories={CATEGORIES} />}
 
+        <section aria-label={t("ui.search.label")} className="relative">
+          <label className="field">
+            <span className="sr-only">{t("ui.search.label")}</span>
+            <input
+              type="search"
+              value={query}
+              placeholder={t("ui.search.placeholder")}
+              onChange={(e) => setQuery(e.target.value)}
+              autoComplete="off"
+            />
+          </label>
+          {query.trim().length >= 2 && (
+            <ul className="mt-2 space-y-1">
+              {results.length === 0 && <li className="text-sm text-muted">{t("ui.search.empty")}</li>}
+              {results.map(({ pin, title }) => {
+                const c = CATEGORY_MAP[pin.categoryId];
+                return (
+                  <li key={pin.id}>
+                    <button type="button" className="row min-h-[40px] text-sm" onClick={() => focusPin(pin.id)}>
+                      <span className="dot !h-3 !w-3" style={{ background: c ? CATEGORY_COLORS[c.colorToken] : undefined }} />
+                      <span className="flex-1 truncate text-left">{title}</span>
+                      {isDone(pin.id) && <span aria-hidden="true">✓</span>}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
         <section aria-label={t("ui.filters.title")}>
-          <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-muted">{t("ui.filters.title")}</h2>
+          <div className="mb-2 flex items-baseline justify-between">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted">{t("ui.filters.title")}</h2>
+            <div className="flex gap-3 text-xs font-bold underline">
+              <button type="button" onClick={() => setHidden(new Set())}>{t("ui.filters.all")}</button>
+              <button type="button" onClick={() => setHidden(new Set(CATEGORIES.map((c) => c.id)))}>{t("ui.filters.none")}</button>
+            </div>
+          </div>
           <ul className="space-y-1.5">
             {CATEGORIES.map((c) => {
               const pair = summary.byCategory[c.id] ?? { done: 0, total: 0 };

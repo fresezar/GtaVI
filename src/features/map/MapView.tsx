@@ -16,11 +16,17 @@ interface Props {
   categories: Readonly<Record<CategoryId, Category>>;
   isDone: (ref: string) => boolean;
   onToggle: (ref: string) => void;
-  /** Present only in dev mode. */
-  onMapClick?: (coord: [number, number]) => void;
+  /** Present only in dev mode. `coord` = pin frame coordinate, `image` = raw position on this image. */
+  onMapClick?: (coord: [number, number], image: [number, number]) => void;
+  /** Captured pins, in frame coordinates. */
   devMarkers?: readonly (readonly [number, number])[];
-  focusPinId?: PinId | null;
+  /** Calibration clicks, in image coordinates. */
+  calibrationMarkers?: readonly (readonly [number, number])[];
+  /** Change `nonce` to re-focus the same pin (e.g. picking it twice from search). */
+  focus?: { id: PinId; nonce: number } | null;
 }
+
+export type MapFocus = NonNullable<Props["focus"]>;
 
 function markerStyle(pin: Pin, category: Category | undefined, done: boolean): L.CircleMarkerOptions {
   const color = category ? CATEGORY_COLORS[category.colorToken] : "#888888";
@@ -85,7 +91,7 @@ function buildPopup(
   return root;
 }
 
-export default function MapView({ def, pins, categories, isDone, onToggle, onMapClick, devMarkers, focusPinId }: Props) {
+export default function MapView({ def, pins, categories, isDone, onToggle, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const projRef = useRef<MapProjection | null>(null);
@@ -93,7 +99,7 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
   const devGroupRef = useRef<L.LayerGroup | null>(null);
   const rendererRef = useRef<L.Canvas | null>(null);
   const markersRef = useRef(new Map<PinId, L.CircleMarker>());
-  const focusedRef = useRef<PinId | null>(null);
+  const focusedRef = useRef<number | null>(null);
 
   // Latest callbacks/state for event handlers without re-binding.
   const live = useRef({ isDone, onToggle, onMapClick, categories });
@@ -121,6 +127,20 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
       attributionControl: false,
     });
     L.control.zoom({ position: "bottomright" }).addTo(map);
+    if (def.attribution) {
+      // Built with DOM nodes (textContent), never an HTML string: attribution text is data.
+      const credit = L.control.attribution({ position: "bottomleft", prefix: false }).addTo(map);
+      const box = document.createElement("span");
+      const text = t("ui.map.attribution", { name: def.attribution.name });
+      if (def.attribution.url && /^https?:\/\//.test(def.attribution.url)) {
+        const a = el("a", undefined, text);
+        a.href = def.attribution.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        box.append(a);
+      } else box.textContent = text;
+      credit.getContainer()?.append(box);
+    }
 
     if (def.source.kind === "image") {
       L.imageOverlay(def.source.url, proj.bounds).addTo(map);
@@ -148,9 +168,9 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
     map.on("click", (e: L.LeafletMouseEvent) => {
       const handler = live.current.onMapClick;
       if (!handler) return;
-      const [x, y] = proj.toCoord(e.latlng);
-      if (x < 0 || x > 1 || y < 0 || y > 1) return;
-      handler([x, y]);
+      const image = proj.toImageCoord(e.latlng);
+      if (image[0] < 0 || image[0] > 1 || image[1] < 0 || image[1] > 1) return; // clicked outside the artwork
+      handler(proj.toCoord(e.latlng), image);
     });
 
     mapRef.current = map;
@@ -201,17 +221,17 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
     });
   }, [isDone, pins]);
 
-  // 4) Deep link: /map?pin=<id>
+  // 4) Focus a pin: deep link /map?pin=<id> or a search pick. Waits until the marker exists.
   useEffect(() => {
     const map = mapRef.current;
     const proj = projRef.current;
-    if (!map || !proj || !focusPinId || focusedRef.current === focusPinId) return;
-    const marker = markersRef.current.get(focusPinId);
+    if (!map || !proj || !focus || focusedRef.current === focus.nonce) return;
+    const marker = markersRef.current.get(focus.id);
     if (!marker) return;
-    focusedRef.current = focusPinId;
+    focusedRef.current = focus.nonce;
     map.setView(marker.getLatLng(), Math.max(map.getZoom(), proj.nativeZoom - 1));
     marker.fire("click");
-  }, [focusPinId, pins]);
+  }, [focus, pins]);
 
   // 5) Dev-mode markers (this session's captured points).
   useEffect(() => {
@@ -230,7 +250,19 @@ export default function MapView({ def, pins, categories, isDone, onToggle, onMap
         interactive: false,
       }).addTo(group);
     });
-  }, [devMarkers, def]);
+    (calibrationMarkers ?? []).forEach((c, i) => {
+      L.circleMarker(proj.imageToLatLng(c), {
+        radius: 9,
+        color: "#19B5A5",
+        weight: 3,
+        fillColor: "#19B5A5",
+        fillOpacity: 0.25,
+        interactive: false,
+      })
+        .bindTooltip(String(i + 1), { permanent: true, direction: "top" })
+        .addTo(group);
+    });
+  }, [devMarkers, calibrationMarkers, def]);
 
   return (
     <div

@@ -20,12 +20,20 @@ Revenue/time-to-market beats polish. Flag work with no path to revenue.
 ## Stack and status (Phase 1 done)
 Next.js (App Router) + TypeScript + Tailwind 3 + Leaflet (CRS.Simple). No backend.
 Done: domain types, map with filters/progress, `?dev=true` click-to-copy pin tool, checklists synced with map, static export (`npm run build:static` -> `out/`), dark theme.
-Data is SAMPLE ONLY (tag `sample`, placeholder map SVG). Replace after launch.
+Data is SAMPLE ONLY until the first real pin (automatic switch), placeholder map SVG.
 See `docs/ARCHITECTURE.md`, `docs/DATA_SCHEMA.md`, `docs/PROJECT_BRIEF.md`.
+
+## Data pipeline (ready for launch, 2026-11-17)
+Sezar sends a table (Google Sheets CSV, template `content/import-template.csv`); Claude runs
+`npm run import:pins -- file.csv` (dry run), then `--write`, `npm run validate`, build, deploy. Guide: `docs/INGEST.md`.
+Content is JSON in `content/`. 12 categories (story/side missions, activities, collectibles, stunt jumps, random events,
+rare vehicles, easter eggs, weapon pickups, safehouses, shops, landmarks); add/remove after launch.
+Map: community map first (permission + attribution), our own later; switching maps = calibration, pins untouched.
+Put the community map in BEFORE the first real pins (pins live in its coordinate frame).
 
 ## Run
 `npm install` then `npm run dev` (http://localhost:3000). Dev capture tool: `/map?dev=true`.
-Checks: `npm run typecheck`, `npm run build`, `npm run build:static`.
+Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build:static`.
 
 ## Decisions made
 - Visual identity: 80s Florida brochure (cream/coral/turquoise, thick borders, offset shadows). Avoid generic AI-site look.

@@ -27,8 +27,12 @@ src/
     vehicles/ economy/ minigames/ community/ account/   (future)
   components/ui/          shared primitives (future)
 public/maps/              map artwork (placeholder.svg for now)
-docs/                     this file, DATA_SCHEMA.md
+content/                  OFFICIAL DATA (JSON): pins.json, categories.json, text.en.json, import-template.csv
+scripts/                  import-pins.mjs (table -> content), validate-content.mjs (runs before every build)
+docs/                     this file, DATA_SCHEMA.md, INGEST.md (data workflow, Turkish)
 ```
+`src/data/*.ts` are thin typed loaders over `content/`. Checklists are generated from pins (`src/data/checklists.ts`).
+No real pins = SAMPLE_MODE (placeholder pins/checklist); the first real pin switches everything to real data.
 
 ## Rules that keep "zero-refactor" true
 1. IDs are immutable (`pin_<ULID>`); slugs may change. Progress is keyed on IDs.
@@ -39,19 +43,22 @@ docs/                     this file, DATA_SCHEMA.md
 6. Paywalls via `config/entitlements.ts` feature keys, never plan-name checks.
 7. Official `Pin` and personal `UserMarker` are separate types.
 
-## Add a pin (stream workflow)
-1. Open `/map?dev=true`. Pick category (keys 1-9), optionally source/credit.
-2. Click the map: pin JSON is on the clipboard. `C` re-copies, `Z` undoes.
-3. Paste into `src/data/pins.ts`; paste the i18n lines into `src/i18n/en.ts` (`pins` object).
-4. Commit. New pins start `unverified` (dashed outline) until confirmed.
+## Add pins
+Main path: table -> `npm run import:pins -- file.csv [--write]` -> `npm run validate`. Full guide: `docs/INGEST.md`.
+`/map?dev=true` copies a coordinate (`x, y`) per click for the table's `coord` column (keys 1-0 pick category).
+"Copy as: Pin JSON" remains for one-off manual edits of `content/pins.json` + `content/text.en.json`.
 
-## Swap in real map art
-- Single image: put it in `public/maps/`, set `source.url`, set `imageSize`.
+## Map art and calibration
+- Single image: put it in `public/maps/`, set `source.url`, `imageSize`, and `attribution` for community art.
 - Tiles: `source: { kind: "tiles", urlTemplate: "/tiles/main/{z}/{x}/{y}.png", tileSize: 256, minNativeZoom: 0, maxNativeZoom: N }`,
   `imageSize` = full-res size at zoom N. XYZ scheme (y down). Not yet tested with real tiles.
+- Pins live in the frame of the first real map. A later image with other borders/scale gets `calibration`
+  (3+ control points from the dev "Calibrate map" tool, Landmarks pins); `src/lib/affine.ts` fits a least-squares
+  affine transform, so pins are never edited. Click handling bounds-checks image coords, saves frame coords.
 
 ## Known gaps / next
-- Sample data is fake (tag `sample`). Delete before launch.
+- Sample data is fake (tag `sample`); it disappears automatically with the first real pin.
+- Regions: `pin.region` exists but there is no region filter or region data yet.
 - Backup/restore uses `window.prompt` (fine for MVP).
 - No service worker yet (manifest only): add offline caching after launch.
 - Ads, analytics: not started.

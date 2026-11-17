@@ -6,8 +6,12 @@ import type { Checklist } from "@/domain";
 import { useProgress } from "@/hooks/useProgress";
 import { SITE } from "@/config/site";
 import { t } from "@/i18n";
-import { checklistItemKey, checklistKey, checklistSectionKey } from "@/i18n/keys";
+import { checklistItemKey, checklistKey, checklistSectionKey, pinKey } from "@/i18n/keys";
 import { checklistRef, computeChecklistProgress } from "@/lib/progress";
+import type { ChecklistItem } from "@/domain";
+
+/** Pin-linked items reuse the pin's title, so text is written once. */
+const itemLabel = (item: ChecklistItem) => t(item.linkedPinId ? pinKey(item.linkedPinId, "title") : checklistItemKey(item.id));
 
 export default function ChecklistView({ checklist }: { checklist: Checklist }) {
   const { ready, progress, isDone, toggle } = useProgress(SITE.gameId);
@@ -31,6 +35,8 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
           {t("ui.checklist.hideDone")}
         </label>
       </section>
+
+      {checklist.sections.length === 0 && <p className="card text-sm text-muted">{t("ui.checklist.empty")}</p>}
 
       {checklist.sections.map((section) => {
         const pair = summary.bySection[section.id] ?? { done: 0, total: 0 };
@@ -58,7 +64,7 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md border-2 border-line bg-bg text-sm font-black" aria-hidden="true">
                         {done ? "✓" : ""}
                       </span>
-                      <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{t(checklistItemKey(item.id))}</span>
+                      <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>
                     </button>
                     {item.linkedPinId && (
                       <Link href={`/map?pin=${item.linkedPinId}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
