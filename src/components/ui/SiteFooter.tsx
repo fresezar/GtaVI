@@ -3,6 +3,7 @@ import { SITE } from "@/config/site";
 import { localePath, tFor, type Locale } from "@/i18n";
 
 const SOCIAL = [
+  { key: "tiktok", label: "TikTok" },
   { key: "discord", label: "Discord" },
   { key: "x", label: "X" },
   { key: "donate", label: "Support us" },

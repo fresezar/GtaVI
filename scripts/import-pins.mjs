@@ -114,7 +114,7 @@ function parseCoord(get) {
   return { coord: [Math.round(x * 10000) / 10000, Math.round(y * 10000) / 10000] };
 }
 
-const report = { created: [], updated: [], needsLocation: [], near: [], errors: [], skippedEmpty: 0 };
+const report = { created: [], updated: [], placed: [], needsLocation: [], near: [], errors: [], skippedEmpty: 0, drafts: 0, already: 0 };
 const batch = []; // new pins from this file, for in-file duplicate checks
 
 for (let r = 1; r < rows.length; r++) {
@@ -189,24 +189,48 @@ for (let r = 1; r < rows.length; r++) {
   }
 
   // ---- new pin ----
+  // No title = a quick note from the site's entry tool (link + time). Not publishable yet: skip quietly.
+  if (!get("title")) {
+    if (errs.length) report.errors.push({ rowNo, errs });
+    else report.drafts++;
+    continue;
+  }
   if (!get("category")) errs.push("category is empty");
-  if (!get("title")) errs.push("title is empty");
   if (errs.length) {
     report.errors.push({ rowNo, errs });
     continue;
   }
-  if (loc.missing) {
-    report.needsLocation.push({ rowNo, title: get("title") });
+
+  // The entry tool always sends its whole list, so most rows were imported before. Same pin =
+  // same category and (same title, or same clip at the same second), and not clearly elsewhere on the map.
+  const titleSlug = slugify(get("title"));
+  const clipKey = seconds > 0 ? sourceUrl : "";
+  const same = [...pins, ...batch].find((p) => {
+    if (p.categoryId !== category.id) return false;
+    const sameTitle = slugify(text[`pin.${p.id}.title`] ?? "") === titleSlug;
+    const sameClip = clipKey && p.provenance?.sourceUrl === clipKey;
+    if (!sameTitle && !sameClip) return false;
+    if (!p.coord || loc.missing) return true;
+    return Math.hypot(p.coord[0] - loc.coord[0], p.coord[1] - loc.coord[1]) < NEAR * 10;
+  });
+  if (same) {
+    if (!same.coord && loc.coord) {
+      same.coord = loc.coord;
+      same.updatedAt = today();
+      same.dataVersion = (same.dataVersion ?? 1) + 1;
+      report.placed.push({ rowNo, id: same.id, title: text[`pin.${same.id}.title`] ?? get("title") });
+    } else report.already++;
     continue;
   }
 
-  const close = [...pins, ...batch].find(
-    (p) => p.categoryId === category.id && Math.hypot(p.coord[0] - loc.coord[0], p.coord[1] - loc.coord[1]) < NEAR,
-  );
+  const close = loc.coord
+    ? [...pins, ...batch].find((p) => p.categoryId === category.id && p.coord && Math.hypot(p.coord[0] - loc.coord[0], p.coord[1] - loc.coord[1]) < NEAR)
+    : undefined;
   if (close && !ALLOW_NEAR) {
     report.near.push({ rowNo, title: get("title"), other: close.id, otherTitle: text[`pin.${close.id}.title`] ?? "(this file)" });
     continue;
   }
+  if (loc.missing) report.needsLocation.push({ rowNo, title: get("title") });
 
   const id = `pin_${ulid()}`;
   const pin = {
@@ -214,7 +238,7 @@ for (let r = 1; r < rows.length; r++) {
     slug: uniqueSlug(slugify(get("title"))),
     mapId: "map_main",
     categoryId: category.id,
-    coord: loc.coord,
+    ...(loc.coord ? { coord: loc.coord } : {}),
     source: sourceType ?? inferSource(sourceUrl),
     ...(get("finder") ? { credit: { name: get("finder"), ...(get("finder_url") ? { url: get("finder_url") } : {}) } } : {}),
     ...(get("region") ? { region: get("region") } : {}),
@@ -238,13 +262,20 @@ const byCat = report.created.reduce((acc, c) => ((acc[c.category] = (acc[c.categ
 const line = (s = "") => console.log(s);
 line(`\nImport ${WRITE ? "APPLIED" : "dry run"}: ${file}`);
 line(`  New pins:        ${report.created.length}${report.created.length ? `  (${Object.entries(byCat).map(([k, v]) => `${k} ${v}`).join(", ")})` : ""}`);
+line(`  ...of them unplaced: ${report.needsLocation.length}  (published without a map spot)`);
+line(`  Placed now:      ${report.placed.length}  (existing unplaced pins got their coord)`);
 line(`  Updated pins:    ${report.updated.length}`);
-line(`  Needs location:  ${report.needsLocation.length}`);
+line(`  Already in:      ${report.already}`);
+line(`  Drafts skipped:  ${report.drafts}  (quick notes without a title)`);
 line(`  Near duplicates: ${report.near.length}`);
 line(`  Errors:          ${report.errors.length}`);
 if (report.needsLocation.length) {
-  line("\nNo coord yet (add one with /map?dev=true, then re-import those rows):");
+  line("\nPublished without a map spot (give them a coord in /map?dev=true and send the list again):");
   for (const r of report.needsLocation) line(`  row ${r.rowNo}: ${r.title}`);
+}
+if (report.placed.length) {
+  line("\nPlaced on the map:");
+  for (const r of report.placed) line(`  row ${r.rowNo}: ${r.id} "${r.title}"`);
 }
 if (report.near.length) {
   line("\nSkipped as probable duplicates (put the existing id in the `id` column to update it, or use --allow-near):");

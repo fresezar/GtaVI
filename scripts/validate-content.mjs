@@ -54,8 +54,9 @@ for (const p of pins) {
   else slugs.set(p.slug, p.id);
   if (!/^map_[a-z0-9_]+$/.test(p.mapId ?? "")) err(`${at}: bad mapId`);
   if (!catIds.has(p.categoryId)) err(`${at}: unknown category ${p.categoryId}`);
+  // No coord = published but not placed yet (allowed). If present it must be valid.
   const [x, y] = Array.isArray(p.coord) ? p.coord : [];
-  if (![x, y].every((n) => typeof n === "number" && Number.isFinite(n) && n >= COORD_MIN && n <= COORD_MAX)) {
+  if (p.coord !== undefined && ![x, y].every((n) => typeof n === "number" && Number.isFinite(n) && n >= COORD_MIN && n <= COORD_MAX)) {
     err(`${at}: coord must be [x, y] numbers within ${COORD_MIN}..${COORD_MAX}`);
   }
   if (!STATUSES.includes(p.status)) err(`${at}: status must be one of ${STATUSES.join("/")}`);

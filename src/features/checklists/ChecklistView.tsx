@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { Checklist } from "@/domain";
+import { isPlaced, type Checklist } from "@/domain";
+import { PIN_BY_ID } from "@/data/pins";
 import { useProgress } from "@/hooks/useProgress";
 import { SITE } from "@/config/site";
 import { useHref, useT } from "@/i18n/client";
@@ -67,9 +68,16 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       </span>
                       <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>
                     </button>
-                    {item.linkedPinId && (
-                      <Link href={`${href("/map")}?pin=${item.linkedPinId}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
-                    )}
+                    {item.linkedPinId && (() => {
+                      const pin = PIN_BY_ID.get(item.linkedPinId);
+                      if (!pin) return null;
+                      // Not on the map yet: the pin page still has the clip and the credit.
+                      return isPlaced(pin) ? (
+                        <Link href={`${href("/map")}?pin=${pin.id}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
+                      ) : (
+                        <Link href={href(`/pins/${pin.slug}`)} className="btn shrink-0 border-dashed">{t("ui.checklist.details")}</Link>
+                      );
+                    })()}
                   </li>
                 );
               })}

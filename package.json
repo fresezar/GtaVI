@@ -12,7 +12,7 @@
     "import:pins": "node scripts/import-pins.mjs",
     "prebuild": "npm run validate",
     "prebuild:static": "npm run validate",
-    "media": "node scripts/optimize-media.mjs"
+    "media": "node scripts/optimize-media.mjs && node scripts/make-og.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",

@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Category, CategoryId, PinId } from "@/domain";
+import { isPlaced, type Category, type CategoryId, type PinId } from "@/domain";
 import { CATEGORIES } from "@/data/categories";
 import { MAPS } from "@/data/maps";
 import { PINS } from "@/data/pins";
 import { SITE } from "@/config/site";
-import { useLocale, useT } from "@/i18n/client";
+import Link from "next/link";
+import { useHref, useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { computeProgress } from "@/lib/progress";
 import { copyText } from "@/lib/clipboard";
@@ -20,16 +21,21 @@ import { CATEGORY_COLORS } from "./tokens";
 
 const DEF = MAPS[0];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
+/** Every pin of this map: progress counts them all, placed or not. */
 const MAP_PINS = PINS.filter((p) => p.mapId === DEF.id);
-const LANDMARKS = MAP_PINS.filter((p) => p.categoryId === "cat_landmarks");
+/** Only these can be drawn, focused or searched on the map. */
+const PLACED = MAP_PINS.filter(isPlaced);
+const UNPLACED_COUNT = MAP_PINS.length - PLACED.length;
+const LANDMARKS = PLACED.filter((p) => p.categoryId === "cat_landmarks");
 const DEFAULT_HIDDEN = new Set(CATEGORIES.filter((c) => c.hiddenByDefault).map((c) => c.id));
 const SEARCH_LIMIT = 8;
 
 export default function MapExplorer() {
   const t = useT();
   const locale = useLocale();
+  const href = useHref();
   const searchIndex = useMemo(
-    () => MAP_PINS.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
+    () => PLACED.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
     [t, locale],
   );
   const [dev, setDev] = useState(false);
@@ -39,7 +45,7 @@ export default function MapExplorer() {
   const [query, setQuery] = useState("");
   const [note, setNote] = useState("");
   const [selectedId, setSelectedId] = useState<PinId | null>(null);
-  const selectedPin = selectedId ? MAP_PINS.find((p) => p.id === selectedId) ?? null : null;
+  const selectedPin = selectedId ? PLACED.find((p) => p.id === selectedId) ?? null : null;
 
   /** Select a pin (or clear) and mirror it in the address bar, so a copied URL opens the same card. */
   const select = useCallback((id: PinId | null) => {
@@ -67,7 +73,7 @@ export default function MapExplorer() {
   // A focused or selected pin always shows, even if its layer is off or it is completed.
   const visiblePins = useMemo(
     () =>
-      MAP_PINS.filter(
+      PLACED.filter(
         (p) =>
           p.id === focus?.id ||
           p.id === selectedId ||
@@ -85,7 +91,7 @@ export default function MapExplorer() {
   /** Jump to the next not-yet-found pin in a category (cycles), turning the layer on if needed. */
   const nextUnfound = useCallback(
     (categoryId: CategoryId) => {
-      const list = MAP_PINS.filter((p) => p.categoryId === categoryId && progress[p.id]?.done !== true);
+      const list = PLACED.filter((p) => p.categoryId === categoryId && progress[p.id]?.done !== true);
       if (!list.length) return;
       const at = list.findIndex((p) => p.id === focus?.id);
       setHidden((prev) => {
@@ -192,6 +198,11 @@ export default function MapExplorer() {
             <div className="h-full rounded-full bg-gradient-to-r from-accent to-sun transition-[width] duration-300" style={{ width: `${summary.percent}%` }} />
           </div>
           <p className="mt-2 text-sm text-muted">{t("ui.progress.found", { done: summary.done, total: summary.total })}</p>
+          {UNPLACED_COUNT > 0 && (
+            <Link href={href("/checklists/100-percent-completion")} className="mt-2 block text-xs font-bold text-sun underline">
+              {t("ui.map.unplaced", { count: UNPLACED_COUNT })}
+            </Link>
+          )}
         </section>
 
         {dev && <DevPanel dev={devTool} categories={CATEGORIES} />}

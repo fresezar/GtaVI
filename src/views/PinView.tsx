@@ -5,7 +5,7 @@ import PageShell from "@/components/ui/PageShell";
 import { CATEGORIES } from "@/data/categories";
 import { CHECKLISTS } from "@/data/checklists";
 import { PINS } from "@/data/pins";
-import type { Pin } from "@/domain";
+import { isPlaced, type Pin } from "@/domain";
 import { CATEGORY_COLORS } from "@/features/map/tokens";
 import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n";
 import { categoryKey, pinKey } from "@/i18n/keys";
@@ -23,12 +23,21 @@ function text(pin: Pin, t: Translate) {
   return { title, description: desc !== descKey && desc ? desc : "" };
 }
 
-function nearby(pin: Pin): Pin[] {
-  return PINS.filter((p) => p.id !== pin.id && p.mapId === pin.mapId)
-    .map((p) => ({ p, d: Math.hypot(p.coord[0] - pin.coord[0], p.coord[1] - pin.coord[1]) }))
-    .sort((a, b) => a.d - b.d)
-    .slice(0, NEARBY)
-    .map((x) => x.p);
+/** Placed pin: the closest placed pins. Unplaced pin: the newest pins of the same category. */
+function related(pin: Pin): { kind: "nearby" | "category"; pins: Pin[] } {
+  if (isPlaced(pin)) {
+    const pins = PINS.filter((p) => p.id !== pin.id && p.mapId === pin.mapId)
+      .filter(isPlaced)
+      .map((p) => ({ p, d: Math.hypot(p.coord[0] - pin.coord[0], p.coord[1] - pin.coord[1]) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, NEARBY)
+      .map((x) => x.p);
+    return { kind: "nearby", pins };
+  }
+  const pins = PINS.filter((p) => p.id !== pin.id && p.categoryId === pin.categoryId)
+    .sort((a, b) => b.addedAt.localeCompare(a.addedAt))
+    .slice(0, NEARBY);
+  return { kind: "category", pins };
 }
 
 export function pinMetadata(locale: Locale, slug: string): Metadata {
@@ -98,7 +107,11 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
   const categoryChecklist = category ? CHECKLISTS.find((c) => c.slug === category.slug) : undefined;
   const hint =
     pin.status === "unverified" ? t("ui.pin.status.unverifiedHint") : pin.status === "disputed" ? t("ui.pin.status.disputedHint") : "";
-  const near = nearby(pin);
+  const rel = related(pin);
+  const near = rel.pins;
+  const placed = isPlaced(pin);
+  const relTitle =
+    rel.kind === "nearby" ? t("ui.pin.nearby") : t("ui.pin.moreInCategory", { category: category ? t(categoryKey(category.id)) : "" });
 
   return (
     <PageShell locale={locale} path={`/pins/${pin.slug}`} width="max-w-2xl">
@@ -138,10 +151,11 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
           </p>
         )}
 
+        {!placed && <p className="mt-3 rounded-xl border border-dashed border-sun p-2 text-xs text-muted">{t("ui.pin.unplaced")}</p>}
         {hint && <p className="mt-3 rounded-xl border border-dashed border-line-strong p-2 text-xs text-muted">{hint}</p>}
 
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link href={`${href("/map")}?pin=${pin.id}`} className="btn btn-primary">{t("ui.pin.showOnMap")}</Link>
+          {placed && <Link href={`${href("/map")}?pin=${pin.id}`} className="btn btn-primary">{t("ui.pin.showOnMap")}</Link>}
           {categoryChecklist && category && (
             <Link href={href(`/checklists/${categoryChecklist.slug}`)} className="btn">
               {t("ui.pin.allInCategory", { category: t(categoryKey(category.id)) })}
@@ -151,8 +165,8 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
       </article>
 
       {near.length > 0 && (
-        <section className="mt-8" aria-label={t("ui.pin.nearby")}>
-          <h2 className="font-display text-2xl">{t("ui.pin.nearby")}</h2>
+        <section className="mt-8" aria-label={relTitle}>
+          <h2 className="font-display text-2xl">{relTitle}</h2>
           <ul className="mt-3 space-y-1.5">
             {near.map((p) => {
               const c = CATEGORIES.find((x) => x.id === p.categoryId);

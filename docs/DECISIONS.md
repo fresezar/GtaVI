@@ -11,6 +11,14 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 | Karar | Neden | Durum |
 |---|---|---|
+| Harita kaynağı çıkıştan sonraki ilk 2 günde piyasanın hareketine göre seçilir (hangi topluluk haritası öne çıkarsa) | Kurucunun kararı; çıkış öncesi seçim tahmin olurdu | Kabul |
+| Harita gelene kadar bulgular **konumsuz** yayınlanır: pin sayfası, listeler, ilerleme; haritada görünmez. Konum sonra verilir, aynı liste tekrar gönderilince içe aktarma konumu mevcut pine yazar (yeni pin açmaz) | İlk gün içerik kaçmasın; harita gecikmesi içeriği durdurmasın | Kabul, uygulandı |
+| Veri girişine "Hızlı not" eklendi: yalnızca link + zaman + birkaç kelime (taslak). Taslak sonra listeden açılır, kategori/başlık yazılır, haritaya tıklanarak yerleştirilir. "Sıradakini aç" bekleyenleri sırayla getirir | Kurucu yayın izlerken hızlı not almak istedi | Kabul, uygulandı |
+| İndirilen CSV her satırı (taslaklar dahil) içerir ve yedektir: "CSV'den geri yükle" tarayıcı verisi silinirse listeyi geri getirir. İçe aktarma taslakları ve önceden eklenenleri sessizce atlar | Kayıp riskini kapatmak, tekrar göndermeyi güvenli yapmak | Kabul, uygulandı |
+| Sosyal medya: şimdilik yalnızca TikTok (İngilizce). Her bulgu bir short; kullanıcı içerikten gelecek. Video üretim/düzenleme araçlarına sonra birlikte bakılacak | Kurucunun kararı | Kabul |
+| Arama motorları domain gelene kadar kapalı (`SITE.indexable = false`: robots.txt + noindex). Domain bağlanınca tek satırla açılır | Sıralamayı geçici workers.dev adresinde kurmamak | Kabul, uygulandı |
+| Paylaşım önizleme görseli (1200×630, resmi çizim + başlık; kapatma anahtarı kapalıysa kendi degrade görselimiz). Cloudflare Web Analytics için yer hazır, token kurucudan gelecek | Çıkış öncesi altyapı | Kabul, uygulandı |
+| Kullanıcı hesapları: çıkışta yok. Tetikleyici: düzenli geri gelen kullanıcı oluşunca ya da kimlik isteyen ilk özellik (konum önerme, yorum) gelince; tahmini ay 1-2. İlerleme şimdilik tarayıcıda + yedek kodu | Hesap kullanıcı getirmez, içerik getirir; çıkış haftasında moderasyon/güvenlik yükü riskli | Önerildi |
 | ~~Rockstar görselleri fan içerik politikası kontrol edilmeden kullanılmaz~~ → Telif konusunda kendi kuralımız yok: sorun çıkmayacağına inandığımız her materyal kullanılır (kurucu: "bizim sattığımız şey o görseller olmayacak") | Kurucunun kararı | Kabul |
 | Resmî GTA VI çizimleri sitede tematik kullanılıyor: arka plan, ana sayfa posteri, keşfet kartları, haber ve liste bantları. Alt bilgide "© Rockstar Games" atfı. GTA VI logosu kullanılmaz (siteyi resmî gibi gösterir), RDR2/GTA V görselleri konu dışı | Atmosfer; atıf dürüst ve riski azaltır | Kabul, uygulandı |
 | Kapatma anahtarı: `SITE.officialArt = false` tüm resmî görselleri tek adımda kaldırır, kendi SVG sahnemiz geri gelir. Kaynak JPG'ler `media-src/` (git dışı), web sürümleri `npm run media` ile `public/media/` | Kaldırma talebi gelirse dakikalar içinde uyum | Kabul, uygulandı |
@@ -71,5 +79,7 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 
 - Çift dilli topluluk modeli: önerildi (2026-11-17), kurucunun görüşü bekleniyor.
 - ~~Hub tasarımına geçiş planı~~ → uygulandı (2026-11-17).
-- Topluluk haritası kaynağı (GTADB / Leonida Atlas / diğer) ve lisans doğrulaması.
+- Topluluk haritası kaynağı ve lisans doğrulaması: çıkıştan sonraki ilk 2 günde seçilecek (2026-11-17).
+- Domain: TikTok'tan gelecek trafik için çıkış haftasında gerekli; arama motorları domain gelince açılır.
+- Cloudflare Web Analytics token'ı (kurucu panelden alacak).
 - Domain ve nihai marka.

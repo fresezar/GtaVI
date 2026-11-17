@@ -4,13 +4,27 @@ Sezar kaynakları tabloya yazar, Claude tabloyu içe aktarır, doğrular, build 
 
 ## 1. Site içi veri girişi (önerilen)
 
-`/map?dev=true` (Türkçe: `/tr/map?dev=true`) aç:
+`/map?dev=true` (Türkçe: `/tr/map?dev=true`) aç. İki hız var:
+
+**Hızlı not (yayın izlerken):** Link + zaman + birkaç kelime → **Kaydet** (Enter). Link kalır; aynı yayında yalnızca
+zamanı ve notu yazarsın. Bu bir taslaktır, sitede yayınlanmaz.
+
+**Tam giriş:**
 1. Kategoriyi seç (kısayol `1`-`0`), haritada yere tıkla: konum forma düşer. Konum bilinmiyorsa boş bırak.
 2. Başlık (EN zorunlu, TR isteğe bağlı), açıklama, kaynak linki, zaman, bulan: **Listeye ekle** (Enter).
-   Kaynak linki, bulan, kategori ve durum bir sonraki pin için hatırlanır; aynı yayında yalnızca başlık ve zaman değişir.
-3. Bitince **CSV indir** → dosyayı `inbox/` klasörüne koy → "inbox'a koydum" de. Az satırsa **CSV kopyala** → sohbete yapıştır.
+   Kaynak linki, bulan, kategori ve durum bir sonraki pin için hatırlanır.
 
-Liste bu tarayıcıda saklanır (sayfayı kapatsan da durur), ama tarayıcı verisi silinirse gider: sık indir.
+**Taslağı tamamlama / yerleştirme:** Listede satıra tıkla (ya da **Sıradakini aç**): form o satırla dolar, "▶ Klibi aç"
+videoyu o saniyede açar. Kategori + başlık yaz, haritada yerine tıkla, **Kaydet**.
+
+Satır durumları: **taslak** (kategori ya da başlık yok, yayınlanmaz) · **konumsuz** (yayınlanır: pin sayfası ve
+listeler; haritada yok) · **konum ✓** (haritada da görünür).
+
+**Gönderme:** **CSV indir** → `inbox/` → "inbox'a koydum" de. CSV her satırı içerir; aynı listeyi tekrar tekrar göndermek
+güvenli (içe aktarma önceden eklenenleri ve taslakları atlar; konumsuz bir pine sonradan konum verdiysen konumu ona yazar).
+**Hazırları temizle** yalnızca konumu olanları listeden kaldırır; taslak ve konumsuzlar yerleşene kadar kalır.
+
+Liste bu tarayıcıda saklanır. Tarayıcı verisi silinirse **CSV'den geri yükle** ile son indirdiğin dosyadan geri gelir.
 
 ## 1b. Tablo (Google Sheets, isteğe bağlı)
 
@@ -46,7 +60,8 @@ Gönderme:
 | id | | pin_01... | Doluysa yeni pin açılmaz, o pin güncellenir (yalnızca dolu hücreler) |
 | notes | | | Sana özel; içe aktarılmaz |
 
-\* Koordinatı olmayan satır reddedilmez; "konum bekliyor" listesinde raporlanır. Koordinatı ekleyip tekrar gönderirsin.
+\* Koordinatı olmayan satır konumsuz pin olarak yayınlanır ve raporda listelenir. Koordinatı ekleyip aynı satırı tekrar
+gönderince (aynı kategori + aynı başlık ya da aynı klip ve saniye) konum mevcut pine yazılır. Başlığı olmayan satır taslaktır, atlanır.
 
 Kategoriler (ID'ler kalıcı, adlar değişebilir):
 Story missions, Side missions, Activities, Collectibles, Stunt jumps, Random events, Rare vehicles,

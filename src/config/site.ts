@@ -16,8 +16,19 @@ export const SITE = {
   officialArt: true,
   /** Launch day (local midnight in the visitor's timezone drives the countdown). */
   launch: { year: 2026, month: 11, day: 19 },
+  /**
+   * Search engines: false = robots.txt blocks crawling and pages say noindex. Turn on once the final
+   * domain is attached, so search ranking is not built on the temporary workers.dev address.
+   */
+  indexable: false,
+  /**
+   * Cloudflare Web Analytics (cookieless, free). Dashboard > Analytics & Logs > Web Analytics > Add a site >
+   * hostname > "Manage site" shows a JS snippet: paste only its token here. Empty = no analytics script.
+   */
+  analytics: { cloudflareToken: "" },
   /** Community links: empty = hidden. Fill when the accounts exist. */
   links: {
+    tiktok: "",
     discord: "",
     x: "",
     donate: "",

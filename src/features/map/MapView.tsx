@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import type { Category, CategoryId, Coord, MapDef, Pin, PinId } from "@/domain";
+import type { Category, CategoryId, Coord, MapDef, PinId, PlacedPin as Pin } from "@/domain";
 import type { Translate } from "@/i18n";
 import { createProjection, type MapProjection } from "./projection";
 import { CATEGORY_COLORS, PIN_OUTLINE } from "./tokens";

@@ -29,8 +29,12 @@ in `inbox/` (or a Google Sheet CSV from `content/import-template.csv`); Claude r
 `npm run import:pins -- file.csv` (dry run), then `--write`, `npm run validate`, build, deploy. Guide: `docs/INGEST.md`.
 Content is JSON in `content/`. 12 categories (story/side missions, activities, collectibles, stunt jumps, random events,
 rare vehicles, easter eggs, weapon pickups, safehouses, shops, landmarks); add/remove after launch.
-Map: community map first (permission + attribution), our own later; switching maps = calibration, pins untouched.
-Put the community map in BEFORE the first real pins (pins live in its coordinate frame).
+Map: community map first (chosen in the first 2 days after launch by what the market adopts; permission + attribution),
+our own later; switching maps = calibration, pins untouched. Until the map exists, finds are published WITHOUT coord
+(`Pin.coord` optional: pin page + checklists + progress, skipped on the map); re-sending the same row with a coord places it.
+Entry tool also has "Hızlı not" (link + time + note = draft) and opens rows from the list to finish/place them.
+Search engines stay off (`SITE.indexable=false`) until the final domain; OG image `public/og.jpg` (`npm run media`).
+Social: TikTok only for now (one short per find).
 
 Map UX: tapping a pin opens `src/features/map/PinCard.tsx` (not a Leaflet popup); `?pin=<id>` mirrors the selection.
 News: `/news` (+ `/tr/news`) from `content/news.json`; Claude writes original summaries from links Sezar sends.
