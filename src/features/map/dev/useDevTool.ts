@@ -175,7 +175,8 @@ export function useDevTool(enabled: boolean, categories: readonly Category[], la
 
   const download = useCallback(() => {
     if (!rows.length) return;
-    // Digits only (no bracket regex here: Tailwind's class scanner would read "[x:y]" as a CSS property).
+    // Digits only. Never write a bracket with a colon inside (regex or comment) in src/: Tailwind's
+    // class scanner turns it into an arbitrary CSS property and the CSS build fails.
     const stamp = new Date().toISOString().slice(0, 16).replace(/\D/g, "");
     const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
