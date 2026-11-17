@@ -1,7 +1,7 @@
 # CONTEXT: project hand-off (read first)
 
 Unofficial player companion site for the open-world game launching 2026-11-19: interactive map, checklists, guides.
-Owner works solo; Claude acts as product manager + architect. Replies: concise, direct, Turkish with light English; flag risks and the weakest link on decisions.
+Owner works solo; Claude acts as product manager + architect. Replies: concise, direct, plain Turkish (no language mixing); flag risks and the weakest link on decisions.
 
 ## Goals
 1. Growing community (Discord, short-form video, streamers). 2. Ad revenue. Subscription later (Phase 2/3).
@@ -42,7 +42,7 @@ Checks: `npm run typecheck`, `npm run validate`, `npm run build`, `npm run build
 ## Decisions made
 Full, dated log: `docs/DECISIONS.md` (record every accepted proposal there). Ideas: `docs/BACKLOG.md`. Competitors: `docs/COMPETITORS.md`.
 - Scope: everything GTA VI over the years, community + online focus; the map is only the start. Compete at least at rival level, always fresh.
-- Visual identity: LeonidaMap-like hub with a neon-sunset look, single dark theme, own SVG scene (2026-11-17, done). No Rockstar art as decoration (raw images kept untracked in `media-src/`).
+- Visual identity: LeonidaMap-like hub with a neon-sunset look, single dark theme, official art with credit, own SVG scene as fallback via `SITE.officialArt` (2026-11-17, done). Originals stay untracked in `media-src/`; `npm run media` writes `public/media/`.
 - Language: EN + TR (done 2026-11-17). EN at root, TR under `/tr/`; thin route files in `src/app` and `src/app/tr` call shared views in `src/views/` with a `locale`. UI text: `src/i18n/ui.en.ts` + `ui.tr.ts` (TR is type-checked complete). Client components use `useT()` / `useHref()` from `src/i18n/client.tsx`. Social media: one English account only.
 - Revenue: decided later by product quality/scope; donations first.
 - Domain: undecided (candidates considered: amirvc.com preferred over viceamir.com for trademark safety). Final brand after launch.

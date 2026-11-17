@@ -49,6 +49,7 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [ ] Anket ve quiz (etkileşim; LeonidaMap)
 - [ ] Yama notları ve değişiklik geçmişi (harita revizyonu ile bağlantılı)
 - [ ] Hesap ve bulut senkron (Supabase; StorageAdapter hazır)
+- [ ] Veri girişi sunucuda: `/map?dev=true` satırları tarayıcı yerine Cloudflare D1'e yazılsın, giriş Cloudflare Access ile korunsun; CSV indirme/inbox adımı kalkar, tarayıcı verisi silinince kayıp olmaz. Gönüllü editör eklenince şart.
 
 ## Faz 3 (ay 3-12): online ve canlı topluluk
 
