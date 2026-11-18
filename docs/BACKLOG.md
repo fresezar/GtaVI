@@ -27,6 +27,19 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [ ] Discord, X ve bağış linkleri; e-posta veya push kaydı (değer gösterildikten sonra sorulur)
 - [ ] SSS, çıkış saati (bölgelere göre), karakterler, mekanlar (Leonida, Vice City, Keys) sayfaları
 
+## Çıkış araştırmasından (2026-11-18, `docs/research/2026-11-18-cikis.md`)
+
+Öncelik sırasıyla:
+- [ ] **Kaçırılabilirler listesi**: hikâye görevleri tekrar oynanamıyor (IGN). "Bunu yapmadan ilerleme" uyarıları, spoiler kapılı. Rakiplerde yok; en çok aranacak rehber türü
+- [ ] **Para haritası**: Smash 'n' Grab (35), büyük/küçük banka (8/14), Payday Loans (7), ATM (167), suç üsleri (~24). Kategori önerisi DECISIONS'ta
+- [ ] **Ulaşım katmanı**: hızlı yolculuk yok. Tren istasyonu (25), feribot (2), araç çağırma; "en hızlı yol" ipuçları. Rota üretici (Faz 2) öne çekilebilir
+- [ ] **Heat rehberi**: aranma nasıl soğur (kılık, araç, silah, partnerden ayrılma) + suçlu profili (Professional → Psycho). Kalıcı arama trafiği, kısa video konusu
+- [ ] **Neyin ne zaman açıldığı**: yan aktivitelerin çoğu hikâyeye bağlı; bölüme göre tablo (spoiler kapılı)
+- [ ] **Kalıcı gelişim**: meditasyon noktaları (Focus), spor salonları (9) + açık hava aletleri, su altı keşifleri (6)
+- [ ] **Aktivite listesi**: yarışlar, drone zaman yarışları (8), poligon, golf, balık (6), Thrillbilly Mud Club
+- [ ] Haber/takip sayfaları: "GTA 6 Online ne zaman", "GTA 6 PC ne zaman" (arama hacmi yüksek, her yeni bilgiyle güncellenir)
+- [ ] Ayarlar rehberi: 30 FPS'te daha akıcı his (hareket bulanıklığı vb.), kontrol önerileri (eleştirilerin ortak noktası)
+
 ## Farkımız (rakiplerde görülmedi ya da zayıf)
 
 - [ ] "Found by @yayıncı" + zaman damgalı klip her pinde (altyapı hazır, 2026-11-17)

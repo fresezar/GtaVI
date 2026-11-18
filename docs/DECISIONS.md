@@ -16,6 +16,9 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 | Arama motorları açıldı (`SITE.indexable = true`), OG görseli "SIX STAR" | Domain bağlandı | Kabul, uygulandı |
 | Deploy tek komut: `npm run deploy` (doğrulama + build + sixstargta.com adresiyle yayın) | Site adresini elle yazma hatası olmasın | Kabul, uygulandı |
 | Premium DNS alınmaz; Cloudflare DNS ücretsiz | Gereksiz masraf | Kabul |
+| Harita kaynağında ilk aday GTADB (`rolux/gtadb.org`, MIT; veri CC BY 4.0 olarak kullanılıyor, Map-6/gtaintel/Vice City Tracker aynı karoları kullanıyor). Oyundaki haritayla uyumu ve veri lisansı doğrulanınca seçilir | Hazır, açık lisanslı, rakipler kullanıyor; izin beklemek gerekmiyor | Önerildi |
+| Kategoriler oyuna göre güncellenir: eklenecek adaylar Para hedefleri (soygun, ATM, suç üssü), Meditasyon noktaları, Su altı keşifleri, Spor salonları, Balık noktaları, Ulaşım (tren, feribot), Hizmetler (Pay 'n' Spray, mod dükkânı, Ammu-Nation). Sayılar oyunda doğrulanınca eklenir | İnceleme verisi (`docs/research/2026-11-18-cikis.md`); mevcut ID'ler değişmez | Önerildi |
+| İlk rehber: kaçırılabilirler listesi (görevler tekrar oynanamıyor) | Rakiplerde yok, ilk haftanın en çok aranan sorusu olacak | Önerildi |
 
 ## 2026-11-17
 

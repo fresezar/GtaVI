@@ -22,6 +22,7 @@ Fikir havuzu: `docs/BACKLOG.md`. Kararlar: `docs/DECISIONS.md`.
 | Leonida Map & Collectibles (Android) | Takip, hesapla cihazlar arası senkron | Uygulama | Mobil kanal |
 | GTADB (`gtadb.org`) | 2013'ten beri açık kaynak GTA coğrafi veritabanı: harita, API (yükselti, geocoding, rota), işaretleme aracı | Ücretsiz | Harita kaynağı adayı, lisans doğrulanmalı |
 | Leonida Atlas | Açık kaynak, 2.204 kaynaklı yer | Ücretsiz | Harita/veri kaynağı adayı |
+| Çıkış günü yeni gelenler (2026-11-18): leonidaverse.com, sixintelhq.com, vicesixmap.com, gta6collectiblesmap.com, map-6.com, thegtamap.com, gtaintel.com, sixhype.com | Harita + %100 listesi; Map-6: 1.900 gerçek dünya eşleşmesi, mesafe ölçme, "yalnızca resmî" görünümü; çoğu GTADB karosu | Reklam, Amazon affiliate, bazı ücretli katmanlar | Pazar çok kalabalık. Fark hız, kaynaklı klip ve Türkçe olmalı. "Six" önekli iki site var: marka karışabilir |
 | MapGenie | Siteye erişilemedi, GTA VI durumu doğrulanamadı | Pro üyelik | Büyük oyunlarda genelde ilk gün hazır olur |
 
 ## LeonidaMap.org yakın inceleme
