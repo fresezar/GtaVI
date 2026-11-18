@@ -82,22 +82,68 @@
     "art": "banner-checklists",
     "sections": [
       "overview",
-      "stunts",
-      "collect",
+      "story",
+      "exploration",
       "activities",
-      "crime",
+      "stunts",
+      "discovery",
       "missable"
     ],
     "sources": [
+      {
+        "name": "PowerPyx: 100% completion checklist",
+        "url": "https://www.powerpyx.com/gta-6-100-completion-checklist-guide/"
+      },
       {
         "name": "PowerPyx: trophy guide and roadmap",
         "url": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/"
       }
     ],
     "related": [
+      "/guides/money-robberies",
       "/guides/missables",
-      "/map",
-      "/checklists"
+      "/map"
+    ],
+    "updatedAt": "2026-11-18"
+  },
+  {
+    "id": "money",
+    "slug": "money-robberies",
+    "order": 25,
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "addedAt": "2026-11-18",
+    "art": "banner-money",
+    "sections": [
+      "unlocks",
+      "targets",
+      "marked",
+      "vaults",
+      "fencing",
+      "safes",
+      "checklist"
+    ],
+    "sources": [
+      {
+        "name": "PowerPyx: 100% completion checklist",
+        "url": "https://www.powerpyx.com/gta-6-100-completion-checklist-guide/"
+      },
+      {
+        "name": "PowerPyx: trophy guide and roadmap",
+        "url": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/"
+      },
+      {
+        "name": "8 tips from 140 hours of play",
+        "url": "https://tech.yahoo.com/gaming/articles/8-gta-6-tips-game-115452979.html"
+      },
+      {
+        "name": "VGC: beginner's guide",
+        "url": "https://www.videogameschronicle.com/guide/gta-6-beginners-guide-6-tips-you-need-to-know-before-starting-gta-6/"
+      }
+    ],
+    "related": [
+      "/guides/wanted-level-heat",
+      "/map"
     ]
   }
 ]

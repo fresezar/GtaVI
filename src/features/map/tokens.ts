@@ -26,6 +26,9 @@ export const CATEGORY_COLORS: Record<ColorToken, string> = {
   cobalt: "#2F6BFF",
   lilac: "#B39DDB",
   copper: "#C9773B",
+  salmon: "#FF9A8B",
+  orange: "#FF7A00",
+  teal: "#00897B",
 };
 
 /** Light outline reads on both dark night tiles and bright community map art. */
