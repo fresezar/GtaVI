@@ -72,7 +72,9 @@ Konsept: "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Hazır 
 - [ ] Anket ve quiz (etkileşim; LeonidaMap)
 - [ ] Yama notları ve değişiklik geçmişi (harita revizyonu ile bağlantılı)
 - [ ] Hesap ve bulut senkron (Supabase; StorageAdapter hazır)
-- [ ] Short video hattı: her bulgu için dikey klip (kaynak klip + harita/kart görseli + başlık), TikTok için otomatik şablon. Araç seçimi kurucuyla birlikte (kurucu istedi, 2026-11-17)
+- [x] Short video hattı: "Six Star File" formatı, `npm run short`, akşam rutini `/shorts-plan` (2026-11-18, `shorts/README.md`)
+- [ ] Harita yakınlaşması için temiz harita görüntüsü: `/map?pin=` sayfasından panelsiz dikey ekran görüntüsü (gerçek harita gelince; site kodu, onay gerekir)
+- [ ] Akşam rutinini bulutta zamanlanmış göreve çevirmek (her akşam 20:00, plan GitHub'a düşer); kurucu isterse
 - [ ] Veri girişi sunucuda: `/map?dev=true` satırları tarayıcı yerine Cloudflare D1'e yazılsın, giriş Cloudflare Access ile korunsun; CSV indirme/inbox adımı kalkar, tarayıcı verisi silinince kayıp olmaz. Gönüllü editör eklenince şart.
 
 ## Faz 3 (ay 3-12): online ve canlı topluluk

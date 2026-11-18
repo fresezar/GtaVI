@@ -1,0 +1,11 @@
+{
+  "file": "0000",
+  "hook": "You can't replay story missions in GTA 6. Do this first.",
+  "clip": "shorts/raw/test-clip.mp4",
+  "in": 1,
+  "out": 7,
+  "credit": "@yourname",
+  "fact": "Keep 3 manual saves before every big choice",
+  "map": { "image": "shorts/raw/test-map.png", "x": 0.55, "y": 0.4, "place": "Vice City Beach" },
+  "end": { "line": "Missables list + map pins" }
+}

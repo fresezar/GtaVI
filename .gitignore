@@ -13,3 +13,8 @@ next-env.d.ts
 # Drop zone for tables and link lists Sezar sends (raw, may contain spoilers): processed into content/, never committed
 /inbox/*
 !/inbox/README.md
+
+# Shorts: raw recordings, render scratch and finished videos stay local (large, may need permission)
+/shorts/raw/
+/shorts/work/
+/shorts/out/
