@@ -14,6 +14,7 @@ export const PATHS = {
   timeline: join(CONTENT, "timeline.json"),
   news: join(CONTENT, "news.json"),
   missables: join(CONTENT, "missables.json"),
+  guides: join(CONTENT, "guides.json"),
 };
 
 export const STATUSES = ["verified", "unverified", "disputed", "deprecated"];

@@ -27,7 +27,7 @@
     "kind": "reported",
     "sourceName": "PowerPyx",
     "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
-    "internalHref": "/map",
+    "internalHref": "/guides/100-percent-completion",
     "date": "2026-11-18"
   },
   {
@@ -35,6 +35,7 @@
     "kind": "reported",
     "sourceName": "VGC",
     "sourceUrl": "https://www.videogameschronicle.com/guide/gta-6-beginners-guide-6-tips-you-need-to-know-before-starting-gta-6/",
+    "internalHref": "/guides/first-hours-tips",
     "date": "2026-11-18"
   },
   {

@@ -116,6 +116,35 @@ for (const [file, prefix, fields] of [
   }
 }
 
+// ---- guides: every section needs a title and body; sources are mandatory ----
+{
+  const ids = new Set();
+  const slugs = new Set(["missables"]); // hand-built page at /guides/missables
+  for (const g of readJson(PATHS.guides)) {
+    const at = `guide ${g.id ?? "(no id)"}`;
+    if (!/^[a-z0-9_]+$/.test(g.id ?? "")) err(`${at}: id must be snake_case`);
+    if (ids.has(g.id)) err(`${at}: duplicate id`);
+    ids.add(g.id);
+    if (!/^[a-z0-9-]+$/.test(g.slug ?? "")) err(`${at}: bad slug`);
+    else if (slugs.has(g.slug)) err(`${at}: slug "${g.slug}" already taken`);
+    else slugs.add(g.slug);
+    if (typeof g.order !== "number") err(`${at}: order must be a number`);
+    if (!STATUSES.includes(g.status)) err(`${at}: status must be one of ${STATUSES.join("/")}`);
+    if (!SPOILERS.includes(g.spoilerLevel)) err(`${at}: spoilerLevel must be one of ${SPOILERS.join("/")}`);
+    if (!/^\d{4}-\d{2}-\d{2}/.test(g.addedAt ?? "")) err(`${at}: addedAt must be YYYY-MM-DD`);
+    if (!Array.isArray(g.sources) || !g.sources.length || g.sources.some((s) => !s.name || !isHttpUrl(s.url ?? ""))) {
+      err(`${at}: needs at least one source with a name and an http(s) url`);
+    }
+    if (!Array.isArray(g.sections) || !g.sections.length) err(`${at}: needs at least one section`);
+    if (g.status !== "deprecated") {
+      for (const f of ["title", "lead"]) if (!text[`guide.${g.id}.${f}`]) err(`${at}: missing guide.${g.id}.${f} in text.en.json`);
+      for (const s of g.sections ?? []) {
+        for (const f of ["title", "body"]) if (!text[`guide.${g.id}.s.${s}.${f}`]) err(`${at}: missing guide.${g.id}.s.${s}.${f} in text.en.json`);
+      }
+    }
+  }
+}
+
 // ---- text: orphan keys are harmless but usually a typo. Turkish keys must also exist in English. ----
 const textTr = readJson(PATHS.textTr);
 for (const key of Object.keys(text)) {

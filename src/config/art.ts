@@ -25,7 +25,10 @@ export const ART = {
   "card-radio": { src: "HXRoX6_XkAAkDD3.jpg", aspect: 16 / 10, focusY: 0.58, widths: [480, 800] },
   "banner-news": { src: "HXRoX6yXEAAirNC.jpg", aspect: 3 / 1, focusY: 0.47, widths: [960, 1600] },
   "banner-checklists": { src: "HXRoX77XQAAVqJw.jpg", aspect: 3 / 1, focusY: 0.68, widths: [960, 1600] },
-  "banner-missables": { src: "HXRoX61XIAErG1j.jpg", aspect: 3 / 1, focusY: 0.62, widths: [960, 1600] },
+  "banner-guides": { src: "HXRoX6xW0AAByCa.jpg", aspect: 3 / 1, focusY: 0.6, widths: [960, 1600] },
+  "banner-heat": { src: "HXRoX6uW4AEDlpk.jpg", aspect: 3 / 1, focusY: 0.45, widths: [960, 1600] },
+  "banner-money": { src: "HXRoX6vXMAACxP8.jpg", aspect: 3 / 1, focusY: 0.42, widths: [960, 1600] },
+  "banner-missables":{ src: "HXRoX61XIAErG1j.jpg", aspect: 3 / 1, focusY: 0.62, widths: [960, 1600] },
 } as const satisfies Record<string, ArtAsset>;
 
 export type ArtName = keyof typeof ART;
