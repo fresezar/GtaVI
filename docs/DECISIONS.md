@@ -106,3 +106,4 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 - Topluluk haritası kaynağı ve lisans doğrulaması: çıkıştan sonraki ilk 2 günde seçilecek (2026-11-17).
 - ~~Domain ve nihai marka~~ → sixstargta.com, "Six Star" (2026-11-18).
 - ~~Cloudflare Web Analytics token'ı~~ → eklendi (2026-11-17). Yeni domain Web Analytics'te ayrıca eklenmeli (kurucu panelden).
+- FiveM hazırlık planı: harita işi bitince pazar araştırmasıyla başlanacak; adımlar BACKLOG "Mod ve sunucu" bölümünde (kurucu onayladı, 2026-11-18).

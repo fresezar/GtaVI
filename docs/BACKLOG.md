@@ -88,6 +88,15 @@ oyun içi para/eşya satışı kısıtlı. GTA VI için FiveM desteği açıklan
 - [ ] Sitede "GTA VI RP / FiveM / PC ne zaman" takip sayfası (arama hacmi yüksek, her yeni bilgiyle güncellenir)
 - [ ] RP sunucu dizini (GTA VI desteği gelince; şimdiden GTA V RP ile başlanabilir)
 
+**FiveM hazırlık planı (kurucu onayladı, 2026-11-18).** Başlangıç şartı: harita işi bitince (resmî/GTADB harita
+yerleşti, pin girişi oturdu). O zaman Claude hatırlatır. Amaç: GTA VI'ya FiveM desteği geldiğinde hazır olmak.
+1. Pazarı öğren: Cfx Marketplace'te en çok satan script türleri, fiyat aralıkları, ESX/QBCore/Qbox çatıları,
+   açık kaynak rakipler (ox_*), yorumlarda en çok şikâyet edilen eksikler.
+2. Kuralları netleştir: fivem.net/terms (Creator PLA), Tebex şartları, Rockstar mod kuralları; neyin satılabildiği.
+3. Test sunucusu kur, 1 küçük script yaz ve yayınla (ücretsiz), geri bildirim topla.
+4. 2-3 ücretli script; site ile çapraz tanıtım (RP takip sayfası, sunucu dizini).
+5. GTA VI FiveM duyurusunu takip et; geçiş planı.
+
 ## Gelir (kalite ve kapsama göre sonra belirlenir)
 
 - [ ] Bağış linki (ilk aşama, onaylandı)
