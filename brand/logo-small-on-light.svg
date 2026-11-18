@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 20 340 410" width="340" height="410">
+  <defs>
+    <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="440">
+      <rect x="0" y="0" width="400" height="440" fill="#fff"/>
+      <path d="M200,262L155.26,172.32A50,50 0 1 1 244.74,172.32Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round"/>
+      <circle cx="200" cy="108" r="6" fill="#000"/><circle cx="329.9" cy="183" r="6" fill="#000"/><circle cx="329.9" cy="333" r="6" fill="#000"/><circle cx="200" cy="408" r="6" fill="#000"/><circle cx="70.1" cy="333" r="6" fill="#000"/><circle cx="70.1" cy="183" r="6" fill="#000"/>
+    </mask>
+    <mask id="hole" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="440">
+      <rect x="0" y="0" width="400" height="440" fill="#fff"/>
+      <circle cx="200" cy="148" r="17" fill="#000"/>
+    </mask>
+  </defs>
+  <g mask="url(#cut)" fill="none" stroke="#0E1A2B" stroke-linejoin="round">
+    <path d="M200,108L245,180.06L329.9,183L290,258L329.9,333L245,335.94L200,408L155,335.94L70.1,333L110,258L70.1,183L155,180.06Z" stroke-width="26"/>
+    
+    <circle cx="200" cy="108" r="14" stroke-width="18"/><circle cx="329.9" cy="183" r="14" stroke-width="18"/><circle cx="329.9" cy="333" r="14" stroke-width="18"/><circle cx="200" cy="408" r="14" stroke-width="18"/><circle cx="70.1" cy="333" r="14" stroke-width="18"/><circle cx="70.1" cy="183" r="14" stroke-width="18"/>
+  </g>
+  <path d="M200,262L155.26,172.32A50,50 0 1 1 244.74,172.32Z" fill="#FF6A55" stroke="#0E1A2B" stroke-width="18" stroke-linejoin="round" mask="url(#hole)"/>
+  <g fill="#FF6A55"><path d="M78.26,106.45L83.83,120.79L99.19,121.65L87.26,131.37L91.2,146.24L78.26,137.91L65.33,146.24L69.27,131.37L57.34,121.65L72.7,120.79Z"/><path d="M124.76,42.45L130.32,56.79L145.69,57.65L133.76,67.37L137.69,82.24L124.76,73.91L111.83,82.24L115.77,67.37L103.84,57.65L119.2,56.79Z"/><path d="M200,18L205.56,32.35L220.92,33.2L209,42.92L212.93,57.8L200,49.46L187.07,57.8L191,42.92L179.08,33.2L194.44,32.35Z"/><path d="M275.24,42.45L280.8,56.79L296.16,57.65L284.23,67.37L288.17,82.24L275.24,73.91L262.31,82.24L266.24,67.37L254.31,57.65L269.68,56.79Z"/><path d="M321.74,106.45L327.3,120.79L342.66,121.65L330.73,131.37L334.67,146.24L321.74,137.91L308.8,146.24L312.74,131.37L300.81,121.65L316.17,120.79Z"/></g>
+</svg>

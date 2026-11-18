@@ -16,7 +16,7 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 | Arama motorları açıldı (`SITE.indexable = true`), OG görseli "SIX STAR" | Domain bağlandı | Kabul, uygulandı |
 | Deploy tek komut: `npm run deploy` (doğrulama + build + sixstargta.com adresiyle yayın) | Site adresini elle yazma hatası olmasın | Kabul, uygulandı |
 | Premium DNS alınmaz; Cloudflare DNS ücretsiz | Gereksiz masraf | Kabul |
-| Logo: neon kalkan + yıldız (kurucu verdi). `brand/logo-source.jpg` → `scripts/make-logo.mjs` (arka plan kaldırılır): başlık, alt bilgi, favicon, uygulama simgeleri, OG görseli | Marka kimliği | Kabul, uygulandı |
+| ~~Logo: neon kalkan + yıldız~~ → 2026-11-18'de şerif yıldızı + pin logosuyla değişti (eski kaynak: `brand/archive/logo-v1-neon.jpg`) | Marka kimliği | Değişti |
 | Kategoriler 24'e çıktı (kupa listesine göre köprü altı, knife flight, base jump, WAiNK; "suç üsleri" → çete operasyonları; güvenli evler + garajlar) | PowerPyx sayıları; henüz gerçek pin yok, ID değişikliği güvenli | Kabul, uygulandı |
 | Haber etiketi "Basında" (`reported`): oyunu oynamış basın/rehber söylüyor, birinci elden değil | "Söylenti" yanıltıcı, "Doğrulandı" kurala aykırı | Kabul, uygulandı |
 | Rakip rehberlerin konum veritabanları toplu kopyalanmaz; tek tek olgular kendi cümlemizle ve kaynaklı | Telif ve etik; kural "metin kopyalanmaz, yalnızca olgular" | Kabul |
@@ -108,5 +108,6 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 - ~~Cloudflare Web Analytics token'ı~~ → eklendi (2026-11-17). Yeni domain Web Analytics'te ayrıca eklenmeli (kurucu panelden).
 - FiveM hazırlık planı: harita işi bitince pazar araştırmasıyla başlanacak; adımlar BACKLOG "Mod ve sunucu" bölümünde (kurucu onayladı, 2026-11-18).
 - ~~Google Search Console~~ → Domain mülkü doğrulandı, sitemap.xml gönderildi: Başarılı, 52 sayfa (kurucu, 2026-11-18).
-- Yeniden tasarım ve yeni logo: hazır şablon görünümünden çıkılacak (kurucu, 2026-11-18; sixstarsapp.com benzer görünüyor). Önerilen konsept "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Logo Gemini ile, sonra vektöre çevrilecek. Konsept onayı bekleniyor.
+- Yeniden tasarım ve yeni logo: hazır şablon görünümünden çıkılacak (kurucu, 2026-11-18; sixstarsapp.com benzer görünüyor). Önerilen konsept "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Logo Gemini ile, sonra vektöre çevrilecek. **Konsept onaylandı (kurucu, 2026-11-18).**
+- Logo v2: Gemini konseptlerinden en soldaki (şerif yıldızı + harita pini + 5 küçük yıldız; rozet altıncı yıldız). `brand/logo-concepts-2026-11-18.jpg` (4 varyant, ileride başka varyanta geçilebilir) → `scripts/make-logo.mjs` SVG olarak yeniden çizer: tam sürüm (büyük boy, OG) ve sade sürüm (favicon, başlık, uygulama simgeleri). Koyu zeminde krem, açık zeminde lacivert çizgi; simgeler krem kare üstünde (kurucu, 2026-11-18).
 - GTA 6 PC/Online/FiveM takip sayfası: onay almadan yazıldı; kurucu kullanıcıya faydalı olduğu için kalmasını istedi (2026-11-18).
