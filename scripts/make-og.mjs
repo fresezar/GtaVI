@@ -11,6 +11,7 @@ import { ROOT } from "./lib.mjs";
 const W = 1200;
 const H = 630;
 const ART = join(ROOT, "media-src", "HXRoX68WEAAIBko.jpg"); // same scene as the site backdrop
+const LOGO = join(ROOT, "public", "brand", "logo-256.png"); // from scripts/make-logo.mjs
 
 const overlay = (withArt) => `
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
@@ -22,9 +23,14 @@ const overlay = (withArt) => `
       <stop offset="0" stop-color="#120b1e" stop-opacity="0.92"/><stop offset="0.6" stop-color="#120b1e" stop-opacity="0.55"/>
       <stop offset="1" stop-color="#120b1e" stop-opacity="0.1"/>
     </linearGradient>
+    <radialGradient id="logoBack" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#120b1e" stop-opacity="0.85"/><stop offset="0.7" stop-color="#120b1e" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#120b1e" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   ${withArt ? "" : `<rect width="${W}" height="${H}" fill="url(#sky)"/>`}
   <rect width="${W}" height="${H}" fill="url(#shade)"/>
+  <circle cx="${W - 210}" cy="210" r="230" fill="url(#logoBack)"/>
   <text x="72" y="250" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="132" fill="#fff4ec">SIX STAR</text>
   <text x="76" y="330" font-family="Arial, sans-serif" font-weight="700" font-size="44" fill="#ffd27a">GTA VI interactive map</text>
   <text x="76" y="388" font-family="Arial, sans-serif" font-weight="700" font-size="34" fill="#fff4ec">Checklists · finds from streams · news</text>
@@ -33,7 +39,10 @@ const overlay = (withArt) => `
 
 const out = async (base, withArt, file) => {
   await base
-    .composite([{ input: Buffer.from(overlay(withArt)), top: 0, left: 0 }])
+    .composite([
+      { input: Buffer.from(overlay(withArt)), top: 0, left: 0 },
+      ...(existsSync(LOGO) ? [{ input: await sharp(LOGO).resize(300, 300).toBuffer(), top: 60, left: W - 360 }] : []),
+    ])
     .jpeg({ quality: 82, mozjpeg: true })
     .toFile(join(ROOT, "public", file));
   console.log(`Wrote public/${file}`);

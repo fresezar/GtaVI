@@ -16,7 +16,11 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="mt-16 border-t border-line bg-[#0d0716]/85 backdrop-blur-md">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-[1fr_auto]">
         <div>
-          <p className="neon font-display text-2xl">{SITE.name}</p>
+          <p className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, tiny fixed-size image */}
+            <img src="/brand/logo-64.png" alt="" width={32} height={32} className="h-8 w-8" />
+            <span className="neon font-display text-2xl">{SITE.name}</span>
+          </p>
           <p className="mt-2 max-w-xl text-xs leading-relaxed text-muted">{t("ui.footer.disclaimer")}</p>
           {SITE.officialArt && <p className="mt-1 max-w-xl text-xs text-muted">{t("ui.footer.artCredit")}</p>}
         </div>

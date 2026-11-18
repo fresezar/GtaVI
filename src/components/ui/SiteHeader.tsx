@@ -33,7 +33,9 @@ export default function SiteHeader({ locale, path, compact = false }: { locale: 
   return (
     <header className="sticky top-0 z-[1000] border-b border-line bg-[#120b1e]/80 backdrop-blur-md">
       <div className={`mx-auto flex items-center justify-between gap-3 px-4 ${compact ? "h-14 max-w-none" : "h-16 max-w-6xl"}`}>
-        <Link href={localePath(locale, "/")} className="flex items-baseline gap-2">
+        <Link href={localePath(locale, "/")} className="flex items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export, tiny fixed-size image */}
+          <img src="/brand/logo-128.png" alt="" width={40} height={40} className="h-9 w-9 shrink-0 sm:h-10 sm:w-10" />
           <span className="neon font-display text-2xl leading-none sm:text-3xl">{SITE.name}</span>
           <span className="hidden text-[10px] font-extrabold uppercase tracking-[0.2em] text-muted sm:inline">
             {locale === "tr" ? "Resmî değil" : "Unofficial"}
