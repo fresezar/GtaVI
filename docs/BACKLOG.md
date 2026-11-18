@@ -78,6 +78,16 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [ ] PWA çevrimdışı, ikinci ekran modu (oyun açıkken telefonda)
 - [ ] Paylaşılabilir ilerleme kartı, arkadaşla ortak checklist (ilk brief, viral döngü)
 
+## Mod ve sunucu (2026-11-18 araştırması, kurucu sordu)
+
+Durum: GTA VI'da mod yok (yalnızca PS5/Xbox, PC duyurulmadı; tahmin 2027-2028). Konsolda mod mümkün değil
+(jailbreak = kullanım şartı ihlali ve ban). Rockstar 2023'te FiveM'in sahibi Cfx.re'yi aldı; çok oyunculu modlar yalnızca
+FiveM/RedM üzerinden serbest. Ocak 2026'da Cfx Marketplace açıldı (ücretli mod satışı); sunucu gelirinde tek yol Tebex,
+oyun içi para/eşya satışı kısıtlı. GTA VI için FiveM desteği açıklanmadı.
+- [ ] GTA V FiveM üzerinde kendi script/kaynak paketlerimiz, Cfx Marketplace'te satış (Lua/JS). GTA VI'ya geçişte hazır ekip ve müşteri
+- [ ] Sitede "GTA VI RP / FiveM / PC ne zaman" takip sayfası (arama hacmi yüksek, her yeni bilgiyle güncellenir)
+- [ ] RP sunucu dizini (GTA VI desteği gelince; şimdiden GTA V RP ile başlanabilir)
+
 ## Gelir (kalite ve kapsama göre sonra belirlenir)
 
 - [ ] Bağış linki (ilk aşama, onaylandı)
