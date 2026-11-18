@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "id": "news_reviews_99",
+    "kind": "launch",
+    "sourceName": "OpenCritic",
+    "sourceUrl": "https://opencritic.com/news/39914/gta-6-is-officially-the-best-reviewed-game-of-all-time-on-metacritic",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_no_replay",
+    "kind": "reported",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
+    "internalHref": "/guides/missables",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_trophies",
+    "kind": "reported",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
+    "internalHref": "/guides/missables",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_completion_counts",
+    "kind": "reported",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
+    "internalHref": "/map",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_cash_tip",
+    "kind": "reported",
+    "sourceName": "VGC",
+    "sourceUrl": "https://www.videogameschronicle.com/guide/gta-6-beginners-guide-6-tips-you-need-to-know-before-starting-gta-6/",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_30fps",
+    "kind": "reported",
+    "sourceName": "Kotaku",
+    "sourceUrl": "https://kotaku.com/some-players-are-crashing-out-about-gta-6-only-being-30-fps-starfield-got-assaulted-for-being-locked-to-30-fps-2000755892",
+    "date": "2026-11-18"
+  },
+  {
+    "id": "news_no_online",
+    "kind": "reported",
+    "sourceName": "The PC Enthusiast",
+    "sourceUrl": "https://thepcenthusiast.com/gta-6-online-release-date-multiplayer/",
+    "date": "2026-11-18"
+  }
+]

@@ -22,6 +22,10 @@ export const CATEGORY_COLORS: Record<ColorToken, string> = {
   navy: "#3A5BA0",
   sand: "#D9C3A0",
   gold: "#D4AF37",
+  jade: "#00A86B",
+  cobalt: "#2F6BFF",
+  lilac: "#B39DDB",
+  copper: "#C9773B",
 };
 
 /** Light outline reads on both dark night tiles and bright community map art. */

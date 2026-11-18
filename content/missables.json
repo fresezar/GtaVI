@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "id": "hourglass_missions",
+    "order": 5,
+    "spoilerLevel": "none",
+    "status": "unverified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/",
+    "addedAt": "2026-11-18"
+  },
+  {
+    "id": "keep_manual_saves",
+    "order": 6,
+    "spoilerLevel": "none",
+    "status": "verified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
+    "addedAt": "2026-11-18"
+  },
+  {
+    "id": "ch1_balcony_meditation",
+    "order": 10,
+    "spoilerLevel": "mild",
+    "status": "unverified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/",
+    "addedAt": "2026-11-18"
+  },
+  {
+    "id": "ch1_shirley_jobs",
+    "order": 20,
+    "spoilerLevel": "mild",
+    "status": "unverified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/",
+    "addedAt": "2026-11-18"
+  },
+  {
+    "id": "ch3_yago_race",
+    "order": 30,
+    "spoilerLevel": "mild",
+    "status": "unverified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/",
+    "addedAt": "2026-11-18"
+  },
+  {
+    "id": "ch4_free_call",
+    "order": 40,
+    "spoilerLevel": "mild",
+    "status": "unverified",
+    "sourceName": "PowerPyx",
+    "sourceUrl": "https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/",
+    "addedAt": "2026-11-18"
+  }
+]

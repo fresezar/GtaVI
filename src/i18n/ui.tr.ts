@@ -87,6 +87,7 @@ export const UI_TR: Record<UiKey, string> = {
   "ui.sample.item": "Örnek madde {section} {n}",
   "ui.badge.confirmed": "Doğrulandı",
   "ui.badge.rumor": "Söylenti",
+  "ui.badge.reported": "Basında",
   "ui.badge.launch": "Çıkış",
   "ui.source": "Kaynak",
   "ui.nav.missables": "Kaçırılabilirler",

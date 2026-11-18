@@ -63,12 +63,13 @@ Gönderme:
 \* Koordinatı olmayan satır konumsuz pin olarak yayınlanır ve raporda listelenir. Koordinatı ekleyip aynı satırı tekrar
 gönderince (aynı kategori + aynı başlık ya da aynı klip ve saniye) konum mevcut pine yazılır. Başlığı olmayan satır taslaktır, atlanır.
 
-Kategoriler (ID'ler kalıcı, adlar değişebilir; 2026-11-18'de incelemelere göre 8 yeni eklendi):
-Story missions, Side missions, Activities, Collectibles, Stunt jumps, Random events, Meditation spots,
-Underwater discoveries, Robbery targets (Smash 'n' Grab, banka, Payday Loans), Criminal bases, Rare vehicles,
-Easter eggs, Weapon pickups, Safehouses, Gyms & workouts, Fishing spots, Trains & ferries, Shops & services
+Kategoriler (ID'ler kalıcı, adlar değişebilir; 2026-11-18'de incelemeler ve kupa listesine göre 24'e çıktı):
+Story missions, Side missions, Activities, Collectibles (kart setleri dahil), Stunt jumps, Under the bridge,
+Knife flights, Base jumps, Meditation spots, WAiNK scans, Random events, Underwater discoveries,
+Robbery targets (Smash 'n' Grab, banka kasası, Payday Loans), Gang operations, Rare vehicles, Easter eggs,
+Weapon pickups, Safehouses & garages, Gyms & workouts, Fishing spots, Trains & ferries, Shops & services
 (Pay 'n' Spray, mod dükkânı, Ammu-Nation), ATMs, Landmarks.
-İlerleme yüzdesine sayılanlar: ilk sekizi. Trains & ferries, Shops, ATMs ve Landmarks haritada varsayılan kapalı.
+İlerleme yüzdesine sayılanlar: ilk on ikisi. Trains & ferries, Shops, ATMs ve Landmarks haritada varsayılan kapalı.
 Kısayollar `1`-`0` ilk on kategoriyi seçer.
 Oyunda olmayan kategori kullanılmadan kalır (silinmez). Yeni kategori: `content/categories.json` + `content/text.en.json`.
 

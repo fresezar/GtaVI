@@ -5,7 +5,11 @@ import type { ISODate, PinId, SpoilerLevel, VerificationStatus } from "./common"
  * text lives in i18n as `timeline.<id>.title|body` and `news.<id>.title|summary`.
  * Every record names a source; "confirmed" must point to a first-party source.
  */
-export type EditorialKind = "confirmed" | "rumor" | "launch";
+/**
+ * confirmed = first-party (Rockstar, Take-Two). reported = outlets that played the game say so
+ * (reviews, hands-on guides), not first-party. rumor = everything else.
+ */
+export type EditorialKind = "confirmed" | "reported" | "rumor" | "launch";
 
 export interface TimelineEvent {
   id: string;

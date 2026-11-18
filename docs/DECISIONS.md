@@ -16,6 +16,11 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 | Arama motorları açıldı (`SITE.indexable = true`), OG görseli "SIX STAR" | Domain bağlandı | Kabul, uygulandı |
 | Deploy tek komut: `npm run deploy` (doğrulama + build + sixstargta.com adresiyle yayın) | Site adresini elle yazma hatası olmasın | Kabul, uygulandı |
 | Premium DNS alınmaz; Cloudflare DNS ücretsiz | Gereksiz masraf | Kabul |
+| Logo: neon kalkan + yıldız (kurucu verdi). `brand/logo-source.jpg` → `scripts/make-logo.mjs` (arka plan kaldırılır): başlık, alt bilgi, favicon, uygulama simgeleri, OG görseli | Marka kimliği | Kabul, uygulandı |
+| Kategoriler 24'e çıktı (kupa listesine göre köprü altı, knife flight, base jump, WAiNK; "suç üsleri" → çete operasyonları; güvenli evler + garajlar) | PowerPyx sayıları; henüz gerçek pin yok, ID değişikliği güvenli | Kabul, uygulandı |
+| Haber etiketi "Basında" (`reported`): oyunu oynamış basın/rehber söylüyor, birinci elden değil | "Söylenti" yanıltıcı, "Doğrulandı" kurala aykırı | Kabul, uygulandı |
+| Rakip rehberlerin konum veritabanları toplu kopyalanmaz; tek tek olgular kendi cümlemizle ve kaynaklı | Telif ve etik; kural "metin kopyalanmaz, yalnızca olgular" | Kabul |
+| İlk içerik: 6 kaçırılabilir, 7 haber (EN+TR, kaynaklı) | Kurucu: "siteyi doldurmak sende" | Kabul, uygulandı |
 | Harita kaynağında ilk aday GTADB (`rolux/gtadb.org`, MIT; veri CC BY 4.0 olarak kullanılıyor, Map-6/gtaintel/Vice City Tracker aynı karoları kullanıyor). Oyundaki haritayla uyumu ve veri lisansı doğrulanınca seçilir | Hazır, açık lisanslı, rakipler kullanıyor; izin beklemek gerekmiyor | Önerildi |
 | Kategoriler oyuna göre güncellenir: eklenecek adaylar Para hedefleri (soygun, ATM, suç üssü), Meditasyon noktaları, Su altı keşifleri, Spor salonları, Balık noktaları, Ulaşım (tren, feribot), Hizmetler (Pay 'n' Spray, mod dükkânı, Ammu-Nation). Kategoriler eklendi, pinler oyunda doğrulandıkça girer | İnceleme verisi (`docs/research/2026-11-18-cikis.md`); mevcut ID'ler değişmez | Kabul, uygulandı (20 kategori) |
 | İlk rehber: kaçırılabilirler listesi (görevler tekrar oynanamıyor). `/guides/missables` + TR, menüde ve ana sayfada; veri `content/missables.json` | Rakiplerde yok, ilk haftanın en çok aranan sorusu olacak | Kabul, uygulandı (iskelet, içerik bekleniyor) |

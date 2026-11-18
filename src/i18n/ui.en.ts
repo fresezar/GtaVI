@@ -85,6 +85,7 @@ export const UI_EN = {
   "ui.sample.item": "Sample item {section} {n}",
   "ui.badge.confirmed": "Confirmed",
   "ui.badge.rumor": "Rumor",
+  "ui.badge.reported": "Reported",
   "ui.badge.launch": "Launch",
   "ui.source": "Source",
   "ui.nav.missables": "Missables",

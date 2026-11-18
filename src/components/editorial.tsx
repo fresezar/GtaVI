@@ -6,8 +6,16 @@ import { LOCALE_TAG, localePath, type Locale, type Translate } from "@/i18n";
 export const dateFmt = (locale: Locale) => (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(LOCALE_TAG[locale], { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 
+/** Full class names written out: Tailwind only keeps classes it sees as literal strings. */
+const BADGE_CLASS: Record<EditorialKind, string> = {
+  confirmed: "badge-confirmed",
+  reported: "badge-reported",
+  rumor: "badge-rumor",
+  launch: "badge-launch",
+};
+
 export function Badge({ kind, t }: { kind: EditorialKind; t: Translate }) {
-  return <span className={`badge badge-${kind}`}>{t(`ui.badge.${kind}`)}</span>;
+  return <span className={`badge ${BADGE_CLASS[kind]}`}>{t(`ui.badge.${kind}`)}</span>;
 }
 
 export function NewsList({ items, locale, t }: { items: readonly NewsItem[]; locale: Locale; t: Translate }) {

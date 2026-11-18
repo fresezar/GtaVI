@@ -90,7 +90,7 @@ for (const [file, prefix, fields] of [
     if (ids.has(e.id)) err(`${at}: duplicate id`);
     ids.add(e.id);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date ?? "")) err(`${at}: date must be YYYY-MM-DD`);
-    if (!["confirmed", "rumor", "launch"].includes(e.kind)) err(`${at}: kind must be confirmed/rumor/launch`);
+    if (!["confirmed", "reported", "rumor", "launch"].includes(e.kind)) err(`${at}: kind must be confirmed/reported/rumor/launch`);
     if (!e.sourceName || !isHttpUrl(e.sourceUrl ?? "")) err(`${at}: needs sourceName and an http(s) sourceUrl`);
     for (const f of fields) if (!text[`${prefix}.${e.id}.${f}`]) err(`${at}: missing ${prefix}.${e.id}.${f} in text.en.json`);
   }

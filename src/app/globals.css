@@ -117,6 +117,9 @@ code {
   .badge-unverified {
     @apply bg-sun/15 text-sun;
   }
+  .badge-reported {
+    @apply bg-sky-400/15 text-sky-300;
+  }
   .badge-disputed {
     @apply bg-accent/15 text-accent;
   }

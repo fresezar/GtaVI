@@ -20,7 +20,11 @@ export type ColorToken =
   | "magenta"
   | "navy"
   | "sand"
-  | "gold";
+  | "gold"
+  | "jade"
+  | "cobalt"
+  | "lilac"
+  | "copper";
 
 /** Text lives in i18n: `category.<id>.name`. Data lives in content/categories.json. */
 export interface Category {
