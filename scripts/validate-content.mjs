@@ -96,6 +96,26 @@ for (const [file, prefix, fields] of [
   }
 }
 
+// ---- missables: titles must be spoiler-free, details carry the spoiler level ----
+{
+  const ids = new Set();
+  for (const m of readJson(PATHS.missables)) {
+    const at = `missable ${m.id ?? "(no id)"}`;
+    if (!/^[a-z0-9_]+$/.test(m.id ?? "")) err(`${at}: id must be snake_case`);
+    if (ids.has(m.id)) err(`${at}: duplicate id`);
+    ids.add(m.id);
+    if (typeof m.order !== "number") err(`${at}: order must be a number`);
+    if (!STATUSES.includes(m.status)) err(`${at}: status must be one of ${STATUSES.join("/")}`);
+    if (!SPOILERS.includes(m.spoilerLevel)) err(`${at}: spoilerLevel must be one of ${SPOILERS.join("/")}`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(m.addedAt ?? "")) err(`${at}: addedAt must be YYYY-MM-DD`);
+    if (!m.sourceName || !isHttpUrl(m.sourceUrl ?? "")) err(`${at}: needs sourceName and an http(s) sourceUrl`);
+    if (m.pinId !== undefined && !pinIds.has(m.pinId)) err(`${at}: unknown pinId ${m.pinId}`);
+    if (m.status !== "deprecated") {
+      for (const f of ["title", "body"]) if (!text[`missable.${m.id}.${f}`]) err(`${at}: missing missable.${m.id}.${f} in text.en.json`);
+    }
+  }
+}
+
 // ---- text: orphan keys are harmless but usually a typo. Turkish keys must also exist in English. ----
 const textTr = readJson(PATHS.textTr);
 for (const key of Object.keys(text)) {

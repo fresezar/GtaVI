@@ -63,10 +63,13 @@ Gönderme:
 \* Koordinatı olmayan satır konumsuz pin olarak yayınlanır ve raporda listelenir. Koordinatı ekleyip aynı satırı tekrar
 gönderince (aynı kategori + aynı başlık ya da aynı klip ve saniye) konum mevcut pine yazılır. Başlığı olmayan satır taslaktır, atlanır.
 
-Kategoriler (ID'ler kalıcı, adlar değişebilir):
-Story missions, Side missions, Activities, Collectibles, Stunt jumps, Random events, Rare vehicles,
-Easter eggs, Weapon pickups, Safehouses, Shops & services, Landmarks.
-İlerleme yüzdesine sayılanlar: ilk altısı. Shops ve Landmarks haritada varsayılan kapalı.
+Kategoriler (ID'ler kalıcı, adlar değişebilir; 2026-11-18'de incelemelere göre 8 yeni eklendi):
+Story missions, Side missions, Activities, Collectibles, Stunt jumps, Random events, Meditation spots,
+Underwater discoveries, Robbery targets (Smash 'n' Grab, banka, Payday Loans), Criminal bases, Rare vehicles,
+Easter eggs, Weapon pickups, Safehouses, Gyms & workouts, Fishing spots, Trains & ferries, Shops & services
+(Pay 'n' Spray, mod dükkânı, Ammu-Nation), ATMs, Landmarks.
+İlerleme yüzdesine sayılanlar: ilk sekizi. Trains & ferries, Shops, ATMs ve Landmarks haritada varsayılan kapalı.
+Kısayollar `1`-`0` ilk on kategoriyi seçer.
 Oyunda olmayan kategori kullanılmadan kalır (silinmez). Yeni kategori: `content/categories.json` + `content/text.en.json`.
 
 ## 2. Claude'un yaptığı (komutlar)
@@ -104,6 +107,15 @@ Haber linkini gönder: sohbete yapıştır (en kolayı) ya da Sheet'in **news** 
 
 `confirmed` yalnızca birinci elden kaynakla (Rockstar, Take-Two) verilir; diğer her şey `rumor` olarak etiketlenir.
 Haber ana sayfada (son 5) ve `/news` sayfasında görünür.
+
+## 4b. Kaçırılabilirler (`/guides/missables`)
+
+Kalıcı olarak kaçırılabilecek bir şey görürsen (görev bitince kaybolan eşya, fırsat, seçim) linki ve zamanı gönder,
+"kaçırılabilir" de. Claude:
+- `content/missables.json` kaydı açar: `id`, `order` (hikâye sırası, aralıklı: 10, 20, 30), `spoilerLevel`, `status`
+  (`unverified` başlar), `addedAt`, `sourceName`, `sourceUrl`, haritada yeri varsa `pinId`;
+- `missable.<id>.title` (spoiler'sız: ne kaçırılır) ve `missable.<id>.body` (fırsat ne zaman kapanır, nasıl alınır)
+  metinlerini EN ve TR yazar. Başlık hikâyeyi asla açık etmez; ayrıntı spoiler içeriyorsa sayfada gizli kalır.
 
 ## 5. Harita
 

@@ -12,7 +12,15 @@ export type ColorToken =
   | "rust"
   | "mint"
   | "peach"
-  | "slate";
+  | "slate"
+  | "indigo"
+  | "ice"
+  | "green"
+  | "crimson"
+  | "magenta"
+  | "navy"
+  | "sand"
+  | "gold";
 
 /** Text lives in i18n: `category.<id>.name`. Data lives in content/categories.json. */
 export interface Category {

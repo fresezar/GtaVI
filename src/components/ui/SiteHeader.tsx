@@ -5,6 +5,7 @@ import { localePath, tFor, type Locale } from "@/i18n";
 const NAV = [
   { path: "/map", key: "ui.nav.map" },
   { path: "/checklists", key: "ui.nav.checklists" },
+  { path: "/guides/missables", key: "ui.nav.missables" },
   { path: "/news", key: "ui.nav.news" },
   { path: "/#latest", key: "ui.nav.latest" },
 ] as const;

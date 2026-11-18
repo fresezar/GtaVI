@@ -19,9 +19,9 @@ const LATEST = 6;
 const EXPLORE = [
   { key: "map", path: "/map", live: true },
   { key: "checklists", path: "/checklists", live: true },
+  { key: "missables", path: "/guides/missables", live: true, art: "card-missions" },
   { key: "vehicles", live: false },
   { key: "weapons", live: false },
-  { key: "missions", live: false },
   { key: "money", live: false },
   { key: "online", live: false },
   { key: "radio", live: false },
@@ -135,7 +135,7 @@ function Explore({ locale, t }: { locale: Locale; t: Translate }) {
         {EXPLORE.map((e) => {
           const body = (
             <>
-              <Art name={`card-${e.key}` as ArtName} sizes="(min-width: 1024px) 280px, 50vw" className="aspect-[16/10] w-full" />
+              <Art name={"art" in e ? e.art : (`card-${e.key}` as ArtName)} sizes="(min-width: 1024px) 280px, 50vw" className="aspect-[16/10] w-full" />
               <div className="p-3">
                 <span className={`badge ${e.live ? "badge-verified" : "bg-surface-2 text-muted"}`}>{t(e.live ? "ui.home.live" : "ui.home.soon")}</span>
                 <p className="mt-2 font-display text-lg leading-tight">{t(`ui.explore.${e.key}`)}</p>

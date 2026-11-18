@@ -13,13 +13,17 @@ export const PATHS = {
   textTr: join(CONTENT, "text.tr.json"),
   timeline: join(CONTENT, "timeline.json"),
   news: join(CONTENT, "news.json"),
+  missables: join(CONTENT, "missables.json"),
 };
 
 export const STATUSES = ["verified", "unverified", "disputed", "deprecated"];
 export const SPOILERS = ["none", "mild", "major"];
 export const CONFIDENCES = ["low", "medium", "high"];
 export const SOURCES = ["stream", "community", "self", "datamine", "official"];
-export const COLOR_TOKENS = ["coral", "orchid", "sky", "sun", "lime", "rose", "turquoise", "plum", "rust", "mint", "peach", "slate"];
+export const COLOR_TOKENS = [
+  "coral", "orchid", "sky", "sun", "lime", "rose", "turquoise", "plum", "rust", "mint", "peach", "slate",
+  "indigo", "ice", "green", "crimson", "magenta", "navy", "sand", "gold",
+];
 /** Frame coordinates may sit slightly outside 0..1 once a calibrated map is wider than the first one. */
 export const COORD_MIN = -0.5;
 export const COORD_MAX = 1.5;

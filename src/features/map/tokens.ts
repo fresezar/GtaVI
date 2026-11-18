@@ -14,6 +14,14 @@ export const CATEGORY_COLORS: Record<ColorToken, string> = {
   mint: "#7FD8BE",
   peach: "#FFA45B",
   slate: "#7A8CA0",
+  indigo: "#6C7BFF",
+  ice: "#A8E6FF",
+  green: "#2FD27A",
+  crimson: "#D7263D",
+  magenta: "#E040FB",
+  navy: "#3A5BA0",
+  sand: "#D9C3A0",
+  gold: "#D4AF37",
 };
 
 /** Light outline reads on both dark night tiles and bright community map art. */

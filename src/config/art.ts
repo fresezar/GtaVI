@@ -25,6 +25,7 @@ export const ART = {
   "card-radio": { src: "HXRoX6_XkAAkDD3.jpg", aspect: 16 / 10, focusY: 0.58, widths: [480, 800] },
   "banner-news": { src: "HXRoX6yXEAAirNC.jpg", aspect: 3 / 1, focusY: 0.47, widths: [960, 1600] },
   "banner-checklists": { src: "HXRoX77XQAAVqJw.jpg", aspect: 3 / 1, focusY: 0.68, widths: [960, 1600] },
+  "banner-missables": { src: "HXRoX61XIAErG1j.jpg", aspect: 3 / 1, focusY: 0.62, widths: [960, 1600] },
 } as const satisfies Record<string, ArtAsset>;
 
 export type ArtName = keyof typeof ART;
