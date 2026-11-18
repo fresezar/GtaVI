@@ -145,5 +145,52 @@
       "/guides/wanted-level-heat",
       "/map"
     ]
+  },
+  {
+    "id": "release_tracker",
+    "slug": "pc-online-fivem-release-tracker",
+    "order": 40,
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "addedAt": "2026-11-18",
+    "art": "banner-online",
+    "sections": [
+      "summary",
+      "pc",
+      "online",
+      "fivem",
+      "console_mods",
+      "watch"
+    ],
+    "sources": [
+      {
+        "name": "GamesBeat: PC release slated for Q1 2027 (four sources)",
+        "url": "https://gamesbeat.com/grand-theft-auto-vis-pc-release-is-slated-fo"
+      },
+      {
+        "name": "GameSpot: Take-Two CEO says PC is becoming more important",
+        "url": "https://www.gamespot.com/articles/gta-6-boss-says-pc-is-becoming-more-and-more-important/"
+      },
+      {
+        "name": "Beebom: Bloomberg report, online mode planned for 2027",
+        "url": "https://beebom.com/rockstar-has-gta-6-online-mode-planned-for-2027/"
+      },
+      {
+        "name": "God is a Geek: Take-Two won't discuss new GTA Online before launch",
+        "url": "https://godisageek.com/2026/08/gta-6-online-silence-take-two/"
+      },
+      {
+        "name": "TechRadar: Rockstar acquires Cfx.re (FiveM)",
+        "url": "https://www.techradar.com/gaming/consoles-pc/rockstar-has-acquired-a-major-modding-community-ahead-of-gta-6"
+      },
+      {
+        "name": "Rockstar mod guidelines (summary)",
+        "url": "https://rpscripts.net/rockstar-mod-guidelines/"
+      }
+    ],
+    "related": [
+      "/news",
+      "/map"
+    ]
   }
 ]

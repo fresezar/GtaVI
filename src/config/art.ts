@@ -28,6 +28,7 @@ export const ART = {
   "banner-guides": { src: "HXRoX6xW0AAByCa.jpg", aspect: 3 / 1, focusY: 0.6, widths: [960, 1600] },
   "banner-heat": { src: "HXRoX6uW4AEDlpk.jpg", aspect: 3 / 1, focusY: 0.45, widths: [960, 1600] },
   "banner-money": { src: "HXRoX6vXMAACxP8.jpg", aspect: 3 / 1, focusY: 0.42, widths: [960, 1600] },
+  "banner-online": { src: "HXRoX65WkAA_sL1.jpg", aspect: 3 / 1, focusY: 0.42, widths: [960, 1600] },
   "banner-missables":{ src: "HXRoX61XIAErG1j.jpg", aspect: 3 / 1, focusY: 0.62, widths: [960, 1600] },
 } as const satisfies Record<string, ArtAsset>;
 
