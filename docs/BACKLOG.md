@@ -37,7 +37,7 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [ ] **Neyin ne zaman açıldığı**: yan aktivitelerin çoğu hikâyeye bağlı; bölüme göre tablo (spoiler kapılı)
 - [ ] **Kalıcı gelişim**: meditasyon noktaları (Focus), spor salonları (9) + açık hava aletleri, su altı keşifleri (6)
 - [ ] **Aktivite listesi**: yarışlar, drone zaman yarışları (8), poligon, golf, balık (6), Thrillbilly Mud Club
-- [ ] Haber/takip sayfaları: "GTA 6 Online ne zaman", "GTA 6 PC ne zaman" (arama hacmi yüksek, her yeni bilgiyle güncellenir)
+- [x] Haber/takip sayfaları: "GTA 6 Online ne zaman", "GTA 6 PC ne zaman" (2026-11-18, /guides/pc-online-fivem-release-tracker) (arama hacmi yüksek, her yeni bilgiyle güncellenir)
 - [ ] Ayarlar rehberi: 30 FPS'te daha akıcı his (hareket bulanıklığı vb.), kontrol önerileri (eleştirilerin ortak noktası)
 
 ## Farkımız (rakiplerde görülmedi ya da zayıf)
@@ -85,7 +85,7 @@ Durum: GTA VI'da mod yok (yalnızca PS5/Xbox, PC duyurulmadı; tahmin 2027-2028)
 FiveM/RedM üzerinden serbest. Ocak 2026'da Cfx Marketplace açıldı (ücretli mod satışı); sunucu gelirinde tek yol Tebex,
 oyun içi para/eşya satışı kısıtlı. GTA VI için FiveM desteği açıklanmadı.
 - [ ] GTA V FiveM üzerinde kendi script/kaynak paketlerimiz, Cfx Marketplace'te satış (Lua/JS). GTA VI'ya geçişte hazır ekip ve müşteri
-- [ ] Sitede "GTA VI RP / FiveM / PC ne zaman" takip sayfası (arama hacmi yüksek, her yeni bilgiyle güncellenir)
+- [x] Sitede "GTA VI RP / FiveM / PC ne zaman" takip sayfası (2026-11-18) (arama hacmi yüksek, her yeni bilgiyle güncellenir)
 - [ ] RP sunucu dizini (GTA VI desteği gelince; şimdiden GTA V RP ile başlanabilir)
 
 **FiveM hazırlık planı (kurucu onayladı, 2026-11-18).** Başlangıç şartı: harita işi bitince (resmî/GTADB harita
