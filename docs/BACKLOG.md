@@ -40,6 +40,16 @@ Hedef: rakiplerle en az eşit seviye ("giriş bileti"), üstüne sürekli günce
 - [x] Haber/takip sayfaları: "GTA 6 Online ne zaman", "GTA 6 PC ne zaman" (2026-11-18, /guides/pc-online-fivem-release-tracker) (arama hacmi yüksek, her yeni bilgiyle güncellenir)
 - [ ] Ayarlar rehberi: 30 FPS'te daha akıcı his (hareket bulanıklığı vb.), kontrol önerileri (eleştirilerin ortak noktası)
 
+## Tasarım ve kimlik (konsept onaylandı, 2026-11-18)
+
+Konsept: "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Hazır şablon görünümünden çıkış (sixstarsapp.com benzerliği).
+- [ ] Ana sayfa için 2-3 farklı yönde taslak (yol atlası / polis dosyası / gazete manşeti); kurucu seçer, sonra tüm siteye
+- [ ] Referans görseller: kurucu gönderirse onlarla, yoksa Claude seçer (oyun siteleri dışından)
+- [ ] Renk, yazı tipi ve bileşen sistemi konseptten (Inter + koyu kart şablonu yerine)
+- [ ] İmza öğe: her pin ve rehbere "dava numarası" (Six Star Dosya #0142); paylaşılan linkte de görünür
+- [ ] Logo turu 2: daha dolgun şerif yıldızı ("classic sheriff star with thick rounded arms, not two overlapping triangles"); iki üçgenli yıldızın Davut Yıldızı'na benzeme riski
+- [ ] Kimlik oturunca imza görseller için bir kez gerçek illüstratör
+
 ## Farkımız (rakiplerde görülmedi ya da zayıf)
 
 - [ ] "Found by @yayıncı" + zaman damgalı klip her pinde (altyapı hazır, 2026-11-17)
