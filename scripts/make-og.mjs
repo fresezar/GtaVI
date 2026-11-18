@@ -25,7 +25,7 @@ const overlay = (withArt) => `
   </defs>
   ${withArt ? "" : `<rect width="${W}" height="${H}" fill="url(#sky)"/>`}
   <rect width="${W}" height="${H}" fill="url(#shade)"/>
-  <text x="72" y="250" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="132" fill="#fff4ec">ATLAS</text>
+  <text x="72" y="250" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="132" fill="#fff4ec">SIX STAR</text>
   <text x="76" y="330" font-family="Arial, sans-serif" font-weight="700" font-size="44" fill="#ffd27a">GTA VI interactive map</text>
   <text x="76" y="388" font-family="Arial, sans-serif" font-weight="700" font-size="34" fill="#fff4ec">Checklists · finds from streams · news</text>
   <text x="76" y="560" font-family="Arial, sans-serif" font-size="22" fill="#fff4ec" opacity="0.75">Unofficial fan site. Not affiliated with Rockstar Games.</text>

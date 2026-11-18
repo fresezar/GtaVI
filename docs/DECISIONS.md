@@ -7,6 +7,16 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 İlgili: `CONTEXT.md` (kısa devir notu), `docs/BACKLOG.md` (fikir havuzu), `docs/COMPETITORS.md` (rakipler),
 `docs/PROJECT_BRIEF.md` (ilk brief ve ilk kararlar, 2026-11-16).
 
+## 2026-11-18
+
+| Karar | Neden | Durum |
+|---|---|---|
+| Domain: **sixstargta.com** (Cloudflare Registrar, kurucu aldı). Marka "Atlas" → **"Six Star"**. www aynı siteyi açar, canonical çıplak domaine işaret eder; workers.dev kapalı | Akılda kalıcı, oyunu çağrıştırıyor; logo/görselde "GTA" kullanılmaz | Kabul, uygulandı |
+| Yedek domain sixstarmap.com alınmadı (önerilmişti). İtiraz gelirse 301 ile geçilecek markasız domain o gün alınır | Kurucunun tercihi | Kabul |
+| Arama motorları açıldı (`SITE.indexable = true`), OG görseli "SIX STAR" | Domain bağlandı | Kabul, uygulandı |
+| Deploy tek komut: `npm run deploy` (doğrulama + build + sixstargta.com adresiyle yayın) | Site adresini elle yazma hatası olmasın | Kabul, uygulandı |
+| Premium DNS alınmaz; Cloudflare DNS ücretsiz | Gereksiz masraf | Kabul |
+
 ## 2026-11-17
 
 | Karar | Neden | Durum |
@@ -83,6 +93,5 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 - Çift dilli topluluk modeli: önerildi (2026-11-17), kurucunun görüşü bekleniyor.
 - ~~Hub tasarımına geçiş planı~~ → uygulandı (2026-11-17).
 - Topluluk haritası kaynağı ve lisans doğrulaması: çıkıştan sonraki ilk 2 günde seçilecek (2026-11-17).
-- Domain: TikTok'tan gelecek trafik için çıkış haftasında gerekli; arama motorları domain gelince açılır.
-- Cloudflare Web Analytics token'ı (kurucu panelden alacak).
-- Domain ve nihai marka.
+- ~~Domain ve nihai marka~~ → sixstargta.com, "Six Star" (2026-11-18).
+- ~~Cloudflare Web Analytics token'ı~~ → eklendi (2026-11-17). Yeni domain Web Analytics'te ayrıca eklenmeli (kurucu panelden).

@@ -1,8 +1,8 @@
 import type { GameId } from "@/domain";
 
 export const SITE = {
-  /** Working title: final brand is decided after launch. */
-  name: "Atlas",
+  /** Brand (decided 2026-11-18, domain sixstargta.com). */
+  name: "Six Star",
   description: "Unofficial interactive map, checklists and guides for players.",
   gameId: "gta6" as GameId,
   defaultLocale: "en",
@@ -20,7 +20,7 @@ export const SITE = {
    * Search engines: false = robots.txt blocks crawling and pages say noindex. Turn on once the final
    * domain is attached, so search ranking is not built on the temporary workers.dev address.
    */
-  indexable: false,
+  indexable: true,
   /**
    * Cloudflare Web Analytics (cookieless, free). Dashboard > Analytics & Logs > Web Analytics > Add a site >
    * hostname > "Manage site" shows a JS snippet: paste only its token here. Empty = no analytics script.

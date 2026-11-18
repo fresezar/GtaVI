@@ -5,6 +5,14 @@
   // No game trademarks here: the name becomes a public <name>.<subdomain>.workers.dev URL.
   "name": "atlas",
   "compatibility_date": "2026-11-01",
+  // Final domain (bought 2026-11-18 on Cloudflare Registrar). www serves the same site; every page's
+  // canonical points to the bare domain. workers.dev is off so search engines see one address.
+  "routes": [
+    { "pattern": "sixstargta.com", "custom_domain": true },
+    { "pattern": "www.sixstargta.com", "custom_domain": true }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": "./out",
     "html_handling": "auto-trailing-slash",
