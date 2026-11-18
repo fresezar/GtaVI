@@ -108,3 +108,5 @@ Durum: **Kabul** = uygulanabilir · **Onay bekliyor** = "Uygula" denene kadar ko
 - ~~Cloudflare Web Analytics token'ı~~ → eklendi (2026-11-17). Yeni domain Web Analytics'te ayrıca eklenmeli (kurucu panelden).
 - FiveM hazırlık planı: harita işi bitince pazar araştırmasıyla başlanacak; adımlar BACKLOG "Mod ve sunucu" bölümünde (kurucu onayladı, 2026-11-18).
 - ~~Google Search Console~~ → Domain mülkü doğrulandı, sitemap.xml gönderildi: Başarılı, 52 sayfa (kurucu, 2026-11-18).
+- Yeniden tasarım ve yeni logo: hazır şablon görünümünden çıkılacak (kurucu, 2026-11-18; sixstarsapp.com benzer görünüyor). Önerilen konsept "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Logo Gemini ile, sonra vektöre çevrilecek. Konsept onayı bekleniyor.
+- GTA 6 PC/Online/FiveM takip sayfası: onay almadan yazıldı; kurucu kullanıcıya faydalı olduğu için kalmasını istedi (2026-11-18).
