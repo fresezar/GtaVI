@@ -121,10 +121,12 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
     if (def.background) container.style.background = def.background;
 
     map.invalidateSize();
-    map.fitBounds(proj.viewBounds);
     const fit = map.getBoundsZoom(proj.viewBounds, false);
-    map.setMinZoom(fit - 1);
-    map.setMaxBounds(proj.viewBounds.pad(0.3));
+    // Start one tick in: at the bare fit zoom the far-out tiles read as empty sea. Don't let the
+    // user zoom back out past the fit, so the blank over-zoom is never shown.
+    map.setMinZoom(fit);
+    map.setView(proj.viewBounds.getCenter(), fit + 1);
+    map.setMaxBounds(proj.viewBounds.pad(0.2));
 
     rendererRef.current = L.canvas({ padding: 0.5, tolerance: 8 });
     pinGroupRef.current = L.layerGroup().addTo(map);
