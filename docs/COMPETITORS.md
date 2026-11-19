@@ -59,6 +59,28 @@ Zayıf noktaları (bizim fırsatımız):
 | Mapmaster | PRO yılda 9,99 $. Ücretsiz kayıtlı kullanıcıya 50 işaret ve 3 kategori sınırı (kısıtlayıcı model) |
 | Gamer Guides | Reklamsız plan yılda 34,99 $, özel harita notları dahil |
 
+## GTA 6 Intel yakın inceleme (2026-11-19)
+
+gta6intel.com. Kurucusu hile sayfasını başkaları kullansın diye paylaşmış (Sezar iletti). Hile kodları ve açılma koşulları oradan alındı, sayfamızda atıf var.
+
+| Alan | Ne var |
+|---|---|
+| Veritabanı | 18 kategori: araç (322), karakter (73), silah (35), işletme (101), konum (111), görev (137), hile (61), çete (12), radyo, telefon uygulamaları, kupalar, sürümler. Karşılaştırma aracı |
+| Her kayıt sayfası | "Suggest an edit" (kaynak zorunlu), özel not, kaydet ve takip et, Discord ile senkron yorumlar, "Actively monitored · updated 19 hours ago" damgası |
+| Topluluk | Rep puanı: pin +60, düzeltme +40, fikir +25, yorumda Respect +2 (günde en fazla 20), Discord bağlama +25, haftanın birincisi +500. 91 seviyeli rütbe (Thug ile Kingpin arası), Discord'da rol olarak görünür. Puanı sadece ilk öneren alır |
+| Araçlar | Oyuncu sayısı, sunucu durumu, oyunun kaç saatte bittiği, harita büyüklüğü, satış rakamları, geri sayım, "Ask The Informant" |
+| Hile sayfası | PS5/Xbox geçişi, arama, tür filtresi, kopyala, kumandada adım adım gösterim, yıldızla favori, her hileye ayrı sayfa |
+| Gelir | Görünür reklam ya da abonelik yok |
+
+**Dersler:**
+1. **Her kayda ayrı sayfa, arama trafiği getirir.** 61 hile, 322 araç ve 137 görevin her birinin kendi adresi var. Biz hileleri tek sayfada tuttuk; arama trafiği için `/cheats/<slug>` sayfaları sonra eklenmeli.
+2. **Tazelik damgası güven veriyor.** "19 saat önce güncellendi" yazısı sayfayı canlı gösteriyor. Bizde pin ve rehberlerde güncelleme tarihi var ama görünmüyor.
+3. **Puan tablosu açık.** Hangi iş kaç puan getiriyor, sayfada yazıyor. "Puanı sadece ilk öneren alır" kuralı aynı önerinin tekrar tekrar gelmesini engelliyor. Bizim rütbeler bulgu sayısına bağlı; puan tablosu daha açık bir teşvik.
+4. **Discord siteye bağlı.** Yorumlar Discord ile senkron, rütbe Discord'da rol olarak görünüyor. Discord'daki hareketi site besliyor, tersi değil.
+5. **Her bilgiye düzeltme önerisi.** Sadece pin değil, her kayıt düzeltilebiliyor; veriyi topluluk temizliyor.
+6. **Kişisel not ve kaydetme kullanıcıyı hesap açmaya itiyor.** Bizde ilerleme takibi aynı rolü oynayabilir.
+7. **Zayıf yanları:** harita 224 pin (bizde 190 artı topluluk pinleri, yakın), koleksiyonlar ve akrobatik atlayışlar "yakında", partner ya da içerik üreticisi programı yok, Türkçe yok.
+
 ## Dersler
 
 1. **Harita tek başına fark değil, giriş biletidir.** Rakip seviyesinde olmak için tam ekran harita, arama, kümeleme, lejant, "sıradaki bulunmamış", paylaşılabilir pin linki ve ücretsiz sınırsız takip şart.

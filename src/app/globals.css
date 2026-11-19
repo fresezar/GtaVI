@@ -271,6 +271,11 @@ code {
   .tab[aria-current="page"] {
     color: var(--select-ink);
   }
+  /* Toggle buttons styled as tabs (filters, console switch): the pressed one gets the white block. */
+  .tab[aria-pressed="true"] {
+    color: var(--select-ink);
+    background: var(--select-bg);
+  }
   /* The white block is its own element so it can slide between tabs (View transitions below). */
   .tab-fill {
     position: absolute;

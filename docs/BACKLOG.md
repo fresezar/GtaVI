@@ -125,3 +125,11 @@ yerleşti, pin girişi oturdu). O zaman Claude hatırlatır. Amaç: GTA VI'ya Fi
 - [ ] Reklam: trafik oluşunca; harita sayfasında minimal, rehber ve veritabanı sayfalarında ana yerleşim
 - [ ] Affiliate (ön sipariş, donanım; Vice City Tracker)
 - [ ] Ücretli plan adayları: reklamsız, çoklu profil, sınırsız kişisel işaret/not, bulut senkron (GTABase VIP, Mapmaster PRO yılda 9,99 $)
+
+## GTA 6 Intel derslerinden (2026-11-19, `docs/COMPETITORS.md`)
+- Her hileye ayrı sayfa (`/cheats/<slug>`): arama trafiği. Sonra araç, silah, görev için de.
+- "Son güncelleme: X saat önce" damgası pin, rehber ve hile sayfalarında.
+- Puan tablosu: hangi katkı kaç puan, "sadece ilk öneren alır" kuralı. Rütbeler puana bağlanır (Aşama 2).
+- Her bilgiye "Düzeltme öner" (sadece pin değil).
+- Discord bağlantısı: rütbe Discord rolü olur (Aşama 2-3).
+- Eksik hile kodu bildirimi için formda "hile kodu" türü (şu an Discord'a yönlendiriyor).

@@ -11,7 +11,8 @@ import RefCapture from "@/features/partners/RefCapture";
 import { alternates, localePath, tFor, type Locale } from "@/i18n";
 import { pinKey } from "@/i18n/keys";
 
-export const partnerStaticParams = () => PARTNERS.map((p) => ({ slug: p.slug }));
+/** Static export needs at least one path: with no partners yet, one placeholder that renders the 404 page. */
+export const partnerStaticParams = () => (PARTNERS.length ? PARTNERS.map((p) => ({ slug: p.slug })) : [{ slug: "none" }]);
 
 export function partnerMetadata(locale: Locale, slug: string): Metadata {
   const p = PARTNER_BY_SLUG.get(slug);

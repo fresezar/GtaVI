@@ -9,6 +9,7 @@ const TABS = [
   { path: "/map", key: "ui.nav.map" },
   { path: "/finds", key: "ui.nav.finds" },
   { path: "/guides", key: "ui.nav.guides" },
+  { path: "/cheats", key: "ui.nav.cheats" },
   { path: "/community", key: "ui.nav.community" },
   { path: "/news", key: "ui.nav.news" },
 ] as const;
