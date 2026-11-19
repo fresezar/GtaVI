@@ -43,3 +43,10 @@ export const ALL_PINS: readonly Pin[] = SAMPLE_MODE ? samplePins() : REAL;
 /** Pins that should be shown and counted. */
 export const PINS: readonly Pin[] = ALL_PINS.filter((p) => p.status !== "deprecated");
 export const PIN_BY_ID: ReadonlyMap<PinId, Pin> = new Map(ALL_PINS.map((p) => [p.id, p]));
+
+/**
+ * "Six Star File #0142": a pin's case number = its position in content/pins.json (1-based).
+ * Stable because pins are only ever appended, never deleted or reordered (validate-content enforces it).
+ */
+const FILE_NO: ReadonlyMap<PinId, string> = new Map(ALL_PINS.map((p, i) => [p.id, String(i + 1).padStart(4, "0")]));
+export const fileNumber = (id: PinId): string => FILE_NO.get(id) ?? "----";

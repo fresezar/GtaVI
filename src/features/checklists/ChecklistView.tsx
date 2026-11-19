@@ -63,7 +63,7 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       disabled={!ready}
                       className={`row flex-1 ${done ? "row-off" : ""}`}
                     >
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-line-strong bg-[#140c22] text-sm font-black text-accent2" aria-hidden="true">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md border border-line-strong bg-panel text-sm font-black text-accent2" aria-hidden="true">
                         {done ? "✓" : ""}
                       </span>
                       <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>

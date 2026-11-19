@@ -31,6 +31,31 @@ interface Props {
 
 export type MapFocus = NonNullable<Props["focus"]>;
 
+/**
+ * Pins are drawn as diamonds (map "blips"), not circles. A CircleMarker subclass whose canvas path is a
+ * rhombus; hit-testing stays the circle's (radius), which matches the diamond closely enough.
+ * Uses Leaflet 1.9 canvas internals (_drawing, _empty, _fillStroke) the same way its own _updateCircle does.
+ */
+type CanvasInternals = { _drawing: boolean; _ctx: CanvasRenderingContext2D; _fillStroke(ctx: CanvasRenderingContext2D, layer: unknown): void };
+type MarkerInternals = { _point: L.Point; _radius: number; _empty(): boolean; _renderer: CanvasInternals & { _updateCircle(l: unknown): void } };
+const DiamondMarker = L.CircleMarker.extend({
+  _updatePath(this: MarkerInternals) {
+    const r = this._renderer;
+    if (!(r instanceof L.Canvas)) return r._updateCircle(this);
+    if (!r._drawing || this._empty()) return;
+    const { x, y } = this._point;
+    const d = Math.max(Math.round(this._radius * 1.25), 1);
+    const ctx = r._ctx;
+    ctx.beginPath();
+    ctx.moveTo(x, y - d);
+    ctx.lineTo(x + d, y);
+    ctx.lineTo(x, y + d);
+    ctx.lineTo(x - d, y);
+    ctx.closePath();
+    r._fillStroke(ctx, this);
+  },
+}) as unknown as new (latlng: L.LatLngExpression, options?: L.CircleMarkerOptions) => L.CircleMarker;
+
 /** Screen-space clustering: below this many zoom levels under native, nearby pins merge into a counted bubble. */
 const CLUSTER_BELOW = 1;
 const CLUSTER_CELL_PX = 56;
@@ -214,7 +239,7 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
     for (const pin of pins) {
       const category = live.current.categories[pin.categoryId];
       const latlng = proj.toLatLng(pin.coord);
-      const marker = L.circleMarker(latlng, {
+      const marker = new DiamondMarker(latlng, {
         ...markerStyle(pin, category, live.current.isDone(pin.id), live.current.selectedId === pin.id),
         renderer,
         bubblingMouseEvents: false,

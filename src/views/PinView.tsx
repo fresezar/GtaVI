@@ -127,7 +127,7 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
           <span className={`badge badge-${pin.status}`}>{t(`ui.pin.status.${pin.status}`)}</span>
         </div>
 
-        <h1 className="mt-3 font-display text-4xl leading-tight">{title}</h1>
+        <h1 className="mt-3 font-display text-4xl normal-case leading-tight">{title}</h1>
 
         {description && pin.spoilerLevel === "none" && <p className="mt-3">{description}</p>}
         {description && pin.spoilerLevel !== "none" && (

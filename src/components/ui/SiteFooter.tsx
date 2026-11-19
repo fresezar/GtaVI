@@ -13,7 +13,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   const social = SOCIAL.filter((s) => SITE.links[s.key]);
   return (
-    <footer className="mt-16 border-t border-line bg-[#0d0716]/85 backdrop-blur-md">
+    <footer className="mt-16 border-t border-line bg-panel/85 backdrop-blur-md">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-[1fr_auto]">
         <div>
           <p className="flex items-center gap-2">

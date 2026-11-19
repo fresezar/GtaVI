@@ -1,71 +1,63 @@
 import Link from "next/link";
 import { SITE } from "@/config/site";
 import { localePath, tFor, type Locale } from "@/i18n";
+import { ThemeToggle, WantedStars } from "./HeaderWidgets";
 
-const NAV = [
+/** Community-first sections. Progress lives behind the stars (top right), not in a tab. */
+const TABS = [
   { path: "/map", key: "ui.nav.map" },
-  { path: "/checklists", key: "ui.nav.checklists" },
+  { path: "/finds", key: "ui.nav.finds" },
   { path: "/guides", key: "ui.nav.guides" },
+  { path: "/community", key: "ui.nav.community" },
   { path: "/news", key: "ui.nav.news" },
-  { path: "/#latest", key: "ui.nav.latest" },
 ] as const;
 
 /**
- * Sticky glass bar. On phones the links become a swipeable row under the brand (no page overflow).
- * `path` is the current page's English path, used by the language switch.
+ * Menu-style bar: brand + stars + theme + language, then a strip of tabs (active = white block,
+ * as in the game menu). On phones the strip scrolls sideways. `path` = this page's English path.
  */
-export default function SiteHeader({ locale, path, compact = false }: { locale: Locale; path: string; compact?: boolean }) {
+export default function SiteHeader({ locale, path }: { locale: Locale; path: string; compact?: boolean }) {
   const t = tFor(locale);
   const other: Locale = locale === "en" ? "tr" : "en";
-  const href = (p: string) => (p.startsWith("/#") ? `${localePath(locale, "/")}${p.slice(1)}` : localePath(locale, p));
-  const lang = (
-    <Link
-      href={localePath(other, path)}
-      hrefLang={other}
-      lang={other}
-      className="rounded-full border border-line-strong px-2.5 py-1.5 text-xs font-extrabold tracking-wider text-muted transition hover:text-ink"
-      title={t("ui.lang.other")}
-    >
-      {t("ui.lang.otherShort")}
-    </Link>
-  );
+  const active = (p: string) => path === p || path.startsWith(`${p}/`);
 
   return (
-    <header className="sticky top-0 z-[1000] border-b border-line bg-[#120b1e]/80 backdrop-blur-md">
-      <div className={`mx-auto flex items-center justify-between gap-3 px-4 ${compact ? "h-14 max-w-none" : "h-16 max-w-6xl"}`}>
-        <Link href={localePath(locale, "/")} className="flex items-center gap-2">
+    <header className="sticky top-0 z-[1000] border-b border-line bg-panel/85 backdrop-blur-md">
+      <div className="flex items-center gap-3 px-4 pb-1 pt-2">
+        <Link href={localePath(locale, "/")} className="flex min-w-0 items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, tiny fixed-size image */}
-          <img src="/brand/logo-128.png" alt="" width={40} height={40} className="h-9 w-9 shrink-0 sm:h-10 sm:w-10" />
-          <span className="neon font-display text-2xl leading-none sm:text-3xl">{SITE.name}</span>
-          <span className="hidden text-[10px] font-extrabold uppercase tracking-[0.2em] text-muted sm:inline">
-            {locale === "tr" ? "Resmî değil" : "Unofficial"}
+          <img src="/brand/logo-128.png" alt="" width={36} height={36} className="h-8 w-8 shrink-0 sm:h-9 sm:w-9" />
+          <span className="leading-none">
+            <span lang="en" className="block font-display text-[22px] tracking-[0.06em] sm:text-[26px]">{SITE.name}</span>
+            <span className="hidden font-display text-[10px] font-semibold tracking-[0.28em] text-muted sm:block">
+              {t("ui.brand.tagline")}
+            </span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
-          {NAV.map((n) => (
-            <Link key={n.path} href={href(n.path)} className="rounded-full px-3 py-2 text-sm font-bold text-muted transition hover:text-ink">
-              {t(n.key)}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
-          {lang}
-          <Link href={localePath(locale, "/map")} className="btn btn-primary min-h-[38px] px-4">
-            {t("ui.nav.openMap")} →
-          </Link>
-        </div>
+        <div className="flex-1" />
+        <WantedStars locale={locale} />
+        <ThemeToggle locale={locale} />
+        <Link
+          href={localePath(other, path)}
+          hrefLang={other}
+          lang={other}
+          className="border border-line-strong px-2 py-1.5 font-display text-[13px] tracking-[0.14em] text-muted transition hover:text-ink"
+          title={t("ui.lang.other")}
+        >
+          {t("ui.lang.otherShort")}
+        </Link>
       </div>
-      {!compact && (
-        <nav className="border-t border-line md:hidden" aria-label="Main">
-          <div className="scroll-x mx-0 px-4 py-2">
-            {NAV.map((n) => (
-              <Link key={n.path} href={href(n.path)} className="btn min-h-[34px] shrink-0 px-3 text-xs">
-                {t(n.key)}
+      <nav aria-label="Main" className="no-scrollbar overflow-x-auto px-2">
+        <ul className="flex gap-1 py-1">
+          {TABS.map((tab) => (
+            <li key={tab.path}>
+              <Link href={localePath(locale, tab.path)} className="tab" aria-current={active(tab.path) ? "page" : undefined}>
+                {t(tab.key)}
               </Link>
-            ))}
-          </div>
-        </nav>
-      )}
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

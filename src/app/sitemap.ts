@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/map",
     "/checklists",
+    "/finds",
+    "/community",
     "/news",
     "/guides",
     "/guides/missables",

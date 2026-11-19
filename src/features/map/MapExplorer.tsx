@@ -168,7 +168,7 @@ export default function MapExplorer() {
             onClose={() => select(null)}
           />
         )}
-        <details className="absolute left-3 top-3 z-[500] rounded-2xl border border-line-strong bg-[#1f1335]/90 px-3 py-2 text-xs backdrop-blur-md">
+        <details className="absolute left-3 top-3 z-[500] rounded-2xl border border-line-strong bg-panel/90 px-3 py-2 text-xs backdrop-blur-md">
           <summary className="cursor-pointer font-extrabold uppercase tracking-widest text-muted">{t("ui.map.legend")}</summary>
           <ul className="mt-2 space-y-1.5">
             <li className="flex items-center gap-2"><span className="h-3.5 w-3.5 rounded-full border-2 border-[#fff4ec] bg-accent2" />{t("ui.map.legend.verified")}</li>
@@ -180,7 +180,7 @@ export default function MapExplorer() {
       </main>
 
       <aside
-        className="order-2 max-h-[46dvh] w-full shrink-0 space-y-4 overflow-y-auto border-t border-line bg-[#140c22] p-4 md:order-1 md:max-h-none md:w-[360px] md:border-r md:border-t-0"
+        className="order-2 max-h-[46dvh] w-full shrink-0 space-y-4 overflow-y-auto border-t border-line bg-panel p-4 md:order-1 md:max-h-none md:w-[360px] md:border-r md:border-t-0"
         aria-label="Map controls"
       >
         <section className="card-solid" aria-label="Progress">

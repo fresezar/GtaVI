@@ -50,7 +50,7 @@ function CalibrationPanel({ dev }: { dev: DevTool }) {
   }
   const target = landmarks[calib.index];
   return (
-    <div className="mt-4 rounded-xl border border-line-strong bg-[#140c22] p-3">
+    <div className="mt-4 rounded-xl border border-line-strong bg-panel p-3">
       <h3 className="text-xs font-bold uppercase tracking-widest text-accent2">Kalibrasyon · {calib.points.length} nokta</h3>
       <p className="mt-1 text-sm">
         {target ? (
@@ -84,7 +84,7 @@ function QuickNote({ dev }: { dev: DevTool }) {
   const { quick, setQuickField } = dev;
   return (
     <form
-      className="rounded-xl border border-line-strong bg-[#140c22] p-3"
+      className="rounded-xl border border-line-strong bg-panel p-3"
       onSubmit={(e) => {
         e.preventDefault();
         dev.saveQuick();
@@ -169,7 +169,7 @@ export default function DevPanel({ dev, categories }: { dev: DevTool; categories
           ))}
         </div>
 
-        <div className="flex items-center gap-2 rounded-xl border border-line-strong bg-[#140c22] px-3 py-2 text-xs">
+        <div className="flex items-center gap-2 rounded-xl border border-line-strong bg-panel px-3 py-2 text-xs">
           <span className="font-bold uppercase tracking-wider text-muted">Konum</span>
           {coord ? (
             <>

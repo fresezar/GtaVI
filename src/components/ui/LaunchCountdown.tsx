@@ -23,7 +23,7 @@ function compute(now: number): State {
 
 function Box({ value, label }: { value: string; label: string }) {
   return (
-    <div className="min-w-[64px] rounded-2xl border border-line-strong bg-[#140c22]/80 px-3 py-2 text-center sm:min-w-[78px]">
+    <div className="min-w-[64px] rounded-2xl border border-line-strong bg-panel/80 px-3 py-2 text-center sm:min-w-[78px]">
       <div className="font-display text-3xl leading-none tabular-nums sm:text-4xl">{value}</div>
       <div className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-muted">{label}</div>
     </div>

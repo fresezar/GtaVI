@@ -51,7 +51,7 @@ function Stats({ t }: { t: Translate }) {
   return (
     <dl className="grid grid-cols-2 gap-2">
       {items.map((s) => (
-        <div key={s.key} className="rounded-2xl border border-line bg-[#120b1e]/70 px-3 py-2 backdrop-blur-md">
+        <div key={s.key} className="rounded-2xl border border-line bg-bg/70 px-3 py-2 backdrop-blur-md">
           <dt className="text-[10px] font-extrabold uppercase tracking-widest text-muted">{t(s.key)}</dt>
           <dd className="font-display text-2xl leading-tight">{s.value}</dd>
         </div>
@@ -178,7 +178,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
         {SITE.officialArt ? (
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line-strong shadow-neon">
             <Art name="hero" sizes="(min-width: 1024px) 460px, 100vw" priority className="absolute inset-0 h-full w-full" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#120b1e]/90 via-transparent to-transparent" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-transparent" aria-hidden="true" />
             <div className="absolute inset-x-3 bottom-3">
               <Stats t={t} />
             </div>

@@ -2,24 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---- Design tokens: neon sunset over Leonida. One dark theme (game-at-night companion). ---- */
-:root {
-  --bg: #120b1e;
-  --bg-2: #1b1030;
-  --surface: rgba(30, 18, 52, 0.72);
-  --surface-solid: #1f1335;
-  --surface-2: rgba(255, 255, 255, 0.06);
+/* ---- Design tokens. Two themes on <html data-theme>: "dark" (default, night navy over a blurred
+   Leonida map) and "vice" (the game menu's purple-pink gradient with palms). Set before paint by the
+   inline script in layout.tsx, switched by ThemeToggle. ---- */
+:root,
+[data-theme="dark"] {
+  --bg-rgb: 11 20 34; /* #0B1422 */
+  --panel-rgb: 9 16 28;
+  --bg: rgb(var(--bg-rgb));
+  --bg-2: #101c2e;
+  --surface: rgba(9, 17, 30, 0.78);
+  --surface-solid: #111d30;
+  --surface-2: rgba(255, 244, 236, 0.06);
   --ink: #fff4ec;
-  --muted: #b9a7c9;
-  --line: rgba(255, 236, 250, 0.14);
-  --line-strong: rgba(255, 236, 250, 0.3);
-  --accent: #ff3d8b; /* neon pink */
-  --accent-2: #2ee6d0; /* neon turquoise */
-  --sun: #ffb547;
-  --violet: #8b5cf6;
-  --sea: #0f1830;
-  --shadow: rgba(5, 2, 12, 0.6);
+  --muted: #9aa6b6;
+  --line: rgba(255, 244, 236, 0.14);
+  --line-strong: rgba(255, 244, 236, 0.3);
+  --accent: #ff6a55; /* coral, from the logo */
+  --accent-2: #2ee6d0; /* verified / positive */
+  --sun: #ffc857;
+  --sea: #2f90b0;
+  --shadow: rgba(2, 6, 12, 0.65);
+  /* Active tab / selected row: white block with dark text, as in the game menu. */
+  --select-bg: #fff4ec;
+  --select-ink: #0e1a2b;
   color-scheme: dark;
+}
+[data-theme="vice"] {
+  --bg-rgb: 58 22 80; /* #3A1650 */
+  --panel-rgb: 44 14 62;
+  --bg-2: #4a1c66;
+  --surface: rgba(38, 10, 54, 0.55);
+  --surface-solid: #3b1656;
+  --surface-2: rgba(255, 255, 255, 0.08);
+  --ink: #ffffff;
+  --muted: #e2c6ee;
+  --line: rgba(255, 255, 255, 0.18);
+  --line-strong: rgba(255, 255, 255, 0.36);
+  --shadow: rgba(20, 2, 30, 0.55);
+  --select-bg: #ffffff;
+  --select-ink: #3a1650;
 }
 
 /* Background only on html: a body background would paint over the fixed -z-10 backdrop scene. */
@@ -32,8 +54,17 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden; /* never let a wide child create sideways scroll on phones */
 }
+/* Display type = the menu's condensed capitals. In the components layer so utilities
+   (normal-case, font-semibold, tracking-*) still override it. */
+@layer components {
+  .font-display {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+}
 :focus-visible {
-  outline: 2px solid var(--accent-2);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 ::selection {
@@ -42,7 +73,7 @@ body {
 }
 kbd {
   border: 1px solid var(--line-strong);
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0 4px;
   font-size: 11px;
   font-weight: 700;
@@ -60,27 +91,37 @@ code {
     @apply rounded-2xl border border-line bg-surface-solid p-4;
   }
   .sticker {
-    @apply inline-flex items-center rounded-full border border-line-strong bg-surface-2 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-muted;
+    @apply inline-flex items-center border border-line-strong bg-surface-2 px-3 py-1 font-display text-[12px] tracking-[0.18em] text-muted;
   }
   .btn {
-    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-full border border-line-strong bg-surface-2 px-4 text-sm font-bold text-ink transition hover:border-accent2 hover:text-accent2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
+    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-lg border border-line-strong bg-surface-2 px-4 font-display text-[15px] tracking-[0.1em] text-ink transition hover:border-ink active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40;
   }
   .btn-primary {
-    @apply border-transparent bg-accent text-white shadow-neon hover:border-transparent hover:bg-[#ff5a9e] hover:text-white;
+    @apply border-transparent bg-accent text-white shadow-neon hover:border-transparent hover:bg-[#ff806e] hover:text-white;
   }
   .btn-icon {
     @apply w-10 px-0 text-lg;
   }
+  /* Buttons on the cream case-file paper. */
+  .btn-paper {
+    @apply inline-flex min-h-[38px] items-center justify-center gap-2 border-2 border-paper-ink px-3.5 font-display text-[15px] tracking-[0.1em] text-paper-ink transition active:scale-[0.98];
+  }
+  .btn-paper-primary {
+    @apply bg-paper-ink text-paper;
+  }
+  /* Rubber stamp on a case file. */
+  .stamp {
+    @apply inline-block -rotate-2 border-2 border-current px-2 py-0.5 font-display text-[14px] tracking-[0.18em];
+  }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line-strong px-2.5 py-0.5 text-xs font-bold;
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-line-strong px-2.5 py-0.5 text-xs font-bold;
   }
   .chip::before {
     content: "";
     width: 8px;
     height: 8px;
-    border-radius: 9999px;
+    transform: rotate(45deg);
     background: var(--dot, var(--accent));
-    box-shadow: 0 0 8px var(--dot, var(--accent));
   }
   .chip-btn {
     @apply min-h-[32px] cursor-pointer bg-surface-2;
@@ -89,25 +130,36 @@ code {
     @apply border-accent bg-accent/20 text-ink;
   }
   .row {
-    @apply flex min-h-[44px] w-full items-center gap-3 rounded-xl border border-line bg-surface-2 px-3 font-semibold transition hover:border-line-strong;
+    @apply flex min-h-[44px] w-full items-center gap-3 rounded-lg border border-line bg-surface-2 px-3 font-semibold transition hover:border-line-strong;
   }
   .row-off {
     @apply opacity-40;
   }
+  /* Selected row: the game's white highlight. */
+  .row-selected {
+    background: linear-gradient(90deg, var(--select-bg), color-mix(in srgb, var(--select-bg) 70%, transparent));
+    color: var(--select-ink);
+    border-color: transparent;
+  }
+  /* Category marker: a small diamond, like a map blip. */
   .dot {
-    @apply h-3.5 w-3.5 shrink-0 rounded-full;
-    box-shadow: 0 0 10px currentColor;
+    @apply h-3 w-3 shrink-0;
+    transform: rotate(45deg);
   }
   .field {
-    @apply flex flex-col gap-1 text-xs font-bold uppercase tracking-wider text-muted;
+    @apply flex flex-col gap-1 font-display text-[13px] tracking-[0.14em] text-muted;
   }
   .field input,
-  .field select {
-    @apply min-h-[40px] rounded-xl border border-line-strong bg-[#140c22] px-3 text-sm font-normal normal-case tracking-normal text-ink placeholder:text-muted;
+  .field select,
+  .field textarea {
+    @apply min-h-[40px] rounded-lg border border-line-strong bg-panel px-3 font-sans text-sm font-normal normal-case tracking-normal text-ink placeholder:text-muted;
+  }
+  .field textarea {
+    @apply py-2;
   }
   /* Status badges: the same vocabulary everywhere (pins, news, timeline). */
   .badge {
-    @apply inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider;
+    @apply inline-flex items-center px-1.5 py-0.5 font-display text-[11px] tracking-[0.14em];
   }
   .badge-confirmed,
   .badge-verified {
@@ -127,14 +179,17 @@ code {
     @apply bg-accent text-white;
   }
   .neon {
-    color: var(--accent);
-    text-shadow: 0 0 18px rgba(255, 61, 139, 0.55);
+    color: var(--ink);
   }
   .section-title {
-    @apply font-display text-2xl leading-tight sm:text-3xl;
+    @apply font-display text-3xl leading-none sm:text-4xl;
   }
   .eyebrow {
-    @apply text-[11px] font-extrabold uppercase tracking-[0.2em] text-muted;
+    @apply font-display text-[13px] tracking-[0.22em] text-muted;
+  }
+  /* Case-file number (our signature): "SIX STAR · FILE #0142". */
+  .file-no {
+    @apply font-mono text-[11.5px] font-medium tracking-[0.08em];
   }
   .scroll-x {
     @apply -mx-4 flex gap-2 overflow-x-auto px-4 pb-1;
@@ -143,6 +198,31 @@ code {
   .scroll-x::-webkit-scrollbar {
     display: none;
   }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Header tabs. Active = white block, dark text. */
+  .tab {
+    @apply flex shrink-0 items-center px-4 py-2 font-display text-[16px] tracking-[0.12em] text-muted transition hover:text-ink;
+  }
+  .tab[aria-current="page"] {
+    background: var(--select-bg);
+    color: var(--select-ink);
+  }
+}
+
+/* ---- Backdrops (see Backdrop.tsx): one per theme, switched here so no JS is needed. ---- */
+.bd-vice {
+  display: none;
+}
+[data-theme="vice"] .bd-vice {
+  display: block;
+}
+[data-theme="vice"] .bd-dark {
+  display: none;
 }
 
 /* ---- Leaflet, re-skinned ---- */
@@ -169,7 +249,7 @@ code {
 }
 .leaflet-bar {
   border: 1px solid var(--line-strong) !important;
-  border-radius: 14px !important;
+  border-radius: 3px !important;
   box-shadow: 0 10px 30px -10px var(--shadow) !important;
   overflow: hidden;
 }
@@ -177,37 +257,38 @@ code {
   border-bottom: 0;
 }
 .leaflet-control-attribution.leaflet-control-attribution {
-  background: var(--surface);
-  color: var(--muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  margin: 0 0 10px 10px;
-  padding: 2px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.28);
+  color: rgba(255, 244, 236, 0.75);
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 2px 8px;
+  font-size: 10.5px;
+  font-weight: 500;
 }
 .leaflet-control-attribution a {
-  color: var(--ink);
-  text-decoration: underline;
+  color: inherit;
+  text-decoration: none;
 }
 .leaflet-tooltip {
   background: var(--surface-solid);
   color: var(--ink);
   border: 1px solid var(--line-strong);
-  font-weight: 800;
+  border-radius: 3px;
+  font-weight: 700;
 }
 /* Cluster bubble (count of pins hidden at this zoom). */
 .atlas-cluster {
   display: grid;
   place-items: center;
   border-radius: 9999px;
-  background: radial-gradient(circle at 35% 30%, #ff6fa9, var(--accent) 60%, #b5185a);
-  color: #fff;
-  font-weight: 900;
-  font-size: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 0 4px rgba(255, 61, 139, 0.25), 0 6px 18px -4px rgba(0, 0, 0, 0.6);
+  background: var(--select-ink);
+  color: #fff4ec;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  border: 2px solid #fff4ec;
+  box-shadow: 0 0 0 3px rgba(255, 106, 85, 0.55), 0 6px 18px -4px rgba(0, 0, 0, 0.6);
 }
 @media (prefers-reduced-motion: reduce) {
   * {

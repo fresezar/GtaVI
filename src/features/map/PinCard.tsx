@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import type { Category, Pin } from "@/domain";
-import { useHref, useT } from "@/i18n/client";
+import { fileNumber } from "@/data/pins";
+import { useHref, useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { copyText } from "@/lib/clipboard";
 import { formatTimestamp, parseSource } from "@/lib/source";
@@ -16,12 +17,22 @@ interface Props {
   onClose: () => void;
 }
 
+/** Stamp colour per status: ink on the cream case file. */
+const STAMP: Record<Pin["status"], string> = {
+  verified: "text-[#0B7A55]",
+  unverified: "text-[#B76E00]",
+  disputed: "text-[#B23A2A]",
+  deprecated: "text-[#6B5E4D]",
+};
+
 /**
- * The player-facing pin view: opens on the map when a pin is tapped.
+ * The player-facing pin view, styled as a numbered case file ("Six Star File #0142").
  * Desktop: floating card on the right. Phone: bottom sheet. The pin's own page stays for search and sharing.
  */
 export default function PinCard({ pin, category, done, onToggle, onClose }: Props) {
   const t = useT();
+  const locale = useLocale();
+  const caps = (s: string) => s.toLocaleUpperCase(locale);
   const href = useHref();
   const [playing, setPlaying] = useState(false);
   const [note, setNote] = useState("");
@@ -61,95 +72,108 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
   return (
     <section
       aria-label={title}
-      className="fixed inset-x-0 bottom-0 z-[1100] max-h-[52dvh] overflow-y-auto md:absolute md:z-[600] rounded-t-3xl border-t border-line-strong bg-[#1a1030]/95 p-4 shadow-sticker backdrop-blur-md md:inset-x-auto md:bottom-auto md:right-3 md:top-14 md:max-h-[calc(100%-4.5rem)] md:w-[380px] md:rounded-3xl md:border"
+      className="fixed inset-x-0 bottom-0 z-[1100] max-h-[56dvh] overflow-y-auto border-t-[6px] border-accent bg-paper text-paper-ink shadow-sticker md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:z-[600] md:max-h-[calc(100%-1.5rem)] md:w-[380px]"
     >
-      <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-line-strong md:hidden" aria-hidden="true" />
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          {category && (
-            <span className="chip" style={{ ["--dot" as string]: CATEGORY_COLORS[category.colorToken] }}>
-              {t(categoryKey(category.id))}
-            </span>
-          )}
-          <span className={`badge badge-${pin.status}`}>{t(`ui.pin.status.${pin.status}`)}</span>
-        </div>
-        <button type="button" onClick={onClose} className="btn btn-icon min-h-[36px] w-9 text-base" aria-label={t("ui.card.close")}>
+      <div className="flex items-center justify-between border-b border-dashed border-[#B9A993] px-4 py-2.5">
+        <span className="file-no">
+          <span lang="en">SIX STAR</span> · {caps(t("ui.file.label"))} <b className="text-[#B23A2A]">#{fileNumber(pin.id)}</b>
+        </span>
+        <button type="button" onClick={onClose} className="px-1 text-xl leading-none" aria-label={t("ui.card.close")}>
           ×
         </button>
       </div>
 
-      <h2 className="mt-3 font-display text-2xl leading-tight">{title}</h2>
+      <div className="space-y-3 p-4">
+        <span className={`stamp ${STAMP[pin.status]}`}>{done ? t("ui.pin.stamp.found") : t(`ui.pin.status.${pin.status}`)}</span>
+        <h2 className="font-display text-[28px] normal-case leading-none">{title}</h2>
 
-      {/* Media: a YouTube thumbnail that turns into the player on tap (no third-party load until asked). */}
-      {source?.kind === "youtube" && (
-        <div className="mt-3 aspect-video overflow-hidden rounded-2xl border border-line-strong bg-black">
-          {playing ? (
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube-nocookie.com/embed/${source.videoId}?autoplay=1${source.start ? `&start=${source.start}` : ""}`}
-              title={title}
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-          ) : (
-            <button type="button" onClick={() => setPlaying(true)} className="group relative block h-full w-full" aria-label={t("ui.card.play")}>
-              <img src={`https://i.ytimg.com/vi/${source.videoId}/hqdefault.jpg`} alt="" className="h-full w-full object-cover opacity-80 transition group-hover:opacity-100" loading="lazy" />
-              <span className="absolute inset-0 grid place-items-center">
-                <span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-2xl text-white shadow-neon">▶</span>
-              </span>
-              {source.start > 0 && (
-                <span className="absolute bottom-2 right-2 rounded-md bg-black/75 px-1.5 py-0.5 text-xs font-bold text-white">
-                  {formatTimestamp(source.start)}
-                </span>
-              )}
-            </button>
+        <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[13.5px]">
+          {pin.region && (
+            <>
+              <dt className="file-no pt-0.5 text-[#6B5E4D]">{caps(t("ui.pin.region"))}</dt>
+              <dd>{pin.region}</dd>
+            </>
           )}
-        </div>
-      )}
-      {source?.kind !== "youtube" && image && (
-        <img src={image.url} alt={image.alt ?? ""} className="mt-3 w-full rounded-2xl border border-line-strong object-cover" loading="lazy" />
-      )}
+          {category && (
+            <>
+              <dt className="file-no pt-0.5 text-[#6B5E4D]">{caps(t("ui.pin.category"))}</dt>
+              <dd className="flex items-center gap-2">
+                <span className="dot !h-2.5 !w-2.5" style={{ background: CATEGORY_COLORS[category.colorToken] }} />
+                {t(categoryKey(category.id))}
+              </dd>
+            </>
+          )}
+          {pin.credit && (
+            <>
+              <dt className="file-no pt-0.5 text-[#6B5E4D]">{caps(t("ui.pin.foundByLabel"))}</dt>
+              <dd>
+                {creditUrl ? (
+                  <a href={creditUrl} target="_blank" rel="noopener" className="font-bold underline">{pin.credit.name}</a>
+                ) : (
+                  <b>{pin.credit.name}</b>
+                )}
+              </dd>
+            </>
+          )}
+        </dl>
 
-      {description && pin.spoilerLevel === "none" && <p className="mt-3 text-sm leading-relaxed">{description}</p>}
-      {description && pin.spoilerLevel !== "none" && (
-        <details className="mt-3 text-sm">
-          <summary className="cursor-pointer font-bold text-accent">{t("ui.pin.spoiler")}</summary>
-          <p className="mt-2 leading-relaxed">{description}</p>
-        </details>
-      )}
+        {/* Media: a YouTube thumbnail that turns into the player on tap (no third-party load until asked). */}
+        {source?.kind === "youtube" && (
+          <div className="aspect-video overflow-hidden bg-black">
+            {playing ? (
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${source.videoId}?autoplay=1${source.start ? `&start=${source.start}` : ""}`}
+                title={title}
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            ) : (
+              <button type="button" onClick={() => setPlaying(true)} className="group relative block h-full w-full" aria-label={t("ui.card.play")}>
+                <img src={`https://i.ytimg.com/vi/${source.videoId}/hqdefault.jpg`} alt="" className="h-full w-full object-cover opacity-85 transition group-hover:opacity-100" loading="lazy" />
+                <span className="absolute inset-0 grid place-items-center">
+                  <span className="grid h-14 w-14 place-items-center bg-accent text-2xl text-white">▶</span>
+                </span>
+                {source.start > 0 && (
+                  <span className="absolute bottom-2 right-2 bg-black/75 px-1.5 py-0.5 text-xs font-bold text-white">{formatTimestamp(source.start)}</span>
+                )}
+              </button>
+            )}
+          </div>
+        )}
+        {source?.kind !== "youtube" && image && <img src={image.url} alt={image.alt ?? ""} className="w-full object-cover" loading="lazy" />}
 
-      <div className="mt-3 space-y-1 text-xs text-muted">
-        {pin.credit &&
-          (creditUrl ? (
-            <a href={creditUrl} target="_blank" rel="noopener" className="block font-bold text-ink underline">
-              {t("ui.pin.foundBy", { name: pin.credit.name })}
-            </a>
-          ) : (
-            <p className="font-bold text-ink">{t("ui.pin.foundBy", { name: pin.credit.name })}</p>
-          ))}
+        {description && pin.spoilerLevel === "none" && <p className="text-sm leading-relaxed">{description}</p>}
+        {description && pin.spoilerLevel !== "none" && (
+          <details className="text-sm">
+            <summary className="cursor-pointer font-bold text-[#B23A2A]">{t("ui.pin.spoiler")}</summary>
+            <p className="mt-2 leading-relaxed">{description}</p>
+          </details>
+        )}
+
         {source?.kind === "twitch" && (
-          <a href={source.url} target="_blank" rel="noopener" className="block font-bold underline">
+          <a href={source.url} target="_blank" rel="noopener" className="block text-xs font-bold underline">
             {source.start ? t("ui.pin.watchAt", { platform: "Twitch", time: formatTimestamp(source.start) }) : t("ui.pin.watch", { platform: "Twitch" })}
           </a>
         )}
         {source?.kind === "link" && (
-          <a href={source.url} target="_blank" rel="noopener ugc" className="block font-bold underline">
+          <a href={source.url} target="_blank" rel="noopener ugc" className="block text-xs font-bold underline">
             {t("ui.pin.source")}: {source.host}
           </a>
         )}
-      </div>
 
-      {hint && <p className="mt-3 rounded-xl border border-dashed border-line-strong p-2 text-xs text-muted">{hint}</p>}
+        {hint && <p className="border border-dashed border-[#B9A993] p-2 text-xs text-[#5a4f42]">{hint}</p>}
 
-      <div className="mt-4 flex flex-wrap items-center gap-2">
-        <button type="button" onClick={onToggle} className={`btn ${done ? "" : "btn-primary"}`} aria-pressed={done}>
-          {done ? `✓ ${t("ui.pin.markUndone")}` : t("ui.pin.markDone")}
-        </button>
-        <button type="button" onClick={share} className="btn">{t("ui.card.share")}</button>
-        <a href={pageHref} className="ml-auto text-xs font-bold text-accent2 underline">{t("ui.pin.openPage")} →</a>
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <button type="button" onClick={onToggle} className={`btn-paper ${done ? "" : "btn-paper-primary"}`} aria-pressed={done}>
+            {done ? `✓ ${t("ui.pin.markUndone")}` : t("ui.pin.markDone")}
+          </button>
+          <button type="button" onClick={share} className="btn-paper">{t("ui.card.share")}</button>
+          <a href={pageHref} className="ml-auto text-xs font-bold underline">{t("ui.pin.openPage")} →</a>
+        </div>
+        <p className="h-4 text-xs font-bold" role="status" aria-live="polite">{note}</p>
       </div>
-      <p className="mt-2 h-4 text-xs font-bold text-accent2" role="status" aria-live="polite">{note}</p>
     </section>
   );
 }
