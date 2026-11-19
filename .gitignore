@@ -18,3 +18,7 @@ next-env.d.ts
 /shorts/raw/
 /shorts/work/
 /shorts/out/
+
+# Downloaded third-party data (map tiles source)
+/.cache/
+/public/tiles/

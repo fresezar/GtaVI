@@ -9,6 +9,8 @@ export interface MapProjection {
   nativeZoom: number;
   maxZoom: number;
   bounds: L.LatLngBounds;
+  /** `def.view` (the land) or the whole image: fit, pan limit and tile requests use this. */
+  viewBounds: L.LatLngBounds;
   /** Pin (frame) coordinate -> map position. Applies calibration when the map has one. */
   toLatLng(c: Coord): L.LatLng;
   /** Map position -> pin (frame) coordinate. What new pins are saved with. */
@@ -44,6 +46,9 @@ export function createProjection(def: MapDef): MapProjection {
   const toLatLng = (c: Coord) => imageToLatLng(applyAffine(fwd, c));
   const toCoord = (ll: L.LatLng) => applyAffine(inv, toImageCoord(ll));
   const bounds = L.latLngBounds(imageToLatLng([0, 1]), imageToLatLng([1, 0]));
+  const viewBounds = def.view
+    ? L.latLngBounds(imageToLatLng([def.view.min[0], def.view.max[1]]), imageToLatLng([def.view.max[0], def.view.min[1]]))
+    : bounds;
 
-  return { nativeZoom, maxZoom: nativeZoom + (isTiles ? 2 : 2), bounds, toLatLng, toCoord, toImageCoord, imageToLatLng };
+  return { nativeZoom, maxZoom: nativeZoom + (isTiles ? 2 : 2), bounds, viewBounds, toLatLng, toCoord, toImageCoord, imageToLatLng };
 }

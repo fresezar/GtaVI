@@ -17,8 +17,11 @@ const SAMPLE_COORDS: ReadonlyArray<readonly [number, number]> = [
   [0.46, 0.7], [0.58, 0.72], [0.38, 0.5], [0.62, 0.6], [0.5, 0.37],
 ];
 
+/** Squeeze the demo spread onto Leonida's land on the GTADB grid (frame x ~0.29-0.52, y ~0.20-0.78). */
+const onLand = ([x, y]: readonly [number, number]): [number, number] => [0.17 + 0.42 * x, 0.17 + 0.6 * y];
+
 const samplePins = (): Pin[] =>
-  SAMPLE_COORDS.map((coord, i) => {
+  SAMPLE_COORDS.map(onLand).map((coord, i) => {
     const n = String(i + 1).padStart(2, "0");
     return {
       id: `pin_sample_${n}`,

@@ -34,6 +34,13 @@ export interface MapDef {
    * map image with different borders/scale never moves pins. Produce it with the dev calibrate tool.
    */
   calibration?: { points: ControlPoint[] };
+  /**
+   * Part of the image worth showing (frame coords 0..1): initial fit, pan limit and tile requests.
+   * Absent = the whole image. Tile sets that cover a big empty grid (open sea) set this to the land.
+   */
+  view?: { min: Coord; max: Coord };
+  /** Fills the area outside the tiles (e.g. the sea colour), so edges and missing tiles don't show. */
+  background?: string;
   /** Credit for community-made map art (required when we use someone else's map). */
   attribution?: { name: string; url?: string };
   /** Bump after a game patch changes the map. */

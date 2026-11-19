@@ -12,9 +12,10 @@
     "import:pins": "node scripts/import-pins.mjs",
     "prebuild": "npm run validate",
     "prebuild:static": "npm run validate",
-    "deploy": "npm run validate && cross-env STATIC_EXPORT=1 NEXT_PUBLIC_SITE_URL=https://sixstargta.com next build && npx --yes wrangler@4 deploy",
+    "deploy": "npm run validate && npm run tiles && cross-env STATIC_EXPORT=1 NEXT_PUBLIC_SITE_URL=https://sixstargta.com next build && npx --yes wrangler@4 deploy",
     "media": "node scripts/optimize-media.mjs && node scripts/make-logo.mjs && node scripts/make-og.mjs",
-    "short": "node scripts/make-short.mjs"
+    "short": "node scripts/make-short.mjs",
+    "tiles": "node scripts/fetch-tiles.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",

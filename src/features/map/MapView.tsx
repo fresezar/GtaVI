@@ -115,15 +115,16 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
         maxNativeZoom: def.source.maxNativeZoom,
         maxZoom: proj.maxZoom,
         noWrap: true,
-        bounds: proj.bounds,
+        bounds: proj.viewBounds,
       }).addTo(map);
     }
+    if (def.background) container.style.background = def.background;
 
     map.invalidateSize();
-    map.fitBounds(proj.bounds);
-    const fit = map.getBoundsZoom(proj.bounds, false);
+    map.fitBounds(proj.viewBounds);
+    const fit = map.getBoundsZoom(proj.viewBounds, false);
     map.setMinZoom(fit - 1);
-    map.setMaxBounds(proj.bounds.pad(0.3));
+    map.setMaxBounds(proj.viewBounds.pad(0.3));
 
     rendererRef.current = L.canvas({ padding: 0.5, tolerance: 8 });
     pinGroupRef.current = L.layerGroup().addTo(map);
