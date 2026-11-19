@@ -16,6 +16,8 @@ import MapView, { type MapFocus } from "./MapView";
 import PinCard from "./PinCard";
 import SiteHeader from "@/components/ui/SiteHeader";
 import { useDevTool } from "./dev/useDevTool";
+import SuggestPanel from "@/features/community/SuggestPanel";
+import { useCommunityPins } from "@/features/community/useCommunityPins";
 import { useProgress } from "@/hooks/useProgress";
 import { CATEGORY_COLORS } from "./tokens";
 
@@ -34,9 +36,13 @@ export default function MapExplorer() {
   const t = useT();
   const locale = useLocale();
   const href = useHref();
+  // Approved community pins that are not baked into the static site yet (live from the API).
+  const live = useCommunityPins();
+  const placed = useMemo(() => [...PLACED, ...live], [live]);
+  const allMapPins = useMemo(() => [...MAP_PINS, ...live], [live]);
   const searchIndex = useMemo(
-    () => PLACED.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
-    [t, locale],
+    () => placed.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
+    [t, locale, placed],
   );
   const [dev, setDev] = useState(false);
   const [focus, setFocus] = useState<MapFocus | null>(null);
@@ -45,7 +51,10 @@ export default function MapExplorer() {
   const [query, setQuery] = useState("");
   const [note, setNote] = useState("");
   const [selectedId, setSelectedId] = useState<PinId | null>(null);
-  const selectedPin = selectedId ? PLACED.find((p) => p.id === selectedId) ?? null : null;
+  const selectedPin = selectedId ? placed.find((p) => p.id === selectedId) ?? null : null;
+  // "Suggest a pin" mode: the next map tap sets the spot; the form opens on the right (bottom sheet on phones).
+  const [suggesting, setSuggesting] = useState(false);
+  const [draft, setDraft] = useState<[number, number] | null>(null);
 
   /** Select a pin (or clear) and mirror it in the address bar, so a copied URL opens the same card. */
   const select = useCallback((id: PinId | null) => {
@@ -64,22 +73,23 @@ export default function MapExplorer() {
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setDev(q.get("dev") === "true");
+    if (q.get("suggest") === "1") setSuggesting(true);
     const pin = q.get("pin");
     if (pin) focusPin(pin as PinId);
   }, [focusPin]);
 
-  const summary = useMemo(() => computeProgress(MAP_PINS, CATEGORIES, progress), [progress]);
+  const summary = useMemo(() => computeProgress(allMapPins, CATEGORIES, progress), [progress, allMapPins]);
 
   // A focused or selected pin always shows, even if its layer is off or it is completed.
   const visiblePins = useMemo(
     () =>
-      PLACED.filter(
+      placed.filter(
         (p) =>
           p.id === focus?.id ||
           p.id === selectedId ||
           (!hidden.has(p.categoryId) && !(hideDone && progress[p.id]?.done === true)),
       ),
-    [hidden, hideDone, progress, focus, selectedId],
+    [placed, hidden, hideDone, progress, focus, selectedId],
   );
 
   const results = useMemo(() => {
@@ -91,7 +101,7 @@ export default function MapExplorer() {
   /** Jump to the next not-yet-found pin in a category (cycles), turning the layer on if needed. */
   const nextUnfound = useCallback(
     (categoryId: CategoryId) => {
-      const list = PLACED.filter((p) => p.categoryId === categoryId && progress[p.id]?.done !== true);
+      const list = placed.filter((p) => p.categoryId === categoryId && progress[p.id]?.done !== true);
       if (!list.length) return;
       const at = list.findIndex((p) => p.id === focus?.id);
       setHidden((prev) => {
@@ -102,7 +112,7 @@ export default function MapExplorer() {
       });
       focusPin(list[(at + 1) % list.length].id);
     },
-    [progress, focus, focusPin],
+    [placed, progress, focus, focusPin],
   );
 
   const toggleCategory = useCallback((id: CategoryId) => {
@@ -149,8 +159,8 @@ export default function MapExplorer() {
           onSelect={select}
           selectedId={selectedId}
           t={t}
-          onMapClick={dev ? devTool.capture : undefined}
-          devMarkers={dev ? devMarkers : undefined}
+          onMapClick={dev ? devTool.capture : suggesting ? (c) => setDraft(c) : undefined}
+          devMarkers={dev ? devMarkers : suggesting && draft ? [draft] : undefined}
           calibrationMarkers={dev && devTool.calib.active ? calibrationMarkers : undefined}
           focus={focus}
         />
@@ -159,7 +169,30 @@ export default function MapExplorer() {
             {devTool.calib.active ? "Kalibrasyon" : "Veri girişi"}
           </span>
         )}
-        {selectedPin && (
+        {!dev && !suggesting && (
+          <button
+            type="button"
+            className="btn btn-primary absolute bottom-9 left-3 z-[500]"
+            onClick={() => {
+              select(null);
+              setSuggesting(true);
+            }}
+          >
+            + {t("ui.suggest.open")}
+          </button>
+        )}
+        {suggesting && (
+          <SuggestPanel
+            coord={draft}
+            categories={CATEGORIES}
+            onClose={() => {
+              setSuggesting(false);
+              setDraft(null);
+            }}
+            onSent={() => setDraft(null)}
+          />
+        )}
+        {selectedPin && !suggesting && (
           <PinCard
             pin={selectedPin}
             category={CATEGORY_MAP[selectedPin.categoryId]}

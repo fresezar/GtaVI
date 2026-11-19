@@ -1,9 +1,11 @@
 {
-  // Static-only Worker: serves the Next.js static export in ./out (no Worker script).
-  // Build: npm run build:static   Deploy: npx wrangler deploy
+  // Static Next.js export in ./out, plus a small API Worker (worker/index.ts) that only runs for /api/*.
+  // Every other request is served straight from the assets layer, so pages cost no Worker CPU.
+  // Build + deploy: npm run deploy
   "$schema": "node_modules/wrangler/config-schema.json",
   // No game trademarks here: the name becomes a public <name>.<subdomain>.workers.dev URL.
   "name": "atlas",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-11-01",
   // Final domain (bought 2026-11-18 on Cloudflare Registrar). www serves the same site; every page's
   // canonical points to the bare domain. workers.dev is off so search engines see one address.
@@ -15,7 +17,20 @@
   "preview_urls": false,
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  // Community suggestions (migrations/). Apply: npx wrangler d1 migrations apply sixstar-community --remote
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sixstar-community",
+      "database_id": "1c33448a-bd47-4af8-a7b7-aa58d0373a52",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Secrets (not in this file): ADMIN_TOKEN, IP_SALT, optional TURNSTILE_SECRET -> npx wrangler secret put <NAME>
+  "observability": { "enabled": true }
 }

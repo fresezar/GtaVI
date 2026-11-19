@@ -19,5 +19,15 @@ export const tFor =
   (key, vars) =>
     t(key, vars, locale);
 
+/**
+ * Add text at runtime (browser only): titles of approved community pins that are not baked into the
+ * static site yet. Written to English, which every locale falls back to. Existing keys are kept.
+ */
+export function registerText(entries: Record<string, string>) {
+  for (const [key, value] of Object.entries(entries)) {
+    if (DICTIONARIES.en[key] === undefined) DICTIONARIES.en[key] = value;
+  }
+}
+
 /** True when the key has real text in this locale or English (not just the key echoed back). */
 export const hasText = (key: string, locale: Locale = DEFAULT_LOCALE) => t(key, undefined, locale) !== key;

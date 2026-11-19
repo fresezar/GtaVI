@@ -35,7 +35,7 @@ export default function FindsView({ locale }: { locale: Locale }) {
     <PageShell locale={locale} path="/finds">
       <ViceBand eyebrow={t("ui.nav.community")} title={t("ui.finds.title")} lead={t("ui.finds.lead")}>
         <div className="flex flex-wrap items-center gap-3">
-          <Link href={href("/community") + "#contribute"} className="btn btn-primary">{t("ui.finds.cta")}</Link>
+          <Link href={`${href("/map")}?suggest=1`} className="btn btn-primary">{t("ui.finds.cta")}</Link>
           <span className="font-display text-[15px] tracking-[0.12em] text-white/85">
             {t("ui.finds.stats", { pins: COMMUNITY_STATS.pins, verified: COMMUNITY_STATS.verified })}
           </span>

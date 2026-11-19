@@ -53,10 +53,11 @@ Konsept: "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Hazır 
 ## Topluluk (kurucu istedi, 2026-11-19)
 
 Amaç: sosyal medyadan gelen ziyaretçiyi sitede tutmak, pinleri tek kişiden değil topluluktan toplamak.
-- [ ] Aşama 1: haritada "Pin öner" (kategori, başlık, klip/ekran görüntüsü linki, not, takma ad), Turnstile, D1 onay kuyruğu, korumalı onay sayfası; onaylanan pinde "Found by @kişi"
+- [x] (2026-11-19) Aşama 1: haritada "Pin öner" (kategori, başlık, klip/ekran görüntüsü linki, not, takma ad), Turnstile, D1 onay kuyruğu, korumalı onay sayfası; onaylanan pinde "Found by @kişi"
 - [ ] Aşama 2: Discord ile giriş; profil (bulduklarım, önerilerim, ilerleme senkronu); "Ben de buldum" onayı: farklı kullanıcılardan N onay = doğrulandı; yıldız rütbeleri (1-6 yıldız, Six Star en üst); haftalık ve tüm zamanlar sıralaması
 - [ ] Aşama 3: Discord sunucusu + bot (yeni pin, haftalık en iyi bulgular); haftalık bulgu etkinlikleri; güvenilir kullanıcılar (4+ yıldız) onay beklemeden yayınlar
 - [ ] Her pin için paylaşılabilir kart görseli ("Found by @kişi"): bulan kişi paylaşır, trafik gelir
+- [ ] Spam görülürse: Cloudflare panelinde Turnstile widget oluştur, `TURNSTILE_SECRET` secret + `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (formda widget gösterimi henüz yazılmadı)
 - [ ] Hesap açılınca: gizlilik metni, veri silme talebi (KVKK/GDPR)
 
 ## Farkımız (rakiplerde görülmedi ya da zayıf)
@@ -73,7 +74,7 @@ Amaç: sosyal medyadan gelen ziyaretçiyi sitede tutmak, pinleri tek kişiden de
 - [ ] Silah, görev, karakter, mülk, hayvan, hile veritabanları (GTABase)
 - [ ] Radyo ve müzik listesi (GTABase, Vice City Tracker)
 - [ ] Hesaplayıcılar: soygun, işletme, ekonomi; yalnızca doğrulanmış veriyle (GTA BOOM; rakiplerde rakamlar birbirini tutmuyor)
-- [ ] Konum önerme formu: ekran görüntüsü veya klip linki, moderasyon kuyruğu (GTABase)
+- [x] Konum önerme formu: ekran görüntüsü veya klip linki, moderasyon kuyruğu (GTABase) (2026-11-19, topluluk aşama 1)
 - [ ] Katkıcı liderlik tablosu, dönemsel yarışmalar (GTABase)
 - [ ] Kişisel işaret, not, favori; çoklu profil (GTABase VIP; ücretli plan adayları)
 - [ ] Rota üretici: seçili kategorideki bulunmamışlar için en kısa tur (RDR2 Collectors Map)

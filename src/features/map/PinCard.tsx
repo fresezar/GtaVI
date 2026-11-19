@@ -170,7 +170,8 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
             {done ? `✓ ${t("ui.pin.markUndone")}` : t("ui.pin.markDone")}
           </button>
           <button type="button" onClick={share} className="btn-paper">{t("ui.card.share")}</button>
-          <a href={pageHref} className="ml-auto text-xs font-bold underline">{t("ui.pin.openPage")} →</a>
+          {/* Live community pins have no static page until they are baked into the site. */}
+          {!pin.tags?.includes("live") && <a href={pageHref} className="ml-auto text-xs font-bold underline">{t("ui.pin.openPage")} →</a>}
         </div>
         <p className="h-4 text-xs font-bold" role="status" aria-live="polite">{note}</p>
       </div>
