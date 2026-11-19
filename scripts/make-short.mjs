@@ -6,6 +6,7 @@
 //   hook      "text"                      big text over the first 3 s of the clip
 //   clip      "shorts/raw/x.mp4"          16:9 or 9:16 recording; in/out in seconds (optional)
 //   in, out   12.5, 24
+//   clips     [{ clip, in, out }, ...]    optional; several shots cut back to back (replaces clip/in/out)
 //   credit    "@creator"                  optional; shown under the clip
 //   fact      "one line"                  optional; shown under the credit
 //   map       { image, x, y, place, cta } optional; x/y = 0..1 focus point on the image (portrait screenshot)
@@ -31,7 +32,8 @@ if (!specPath) {
 }
 const spec = JSON.parse(readFileSync(resolve(specPath), "utf8").replace(/^\uFEFF/, ""));
 const abs = (p) => resolve(ROOT, p);
-for (const p of [spec.clip, spec.map?.image].filter(Boolean)) {
+const shots = spec.clips ?? [{ clip: spec.clip, in: spec.in, out: spec.out }];
+for (const p of [...shots.map((s) => s.clip), spec.map?.image].filter(Boolean)) {
   if (!existsSync(abs(p))) throw new Error(`missing file: ${p}`);
 }
 
@@ -57,43 +59,47 @@ const creditPng = card("credit", { mode: "credit", credit: spec.credit, fact: sp
 const labelPng = spec.map ? card("label", { mode: "label", place: spec.map.place, cta: spec.map.cta }) : null;
 const endPng = card("end", { mode: "end", line: spec.end?.line });
 
-// ---- clip length and audio ----
-const probe = spawnSync(ffmpeg, ["-hide_banner", "-i", abs(spec.clip)], { encoding: "utf8" }).stderr;
-const hasAudio = /Stream #.*Audio:/.test(probe);
-const total = (() => {
+// ---- clip lengths and audio ----
+for (const s of shots) {
+  const probe = spawnSync(ffmpeg, ["-hide_banner", "-i", abs(s.clip)], { encoding: "utf8" }).stderr;
   const m = probe.match(/Duration: (\d+):(\d+):([\d.]+)/);
-  return m ? +m[1] * 3600 + +m[2] * 60 + +m[3] : 0;
-})();
-const tIn = spec.in ?? 0;
-const tOut = spec.out ?? total;
-const clipSec = Math.max(0.5, tOut - tIn);
+  const total = m ? +m[1] * 3600 + +m[2] * 60 + +m[3] : 0;
+  s.hasAudio = /Stream #.*Audio:/.test(probe);
+  s.tIn = s.in ?? 0;
+  s.sec = Math.max(0.5, (s.out ?? total) - s.tIn);
+}
+const clipSec = shots.reduce((t, s) => t + s.sec, 0);
 
 // ---- ffmpeg graph ----
 const args = ["-hide_banner", "-y"];
 const inputs = [];
 const input = (...a) => { args.push(...a); return inputs.push(a) - 1; };
-const iClip = input("-ss", String(tIn), "-t", String(clipSec), "-i", abs(spec.clip));
+for (const s of shots) s.i = input("-ss", String(s.tIn), "-t", String(s.sec), "-i", abs(s.clip));
 const iHook = input("-loop", "1", "-t", String(clipSec), "-i", hookPng);
 const iCredit = input("-loop", "1", "-t", String(clipSec), "-i", creditPng);
 const iMap = spec.map ? input("-i", abs(spec.map.image)) : -1;
 const iLabel = spec.map ? input("-loop", "1", "-t", String(MAP_SEC), "-i", labelPng) : -1;
 const iEnd = input("-loop", "1", "-t", String(END_SEC), "-i", endPng);
 const silence = (sec) => input("-f", "lavfi", "-t", String(sec), "-i", "anullsrc=r=48000:cl=stereo");
-const iClipSilence = hasAudio ? -1 : silence(clipSec);
+for (const s of shots) s.iSilence = s.hasAudio ? -1 : silence(s.sec);
 const iMapSilence = spec.map ? silence(MAP_SEC) : -1;
 const iEndSilence = silence(END_SEC);
 
 const V = "format=yuv420p,setsar=1";
 const A = "aresample=48000,aformat=channel_layouts=stereo";
-const g = [
-  `[${iClip}:v]fps=${FPS},split[c1][c2]`,
-  `[c1]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=28:2,eq=brightness=-0.22[bg]`,
-  `[c2]scale=1080:1920:force_original_aspect_ratio=decrease[fg]`,
-  `[bg][fg]overlay=(W-w)/2:(H-h)/2[g1]`,
+// Each shot: blurred full-bleed background + the whole frame on top. Shots are cut back to back.
+const g = shots.flatMap((s, k) => [
+  `[${s.i}:v]fps=${FPS},split[c${k}a][c${k}b]`,
+  `[c${k}a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=28:2,eq=brightness=-0.22[bg${k}]`,
+  `[c${k}b]scale=1080:1920:force_original_aspect_ratio=decrease[fg${k}]`,
+  `[bg${k}][fg${k}]overlay=(W-w)/2:(H-h)/2,${V}[sv${k}]`,
+  s.hasAudio ? `[${s.i}:a]${A}[sa${k}]` : `[${s.iSilence}:a]${A}[sa${k}]`,
+]);
+g.push(
+  `${shots.map((_, k) => `[sv${k}][sa${k}]`).join("")}concat=n=${shots.length}:v=1:a=1[g1][aA]`,
   `[g1][${iHook}:v]overlay=0:0:enable='lt(t,${HOOK_SEC})'[g2]`,
   `[g2][${iCredit}:v]overlay=0:0:shortest=1,${V}[vA]`,
-  hasAudio ? `[${iClip}:a]${A}[aA]` : `[${iClipSilence}:a]${A}[aA]`,
-];
+);
 const parts = ["[vA][aA]"];
 if (spec.map) {
   const n = Math.round(MAP_SEC * FPS);

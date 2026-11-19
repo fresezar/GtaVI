@@ -25,6 +25,7 @@ Bilgiler `docs/research/2026-11-18-cikis.md` ve sitedeki rehberlerden; videoya g
 ## Sistem
 - [ ] Nakit güvende değil: ölünce ya da yakalanınca gider, "Buck Me"ye kadar banka yok; Jason'ın odasındaki zula → #0002 (plan)
 - [ ] Kıyafet değiştir, aramadan kurtul: polis kılığını hatırlıyor → #0003 (plan)
+- [ ] 6 yıldız: ordu geliyor, kaçış yok (iddia; kendi denememiz) → #0007 (plan)
 - [ ] Araç değiştir, silahı sakla, partnerden ayrıl: aramayı soğutan 4 hamle
 - [ ] Suçlu profili: Professional → Psycho; polis daha erken ateş açar
 - [ ] Hızlı yolculuk yok: mekanik çağırma ("Just A Scratch" sonrası), partnere sürdürme
