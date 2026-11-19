@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { CategoryId, PinId, PlacedPin } from "@/domain";
 import { PIN_BY_ID } from "@/data/pins";
+import { VIA_PREFIX } from "@/data/partners";
 import { registerText } from "@/i18n";
 import { pinKey } from "@/i18n/keys";
 
@@ -17,6 +18,7 @@ interface ApiPin {
   proofUrl: string;
   name: string | null;
   approvedAt: string | null;
+  via?: string | null;
 }
 
 /**
@@ -47,7 +49,7 @@ export function useCommunityPins(): readonly PlacedPin[] {
               provenance: { sourceUrl: r.proofUrl, confidence: "medium", extractedBy: "human" },
               addedAt: (r.approvedAt ?? new Date().toISOString()).slice(0, 10),
               dataVersion: 1,
-              tags: [LIVE_TAG],
+              tags: [LIVE_TAG, ...(r.via ? [`${VIA_PREFIX}${r.via}`] : [])],
             }),
           );
         registerText(Object.fromEntries(rows.map((r) => [pinKey(r.id as PinId, "title"), r.title])));

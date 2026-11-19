@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { CATEGORIES } from "@/data/categories";
+import { PARTNER_BY_SLUG } from "@/data/partners";
 import { t as translate } from "@/i18n";
 import { categoryKey } from "@/i18n/keys";
 
@@ -33,6 +34,7 @@ interface Item {
   pin_id: string | null;
   reviewed_at: string | null;
   reason: string | null;
+  ref: string | null;
 }
 
 const catName = (id: string) => translate(categoryKey(id as never), undefined, "tr");
@@ -97,6 +99,9 @@ function Row({ item, token, onDone }: { item: Item; token: string; onDone: () =>
           {item.id} · {new Date(item.created_at).toLocaleString("tr-TR")} · {item.locale.toUpperCase()}
           {item.pin_id && ` · ${item.pin_id}`}
         </p>
+        {item.ref && (
+          <p className="text-xs font-bold text-sun">Partner: {PARTNER_BY_SLUG.get(item.ref)?.name ?? item.ref}</p>
+        )}
         <label className="field">
           Başlık
           <input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={80} />
@@ -143,6 +148,55 @@ function Row({ item, token, onDone }: { item: Item; token: string; onDone: () =>
         {msg && <p className="text-xs font-bold text-accent">{msg}</p>}
       </div>
     </li>
+  );
+}
+
+interface PartnerStat {
+  visits: number;
+  visits30: number;
+  suggestions: Record<string, number>;
+}
+
+/** Visits and suggestions per partner page (/api/admin/partners). Numbers for the monthly partner report. */
+function PartnerStats({ token }: { token: string }) {
+  const [stats, setStats] = useState<Record<string, PartnerStat> | null>(null);
+  useEffect(() => {
+    fetch("/api/admin/partners", { headers: { authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? (r.json() as Promise<{ partners: Record<string, PartnerStat> }>) : null))
+      .then((d) => setStats(d?.partners ?? null))
+      .catch(() => setStats(null));
+  }, [token]);
+  if (!stats || Object.keys(stats).length === 0) return null;
+  const n = (s: PartnerStat, k: string) => s.suggestions[k] ?? 0;
+  return (
+    <section className="card !p-4" aria-labelledby="partner-stats">
+      <h2 id="partner-stats" className="font-display text-xl">Partnerler</h2>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full text-left text-sm tabular-nums">
+          <thead className="text-xs text-muted">
+            <tr>
+              <th className="py-1 pr-3 font-normal">Partner</th>
+              <th className="py-1 pr-3 font-normal">Ziyaret (30 gün / toplam)</th>
+              <th className="py-1 pr-3 font-normal">Öneri</th>
+              <th className="py-1 pr-3 font-normal">Onaylanan</th>
+              <th className="py-1 font-normal">Sayfa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(stats).map(([slug, s]) => (
+              <tr key={slug} className="border-t border-line">
+                <td className="py-1.5 pr-3">{PARTNER_BY_SLUG.get(slug)?.name ?? slug} <span className="text-xs text-muted">({PARTNER_BY_SLUG.get(slug)?.status ?? "?"})</span></td>
+                <td className="py-1.5 pr-3">{s.visits30} / {s.visits}</td>
+                <td className="py-1.5 pr-3">{Object.values(s.suggestions).reduce((a, b) => a + b, 0)}</td>
+                <td className="py-1.5 pr-3">{n(s, "approved") + n(s, "published")}</td>
+                <td className="py-1.5"><a href={`/p/${slug}/`} className="text-accent underline">/p/{slug}</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 text-xs text-muted">Ziyaret: günde kişi başı bir sayılır (IP saklanmaz).</p>
+    </section>
   );
 }
 
@@ -233,6 +287,7 @@ export default function AdminQueue() {
           </button>
         </div>
       </div>
+      <PartnerStats token={token} />
       <nav className="flex flex-wrap gap-1" aria-label="Durum">
         {STATUSES.map(([s, label]) => (
           <button key={s} type="button" className="tab" aria-current={status === s ? "page" : undefined} onClick={() => setStatus(s)}>

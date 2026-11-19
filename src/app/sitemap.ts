@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { CHECKLISTS } from "@/data/checklists";
 import { GUIDES } from "@/data/guides";
+import { ACTIVE_PARTNERS } from "@/data/partners";
 import { PINS } from "@/data/pins";
 import { SITE } from "@/config/site";
 import { LOCALES, localePath } from "@/i18n";
@@ -24,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...GUIDES.map((g) => `/guides/${g.slug}`),
     ...CHECKLISTS.filter((c) => c.status !== "deprecated").map((c) => `/checklists/${c.slug}`),
     ...PINS.map((p) => `/pins/${p.slug}`),
+    ...ACTIVE_PARTNERS.map((p) => `/p/${p.slug}`),
   ];
   return paths.flatMap((path) => {
     const languages = Object.fromEntries(LOCALES.map((l) => [l, abs(localePath(l, path))]));

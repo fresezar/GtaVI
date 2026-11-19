@@ -4,7 +4,9 @@ import PageShell from "@/components/ui/PageShell";
 import ViceBand from "@/components/ui/ViceBand";
 import { SITE } from "@/config/site";
 import { COMMUNITY_STATS, CONTRIBUTORS, RANKS, rankFor } from "@/data/community";
+import { ACTIVE_PARTNERS, partnerUrl } from "@/data/partners";
 import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { PartnerBadge } from "./PartnerView";
 
 const STAR = "M12 2.6l2.8 6 6.5.7-4.9 4.4 1.4 6.4L12 16.9 6.2 20.1l1.4-6.4L2.7 9.3l6.5-.7z";
 
@@ -118,6 +120,31 @@ export default function CommunityView({ locale }: { locale: Locale }) {
               ))}
             </ol>
             <p className="mt-3 text-xs text-muted">{t("ui.community.ranks.soon")}</p>
+          </section>
+
+          <section className="card !p-5" aria-labelledby="partners-title">
+            <h2 id="partners-title" className="section-title">{t("ui.community.partners.title")}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{t("ui.community.partners.body")}</p>
+            {ACTIVE_PARTNERS.length > 0 && (
+              <ul className="mt-4 space-y-2">
+                {ACTIVE_PARTNERS.map((p) => (
+                  <li key={p.slug} className="flex items-center gap-3 border border-line bg-surface-2 px-3 py-2">
+                    <PartnerBadge partner={p} size={36} />
+                    <Link href={href(`/p/${p.slug}`)} className="min-w-0 flex-1 truncate font-display text-lg normal-case hover:underline">{p.name}</Link>
+                    {partnerUrl(p) && (
+                      <a href={partnerUrl(p)} target="_blank" rel="noopener" className="text-xs font-bold underline">{p.followers ?? p.platform}</a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="mt-3 text-xs leading-relaxed text-muted">
+              {SITE.links.discord ? (
+                <a href={SITE.links.discord} target="_blank" rel="noopener" className="underline">{t("ui.community.partners.join")}</a>
+              ) : (
+                t("ui.community.partners.join")
+              )}
+            </p>
           </section>
 
           <section className="card !p-5" aria-labelledby="discord-title">

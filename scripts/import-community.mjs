@@ -60,7 +60,7 @@ for (const s of items) {
       provenance: { sourceUrl: s.proof_url, retrievedAt: today(), confidence: "medium", extractedBy: "human" },
       addedAt: (s.reviewed_at ?? new Date().toISOString()).slice(0, 10),
       dataVersion: 1,
-      tags: [`suggestion:${s.id}`],
+      tags: [`suggestion:${s.id}`, ...(s.ref ? [`via:${s.ref}`] : [])],
     });
     en[`pin.${s.pin_id}.title`] = s.title;
     if (s.note) en[`pin.${s.pin_id}.description`] = s.note;

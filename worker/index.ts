@@ -7,11 +7,14 @@
  *   GET  /api/admin/queue?status=     moderator: list suggestions
  *   POST /api/admin/review            moderator: approve / reject (optionally edit title, category, name)
  *   POST /api/admin/published         moderator: mark approved rows as copied into content/pins.json
+ *   POST /api/ref/visit               public: count a unique daily visit to a partner page (/p/<slug>)
+ *   GET  /api/admin/partners          moderator: visits and suggestions per partner
  *
  * Moderator auth: "Authorization: Bearer <ADMIN_TOKEN>" (wrangler secret). Spam guards: honeypot field,
  * per-IP rate limit (salted daily hash, the IP itself is never stored), optional Turnstile.
  */
 import categories from "../content/categories.json";
+import partners from "../content/partners.json";
 
 export interface Env {
   ASSETS: Fetcher;
@@ -23,6 +26,11 @@ export interface Env {
 }
 
 const CATEGORY_IDS = new Set((categories as { id: string }[]).map((c) => c.id));
+const PARTNER_SLUGS = new Set((partners as { slug: string }[]).map((p) => p.slug));
+const partnerRef = (v: unknown) => {
+  const slug = clean(v, 40);
+  return PARTNER_SLUGS.has(slug) ? slug : null;
+};
 /** Land area of the main map, in pin frame coordinates (src/data/maps.ts `view`). */
 const VIEW = { x: [17 / 128, 84 / 128], y: [17 / 128, 104 / 128] } as const;
 const RATE_PER_HOUR = 8;
@@ -43,6 +51,9 @@ function ulid(now = Date.now()): string {
   const bytes = crypto.getRandomValues(new Uint8Array(16));
   return time + Array.from(bytes, (b) => ALPHABET[b % 32]).join("");
 }
+
+const clientIp = (req: Request) => req.headers.get("cf-connecting-ip") ?? "0.0.0.0";
+const dailyIpHash = (env: Env, ip: string, now: Date) => sha256(`${env.IP_SALT}|${ip}|${now.toISOString().slice(0, 10)}`);
 
 async function sha256(text: string): Promise<string> {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -93,6 +104,7 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   const note = clean(body.note, 500);
   const name = clean(body.name, 40);
   const locale = body.locale === "tr" ? "tr" : "en";
+  const ref = partnerRef(body.ref);
   const x = Number(body.x);
   const y = Number(body.y);
 
@@ -101,7 +113,7 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   if (!isHttpUrl(proofUrl)) return fail(400, "proof");
   if (!(x >= VIEW.x[0] && x <= VIEW.x[1] && y >= VIEW.y[0] && y <= VIEW.y[1])) return fail(400, "position");
 
-  const ip = req.headers.get("cf-connecting-ip") ?? "0.0.0.0";
+  const ip = clientIp(req);
   if (env.TURNSTILE_SECRET) {
     const form = new FormData();
     form.append("secret", env.TURNSTILE_SECRET);
@@ -113,16 +125,16 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   }
 
   const now = new Date();
-  const ipHash = await sha256(`${env.IP_SALT}|${ip}|${now.toISOString().slice(0, 10)}`);
+  const ipHash = await dailyIpHash(env, ip, now);
   const hourAgo = new Date(now.getTime() - 3600_000).toISOString();
   const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM suggestions WHERE ip_hash = ? AND created_at > ?").bind(ipHash, hourAgo).first<{ n: number }>();
   if ((recent?.n ?? 0) >= RATE_PER_HOUR) return fail(429, "rate_limited");
 
   const id = `sug_${ulid(now.getTime())}`;
   await env.DB.prepare(
-    "INSERT INTO suggestions (id, created_at, category_id, title, x, y, proof_url, note, name, locale, ip_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO suggestions (id, created_at, category_id, title, x, y, proof_url, note, name, locale, ip_hash, ref) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
   )
-    .bind(id, now.toISOString(), categoryId, title, x, y, proofUrl, note || null, name || null, locale, ipHash)
+    .bind(id, now.toISOString(), categoryId, title, x, y, proofUrl, note || null, name || null, locale, ipHash, ref)
     .run();
   return json({ ok: true, id }, 201);
 }
@@ -142,11 +154,12 @@ interface Row {
   pin_id: string | null;
   reviewed_at: string | null;
   reason: string | null;
+  ref: string | null;
 }
 
 async function communityPins(env: Env): Promise<Response> {
   const { results } = await env.DB.prepare(
-    "SELECT pin_id, category_id, title, x, y, proof_url, name, reviewed_at FROM suggestions WHERE status = 'approved' ORDER BY reviewed_at DESC LIMIT 500",
+    "SELECT pin_id, category_id, title, x, y, proof_url, name, reviewed_at, ref FROM suggestions WHERE status = 'approved' ORDER BY reviewed_at DESC LIMIT 500",
   ).all<Row>();
   const pins = results.map((r) => ({
     id: r.pin_id,
@@ -156,6 +169,7 @@ async function communityPins(env: Env): Promise<Response> {
     proofUrl: r.proof_url,
     name: r.name,
     approvedAt: r.reviewed_at,
+    via: r.ref,
   }));
   return json({ pins }, 200, { "cache-control": "public, max-age=60" });
 }
@@ -164,7 +178,7 @@ async function queue(url: URL, env: Env): Promise<Response> {
   const status = url.searchParams.get("status") ?? "pending";
   if (!["pending", "approved", "rejected", "published"].includes(status)) return fail(400, "status");
   const { results } = await env.DB.prepare(
-    "SELECT id, created_at, status, category_id, title, x, y, proof_url, note, name, locale, pin_id, reviewed_at, reason FROM suggestions WHERE status = ? ORDER BY created_at ASC LIMIT 200",
+    "SELECT id, created_at, status, category_id, title, x, y, proof_url, note, name, locale, pin_id, reviewed_at, reason, ref FROM suggestions WHERE status = ? ORDER BY created_at ASC LIMIT 200",
   )
     .bind(status)
     .all<Row>();
@@ -209,6 +223,33 @@ async function markPublished(req: Request, env: Env): Promise<Response> {
   return json({ ok: true, count: ids.length });
 }
 
+async function refVisit(req: Request, env: Env): Promise<Response> {
+  const body = await readBody(req);
+  const slug = partnerRef(body?.slug);
+  if (!slug) return fail(400, "slug");
+  const now = new Date();
+  const ipHash = await dailyIpHash(env, clientIp(req), now);
+  await env.DB.prepare("INSERT OR IGNORE INTO partner_visits (slug, day, ip_hash) VALUES (?, ?, ?)").bind(slug, now.toISOString().slice(0, 10), ipHash).run();
+  return json({ ok: true });
+}
+
+/** Per partner: unique daily visits (all time, last 30 days) and suggestions by status. */
+async function partnerStats(env: Env): Promise<Response> {
+  const since = new Date(Date.now() - 30 * 86_400_000).toISOString().slice(0, 10);
+  const [visits, recent, sugg] = await env.DB.batch([
+    env.DB.prepare("SELECT slug, COUNT(*) AS n FROM partner_visits GROUP BY slug"),
+    env.DB.prepare("SELECT slug, COUNT(*) AS n FROM partner_visits WHERE day >= ? GROUP BY slug").bind(since),
+    env.DB.prepare("SELECT ref AS slug, status, COUNT(*) AS n FROM suggestions WHERE ref IS NOT NULL GROUP BY ref, status"),
+  ]);
+  const out: Record<string, { visits: number; visits30: number; suggestions: Record<string, number> }> = {};
+  const row = (slug: string) => (out[slug] ??= { visits: 0, visits30: 0, suggestions: {} });
+  for (const slug of PARTNER_SLUGS) row(slug);
+  for (const r of visits.results as { slug: string; n: number }[]) row(r.slug).visits = r.n;
+  for (const r of recent.results as { slug: string; n: number }[]) row(r.slug).visits30 = r.n;
+  for (const r of sugg.results as { slug: string; status: string; n: number }[]) row(r.slug).suggestions[r.status] = r.n;
+  return json({ partners: out });
+}
+
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url);
@@ -216,11 +257,13 @@ export default {
     try {
       if (path === "/api/suggest" && req.method === "POST") return await suggest(req, env);
       if (path === "/api/community/pins" && req.method === "GET") return await communityPins(env);
+      if (path === "/api/ref/visit" && req.method === "POST") return await refVisit(req, env);
       if (path.startsWith("/api/admin/")) {
         if (!isAdmin(req, env)) return fail(401, "unauthorized");
         if (path === "/api/admin/queue" && req.method === "GET") return await queue(url, env);
         if (path === "/api/admin/review" && req.method === "POST") return await review(req, env);
         if (path === "/api/admin/published" && req.method === "POST") return await markPublished(req, env);
+        if (path === "/api/admin/partners" && req.method === "GET") return await partnerStats(env);
       }
       if (path.startsWith("/api/")) return fail(404, "not_found");
       return env.ASSETS.fetch(req);

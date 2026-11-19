@@ -5,6 +5,7 @@ import type { Category } from "@/domain";
 import { useLocale, useT } from "@/i18n/client";
 import { categoryKey } from "@/i18n/keys";
 import { SITE } from "@/config/site";
+import { PARTNER_BY_SLUG, currentRef } from "@/data/partners";
 import Turnstile from "./Turnstile";
 
 const NAME_KEY = "sixstar.suggest.name";
@@ -38,8 +39,11 @@ export default function SuggestPanel({
   const needsCaptcha = Boolean(SITE.turnstileSiteKey);
   const [attempt, setAttempt] = useState(0); // remounts the widget after a failed send (tokens are single-use)
   const [state, setState] = useState<State>({ kind: "idle" });
+  const [ref, setRef] = useState(""); // partner page the visitor came from (/p/<slug>), if any
+  const partner = PARTNER_BY_SLUG.get(ref);
 
   useEffect(() => {
+    setRef(currentRef());
     try {
       setName(localStorage.getItem(NAME_KEY) ?? "");
     } catch {
@@ -60,7 +64,7 @@ export default function SuggestPanel({
       const r = await fetch("/api/suggest", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1], turnstile: captcha }),
+        body: JSON.stringify({ categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1], turnstile: captcha, ref }),
       });
       const data = (await r.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (r.ok && data.ok) {
@@ -191,6 +195,10 @@ export default function SuggestPanel({
               <input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
             </label>
           </div>
+
+          {partner && (
+            <p className="text-xs text-[#5a4f42]">{t("ui.suggest.via", { name: partner.name })}</p>
+          )}
 
           {needsCaptcha && <Turnstile key={attempt} siteKey={SITE.turnstileSiteKey} locale={locale} onToken={setCaptcha} />}
 

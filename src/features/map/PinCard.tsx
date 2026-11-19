@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Category, Pin } from "@/domain";
 import { fileNumber } from "@/data/pins";
+import { partnerOf, partnerUrl } from "@/data/partners";
 import { useHref, useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { copyText } from "@/lib/clipboard";
@@ -52,6 +53,8 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
   const image = pin.media?.find((m) => m.kind === "image" && /^https?:\/\//.test(m.url));
   const creditUrl = pin.credit?.url && /^https?:\/\//.test(pin.credit.url) ? pin.credit.url : undefined;
   const pageHref = href(`/pins/${pin.slug}`);
+  const via = partnerOf(pin.tags);
+  const viaUrl = via && partnerUrl(via);
   const hint =
     pin.status === "unverified" ? t("ui.pin.status.unverifiedHint") : pin.status === "disputed" ? t("ui.pin.status.disputedHint") : "";
 
@@ -111,6 +114,18 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
                   <a href={creditUrl} target="_blank" rel="noopener" className="font-bold underline">{pin.credit.name}</a>
                 ) : (
                   <b>{pin.credit.name}</b>
+                )}
+              </dd>
+            </>
+          )}
+          {via && (
+            <>
+              <dt className="file-no pt-0.5 text-[#6B5E4D]">{caps(t("ui.pin.viaLabel"))}</dt>
+              <dd>
+                {viaUrl ? (
+                  <a href={viaUrl} target="_blank" rel="noopener" className="font-bold underline">{via.name}</a>
+                ) : (
+                  <b>{via.name}</b>
                 )}
               </dd>
             </>
