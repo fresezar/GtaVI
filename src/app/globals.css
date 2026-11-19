@@ -30,6 +30,10 @@
   --glass: rgba(14, 26, 44, 0.42);
   --glass-strong: rgba(12, 22, 38, 0.66);
   --glass-edge: rgba(255, 255, 255, 0.16);
+  /* Page header band (ViceBand): night sea in dark, sunset gradient in Vice. */
+  --band-bg: linear-gradient(120deg, #0d1d31 0%, #13304c 55%, #1b4560 100%);
+  --band-palm: #050d18;
+  --band-edge: rgba(255, 255, 255, 0.14);
   color-scheme: dark;
 }
 [data-theme="vice"] {
@@ -49,6 +53,9 @@
   --glass: rgba(46, 12, 66, 0.34);
   --glass-strong: rgba(40, 10, 58, 0.6);
   --glass-edge: rgba(255, 255, 255, 0.22);
+  --band-bg: linear-gradient(120deg, #3a1650 0%, #6d2c82 45%, #a0518f 80%, #c06a95 100%);
+  --band-palm: #2a0e3c;
+  --band-edge: rgba(255, 255, 255, 0.2);
 }
 
 /* Background only on html: a body background would paint over the fixed -z-10 backdrop scene. */

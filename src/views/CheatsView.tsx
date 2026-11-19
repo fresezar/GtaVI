@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PageBanner from "@/components/ui/PageBanner";
 import PageShell from "@/components/ui/PageShell";
-import { CHEATS, CHEAT_SOURCE } from "@/data/cheats";
+import Freshness from "@/components/ui/Freshness";
+import { CHEATS, CHEATS_CHECKED_AT, CHEAT_SOURCE } from "@/data/cheats";
 import CheatList from "@/features/cheats/CheatList";
 import { alternates, tFor, type Locale } from "@/i18n";
 
@@ -22,6 +23,9 @@ export default function CheatsView({ locale }: { locale: Locale }) {
   return (
     <PageShell locale={locale} path="/cheats">
       <PageBanner eyebrow={t("ui.nav.cheats")} title={t("ui.cheats.title")} lead={t("ui.cheats.lead", { total: CHEATS.length, known: KNOWN })} />
+      <p className="-mt-4 mb-6 min-h-[1rem] text-xs text-muted">
+        <Freshness date={CHEATS_CHECKED_AT} label="ui.fresh.checked" />
+      </p>
       <CheatList />
       <p className="mt-6 text-xs text-muted">
         {t("ui.cheats.credit")}{" "}

@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import { PARTNER_BY_SLUG } from "@/data/partners";
+import { PINS } from "@/data/pins";
+import { pinKey } from "@/i18n/keys";
 import { t as translate } from "@/i18n";
 import { categoryKey } from "@/i18n/keys";
 
@@ -39,6 +41,27 @@ interface Item {
 
 const catName = (id: string) => translate(categoryKey(id as never), undefined, "tr");
 
+/** Pin frame -> metres: the frame spans the 32768 px zoom-5 grid, 1 px = 1 m. */
+const METRES = 32768;
+const NEAR_M = 75;
+const metres = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y) * METRES;
+
+/** Existing pins and earlier suggestions within NEAR_M of this one: likely duplicates (only the first earns points). */
+function nearby(item: Item, others: Item[]) {
+  const out: string[] = [];
+  for (const p of PINS) {
+    if (!p.coord || p.id === item.pin_id) continue;
+    const d = metres(item, { x: p.coord[0], y: p.coord[1] });
+    if (d <= NEAR_M) out.push(`${translate(pinKey(p.id, "title"), undefined, "tr")} (pin, ${Math.round(d)} m)`);
+  }
+  for (const o of others) {
+    if (o.id === item.id || o.created_at >= item.created_at) continue;
+    const d = metres(item, o);
+    if (d <= NEAR_M) out.push(`${o.title} (öneri, ${Math.round(d)} m)`);
+  }
+  return out;
+}
+
 function Preview({ x, y }: { x: number; y: number }) {
   const GRID = 32768;
   const px = x * GRID;
@@ -70,7 +93,8 @@ function Preview({ x, y }: { x: number; y: number }) {
   );
 }
 
-function Row({ item, token, onDone }: { item: Item; token: string; onDone: () => void }) {
+function Row({ item, token, onDone, others }: { item: Item; token: string; onDone: () => void; others: Item[] }) {
+  const close = nearby(item, others);
   const [title, setTitle] = useState(item.title);
   const [categoryId, setCategoryId] = useState(item.category_id);
   const [name, setName] = useState(item.name ?? "");
@@ -99,6 +123,11 @@ function Row({ item, token, onDone }: { item: Item; token: string; onDone: () =>
           {item.id} · {new Date(item.created_at).toLocaleString("tr-TR")} · {item.locale.toUpperCase()}
           {item.pin_id && ` · ${item.pin_id}`}
         </p>
+        {close.length > 0 && (
+          <p className="border border-sun/60 p-2 text-xs text-sun">
+            <b>Yakında {close.length} kayıt var, kopya olabilir:</b> {close.slice(0, 5).join(" · ")}
+          </p>
+        )}
         {item.ref && (
           <p className="text-xs font-bold text-sun">Partner: {PARTNER_BY_SLUG.get(item.ref)?.name ?? item.ref}</p>
         )}
@@ -301,7 +330,7 @@ export default function AdminQueue() {
       ) : (
         <ul className="space-y-3">
           {items.map((it) => (
-            <Row key={`${it.id}-${it.status}`} item={it} token={token} onDone={() => void load()} />
+            <Row key={`${it.id}-${it.status}`} item={it} token={token} onDone={() => void load()} others={items} />
           ))}
         </ul>
       )}

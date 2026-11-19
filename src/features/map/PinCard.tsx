@@ -8,6 +8,7 @@ import { useHref, useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { copyText } from "@/lib/clipboard";
 import { formatTimestamp, parseSource } from "@/lib/source";
+import Freshness from "@/components/ui/Freshness";
 import { CATEGORY_COLORS } from "./tokens";
 
 interface Props {
@@ -89,6 +90,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
       <div className="space-y-3 p-4">
         <span className={`stamp ${STAMP[pin.status]}`}>{done ? t("ui.pin.stamp.found") : t(`ui.pin.status.${pin.status}`)}</span>
         <h2 className="font-display text-[28px] normal-case leading-none">{title}</h2>
+        <Freshness date={pin.updatedAt ?? pin.addedAt} label={pin.updatedAt ? "ui.fresh.updated" : "ui.fresh.added"} className="text-xs text-[#5a4f42]" />
 
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[13.5px]">
           {pin.region && (

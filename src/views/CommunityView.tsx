@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageShell from "@/components/ui/PageShell";
 import ViceBand from "@/components/ui/ViceBand";
 import { SITE } from "@/config/site";
-import { COMMUNITY_STATS, CONTRIBUTORS, RANKS, rankFor } from "@/data/community";
+import { COMMUNITY_STATS, CONTRIBUTORS, POINTS, RANKS, rankFor } from "@/data/community";
 import { ACTIVE_PARTNERS, partnerUrl } from "@/data/partners";
 import { alternates, localePath, tFor, type Locale } from "@/i18n";
 import { PartnerBadge } from "./PartnerView";
@@ -83,9 +83,12 @@ export default function CommunityView({ locale }: { locale: Locale }) {
                     <span className="font-display text-xl tabular-nums">{i + 1}</span>
                     <span className="min-w-0">
                       <span className="block truncate font-display text-xl normal-case">{c.name}</span>
-                      <Stars lit={rankFor(c.finds)} size={13} />
+                      <Stars lit={rankFor(c.points)} size={13} />
                     </span>
-                    <span className="text-right text-sm tabular-nums">{t("ui.community.board.finds", { count: c.finds })}</span>
+                    <span className="text-right text-sm tabular-nums">
+                      <b className="font-display text-lg">{t("ui.community.board.points", { count: c.points })}</b>
+                      <span className="block text-xs text-muted">{t("ui.community.board.finds", { count: c.finds })}</span>
+                    </span>
                   </li>
                 ))}
               </ol>
@@ -106,6 +109,23 @@ export default function CommunityView({ locale }: { locale: Locale }) {
         </div>
 
         <aside className="space-y-8">
+          <section className="card !p-5" aria-labelledby="points-title">
+            <p className="eyebrow">{t("ui.community.points.eyebrow")}</p>
+            <h2 id="points-title" className="section-title mt-1">{t("ui.community.points.title")}</h2>
+            <ul className="mt-4 divide-y divide-line border border-line">
+              {POINTS.map((p) => (
+                <li key={p.id} className={`flex items-center gap-3 px-3 py-2.5 ${p.live ? "bg-surface-2" : "opacity-60"}`}>
+                  <span className="flex-1 text-sm leading-snug">
+                    {t(`ui.community.points.${p.id}`)}
+                    {!p.live && <span className="ml-2 text-[11px] font-bold uppercase tracking-wider text-sun">{t("ui.community.points.soon")}</span>}
+                  </span>
+                  <span className="font-display text-xl tabular-nums text-accent">+{p.points}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs leading-relaxed text-muted">{t("ui.community.points.first")}</p>
+          </section>
+
           <section className="card !p-5" aria-labelledby="ranks-title">
             <p className="eyebrow">{t("ui.community.ranks.eyebrow")}</p>
             <h2 id="ranks-title" className="section-title mt-1">{t("ui.community.ranks.title")}</h2>

@@ -19,6 +19,9 @@ export interface Cheat {
   unlock: { en: string; tr: string } | null;
 }
 
-export const CHEATS = raw as Cheat[];
+const data = raw as { checkedAt: string; source: string; cheats: Cheat[] };
+export const CHEATS = data.cheats;
+/** Last time the list was compared with the source (npm run cheats:check -- --write). */
+export const CHEATS_CHECKED_AT = data.checkedAt;
 export const CHEAT_KINDS: readonly CheatKind[] = ["player", "weapons", "vehicles", "world"];
 export const CHEAT_SOURCE = { name: "GTA 6 Intel", url: "https://gta6intel.com/cheats" } as const;

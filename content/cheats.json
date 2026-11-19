@@ -1,1083 +1,1087 @@
-[
-  {
-    "id": "cheat_250000",
-    "slug": "money-250000",
-    "name": "$250,000",
-    "kind": "player",
-    "code": [
-      "up",
-      "right",
-      "down",
-      "left",
-      "up",
-      "left",
-      "down",
-      "right"
-    ],
-    "effect": {
-      "en": "$250,000 in cash, right away.",
-      "tr": "Anında 250.000 $ nakit."
+{
+  "checkedAt": "2026-11-19T22:57:57.493Z",
+  "source": "https://gta6intel.com/cheats",
+  "cheats": [
+    {
+      "id": "cheat_250000",
+      "slug": "money-250000",
+      "name": "$250,000",
+      "kind": "player",
+      "code": [
+        "up",
+        "right",
+        "down",
+        "left",
+        "up",
+        "left",
+        "down",
+        "right"
+      ],
+      "effect": {
+        "en": "$250,000 in cash, right away.",
+        "tr": "Anında 250.000 $ nakit."
+      },
+      "unlock": null
     },
-    "unlock": null
-  },
-  {
-    "id": "cheat_body_armor",
-    "slug": "body-armor",
-    "name": "Body Armor",
-    "kind": "player",
-    "code": [
-      "down",
-      "up",
-      "left",
-      "up",
-      "up",
-      "up",
-      "up",
-      "up",
-      "down",
-      "down"
-    ],
-    "effect": {
-      "en": "Full body armour in your loadout.",
-      "tr": "Ekipmanına tam zırh ekler."
+    {
+      "id": "cheat_body_armor",
+      "slug": "body-armor",
+      "name": "Body Armor",
+      "kind": "player",
+      "code": [
+        "down",
+        "up",
+        "left",
+        "up",
+        "up",
+        "up",
+        "up",
+        "up",
+        "down",
+        "down"
+      ],
+      "effect": {
+        "en": "Full body armour in your loadout.",
+        "tr": "Ekipmanına tam zırh ekler."
+      },
+      "unlock": {
+        "en": "Complete 100 workouts",
+        "tr": "100 antrenman tamamla"
+      }
     },
-    "unlock": {
-      "en": "Complete 100 workouts",
-      "tr": "100 antrenman tamamla"
+    {
+      "id": "cheat_raise_heat_level",
+      "slug": "raise-heat-level",
+      "name": "Raise Heat Level",
+      "kind": "player",
+      "code": [
+        "left",
+        "down",
+        "right",
+        "down",
+        "up",
+        "down",
+        "up"
+      ],
+      "effect": {
+        "en": "Raises your Heat across the whole map.",
+        "tr": "Tüm haritada Heat seviyeni yükseltir."
+      },
+      "unlock": {
+        "en": "Lose a three-star wanted level 25 times",
+        "tr": "Üç yıldızlı aramadan 25 kez kurtul"
+      }
+    },
+    {
+      "id": "cheat_raise_wanted_level",
+      "slug": "raise-wanted-level",
+      "name": "Raise Wanted Level",
+      "kind": "player",
+      "code": [
+        "left",
+        "down",
+        "right",
+        "down",
+        "up",
+        "right",
+        "up"
+      ],
+      "effect": {
+        "en": "Adds wanted stars.",
+        "tr": "Aranma yıldızı ekler."
+      },
+      "unlock": {
+        "en": "Lose a three-star wanted level 50 times",
+        "tr": "Üç yıldızlı aramadan 50 kez kurtul"
+      }
+    },
+    {
+      "id": "cheat_unlimited_focus",
+      "slug": "unlimited-focus",
+      "name": "Unlimited Focus",
+      "kind": "player",
+      "code": [
+        "down",
+        "up",
+        "up",
+        "down",
+        "up",
+        "down",
+        "up",
+        "down",
+        "up",
+        "right"
+      ],
+      "effect": {
+        "en": "Focus never drains.",
+        "tr": "Focus hiç bitmez."
+      },
+      "unlock": null
+    },
+    {
+      "id": "cheat_drunk",
+      "slug": "drunk",
+      "name": "Drunk",
+      "kind": "player",
+      "code": null,
+      "effect": {
+        "en": "You and your partner get drunk on the spot.",
+        "tr": "Sen ve partnerin anında sarhoş olursunuz."
+      },
+      "unlock": {
+        "en": "Spend $2,500 on alcohol",
+        "tr": "Alkole 2.500 $ harca"
+      }
+    },
+    {
+      "id": "cheat_no_fall_damage",
+      "slug": "no-fall-damage",
+      "name": "No Fall Damage",
+      "kind": "player",
+      "code": null,
+      "effect": {
+        "en": "Falls stop hurting you.",
+        "tr": "Düşünce hasar almazsın."
+      },
+      "unlock": {
+        "en": "Survive a 40-foot freefall 20 times",
+        "tr": "40 fit yüksekten serbest düşüşten 20 kez sağ çık"
+      }
+    },
+    {
+      "id": "cheat_parachute",
+      "slug": "parachute",
+      "name": "Parachute",
+      "kind": "player",
+      "code": null,
+      "effect": {
+        "en": "A parachute in your loadout.",
+        "tr": "Ekipmanına paraşüt ekler."
+      },
+      "unlock": {
+        "en": "Finish 50 skydives or BASE jumps from 300 feet or more",
+        "tr": "300 fit ya da daha yüksekten 50 paraşüt veya BASE atlayışı yap"
+      }
+    },
+    {
+      "id": "cheat_attack_force",
+      "slug": "attack-force",
+      "name": "Attack Force",
+      "kind": "weapons",
+      "code": [
+        "down",
+        "up",
+        "left",
+        "left",
+        "right",
+        "down",
+        "down",
+        "up",
+        "down"
+      ],
+      "effect": {
+        "en": "Bullets and melee hits launch people.",
+        "tr": "Kurşunlar ve yakın dövüş vuruşları insanları uçurur."
+      },
+      "unlock": null
+    },
+    {
+      "id": "cheat_exploding_balls",
+      "slug": "exploding-balls",
+      "name": "Exploding Balls",
+      "kind": "weapons",
+      "code": [
+        "down",
+        "up",
+        "left",
+        "left",
+        "right",
+        "down",
+        "down",
+        "up",
+        "right"
+      ],
+      "effect": {
+        "en": "Sports balls explode on impact.",
+        "tr": "Spor topları çarpınca patlar."
+      },
+      "unlock": {
+        "en": "Hit 20 enemies with explosive damage",
+        "tr": "20 düşmanı patlayıcı hasarıyla vur"
+      }
+    },
+    {
+      "id": "cheat_infinite_ammo",
+      "slug": "infinite-ammo",
+      "name": "Infinite Ammo",
+      "kind": "weapons",
+      "code": [
+        "down",
+        "up",
+        "right",
+        "down",
+        "left",
+        "left",
+        "up",
+        "down",
+        "down",
+        "down"
+      ],
+      "effect": {
+        "en": "Ammo never runs out.",
+        "tr": "Mermi hiç bitmez."
+      },
+      "unlock": {
+        "en": "Earn 25 silver-or-better medals at the shooting ranges",
+        "tr": "Atış poligonlarında 25 gümüş ya da daha iyi madalya al"
+      }
+    },
+    {
+      "id": "cheat_max_ammo",
+      "slug": "max-ammo",
+      "name": "Max Ammo",
+      "kind": "weapons",
+      "code": [
+        "down",
+        "up",
+        "right",
+        "down",
+        "left",
+        "left",
+        "up",
+        "up",
+        "down",
+        "left"
+      ],
+      "effect": {
+        "en": "Refills ammo for every weapon.",
+        "tr": "Tüm silahların mermisini doldurur."
+      },
+      "unlock": {
+        "en": "Earn 25 bronze-or-better medals at the shooting ranges",
+        "tr": "Atış poligonlarında 25 bronz ya da daha iyi madalya al"
+      }
+    },
+    {
+      "id": "cheat_no_reload",
+      "slug": "no-reload",
+      "name": "No Reload",
+      "kind": "weapons",
+      "code": [
+        "down",
+        "up",
+        "right",
+        "down",
+        "left",
+        "left",
+        "up",
+        "down",
+        "down",
+        "up"
+      ],
+      "effect": {
+        "en": "Fire without ever reloading.",
+        "tr": "Hiç şarjör değiştirmeden ateş et."
+      },
+      "unlock": {
+        "en": "Earn 25 gold medals at the shooting ranges",
+        "tr": "Atış poligonlarında 25 altın madalya al"
+      }
+    },
+    {
+      "id": "cheat_all_explosive_weapons",
+      "slug": "all-explosive-weapons",
+      "name": "All Explosive Weapons",
+      "kind": "weapons",
+      "code": null,
+      "effect": {
+        "en": "Every explosive weapon, fully loaded.",
+        "tr": "Tüm patlayıcı silahlar, dolu mermiyle."
+      },
+      "unlock": {
+        "en": "Throw 100 grenades",
+        "tr": "100 el bombası at"
+      }
+    },
+    {
+      "id": "cheat_exploding_bottles",
+      "slug": "exploding-bottles",
+      "name": "Exploding Bottles",
+      "kind": "weapons",
+      "code": null,
+      "effect": {
+        "en": "Bottles explode when they take damage.",
+        "tr": "Şişeler hasar alınca patlar."
+      },
+      "unlock": {
+        "en": "Throw 100 Molotovs",
+        "tr": "100 molotof at"
+      }
+    },
+    {
+      "id": "cheat_explosive_shotgun",
+      "slug": "explosive-shotgun",
+      "name": "Explosive Shotgun",
+      "kind": "weapons",
+      "code": null,
+      "effect": {
+        "en": "A Mason & Keen Shortstraw firing explosive shells.",
+        "tr": "Patlayıcı fişek atan Mason & Keen Shortstraw."
+      },
+      "unlock": {
+        "en": "Hit 100 enemies with explosive damage",
+        "tr": "100 düşmanı patlayıcı hasarıyla vur"
+      }
+    },
+    {
+      "id": "cheat_hauners_h_at",
+      "slug": "hauners-h-at",
+      "name": "Hauners H-AT",
+      "kind": "weapons",
+      "code": null,
+      "effect": {
+        "en": "A Hauners H-AT in your loadout.",
+        "tr": "Ekipmanına Hauners H-AT ekler."
+      },
+      "unlock": {
+        "en": "Blow up 100 vehicles",
+        "tr": "100 araç patlat"
+      }
+    },
+    {
+      "id": "cheat_incendiary_ammo",
+      "slug": "incendiary-ammo",
+      "name": "Incendiary Ammo",
+      "kind": "weapons",
+      "code": null,
+      "effect": {
+        "en": "Every bullet starts a fire.",
+        "tr": "Her kurşun yangın çıkarır."
+      },
+      "unlock": {
+        "en": "Burn 100 enemies with fire",
+        "tr": "100 düşmanı ateşle yak"
+      }
+    },
+    {
+      "id": "cheat_spawn_hvy_bulldozer",
+      "slug": "spawn-hvy-bulldozer",
+      "name": "Spawn HVY Bulldozer",
+      "kind": "vehicles",
+      "code": [
+        "left",
+        "up",
+        "right",
+        "down",
+        "left",
+        "right",
+        "right",
+        "down"
+      ],
+      "effect": {
+        "en": "Spawns a HVY Bulldozer.",
+        "tr": "HVY Bulldozer çağırır."
+      },
+      "unlock": {
+        "en": "Discover the HVY Bulldozer (it then shows in the Progress menu)",
+        "tr": "HVY Bulldozer'ı keşfet (sonra İlerleme menüsünde görünür)"
+      }
+    },
+    {
+      "id": "cheat_spawn_mtl_pumper",
+      "slug": "spawn-mtl-pumper",
+      "name": "Spawn MTL Pumper",
+      "kind": "vehicles",
+      "code": [
+        "left",
+        "up",
+        "right",
+        "down",
+        "left",
+        "right",
+        "right",
+        "up"
+      ],
+      "effect": {
+        "en": "An MTL Pumper fire truck.",
+        "tr": "MTL Pumper itfaiye aracı."
+      },
+      "unlock": {
+        "en": "Not clear yet: guides differ on what unlocks it",
+        "tr": "Belli değil: rehberler farklı şey söylüyor"
+      }
+    },
+    {
+      "id": "cheat_spawn_maibatsu_boomazoom",
+      "slug": "spawn-maibatsu-boomazoom",
+      "name": "Spawn Maibatsu Boomazoom",
+      "kind": "vehicles",
+      "code": [
+        "left",
+        "up",
+        "right",
+        "down",
+        "left",
+        "left",
+        "up",
+        "left"
+      ],
+      "effect": {
+        "en": "A Maibatsu Boomazoom scooter.",
+        "tr": "Maibatsu Boomazoom scooter."
+      },
+      "unlock": {
+        "en": "Complete 5 shopping challenges",
+        "tr": "5 alışveriş görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_vehicle_force",
+      "slug": "vehicle-force",
+      "name": "Vehicle Force",
+      "kind": "vehicles",
+      "code": [
+        "down",
+        "up",
+        "left",
+        "left",
+        "right",
+        "down",
+        "left",
+        "up",
+        "down"
+      ],
+      "effect": {
+        "en": "Anyone you hit with a vehicle goes flying.",
+        "tr": "Araçla çarptığın herkes uçar."
+      },
+      "unlock": {
+        "en": "Kill 25 enemies with a vehicle",
+        "tr": "Araçla 25 düşman öldür"
+      }
+    },
+    {
+      "id": "cheat_repair_vehicle",
+      "slug": "repair-vehicle",
+      "name": "Repair Vehicle",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Fully repairs the vehicle you're in.",
+        "tr": "Bindiğin aracı tamamen onarır."
+      },
+      "unlock": {
+        "en": "Win 10 races at Gellhorn Raceway, Thrillbilly Mud Club and Boone Speedway",
+        "tr": "Gellhorn Raceway, Thrillbilly Mud Club ve Boone Speedway'de 10 yarış kazan"
+      }
+    },
+    {
+      "id": "cheat_spawn_65_vapid_dominator",
+      "slug": "spawn-65-vapid-dominator",
+      "name": "Spawn '65 Vapid Dominator",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a '65 Vapid Dominator.",
+        "tr": "'65 Vapid Dominator çağırır."
+      },
+      "unlock": {
+        "en": "Complete every fitness challenge",
+        "tr": "Tüm fitness görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_airboat_09",
+      "slug": "spawn-airboat-09",
+      "name": "Spawn Airboat 09",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Airboat 09.",
+        "tr": "Airboat 09 çağırır."
+      },
+      "unlock": {
+        "en": "Complete 5 survival challenges",
+        "tr": "5 hayatta kalma görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_bravado_banshee",
+      "slug": "spawn-bravado-banshee",
+      "name": "Spawn Bravado Banshee",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Bravado Banshee.",
+        "tr": "Bravado Banshee çağırır."
+      },
+      "unlock": {
+        "en": "Complete every combat challenge",
+        "tr": "Tüm dövüş görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_brimstone_golfer",
+      "slug": "spawn-brimstone-golfer",
+      "name": "Spawn Brimstone Golfer",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Brimstone Golfer.",
+        "tr": "Brimstone Golfer çağırır."
+      },
+      "unlock": {
+        "en": "Complete every sports challenge",
+        "tr": "Tüm spor görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_hauners_p_996_lazer",
+      "slug": "spawn-hauners-p-996-lazer",
+      "name": "Spawn Hauners P-996 Lazer",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "A Hauners P-996 Lazer jet.",
+        "tr": "Hauners P-996 Lazer jeti."
+      },
+      "unlock": {
+        "en": "Complete every challenge",
+        "tr": "Tüm görevleri tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_hauners_rhino_tank",
+      "slug": "spawn-hauners-rhino-tank",
+      "name": "Spawn Hauners Rhino Tank",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Hauners Rhino Tank.",
+        "tr": "Hauners Rhino Tank çağırır."
+      },
+      "unlock": {
+        "en": "Complete every survival challenge",
+        "tr": "Tüm hayatta kalma görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_inflatable_flamingo",
+      "slug": "spawn-inflatable-flamingo",
+      "name": "Spawn Inflatable Flamingo",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "An inflatable flamingo.",
+        "tr": "Şişme flamingo."
+      },
+      "unlock": {
+        "en": "Destroy 50 cocaine flamingos",
+        "tr": "50 kokain flamingosu yok et"
+      }
+    },
+    {
+      "id": "cheat_spawn_interstate_ambulance",
+      "slug": "spawn-interstate-ambulance",
+      "name": "Spawn Interstate Ambulance",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Interstate Ambulance.",
+        "tr": "Interstate Ambulance çağırır."
+      },
+      "unlock": {
+        "en": "Discover the Interstate Ambulance in the Progress menu",
+        "tr": "Interstate Ambulance'ı keşfet (İlerleme menüsünde)"
+      }
+    },
+    {
+      "id": "cheat_spawn_lapwing_mallard",
+      "slug": "spawn-lapwing-mallard",
+      "name": "Spawn Lapwing Mallard",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Lapwing Mallard.",
+        "tr": "Lapwing Mallard çağırır."
+      },
+      "unlock": {
+        "en": "Complete 5 vehicle challenges",
+        "tr": "5 araç görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_maibatsu_sanchez",
+      "slug": "spawn-maibatsu-sanchez",
+      "name": "Spawn Maibatsu Sanchez",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Maibatsu Sanchez.",
+        "tr": "Maibatsu Sanchez çağırır."
+      },
+      "unlock": {
+        "en": "Complete 5 criminal challenges",
+        "tr": "5 suç görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_nagasaki_carbon_rs",
+      "slug": "spawn-nagasaki-carbon-rs",
+      "name": "Spawn Nagasaki Carbon RS",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Nagasaki Carbon RS.",
+        "tr": "Nagasaki Carbon RS çağırır."
+      },
+      "unlock": {
+        "en": "Complete every exploration challenge",
+        "tr": "Tüm keşif görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_nagasaki_sea_sparrow",
+      "slug": "spawn-nagasaki-sea-sparrow",
+      "name": "Spawn Nagasaki Sea Sparrow",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "A Nagasaki Sea Sparrow helicopter.",
+        "tr": "Nagasaki Sea Sparrow helikopteri."
+      },
+      "unlock": {
+        "en": "Complete 5 exploration challenges",
+        "tr": "5 keşif görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_progen_emerus",
+      "slug": "spawn-progen-emerus",
+      "name": "Spawn Progen Emerus",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Progen Emerus.",
+        "tr": "Progen Emerus çağırır."
+      },
+      "unlock": {
+        "en": "Complete every vehicle challenge",
+        "tr": "Tüm araç görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_speeder_700_gt",
+      "slug": "spawn-speeder-700-gt",
+      "name": "Spawn Speeder 700 GT",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Speeder 700 GT.",
+        "tr": "Speeder 700 GT çağırır."
+      },
+      "unlock": {
+        "en": "Complete 5 combat challenges",
+        "tr": "5 dövüş görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_truffade_thrax",
+      "slug": "spawn-truffade-thrax",
+      "name": "Spawn Truffade Thrax",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Truffade Thrax.",
+        "tr": "Truffade Thrax çağırır."
+      },
+      "unlock": {
+        "en": "Complete every shopping challenge",
+        "tr": "Tüm alışveriş görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_tuff_bmx",
+      "slug": "spawn-tuff-bmx",
+      "name": "Spawn Tuff BMX",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Tuff BMX.",
+        "tr": "Tuff BMX çağırır."
+      },
+      "unlock": {
+        "en": "Complete 5 fitness challenges",
+        "tr": "5 fitness görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_vapid_stanier_g2_taxi",
+      "slug": "spawn-vapid-stanier-g2-taxi",
+      "name": "Spawn Vapid Stanier G2 Taxi",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "A Vapid Stanier G2 taxi.",
+        "tr": "Vapid Stanier G2 taksi."
+      },
+      "unlock": {
+        "en": "Complete 5 sports challenges",
+        "tr": "5 spor görevi tamamla"
+      }
+    },
+    {
+      "id": "cheat_spawn_western_zombie_bobber",
+      "slug": "spawn-western-zombie-bobber",
+      "name": "Spawn Western Zombie Bobber",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Spawns a Western Zombie Bobber.",
+        "tr": "Western Zombie Bobber çağırır."
+      },
+      "unlock": {
+        "en": "Complete every criminal challenge",
+        "tr": "Tüm suç görevlerini tamamla"
+      }
+    },
+    {
+      "id": "cheat_unlimited_nitrous",
+      "slug": "unlimited-nitrous",
+      "name": "Unlimited Nitrous",
+      "kind": "vehicles",
+      "code": null,
+      "effect": {
+        "en": "Vehicles never run out of nitrous or fuel.",
+        "tr": "Araçlarda nitro ve yakıt hiç bitmez."
+      },
+      "unlock": {
+        "en": "Complete 50 stunt jumps",
+        "tr": "50 akrobatik atlayış yap"
+      }
+    },
+    {
+      "id": "cheat_cataclysm",
+      "slug": "cataclysm",
+      "name": "Cataclysm",
+      "kind": "world",
+      "code": [
+        "down",
+        "down",
+        "up",
+        "right",
+        "right",
+        "up",
+        "left",
+        "left",
+        "right",
+        "right"
+      ],
+      "effect": {
+        "en": "Screen filter: thick, murky smoke.",
+        "tr": "Ekran filtresi: yoğun, bulanık duman."
+      },
+      "unlock": {
+        "en": "Discover Martha's Vamos (it then shows in the Progress menu)",
+        "tr": "Martha's Vamos'u keşfet (sonra İlerleme menüsünde görünür)"
+      }
+    },
+    {
+      "id": "cheat_cycle_weather",
+      "slug": "cycle-weather",
+      "name": "Cycle Weather",
+      "kind": "world",
+      "code": [
+        "down",
+        "right",
+        "up",
+        "down",
+        "right",
+        "up",
+        "right"
+      ],
+      "effect": {
+        "en": "Switches to the next weather.",
+        "tr": "Bir sonraki hava durumuna geçer."
+      },
+      "unlock": null
+    },
+    {
+      "id": "cheat_dollhouse",
+      "slug": "dollhouse",
+      "name": "Dollhouse",
+      "kind": "world",
+      "code": [
+        "down",
+        "down",
+        "up",
+        "right",
+        "right",
+        "up",
+        "left",
+        "left",
+        "down",
+        "right"
+      ],
+      "effect": {
+        "en": "Screen filter: vivid colours, narrow frame.",
+        "tr": "Ekran filtresi: canlı renkler, dar kadraj."
+      },
+      "unlock": {
+        "en": "Spend 8 hours with your partner",
+        "tr": "Partnerinle 8 saat geçir"
+      }
+    },
+    {
+      "id": "cheat_faded_glory",
+      "slug": "faded-glory",
+      "name": "Faded Glory",
+      "kind": "world",
+      "code": [
+        "down",
+        "down",
+        "up",
+        "right",
+        "right",
+        "up",
+        "left",
+        "left",
+        "left",
+        "right"
+      ],
+      "effect": {
+        "en": "Screen filter: old colour CRT TV.",
+        "tr": "Ekran filtresi: eski renkli tüplü TV."
+      },
+      "unlock": {
+        "en": "Rob 50 stores with your partner",
+        "tr": "Partnerinle 50 dükkân soy"
+      }
+    },
+    {
+      "id": "cheat_bubblegum",
+      "slug": "bubblegum",
+      "name": "Bubblegum",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "The world turns purple and yellow, with sparkles.",
+        "tr": "Dünya mor ve sarıya döner, parıltılarla."
+      },
+      "unlock": {
+        "en": "Find all 24 Vice City Flamingos collectible cards",
+        "tr": "24 Vice City Flamingos kartının hepsini bul"
+      }
+    },
+    {
+      "id": "cheat_dark_mirror",
+      "slug": "dark-mirror",
+      "name": "Dark Mirror",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "The world turns upside down and black.",
+        "tr": "Dünya ters döner ve kararır."
+      },
+      "unlock": {
+        "en": "Make $500,000 selling vehicles",
+        "tr": "Araç satarak 500.000 $ kazan"
+      }
+    },
+    {
+      "id": "cheat_fast_forward",
+      "slug": "fast-forward",
+      "name": "Fast Forward",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Motion blur and faster clouds.",
+        "tr": "Hareket bulanıklığı ve hızlı akan bulutlar."
+      },
+      "unlock": {
+        "en": "Complete 50 meditations",
+        "tr": "50 meditasyon tamamla"
+      }
+    },
+    {
+      "id": "cheat_fisheye",
+      "slug": "fisheye",
+      "name": "Fisheye",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: fisheye lens.",
+        "tr": "Ekran filtresi: balıkgözü lens."
+      },
+      "unlock": {
+        "en": "Catch 100 fish",
+        "tr": "100 balık tut"
+      }
+    },
+    {
+      "id": "cheat_golden_hour",
+      "slug": "golden-hour",
+      "name": "Golden Hour",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: golden widescreen.",
+        "tr": "Ekran filtresi: altın tonlu geniş ekran."
+      },
+      "unlock": {
+        "en": "Spend 4 hours holding hands",
+        "tr": "4 saat el ele yürü"
+      }
+    },
+    {
+      "id": "cheat_hellscape",
+      "slug": "hellscape",
+      "name": "Hellscape",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "The world turns red and orange, with heat haze.",
+        "tr": "Dünya kırmızı ve turuncuya döner, sıcak buğusuyla."
+      },
+      "unlock": {
+        "en": "Steal 100 police vehicles",
+        "tr": "100 polis aracı çal"
+      }
+    },
+    {
+      "id": "cheat_migraine",
+      "slug": "migraine",
+      "name": "Migraine",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: blurred and warped.",
+        "tr": "Ekran filtresi: bulanık ve çarpık."
+      },
+      "unlock": {
+        "en": "Survive 6 minutes at a 6-star wanted level",
+        "tr": "6 yıldızlı aramada 6 dakika hayatta kal"
+      }
+    },
+    {
+      "id": "cheat_move_time_forward",
+      "slug": "move-time-forward",
+      "name": "Move Time Forward",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Skips the clock ahead.",
+        "tr": "Saati ileri sarar."
+      },
+      "unlock": {
+        "en": "Find 10 collectible watches",
+        "tr": "10 koleksiyon saati bul"
+      }
+    },
+    {
+      "id": "cheat_neon_jungle",
+      "slug": "neon-jungle",
+      "name": "Neon Jungle",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Neon highlights everywhere.",
+        "tr": "Her yerde neon parıltılar."
+      },
+      "unlock": {
+        "en": "Discover all 16 Girlypop vehicles",
+        "tr": "16 Girlypop aracının hepsini keşfet"
+      }
+    },
+    {
+      "id": "cheat_pause_time_of_day",
+      "slug": "pause-time-of-day",
+      "name": "Pause Time of Day",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Freezes the time of day.",
+        "tr": "Günün saatini dondurur."
+      },
+      "unlock": {
+        "en": "Find 20 collectible watches",
+        "tr": "20 koleksiyon saati bul"
+      }
+    },
+    {
+      "id": "cheat_pinhole",
+      "slug": "pinhole",
+      "name": "Pinhole",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: pinhole camera.",
+        "tr": "Ekran filtresi: iğne deliği kamera."
+      },
+      "unlock": {
+        "en": "Clear 25 gang operations with your partner",
+        "tr": "Partnerinle 25 çete operasyonu temizle"
+      }
+    },
+    {
+      "id": "cheat_pixel_art",
+      "slug": "pixel-art",
+      "name": "Pixel Art",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: pixelated.",
+        "tr": "Ekran filtresi: pikselli."
+      },
+      "unlock": {
+        "en": "Make $250,000 selling collectibles",
+        "tr": "Koleksiyon eşyası satarak 250.000 $ kazan"
+      }
+    },
+    {
+      "id": "cheat_powdered_sugar",
+      "slug": "powdered-sugar",
+      "name": "Powdered Sugar",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "The world turns white, with sparkles.",
+        "tr": "Dünya beyaza döner, parıltılarla."
+      },
+      "unlock": {
+        "en": "Scan all the space debris with WAiNK",
+        "tr": "WAiNK ile tüm uzay enkazını tara"
+      }
+    },
+    {
+      "id": "cheat_videotape",
+      "slug": "videotape",
+      "name": "Videotape",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: old videotape.",
+        "tr": "Ekran filtresi: eski video kaseti."
+      },
+      "unlock": {
+        "en": "Complete 50 activities with your partner",
+        "tr": "Partnerinle 50 aktivite tamamla"
+      }
+    },
+    {
+      "id": "cheat_yesteryear",
+      "slug": "yesteryear",
+      "name": "Yesteryear",
+      "kind": "world",
+      "code": null,
+      "effect": {
+        "en": "Screen filter: black-and-white old TV.",
+        "tr": "Ekran filtresi: siyah beyaz eski TV."
+      },
+      "unlock": {
+        "en": "Discover the Ridgway",
+        "tr": "Ridgway'i keşfet"
+      }
     }
-  },
-  {
-    "id": "cheat_raise_heat_level",
-    "slug": "raise-heat-level",
-    "name": "Raise Heat Level",
-    "kind": "player",
-    "code": [
-      "left",
-      "down",
-      "right",
-      "down",
-      "up",
-      "down",
-      "up"
-    ],
-    "effect": {
-      "en": "Raises your Heat across the whole map.",
-      "tr": "Tüm haritada Heat seviyeni yükseltir."
-    },
-    "unlock": {
-      "en": "Lose a three-star wanted level 25 times",
-      "tr": "Üç yıldızlı aramadan 25 kez kurtul"
-    }
-  },
-  {
-    "id": "cheat_raise_wanted_level",
-    "slug": "raise-wanted-level",
-    "name": "Raise Wanted Level",
-    "kind": "player",
-    "code": [
-      "left",
-      "down",
-      "right",
-      "down",
-      "up",
-      "right",
-      "up"
-    ],
-    "effect": {
-      "en": "Adds wanted stars.",
-      "tr": "Aranma yıldızı ekler."
-    },
-    "unlock": {
-      "en": "Lose a three-star wanted level 50 times",
-      "tr": "Üç yıldızlı aramadan 50 kez kurtul"
-    }
-  },
-  {
-    "id": "cheat_unlimited_focus",
-    "slug": "unlimited-focus",
-    "name": "Unlimited Focus",
-    "kind": "player",
-    "code": [
-      "down",
-      "up",
-      "up",
-      "down",
-      "up",
-      "down",
-      "up",
-      "down",
-      "up",
-      "right"
-    ],
-    "effect": {
-      "en": "Focus never drains.",
-      "tr": "Focus hiç bitmez."
-    },
-    "unlock": null
-  },
-  {
-    "id": "cheat_drunk",
-    "slug": "drunk",
-    "name": "Drunk",
-    "kind": "player",
-    "code": null,
-    "effect": {
-      "en": "You and your partner get drunk on the spot.",
-      "tr": "Sen ve partnerin anında sarhoş olursunuz."
-    },
-    "unlock": {
-      "en": "Spend $2,500 on alcohol",
-      "tr": "Alkole 2.500 $ harca"
-    }
-  },
-  {
-    "id": "cheat_no_fall_damage",
-    "slug": "no-fall-damage",
-    "name": "No Fall Damage",
-    "kind": "player",
-    "code": null,
-    "effect": {
-      "en": "Falls stop hurting you.",
-      "tr": "Düşünce hasar almazsın."
-    },
-    "unlock": {
-      "en": "Survive a 40-foot freefall 20 times",
-      "tr": "40 fit yüksekten serbest düşüşten 20 kez sağ çık"
-    }
-  },
-  {
-    "id": "cheat_parachute",
-    "slug": "parachute",
-    "name": "Parachute",
-    "kind": "player",
-    "code": null,
-    "effect": {
-      "en": "A parachute in your loadout.",
-      "tr": "Ekipmanına paraşüt ekler."
-    },
-    "unlock": {
-      "en": "Finish 50 skydives or BASE jumps from 300 feet or more",
-      "tr": "300 fit ya da daha yüksekten 50 paraşüt veya BASE atlayışı yap"
-    }
-  },
-  {
-    "id": "cheat_attack_force",
-    "slug": "attack-force",
-    "name": "Attack Force",
-    "kind": "weapons",
-    "code": [
-      "down",
-      "up",
-      "left",
-      "left",
-      "right",
-      "down",
-      "down",
-      "up",
-      "down"
-    ],
-    "effect": {
-      "en": "Bullets and melee hits launch people.",
-      "tr": "Kurşunlar ve yakın dövüş vuruşları insanları uçurur."
-    },
-    "unlock": null
-  },
-  {
-    "id": "cheat_exploding_balls",
-    "slug": "exploding-balls",
-    "name": "Exploding Balls",
-    "kind": "weapons",
-    "code": [
-      "down",
-      "up",
-      "left",
-      "left",
-      "right",
-      "down",
-      "down",
-      "up",
-      "right"
-    ],
-    "effect": {
-      "en": "Sports balls explode on impact.",
-      "tr": "Spor topları çarpınca patlar."
-    },
-    "unlock": {
-      "en": "Hit 20 enemies with explosive damage",
-      "tr": "20 düşmanı patlayıcı hasarıyla vur"
-    }
-  },
-  {
-    "id": "cheat_infinite_ammo",
-    "slug": "infinite-ammo",
-    "name": "Infinite Ammo",
-    "kind": "weapons",
-    "code": [
-      "down",
-      "up",
-      "right",
-      "down",
-      "left",
-      "left",
-      "up",
-      "down",
-      "down",
-      "down"
-    ],
-    "effect": {
-      "en": "Ammo never runs out.",
-      "tr": "Mermi hiç bitmez."
-    },
-    "unlock": {
-      "en": "Earn 25 silver-or-better medals at the shooting ranges",
-      "tr": "Atış poligonlarında 25 gümüş ya da daha iyi madalya al"
-    }
-  },
-  {
-    "id": "cheat_max_ammo",
-    "slug": "max-ammo",
-    "name": "Max Ammo",
-    "kind": "weapons",
-    "code": [
-      "down",
-      "up",
-      "right",
-      "down",
-      "left",
-      "left",
-      "up",
-      "up",
-      "down",
-      "left"
-    ],
-    "effect": {
-      "en": "Refills ammo for every weapon.",
-      "tr": "Tüm silahların mermisini doldurur."
-    },
-    "unlock": {
-      "en": "Earn 25 bronze-or-better medals at the shooting ranges",
-      "tr": "Atış poligonlarında 25 bronz ya da daha iyi madalya al"
-    }
-  },
-  {
-    "id": "cheat_no_reload",
-    "slug": "no-reload",
-    "name": "No Reload",
-    "kind": "weapons",
-    "code": [
-      "down",
-      "up",
-      "right",
-      "down",
-      "left",
-      "left",
-      "up",
-      "down",
-      "down",
-      "up"
-    ],
-    "effect": {
-      "en": "Fire without ever reloading.",
-      "tr": "Hiç şarjör değiştirmeden ateş et."
-    },
-    "unlock": {
-      "en": "Earn 25 gold medals at the shooting ranges",
-      "tr": "Atış poligonlarında 25 altın madalya al"
-    }
-  },
-  {
-    "id": "cheat_all_explosive_weapons",
-    "slug": "all-explosive-weapons",
-    "name": "All Explosive Weapons",
-    "kind": "weapons",
-    "code": null,
-    "effect": {
-      "en": "Every explosive weapon, fully loaded.",
-      "tr": "Tüm patlayıcı silahlar, dolu mermiyle."
-    },
-    "unlock": {
-      "en": "Throw 100 grenades",
-      "tr": "100 el bombası at"
-    }
-  },
-  {
-    "id": "cheat_exploding_bottles",
-    "slug": "exploding-bottles",
-    "name": "Exploding Bottles",
-    "kind": "weapons",
-    "code": null,
-    "effect": {
-      "en": "Bottles explode when they take damage.",
-      "tr": "Şişeler hasar alınca patlar."
-    },
-    "unlock": {
-      "en": "Throw 100 Molotovs",
-      "tr": "100 molotof at"
-    }
-  },
-  {
-    "id": "cheat_explosive_shotgun",
-    "slug": "explosive-shotgun",
-    "name": "Explosive Shotgun",
-    "kind": "weapons",
-    "code": null,
-    "effect": {
-      "en": "A Mason & Keen Shortstraw firing explosive shells.",
-      "tr": "Patlayıcı fişek atan Mason & Keen Shortstraw."
-    },
-    "unlock": {
-      "en": "Hit 100 enemies with explosive damage",
-      "tr": "100 düşmanı patlayıcı hasarıyla vur"
-    }
-  },
-  {
-    "id": "cheat_hauners_h_at",
-    "slug": "hauners-h-at",
-    "name": "Hauners H-AT",
-    "kind": "weapons",
-    "code": null,
-    "effect": {
-      "en": "A Hauners H-AT in your loadout.",
-      "tr": "Ekipmanına Hauners H-AT ekler."
-    },
-    "unlock": {
-      "en": "Blow up 100 vehicles",
-      "tr": "100 araç patlat"
-    }
-  },
-  {
-    "id": "cheat_incendiary_ammo",
-    "slug": "incendiary-ammo",
-    "name": "Incendiary Ammo",
-    "kind": "weapons",
-    "code": null,
-    "effect": {
-      "en": "Every bullet starts a fire.",
-      "tr": "Her kurşun yangın çıkarır."
-    },
-    "unlock": {
-      "en": "Burn 100 enemies with fire",
-      "tr": "100 düşmanı ateşle yak"
-    }
-  },
-  {
-    "id": "cheat_spawn_hvy_bulldozer",
-    "slug": "spawn-hvy-bulldozer",
-    "name": "Spawn HVY Bulldozer",
-    "kind": "vehicles",
-    "code": [
-      "left",
-      "up",
-      "right",
-      "down",
-      "left",
-      "right",
-      "right",
-      "down"
-    ],
-    "effect": {
-      "en": "Spawns a HVY Bulldozer.",
-      "tr": "HVY Bulldozer çağırır."
-    },
-    "unlock": {
-      "en": "Discover the HVY Bulldozer (it then shows in the Progress menu)",
-      "tr": "HVY Bulldozer'ı keşfet (sonra İlerleme menüsünde görünür)"
-    }
-  },
-  {
-    "id": "cheat_spawn_mtl_pumper",
-    "slug": "spawn-mtl-pumper",
-    "name": "Spawn MTL Pumper",
-    "kind": "vehicles",
-    "code": [
-      "left",
-      "up",
-      "right",
-      "down",
-      "left",
-      "right",
-      "right",
-      "up"
-    ],
-    "effect": {
-      "en": "An MTL Pumper fire truck.",
-      "tr": "MTL Pumper itfaiye aracı."
-    },
-    "unlock": {
-      "en": "Not clear yet: guides differ on what unlocks it",
-      "tr": "Belli değil: rehberler farklı şey söylüyor"
-    }
-  },
-  {
-    "id": "cheat_spawn_maibatsu_boomazoom",
-    "slug": "spawn-maibatsu-boomazoom",
-    "name": "Spawn Maibatsu Boomazoom",
-    "kind": "vehicles",
-    "code": [
-      "left",
-      "up",
-      "right",
-      "down",
-      "left",
-      "left",
-      "up",
-      "left"
-    ],
-    "effect": {
-      "en": "A Maibatsu Boomazoom scooter.",
-      "tr": "Maibatsu Boomazoom scooter."
-    },
-    "unlock": {
-      "en": "Complete 5 shopping challenges",
-      "tr": "5 alışveriş görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_vehicle_force",
-    "slug": "vehicle-force",
-    "name": "Vehicle Force",
-    "kind": "vehicles",
-    "code": [
-      "down",
-      "up",
-      "left",
-      "left",
-      "right",
-      "down",
-      "left",
-      "up",
-      "down"
-    ],
-    "effect": {
-      "en": "Anyone you hit with a vehicle goes flying.",
-      "tr": "Araçla çarptığın herkes uçar."
-    },
-    "unlock": {
-      "en": "Kill 25 enemies with a vehicle",
-      "tr": "Araçla 25 düşman öldür"
-    }
-  },
-  {
-    "id": "cheat_repair_vehicle",
-    "slug": "repair-vehicle",
-    "name": "Repair Vehicle",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Fully repairs the vehicle you're in.",
-      "tr": "Bindiğin aracı tamamen onarır."
-    },
-    "unlock": {
-      "en": "Win 10 races at Gellhorn Raceway, Thrillbilly Mud Club and Boone Speedway",
-      "tr": "Gellhorn Raceway, Thrillbilly Mud Club ve Boone Speedway'de 10 yarış kazan"
-    }
-  },
-  {
-    "id": "cheat_spawn_65_vapid_dominator",
-    "slug": "spawn-65-vapid-dominator",
-    "name": "Spawn '65 Vapid Dominator",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a '65 Vapid Dominator.",
-      "tr": "'65 Vapid Dominator çağırır."
-    },
-    "unlock": {
-      "en": "Complete every fitness challenge",
-      "tr": "Tüm fitness görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_airboat_09",
-    "slug": "spawn-airboat-09",
-    "name": "Spawn Airboat 09",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Airboat 09.",
-      "tr": "Airboat 09 çağırır."
-    },
-    "unlock": {
-      "en": "Complete 5 survival challenges",
-      "tr": "5 hayatta kalma görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_bravado_banshee",
-    "slug": "spawn-bravado-banshee",
-    "name": "Spawn Bravado Banshee",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Bravado Banshee.",
-      "tr": "Bravado Banshee çağırır."
-    },
-    "unlock": {
-      "en": "Complete every combat challenge",
-      "tr": "Tüm dövüş görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_brimstone_golfer",
-    "slug": "spawn-brimstone-golfer",
-    "name": "Spawn Brimstone Golfer",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Brimstone Golfer.",
-      "tr": "Brimstone Golfer çağırır."
-    },
-    "unlock": {
-      "en": "Complete every sports challenge",
-      "tr": "Tüm spor görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_hauners_p_996_lazer",
-    "slug": "spawn-hauners-p-996-lazer",
-    "name": "Spawn Hauners P-996 Lazer",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "A Hauners P-996 Lazer jet.",
-      "tr": "Hauners P-996 Lazer jeti."
-    },
-    "unlock": {
-      "en": "Complete every challenge",
-      "tr": "Tüm görevleri tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_hauners_rhino_tank",
-    "slug": "spawn-hauners-rhino-tank",
-    "name": "Spawn Hauners Rhino Tank",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Hauners Rhino Tank.",
-      "tr": "Hauners Rhino Tank çağırır."
-    },
-    "unlock": {
-      "en": "Complete every survival challenge",
-      "tr": "Tüm hayatta kalma görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_inflatable_flamingo",
-    "slug": "spawn-inflatable-flamingo",
-    "name": "Spawn Inflatable Flamingo",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "An inflatable flamingo.",
-      "tr": "Şişme flamingo."
-    },
-    "unlock": {
-      "en": "Destroy 50 cocaine flamingos",
-      "tr": "50 kokain flamingosu yok et"
-    }
-  },
-  {
-    "id": "cheat_spawn_interstate_ambulance",
-    "slug": "spawn-interstate-ambulance",
-    "name": "Spawn Interstate Ambulance",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Interstate Ambulance.",
-      "tr": "Interstate Ambulance çağırır."
-    },
-    "unlock": {
-      "en": "Discover the Interstate Ambulance in the Progress menu",
-      "tr": "Interstate Ambulance'ı keşfet (İlerleme menüsünde)"
-    }
-  },
-  {
-    "id": "cheat_spawn_lapwing_mallard",
-    "slug": "spawn-lapwing-mallard",
-    "name": "Spawn Lapwing Mallard",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Lapwing Mallard.",
-      "tr": "Lapwing Mallard çağırır."
-    },
-    "unlock": {
-      "en": "Complete 5 vehicle challenges",
-      "tr": "5 araç görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_maibatsu_sanchez",
-    "slug": "spawn-maibatsu-sanchez",
-    "name": "Spawn Maibatsu Sanchez",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Maibatsu Sanchez.",
-      "tr": "Maibatsu Sanchez çağırır."
-    },
-    "unlock": {
-      "en": "Complete 5 criminal challenges",
-      "tr": "5 suç görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_nagasaki_carbon_rs",
-    "slug": "spawn-nagasaki-carbon-rs",
-    "name": "Spawn Nagasaki Carbon RS",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Nagasaki Carbon RS.",
-      "tr": "Nagasaki Carbon RS çağırır."
-    },
-    "unlock": {
-      "en": "Complete every exploration challenge",
-      "tr": "Tüm keşif görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_nagasaki_sea_sparrow",
-    "slug": "spawn-nagasaki-sea-sparrow",
-    "name": "Spawn Nagasaki Sea Sparrow",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "A Nagasaki Sea Sparrow helicopter.",
-      "tr": "Nagasaki Sea Sparrow helikopteri."
-    },
-    "unlock": {
-      "en": "Complete 5 exploration challenges",
-      "tr": "5 keşif görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_progen_emerus",
-    "slug": "spawn-progen-emerus",
-    "name": "Spawn Progen Emerus",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Progen Emerus.",
-      "tr": "Progen Emerus çağırır."
-    },
-    "unlock": {
-      "en": "Complete every vehicle challenge",
-      "tr": "Tüm araç görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_speeder_700_gt",
-    "slug": "spawn-speeder-700-gt",
-    "name": "Spawn Speeder 700 GT",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Speeder 700 GT.",
-      "tr": "Speeder 700 GT çağırır."
-    },
-    "unlock": {
-      "en": "Complete 5 combat challenges",
-      "tr": "5 dövüş görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_truffade_thrax",
-    "slug": "spawn-truffade-thrax",
-    "name": "Spawn Truffade Thrax",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Truffade Thrax.",
-      "tr": "Truffade Thrax çağırır."
-    },
-    "unlock": {
-      "en": "Complete every shopping challenge",
-      "tr": "Tüm alışveriş görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_tuff_bmx",
-    "slug": "spawn-tuff-bmx",
-    "name": "Spawn Tuff BMX",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Tuff BMX.",
-      "tr": "Tuff BMX çağırır."
-    },
-    "unlock": {
-      "en": "Complete 5 fitness challenges",
-      "tr": "5 fitness görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_vapid_stanier_g2_taxi",
-    "slug": "spawn-vapid-stanier-g2-taxi",
-    "name": "Spawn Vapid Stanier G2 Taxi",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "A Vapid Stanier G2 taxi.",
-      "tr": "Vapid Stanier G2 taksi."
-    },
-    "unlock": {
-      "en": "Complete 5 sports challenges",
-      "tr": "5 spor görevi tamamla"
-    }
-  },
-  {
-    "id": "cheat_spawn_western_zombie_bobber",
-    "slug": "spawn-western-zombie-bobber",
-    "name": "Spawn Western Zombie Bobber",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Spawns a Western Zombie Bobber.",
-      "tr": "Western Zombie Bobber çağırır."
-    },
-    "unlock": {
-      "en": "Complete every criminal challenge",
-      "tr": "Tüm suç görevlerini tamamla"
-    }
-  },
-  {
-    "id": "cheat_unlimited_nitrous",
-    "slug": "unlimited-nitrous",
-    "name": "Unlimited Nitrous",
-    "kind": "vehicles",
-    "code": null,
-    "effect": {
-      "en": "Vehicles never run out of nitrous or fuel.",
-      "tr": "Araçlarda nitro ve yakıt hiç bitmez."
-    },
-    "unlock": {
-      "en": "Complete 50 stunt jumps",
-      "tr": "50 akrobatik atlayış yap"
-    }
-  },
-  {
-    "id": "cheat_cataclysm",
-    "slug": "cataclysm",
-    "name": "Cataclysm",
-    "kind": "world",
-    "code": [
-      "down",
-      "down",
-      "up",
-      "right",
-      "right",
-      "up",
-      "left",
-      "left",
-      "right",
-      "right"
-    ],
-    "effect": {
-      "en": "Screen filter: thick, murky smoke.",
-      "tr": "Ekran filtresi: yoğun, bulanık duman."
-    },
-    "unlock": {
-      "en": "Discover Martha's Vamos (it then shows in the Progress menu)",
-      "tr": "Martha's Vamos'u keşfet (sonra İlerleme menüsünde görünür)"
-    }
-  },
-  {
-    "id": "cheat_cycle_weather",
-    "slug": "cycle-weather",
-    "name": "Cycle Weather",
-    "kind": "world",
-    "code": [
-      "down",
-      "right",
-      "up",
-      "down",
-      "right",
-      "up",
-      "right"
-    ],
-    "effect": {
-      "en": "Switches to the next weather.",
-      "tr": "Bir sonraki hava durumuna geçer."
-    },
-    "unlock": null
-  },
-  {
-    "id": "cheat_dollhouse",
-    "slug": "dollhouse",
-    "name": "Dollhouse",
-    "kind": "world",
-    "code": [
-      "down",
-      "down",
-      "up",
-      "right",
-      "right",
-      "up",
-      "left",
-      "left",
-      "down",
-      "right"
-    ],
-    "effect": {
-      "en": "Screen filter: vivid colours, narrow frame.",
-      "tr": "Ekran filtresi: canlı renkler, dar kadraj."
-    },
-    "unlock": {
-      "en": "Spend 8 hours with your partner",
-      "tr": "Partnerinle 8 saat geçir"
-    }
-  },
-  {
-    "id": "cheat_faded_glory",
-    "slug": "faded-glory",
-    "name": "Faded Glory",
-    "kind": "world",
-    "code": [
-      "down",
-      "down",
-      "up",
-      "right",
-      "right",
-      "up",
-      "left",
-      "left",
-      "left",
-      "right"
-    ],
-    "effect": {
-      "en": "Screen filter: old colour CRT TV.",
-      "tr": "Ekran filtresi: eski renkli tüplü TV."
-    },
-    "unlock": {
-      "en": "Rob 50 stores with your partner",
-      "tr": "Partnerinle 50 dükkân soy"
-    }
-  },
-  {
-    "id": "cheat_bubblegum",
-    "slug": "bubblegum",
-    "name": "Bubblegum",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "The world turns purple and yellow, with sparkles.",
-      "tr": "Dünya mor ve sarıya döner, parıltılarla."
-    },
-    "unlock": {
-      "en": "Find all 24 Vice City Flamingos collectible cards",
-      "tr": "24 Vice City Flamingos kartının hepsini bul"
-    }
-  },
-  {
-    "id": "cheat_dark_mirror",
-    "slug": "dark-mirror",
-    "name": "Dark Mirror",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "The world turns upside down and black.",
-      "tr": "Dünya ters döner ve kararır."
-    },
-    "unlock": {
-      "en": "Make $500,000 selling vehicles",
-      "tr": "Araç satarak 500.000 $ kazan"
-    }
-  },
-  {
-    "id": "cheat_fast_forward",
-    "slug": "fast-forward",
-    "name": "Fast Forward",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Motion blur and faster clouds.",
-      "tr": "Hareket bulanıklığı ve hızlı akan bulutlar."
-    },
-    "unlock": {
-      "en": "Complete 50 meditations",
-      "tr": "50 meditasyon tamamla"
-    }
-  },
-  {
-    "id": "cheat_fisheye",
-    "slug": "fisheye",
-    "name": "Fisheye",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: fisheye lens.",
-      "tr": "Ekran filtresi: balıkgözü lens."
-    },
-    "unlock": {
-      "en": "Catch 100 fish",
-      "tr": "100 balık tut"
-    }
-  },
-  {
-    "id": "cheat_golden_hour",
-    "slug": "golden-hour",
-    "name": "Golden Hour",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: golden widescreen.",
-      "tr": "Ekran filtresi: altın tonlu geniş ekran."
-    },
-    "unlock": {
-      "en": "Spend 4 hours holding hands",
-      "tr": "4 saat el ele yürü"
-    }
-  },
-  {
-    "id": "cheat_hellscape",
-    "slug": "hellscape",
-    "name": "Hellscape",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "The world turns red and orange, with heat haze.",
-      "tr": "Dünya kırmızı ve turuncuya döner, sıcak buğusuyla."
-    },
-    "unlock": {
-      "en": "Steal 100 police vehicles",
-      "tr": "100 polis aracı çal"
-    }
-  },
-  {
-    "id": "cheat_migraine",
-    "slug": "migraine",
-    "name": "Migraine",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: blurred and warped.",
-      "tr": "Ekran filtresi: bulanık ve çarpık."
-    },
-    "unlock": {
-      "en": "Survive 6 minutes at a 6-star wanted level",
-      "tr": "6 yıldızlı aramada 6 dakika hayatta kal"
-    }
-  },
-  {
-    "id": "cheat_move_time_forward",
-    "slug": "move-time-forward",
-    "name": "Move Time Forward",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Skips the clock ahead.",
-      "tr": "Saati ileri sarar."
-    },
-    "unlock": {
-      "en": "Find 10 collectible watches",
-      "tr": "10 koleksiyon saati bul"
-    }
-  },
-  {
-    "id": "cheat_neon_jungle",
-    "slug": "neon-jungle",
-    "name": "Neon Jungle",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Neon highlights everywhere.",
-      "tr": "Her yerde neon parıltılar."
-    },
-    "unlock": {
-      "en": "Discover all 16 Girlypop vehicles",
-      "tr": "16 Girlypop aracının hepsini keşfet"
-    }
-  },
-  {
-    "id": "cheat_pause_time_of_day",
-    "slug": "pause-time-of-day",
-    "name": "Pause Time of Day",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Freezes the time of day.",
-      "tr": "Günün saatini dondurur."
-    },
-    "unlock": {
-      "en": "Find 20 collectible watches",
-      "tr": "20 koleksiyon saati bul"
-    }
-  },
-  {
-    "id": "cheat_pinhole",
-    "slug": "pinhole",
-    "name": "Pinhole",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: pinhole camera.",
-      "tr": "Ekran filtresi: iğne deliği kamera."
-    },
-    "unlock": {
-      "en": "Clear 25 gang operations with your partner",
-      "tr": "Partnerinle 25 çete operasyonu temizle"
-    }
-  },
-  {
-    "id": "cheat_pixel_art",
-    "slug": "pixel-art",
-    "name": "Pixel Art",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: pixelated.",
-      "tr": "Ekran filtresi: pikselli."
-    },
-    "unlock": {
-      "en": "Make $250,000 selling collectibles",
-      "tr": "Koleksiyon eşyası satarak 250.000 $ kazan"
-    }
-  },
-  {
-    "id": "cheat_powdered_sugar",
-    "slug": "powdered-sugar",
-    "name": "Powdered Sugar",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "The world turns white, with sparkles.",
-      "tr": "Dünya beyaza döner, parıltılarla."
-    },
-    "unlock": {
-      "en": "Scan all the space debris with WAiNK",
-      "tr": "WAiNK ile tüm uzay enkazını tara"
-    }
-  },
-  {
-    "id": "cheat_videotape",
-    "slug": "videotape",
-    "name": "Videotape",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: old videotape.",
-      "tr": "Ekran filtresi: eski video kaseti."
-    },
-    "unlock": {
-      "en": "Complete 50 activities with your partner",
-      "tr": "Partnerinle 50 aktivite tamamla"
-    }
-  },
-  {
-    "id": "cheat_yesteryear",
-    "slug": "yesteryear",
-    "name": "Yesteryear",
-    "kind": "world",
-    "code": null,
-    "effect": {
-      "en": "Screen filter: black-and-white old TV.",
-      "tr": "Ekran filtresi: siyah beyaz eski TV."
-    },
-    "unlock": {
-      "en": "Discover the Ridgway",
-      "tr": "Ridgway'i keşfet"
-    }
-  }
-]
+  ]
+}

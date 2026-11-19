@@ -127,9 +127,9 @@ yerleşti, pin girişi oturdu). O zaman Claude hatırlatır. Amaç: GTA VI'ya Fi
 - [ ] Ücretli plan adayları: reklamsız, çoklu profil, sınırsız kişisel işaret/not, bulut senkron (GTABase VIP, Mapmaster PRO yılda 9,99 $)
 
 ## GTA 6 Intel derslerinden (2026-11-19, `docs/COMPETITORS.md`)
-- Her hileye ayrı sayfa (`/cheats/<slug>`): arama trafiği. Sonra araç, silah, görev için de.
-- "Son güncelleme: X saat önce" damgası pin, rehber ve hile sayfalarında.
-- Puan tablosu: hangi katkı kaç puan, "sadece ilk öneren alır" kuralı. Rütbeler puana bağlanır (Aşama 2).
+- ~~Her hileye ayrı sayfa~~: kurucu gerek görmedi (2026-11-19). Araç, silah, görev veritabanında yeniden düşünülür.
+- ✓ Tazelik etiketi: pin kartı ve hile sayfası (2026-11-19). Rehberlerde tarih zaten var.
+- ✓ Puan tablosu ve puanla rütbe, "ilk gönderen alır" + /admin kopya uyarısı (2026-11-19). Düzeltme ve onay puanları Aşama 2.
 - Her bilgiye "Düzeltme öner" (sadece pin değil).
 - Discord bağlantısı: rütbe Discord rolü olur (Aşama 2-3).
 - Eksik hile kodu bildirimi için formda "hile kodu" türü (şu an Discord'a yönlendiriyor).
