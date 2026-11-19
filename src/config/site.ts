@@ -26,10 +26,16 @@ export const SITE = {
    * hostname > "Manage site" shows a JS snippet: paste only its token here. Empty = no analytics script.
    */
   analytics: { cloudflareToken: "b5385201f20c4f16b6d8a34cee3cca22" },
+  /**
+   * Cloudflare Turnstile site key (public). Empty = no bot check in the "Suggest a pin" form. The matching
+   * secret goes to the Worker: npx wrangler secret put TURNSTILE_SECRET (the API then requires a token).
+   */
+  turnstileSiteKey: "",
   /** Community links: empty = hidden. Fill when the accounts exist. */
   links: {
+    youtube: "https://www.youtube.com/@SixStarGTAMap",
     tiktok: "",
-    discord: "",
+    discord: "https://discord.gg/tDg6hTqFk",
     x: "",
     donate: "",
   },

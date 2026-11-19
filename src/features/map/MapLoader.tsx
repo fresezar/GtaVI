@@ -7,7 +7,7 @@ import { LocaleProvider } from "@/i18n/client";
 /** Leaflet touches `window`, so the map is client-only. */
 const MapExplorer = dynamic(() => import("./MapExplorer"), {
   ssr: false,
-  loading: () => <div className="grid h-dvh place-items-center font-display text-xl">…</div>,
+  loading: () => <div className="grid flex-1 place-items-center font-display text-xl">…</div>,
 });
 
 export default function MapLoader({ locale }: { locale: Locale }) {

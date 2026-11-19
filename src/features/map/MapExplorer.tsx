@@ -14,7 +14,7 @@ import { copyText } from "@/lib/clipboard";
 import DevPanel from "./DevPanel";
 import MapView, { type MapFocus } from "./MapView";
 import PinCard from "./PinCard";
-import SiteHeader from "@/components/ui/SiteHeader";
+import PageTransition from "@/components/ui/PageTransition";
 import { useDevTool } from "./dev/useDevTool";
 import SuggestPanel from "@/features/community/SuggestPanel";
 import { useCommunityPins } from "@/features/community/useCommunityPins";
@@ -147,8 +147,8 @@ export default function MapExplorer() {
   const calibrationMarkers = useMemo(() => devTool.calib.points.map((p) => p.image), [devTool.calib.points]);
 
   return (
-    <div className="flex h-dvh flex-col">
-      <SiteHeader compact locale={locale} path="/map" />
+    <div className="flex min-h-0 flex-1 flex-col">
+      <PageTransition>
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
       <main className="relative order-1 min-h-0 flex-1 md:order-2">
         <MapView
@@ -328,6 +328,7 @@ export default function MapExplorer() {
         <footer className="text-[11px] leading-snug text-muted">{t("ui.footer.disclaimer")}</footer>
       </aside>
       </div>
+      </PageTransition>
     </div>
   );
 }

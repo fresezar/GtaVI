@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import type { Category } from "@/domain";
 import { useLocale, useT } from "@/i18n/client";
 import { categoryKey } from "@/i18n/keys";
+import { SITE } from "@/config/site";
+import Turnstile from "./Turnstile";
 
 const NAME_KEY = "sixstar.suggest.name";
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; code: string };
@@ -32,6 +34,9 @@ export default function SuggestPanel({
   const [note, setNote] = useState("");
   const [name, setName] = useState("");
   const [website, setWebsite] = useState(""); // honeypot: hidden from people
+  const [captcha, setCaptcha] = useState(""); // Turnstile token (only when SITE.turnstileSiteKey is set)
+  const needsCaptcha = Boolean(SITE.turnstileSiteKey);
+  const [attempt, setAttempt] = useState(0); // remounts the widget after a failed send (tokens are single-use)
   const [state, setState] = useState<State>({ kind: "idle" });
 
   useEffect(() => {
@@ -55,7 +60,7 @@ export default function SuggestPanel({
       const r = await fetch("/api/suggest", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1] }),
+        body: JSON.stringify({ categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1], turnstile: captcha }),
       });
       const data = (await r.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (r.ok && data.ok) {
@@ -63,8 +68,13 @@ export default function SuggestPanel({
         setTitle("");
         setProofUrl("");
         setNote("");
+        setCaptcha("");
         onSent();
-      } else setState({ kind: "error", code: data.error ?? "server_error" });
+      } else {
+        setCaptcha(""); // a token is single-use: the widget re-issues one
+        setAttempt((a) => a + 1);
+        setState({ kind: "error", code: data.error ?? "server_error" });
+      }
     } catch {
       setState({ kind: "error", code: "network" });
     }
@@ -182,6 +192,8 @@ export default function SuggestPanel({
             </label>
           </div>
 
+          {needsCaptcha && <Turnstile key={attempt} siteKey={SITE.turnstileSiteKey} locale={locale} onToken={setCaptcha} />}
+
           {state.kind === "error" && (
             <p className="border border-[#B23A2A] p-2 text-xs text-[#B23A2A]" role="alert">
               {t(`ui.suggest.error.${["category", "title", "proof", "position", "rate_limited", "captcha"].includes(state.code) ? state.code : "server"}`)}
@@ -189,7 +201,7 @@ export default function SuggestPanel({
           )}
 
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <button type="submit" className="btn-paper btn-paper-primary" disabled={state.kind === "sending" || !coord}>
+            <button type="submit" className="btn-paper btn-paper-primary" disabled={state.kind === "sending" || !coord || (needsCaptcha && !captcha)}>
               {state.kind === "sending" ? t("ui.suggest.sending") : t("ui.suggest.send")}
             </button>
             <button type="button" className="btn-paper" onClick={onClose}>{t("ui.suggest.cancel")}</button>

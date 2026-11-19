@@ -42,7 +42,7 @@ export default function FindsView({ locale }: { locale: Locale }) {
         </div>
       </ViceBand>
 
-      <ol className="divide-y divide-line border border-line bg-surface backdrop-blur-md">
+      <ol className="glass divide-y divide-line">
         {items.map((pin) => {
           const c = CATEGORY_BY_ID.get(pin.categoryId);
           return (

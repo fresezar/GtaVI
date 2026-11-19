@@ -2,13 +2,17 @@ import { SITE } from "@/config/site";
 import type { ArtName } from "@/config/art";
 import Art from "./Art";
 
-/** Page title over a wide artwork strip; falls back to a plain heading when official art is off. */
-export default function PageBanner({ art, title, lead }: { art: ArtName; title: string; lead?: string }) {
-  if (!SITE.officialArt) {
+/**
+ * Page title. With `art` (and official art on): a wide artwork strip. Without: a glass header card,
+ * which is what pages use by default in the menu-style design.
+ */
+export default function PageBanner({ art, title, lead, eyebrow }: { art?: ArtName; title: string; lead?: string; eyebrow?: string }) {
+  if (!art || !SITE.officialArt) {
     return (
-      <header className="mb-8">
-        <h1 className="font-display text-4xl sm:text-5xl">{title}</h1>
-        {lead && <p className="mt-2 max-w-2xl text-muted">{lead}</p>}
+      <header className="glass mb-8 p-5 sm:p-7">
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <h1 className="mt-1 font-display text-4xl leading-none sm:text-6xl">{title}</h1>
+        {lead && <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{lead}</p>}
       </header>
     );
   }

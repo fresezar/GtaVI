@@ -1,6 +1,7 @@
 import type { Locale } from "@/i18n";
 import { LocaleProvider } from "@/i18n/client";
 import Backdrop from "./Backdrop";
+import PageTransition from "./PageTransition";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 
@@ -24,7 +25,9 @@ export default function PageShell({
       <div className="flex min-h-dvh flex-col">
         <Backdrop />
         <SiteHeader locale={locale} path={path} />
-        <main className={`mx-auto w-full flex-1 ${width} px-4 py-8 sm:py-10`}>{children}</main>
+        <PageTransition>
+          <main className={`mx-auto w-full flex-1 ${width} px-4 py-8 sm:py-10`}>{children}</main>
+        </PageTransition>
         <SiteFooter locale={locale} />
       </div>
     </LocaleProvider>

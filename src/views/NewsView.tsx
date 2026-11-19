@@ -15,7 +15,7 @@ export default function NewsView({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   return (
     <PageShell locale={locale} path="/news">
-      <PageBanner art="banner-news" title={t("ui.news.title")} lead={t("ui.news.lead")} />
+      <PageBanner eyebrow="Brief" title={t("ui.news.title")} lead={t("ui.news.lead")} />
 
       <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         <section aria-label={t("ui.news.title")}>

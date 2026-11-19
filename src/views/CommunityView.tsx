@@ -75,7 +75,7 @@ export default function CommunityView({ locale }: { locale: Locale }) {
             {players.length === 0 ? (
               <p className="card mt-4 text-sm leading-relaxed text-muted">{t("ui.community.board.empty")}</p>
             ) : (
-              <ol className="mt-4 divide-y divide-line border border-line bg-surface">
+              <ol className="glass mt-4 divide-y divide-line">
                 {players.slice(0, 50).map((c, i) => (
                   <li key={c.name} className={`grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 px-4 py-3 ${i === 0 ? "row-selected" : ""}`}>
                     <span className="font-display text-xl tabular-nums">{i + 1}</span>
@@ -121,13 +121,18 @@ export default function CommunityView({ locale }: { locale: Locale }) {
           </section>
 
           <section className="card !p-5" aria-labelledby="discord-title">
-            <h2 id="discord-title" lang="en" className="section-title">{t("ui.community.discord.title")}</h2>
+            <h2 id="discord-title" lang="en" className="section-title">Discord · YouTube</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">{t("ui.community.discord.body")}</p>
-            {SITE.links.discord ? (
-              <a href={SITE.links.discord} target="_blank" rel="noopener" className="btn mt-4">{t("ui.community.discord.join")}</a>
-            ) : (
-              <p className="mt-3 font-display text-[14px] tracking-[0.14em] text-sun">{t("ui.community.discord.soon")}</p>
-            )}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {SITE.links.discord ? (
+                <a href={SITE.links.discord} target="_blank" rel="noopener" className="btn btn-primary">{t("ui.community.discord.join")}</a>
+              ) : (
+                <p className="font-display text-[14px] tracking-[0.14em] text-sun">{t("ui.community.discord.soon")}</p>
+              )}
+              {SITE.links.youtube && (
+                <a href={SITE.links.youtube} target="_blank" rel="noopener" className="btn">{t("ui.community.youtube")}</a>
+              )}
+            </div>
           </section>
 
           <section className="card !p-5" aria-labelledby="rules-title">
