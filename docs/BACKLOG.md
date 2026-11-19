@@ -50,6 +50,15 @@ Konsept: "Six Star = en yüksek aranma seviyesi + Leonida saha rehberi". Hazır 
 - [ ] Logo turu 2: daha dolgun şerif yıldızı ("classic sheriff star with thick rounded arms, not two overlapping triangles"); iki üçgenli yıldızın Davut Yıldızı'na benzeme riski
 - [ ] Kimlik oturunca imza görseller için bir kez gerçek illüstratör
 
+## Topluluk (kurucu istedi, 2026-11-19)
+
+Amaç: sosyal medyadan gelen ziyaretçiyi sitede tutmak, pinleri tek kişiden değil topluluktan toplamak.
+- [ ] Aşama 1: haritada "Pin öner" (kategori, başlık, klip/ekran görüntüsü linki, not, takma ad), Turnstile, D1 onay kuyruğu, korumalı onay sayfası; onaylanan pinde "Found by @kişi"
+- [ ] Aşama 2: Discord ile giriş; profil (bulduklarım, önerilerim, ilerleme senkronu); "Ben de buldum" onayı: farklı kullanıcılardan N onay = doğrulandı; yıldız rütbeleri (1-6 yıldız, Six Star en üst); haftalık ve tüm zamanlar sıralaması
+- [ ] Aşama 3: Discord sunucusu + bot (yeni pin, haftalık en iyi bulgular); haftalık bulgu etkinlikleri; güvenilir kullanıcılar (4+ yıldız) onay beklemeden yayınlar
+- [ ] Her pin için paylaşılabilir kart görseli ("Found by @kişi"): bulan kişi paylaşır, trafik gelir
+- [ ] Hesap açılınca: gizlilik metni, veri silme talebi (KVKK/GDPR)
+
 ## Farkımız (rakiplerde görülmedi ya da zayıf)
 
 - [ ] "Found by @yayıncı" + zaman damgalı klip her pinde (altyapı hazır, 2026-11-17)
