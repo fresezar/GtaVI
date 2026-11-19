@@ -1,1 +1,5702 @@
-[]
+[
+  {
+    "id": "pin_01M7SZJV0CNZM8C067JG4SS058",
+    "slug": "y-vice-city-washington-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_safehouses",
+    "coord": [
+      0.5597574,
+      0.4514533
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Washington Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L16",
+      "safehouse"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0ES132DR1533G63BGJ",
+    "slug": "hospital-vice-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5316359,
+      0.4357437
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L96",
+      "hospital"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0E49X32M11DV7FQ219",
+    "slug": "vice-beach-marina-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5414029,
+      0.5034137
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L120",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0ERJ2V5PPFRD0ED7S9",
+    "slug": "tennis-stadium-catalan-key",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.490564,
+      0.5569407
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Catalan Key",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L127",
+      "tennis"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0EDSNF61F1BTC7XVXD",
+    "slug": "arrow-gas-station-waning-sands",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.490726,
+      0.37178
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L161",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0E97WS2JF0B3Q5H388",
+    "slug": "arrow-gas-station-belville",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4764298,
+      0.4133073
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Belville",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L165",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0E2AV0VHVRB5QH9KKB",
+    "slug": "tennis-courts-bayside",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4902496,
+      0.464325
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Bayside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L180",
+      "tennis"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0EHPZX4YCYBF99002N",
+    "slug": "nine1nine-downtown",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4795197,
+      0.4857306
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L190",
+      "nightclub"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0EP3WKVNR0V4Q38WYN",
+    "slug": "fleeca-field-metro-station-rockridge",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4532621,
+      0.464046
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L197",
+      "metro"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0ED6XGQ3PZP42PMRY6",
+    "slug": "vcia-metro-mover-station-salton",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4525344,
+      0.5088812
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L218",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0E57HW8FWHY6GKAG2E",
+    "slug": "ltd-gas-station-hamlet",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4216248,
+      0.6103783
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Hamlet",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L260",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FTJGDVV8QAGDZA6B3",
+    "slug": "jason-s-house-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_safehouses",
+    "coord": [
+      0.4281759,
+      0.668831
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L266",
+      "safehouse"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FGHFPM3YDQK215RAZ",
+    "slug": "blimp-maroon-key",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.3647298,
+      0.708338
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Maroon Key",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L274",
+      "blimp"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FRYBWB9DSA51T4PYB",
+    "slug": "gellhorn-international-raceway-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_activities",
+    "coord": [
+      0.2945157,
+      0.429033
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L281",
+      "racetrack"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FGY9YY3G6JJ8W9PTV",
+    "slug": "mod-shop-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3035797,
+      0.4207891
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L282",
+      "modshop"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0F6X988SM9RST6JYFC",
+    "slug": "police-station-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.3105011,
+      0.4067688
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L290",
+      "police"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0F8QZJ69S8JBRH1SHF",
+    "slug": "supermarket-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.2999169,
+      0.405671
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L292",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FQA7BN13629AQKRRS",
+    "slug": "pawn-and-gun-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3062134,
+      0.3972473
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L298",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FKP3S0264NGBJCM41",
+    "slug": "hank-s-waffles-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3111815,
+      0.3618861
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L310",
+      "food"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0F87S48VCAN3107VJG",
+    "slug": "car-wash-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.310099,
+      0.3663424
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L316",
+      "carwash"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FP6NY18E22Z8KFZ0K",
+    "slug": "the-rusty-anchor-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4306772,
+      0.6604283
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L325",
+      "bar"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FZH1J504EPRMZP7VJ",
+    "slug": "brian-s-boat-works-and-marina-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4220377,
+      0.6788169
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L326",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FGNSH17CCPVBXV8YW",
+    "slug": "marina-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3986074,
+      0.7029163
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L333",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FB2WM819AHXN0EDX2",
+    "slug": "barber-route-1",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4016494,
+      0.7045674
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 1, Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L334",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FF5HE1RS71B0SJMY4",
+    "slug": "clothing-store-route-1",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4030136,
+      0.7035367
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 1, Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L335",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FYACG2X3FKXH1RPGF",
+    "slug": "vcia-control-tower-vice-city-international-airport",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4275815,
+      0.5236305
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice City International Airport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L345",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0F0J4DTERR195ZH982",
+    "slug": "mile-zero-air-station-goose-key",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.2877045,
+      0.6954
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Goose Key",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L354",
+      "airbase"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0F7B4F6KHZKBM41M10",
+    "slug": "sara-s-unisex-salon-hamlet",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.422058,
+      0.6042023
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Hamlet",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L360",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0FGG6A6MWQGZQBYVM6",
+    "slug": "kurt-s-barber-shop-route-61",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4214783,
+      0.6085358
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 61, Hamlet",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L370",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0G5YX8GHNC7MQ57Z07",
+    "slug": "xero-gas-station-ambrosia",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4176513,
+      0.3724541
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L406",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GSSDG4B39PY86DVY4",
+    "slug": "jeudy-s-food-depot-la-perle",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4721069,
+      0.4533844
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "La Perle, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L408",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GBN5XDFKZNRW47AY0",
+    "slug": "dock-ring-shoreline",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5009979,
+      0.4958343
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Shoreline, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L438",
+      "ferriswheel"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GPK0HE3DWZY83NC4T",
+    "slug": "vice-city-arts-center-metro-station-downtown",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4829947,
+      0.4765436
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L441",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GZEJVTFB1Y47GMRR2",
+    "slug": "thrillbilly-mud-club-route-32",
+    "mapId": "map_main",
+    "categoryId": "cat_activities",
+    "coord": [
+      0.3777289,
+      0.3548493
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 32, Kelly County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L512",
+      "racetrack"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GP918W40YPVC60DXY",
+    "slug": "prison-kelly-county",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.3457028,
+      0.4441248
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Kelly County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L527",
+      "jail"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GB0JGDBBS2JAZKED5",
+    "slug": "leaf-links-golf-club-vice-dale-county",
+    "mapId": "map_main",
+    "categoryId": "cat_activities",
+    "coord": [
+      0.5176338,
+      0.4241109
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice-Dale County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L533",
+      "golf"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GEQX7QCQZ4NF5AJD4",
+    "slug": "port-gellhorn-train-station-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.2984911,
+      0.389464
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L538",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GQPNTT99ZFD9FN7NT",
+    "slug": "vice-city-pawn-crosstown",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4798584,
+      0.4645233
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L539",
+      "fence"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GXB3GKVKRFWY2S01Z",
+    "slug": "xero-gas-station-crosstown",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4786682,
+      0.4651184
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L553",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GGR0NJVGZ1V50C24X",
+    "slug": "the-vault-downtown",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4763711,
+      0.4859097
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L556",
+      "nightclub"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GXJCAY4V4K2BWYR6Y",
+    "slug": "marina-shoreline",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4959569,
+      0.4953146
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Shoreline, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L567",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GDEJVWVE9VT37ARMJ",
+    "slug": "ambrosia-raceway-park-ambrosia",
+    "mapId": "map_main",
+    "categoryId": "cat_activities",
+    "coord": [
+      0.4091166,
+      0.3582548
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L590",
+      "racetrack"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GTFW9H1H9RMTFTTZS",
+    "slug": "ambrosia-station-ambrosia",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4302499,
+      0.3866047
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L591",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GE9TYN7SJBNZGTJAB",
+    "slug": "xero-gas-station-rockridge",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4603532,
+      0.4698277
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L608",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0GYDQTW9YY6835NFY5",
+    "slug": "delights-interstate-404",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.3059033,
+      0.3904159
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Interstate 404, Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L629",
+      "stripclub"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0HCTN5NBR2XJSQ38CB",
+    "slug": "metro-station-downtown",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4841512,
+      0.500135
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L720",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0HFBGKMVXS33N74PB8",
+    "slug": "barber-watson-bay",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3487838,
+      0.6023273
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Watson Bay",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L726",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0HXBF2DNF7VJ4HRGDN",
+    "slug": "metro-station-catalan-blvd",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4876483,
+      0.5072962
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Catalan Blvd, Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L746",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0H3XE199FG55MD72JJ",
+    "slug": "supermarket-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4137003,
+      0.6935197
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L762",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0H6EVHTTX3PZBMQ1DZ",
+    "slug": "ambrosia-police-department-ambrosia",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4133658,
+      0.369807
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L832",
+      "police"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0HHKE5N3XE1X1M2CRW",
+    "slug": "pawn-shop-fence-la-perle",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4811169,
+      0.4495265
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "La Perle, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L910",
+      "fence"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0HRF39H5XX3HS57H0X",
+    "slug": "wasteland-off-road-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3084649,
+      0.3710621
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L960",
+      "modshop"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0H23VYYMWFMA12T52Y",
+    "slug": "pawn-shop-salton",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4558079,
+      0.5184986
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1009",
+      "fence"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JCBQQMV6DZSXQ4A0X",
+    "slug": "phil-s-ammu-nation-leonida",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4447018,
+      0.5751512
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Leonida",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1074",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JB2XXEEXXWBK7GZ7X",
+    "slug": "ammu-nation-rockridge",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4621025,
+      0.4804442
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1091",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0J2EJ3RN1RGEV3GGCH",
+    "slug": "pawn-shop-fence-hamlet",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4222471,
+      0.6107218
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Hamlet",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1117",
+      "fence"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0J6E0P73MXKSC5Z8V7",
+    "slug": "marina-bayside",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4940088,
+      0.4714353
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Bayside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1149",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JVC1S24VBCFTJ8D0K",
+    "slug": "gas-station-mariana-county",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3754767,
+      0.5728764
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mariana County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1188",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JVZKQ52A2FDZQK6Q4",
+    "slug": "metromover-station-vice-city-international-airport",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4343265,
+      0.523766
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice City International Airport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1274",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0J9HD3RV94MJXC1MJR",
+    "slug": "metro-station-downtown-l1279",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4746687,
+      0.4979923
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1279",
+      "metro"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JVP7NJP6RNFBW9WJK",
+    "slug": "liquor-store-miramar-dr",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4798929,
+      0.4630824
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Miramar Dr, Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1320",
+      "liquor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JSJ5P35C1Z1XDZQGY",
+    "slug": "euroform-automotive-little-cuba",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4647446,
+      0.5038446
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Little Cuba, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1369",
+      "modshop"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JED5KB0TAS0236A55",
+    "slug": "peewees-southside",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4495803,
+      0.5724216
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1382",
+      "fastfood"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JX2GHWPEY30CHQSKG",
+    "slug": "airfield-ambrosia",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3706779,
+      0.3757665
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1391",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JYQX4KWA4458M0PXH",
+    "slug": "bus-stop-washington-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5569521,
+      0.4503646
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Washington Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1412",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JRV8F0EMZ8A7NBSJH",
+    "slug": "bus-stop-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5567052,
+      0.4561299
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1413",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JMKD4TGP69FKKVJMJ",
+    "slug": "bus-stop-vice-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5570421,
+      0.4526507
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1414",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0JDG7H4REV1FVTFAWD",
+    "slug": "bus-stop-ocean-beach-l1415",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5528566,
+      0.488301
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1415",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0J5FK5CWBW9RXJ86JZ",
+    "slug": "bus-stop-catalan-blvd",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4875907,
+      0.4840556
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Catalan Blvd, Shoreline, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1416",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0K7VSWCJQ4ABACAWH5",
+    "slug": "bus-stop-rockridge",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4595375,
+      0.4771681
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1417",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KQX1SA1M1QY0X86R7",
+    "slug": "bus-stop-rockridge-l1418",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4584618,
+      0.4785414
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1418",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KW6SPTFJ34Q31S2YY",
+    "slug": "bus-stop-stockyard",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4890785,
+      0.445539
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Stockyard, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1419",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KKPFFDZ0111M4ZD26",
+    "slug": "tennis-court-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5458722,
+      0.5024676
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1469",
+      "tennis"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KH7TD56RNCWV83CPF",
+    "slug": "electric-fang-tattoo-stockyard",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4884448,
+      0.4438612
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Stockyard, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1482",
+      "tattoos"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0K748N3A6H6WRMB3PP",
+    "slug": "stock-305-stockyard",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4899698,
+      0.4461024
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Stockyard, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1488",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KQGKRDNP56VCW923D",
+    "slug": "clothing-store-vice-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4925251,
+      0.4325099
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1504",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KFXSB6AKN9RQZD5K9",
+    "slug": "bus-stop-rialto-cswy",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4906056,
+      0.4696706
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rialto Cswy, Bayside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1506",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KFMS7F7WPPN014JB6",
+    "slug": "arrow-gas-station-route-1",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4344565,
+      0.6594608
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 1, Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1536",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0K5W0KHZQKZ0CPY3V7",
+    "slug": "gas-station-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3065298,
+      0.3926899
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1541",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KCT8BPJ3KYWTY6HNA",
+    "slug": "airfield-kelly-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3701138,
+      0.3305403
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Kelly County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1542",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KPMB6QZARYVSYDMGX",
+    "slug": "supermarket-port-gellhorn-l1543",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3059311,
+      0.3926178
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1543",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0K6YNXVZJ5XQRDAP7T",
+    "slug": "airfield-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.2761508,
+      0.400742
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1554",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KGRK5SVRMMAB3JX3J",
+    "slug": "airfield-lummox-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3899319,
+      0.2612628
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Lummox County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1560",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KGFSB12YB6SE2GGR1",
+    "slug": "watson-bay-airport-watson-bay",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3196011,
+      0.5754273
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Watson Bay",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1561",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KJHQZWJKGTMHXBWQG",
+    "slug": "ltf-airfield-mariana-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4152769,
+      0.6349282
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mariana County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1562",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KYWBKB6ZV3DMF8XW5",
+    "slug": "airfield-leonard-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4519991,
+      0.3981098
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Leonard County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1565",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KMZVH9TZVKW3H4HSR",
+    "slug": "sundown-private-airfield-sundown",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4750578,
+      0.3669536
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Sundown, Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1566",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KF0DW3JDT1RYV2GH8",
+    "slug": "racetrack-leonard-county",
+    "mapId": "map_main",
+    "categoryId": "cat_activities",
+    "coord": [
+      0.4898619,
+      0.349266
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Leonard County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1567",
+      "racetrack"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KYT8VG2WW86XC5A1J",
+    "slug": "airfield-mariana-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3746803,
+      0.5890221
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mariana County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1568",
+      "airport"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0KF7A3YTXWTYV4FMMA",
+    "slug": "supermarket-hamlet",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4159138,
+      0.6028201
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Hamlet",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1574",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0K7P339HZ3H8F5W0D0",
+    "slug": "hospital-southside",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4476153,
+      0.5698664
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1587",
+      "hospital"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M9HZ6CXJ1Y9QS73TN",
+    "slug": "gas-station-southside",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4489341,
+      0.566775
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1589",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M03M0VXTEY30MN86J",
+    "slug": "motorcycle-customs-shop-southside",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4370097,
+      0.5643837
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1608",
+      "bikeshop"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M7KTSSVC0XNZ07J8A",
+    "slug": "xero-gas-station-capri",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3097383,
+      0.5232838
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1612",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M8NSCT97NW5SESPN1",
+    "slug": "clothing-store-capri",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.309112,
+      0.5214341
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1614",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M4P8QEPZGQ9YE385K",
+    "slug": "xero-gas-station-capri-l1619",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3006666,
+      0.5064518
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1619",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MFEPHJSAJA2TE60MX",
+    "slug": "gun-shop-lummox-county",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4032158,
+      0.2875268
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Lummox County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1676",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MQYDC0PGHXCRM32HH",
+    "slug": "marina-buckskin",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.371996,
+      0.4719184
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Buckskin",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1782",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MD417CHRG7J6HT9QJ",
+    "slug": "ajax-gym-sw-4th-st",
+    "mapId": "map_main",
+    "categoryId": "cat_gyms",
+    "coord": [
+      0.5433405,
+      0.4461024
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "SW 4th St, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1869",
+      "gym"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MRR8NR7BNDGKGR540",
+    "slug": "bus-stop-rialto-cswy-l1872",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4872208,
+      0.4688567
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rialto Cswy, Bayside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1872",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0M8HZYP057B1GD21FX",
+    "slug": "train-station-capri",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3008931,
+      0.4845065
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1878",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MHGZBV7XAPKES006B",
+    "slug": "train-station-waning-sands",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4991903,
+      0.3802612
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1915",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MNS4N454ZB1DW9Q5F",
+    "slug": "train-station-millport",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4792437,
+      0.31027
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Millport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1916",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0MW6VGQMYH83QD9DH0",
+    "slug": "train-station-redhill",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3821844,
+      0.2780518
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Redhill",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1917",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0N0JZYWVNZKWZAHAY4",
+    "slug": "police-station-tequesta",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4616739,
+      0.5437016
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Tequesta, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L1954",
+      "police"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0N183NB0JHCT7N0HSG",
+    "slug": "train-station-belville",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4888828,
+      0.4082679
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Belville",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2028",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0NQBDQQH8TY84YWE0X",
+    "slug": "train-station-vice-dale-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4267485,
+      0.4546676
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice-Dale County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2029",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0NRR78FSB8E8NTBPYY",
+    "slug": "train-station-lummox-county",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3359563,
+      0.2895607
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Lummox County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2104",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0P864HB6Q368SF65SA",
+    "slug": "gas-station-kelly-county",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.337916,
+      0.466643
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Kelly County",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2245",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PGDSRZQQEKG0ZRPET",
+    "slug": "bus-stop-stockyard-l2264",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4869617,
+      0.4432553
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Stockyard, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2264",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PKHZKSJ4YQCXGJMRS",
+    "slug": "mami-s-grocery-market-el-joven-blvd",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4485731,
+      0.5640852
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "El Joven Blvd, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2360",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PTQMKEA73CQRN00KE",
+    "slug": "a1-fashions-el-joven-blvd",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4487409,
+      0.5638563
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "El Joven Blvd, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2361",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PB8XQCMNCS9F8ZG04",
+    "slug": "barber-capri",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.2880215,
+      0.4948164
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2380",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PBX3VN37VCRCHYKB1",
+    "slug": "clothing-store-capri-l2381",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.2895233,
+      0.4916853
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2381",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PNJ99YECPWDQE3YGW",
+    "slug": "shoe-store-capri",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.287955,
+      0.4899587
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2382",
+      "shoes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PV97MG9QC84VWH2X6",
+    "slug": "clothing-store-capri-l2383",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.2880659,
+      0.4886756
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2383",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0P8AXMNF5MEJV406X4",
+    "slug": "cinema-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.3181158,
+      0.3609425
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2391",
+      "cinema"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PZ8XS9WEPEHGP6WBZ",
+    "slug": "vetiver-minimarket-la-perle",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.469266,
+      0.4543181
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "La Perle, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2400",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PBHPSR2RJMSEPJYMR",
+    "slug": "barber-belville",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4623183,
+      0.4119931
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Belville",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2403",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PVWES289EQQJ3RKD4",
+    "slug": "electronics-store-belville",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4600695,
+      0.4119138
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Belville",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2404",
+      "electronics"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PNHG27D6ZF0AT2XZZ",
+    "slug": "gun-shop-watson-bay",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3522712,
+      0.6030363
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Watson Bay",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2406",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PNSF1641E1GQ42T4R",
+    "slug": "gun-shop-port-gellhorn",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.294353,
+      0.3766665
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Gellhorn",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2413",
+      "guns"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0PJHWKAR2YEGKPS586",
+    "slug": "gator-s-piano-bar-vice-city",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4452548,
+      0.5154708
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2444",
+      "bar"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0Q71DYRVF9VF5F6R9F",
+    "slug": "marina-peacock-bay",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4718182,
+      0.571929
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Peacock Bay, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2525",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0Q634MY2JAZPFZNFNJ",
+    "slug": "hospital-rockridge",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4680409,
+      0.4723017
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Rockridge, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2760",
+      "hospital"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0QDCACZ2FTWRYGE7VN",
+    "slug": "barber-vice-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4948506,
+      0.433097
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2867",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0Q7333K4MCTXA2J91M",
+    "slug": "marina-goose-key",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.3089461,
+      0.700163
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Goose Key",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "low",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2884",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0QV2Q0Z4J823DAXBJW",
+    "slug": "tamarro-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5659813,
+      0.5009239
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2894",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0QXMDTPNVJ1G9X6W7D",
+    "slug": "metro-station-downtown-l2911",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4740702,
+      0.5125517
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2911",
+      "metro"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0Q1PJV32DX2C9MS2FB",
+    "slug": "marina-vice-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5292918,
+      0.4470703
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L2995",
+      "marina"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0QGJY8W9SKPSM8VN1C",
+    "slug": "xero-gas-station-waning-sands",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.505224,
+      0.3772926
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3093",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0REY54JYN9JZQF92SM",
+    "slug": "bus-stop-little-cuba",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.464181,
+      0.5012189
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Little Cuba",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3106",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RB7M35AMT2V6BD5P4",
+    "slug": "bus-stop-westbrook-dr",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4523949,
+      0.4939899
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Westbrook Dr, Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3107",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RF9ATK25YXAAJZYBA",
+    "slug": "bus-stop-vice-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4982003,
+      0.4345187
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3108",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RK3WNWE2E14QE9BMN",
+    "slug": "bus-stop-vice-decor-district-l3109",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4966501,
+      0.4389392
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3109",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R4HMNDGB8TKG922E6",
+    "slug": "bus-stop-catalan-blvd-l3110",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4833091,
+      0.4702502
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Catalan Blvd, Crosstown",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3110",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R0DY82FKMTHC3SYE9",
+    "slug": "bus-stop-admiral-cswy",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5213738,
+      0.4984327
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Admiral Cswy, Ferry Island",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3111",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RGPCK471PSHZMS0S6",
+    "slug": "bus-stop-ocean-beach-l3112",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.5533834,
+      0.4541537
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3112",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RDWDRY5AHYC42Q32R",
+    "slug": "bus-stop-cicada-ave",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4445506,
+      0.5703652
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Cicada Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3113",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R9CGKNCXQSF0JST2W",
+    "slug": "bus-stop-cicada-ave-l3114",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4463217,
+      0.5706776
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Cicada Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3114",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R6DAVNE535W78987X",
+    "slug": "bus-stop-calderone-ave",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4456645,
+      0.5545827
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Calderone Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3116",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RQC1C1QVPEPTZRWTM",
+    "slug": "bus-stop-calderone-ave-l3117",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.444038,
+      0.5567052
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Calderone Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3117",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RNKEEBKR5ESDKD6D7",
+    "slug": "waning-sands-police-department-waning-sands",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5044005,
+      0.3746033
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3118",
+      "police"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RR6XM65RKT7ED1KEB",
+    "slug": "bus-stop-mirimar-dr",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.480324,
+      0.4622502
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mirimar Dr, Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3119",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RG06QJBYARG1KHZW6",
+    "slug": "bus-stop-mirimar-dr-l3120",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4825406,
+      0.4641128
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mirimar Dr, Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3120",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RS7PB31A50GJF2X1P",
+    "slug": "bus-stop-crosstown",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.482945,
+      0.4784942
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3121",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RZ5X8VF32PNT7HV7A",
+    "slug": "bus-stop-crosstown-l3122",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.485998,
+      0.4500819
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3122",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R8MWK8VD7ZT72QTZ6",
+    "slug": "bus-stop-crosstown-l3123",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4853952,
+      0.4519053
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3123",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0REQR9ZXHG4H2035Q8",
+    "slug": "bus-stop-mirimar-dr-l3124",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.480932,
+      0.4633723
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Mirimar Dr, Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3124",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RP1QG6A49J6497FVN",
+    "slug": "bus-stop-catalan-blvd-l3125",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4839151,
+      0.4716349
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Catalan Blvd, Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3125",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RV7HCMV22NWBHWPYZ",
+    "slug": "bus-stop-calderone-ave-l3133",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4429673,
+      0.5583367
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Calderone Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3133",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R7KD6XQZNXNVRE31V",
+    "slug": "metro-station-peacock-bay",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4617499,
+      0.5459608
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Peacock Bay, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3145",
+      "metro"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RJ0RHEXFTHGFGBCH6",
+    "slug": "vcia-train-station-salton",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4540238,
+      0.5067945
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3146",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RTS2FS41F5QWW7YCH",
+    "slug": "vcia-metro-station-salton",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4532685,
+      0.5072904
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3147",
+      "metro"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RFH4GCD6GCDS5AE49",
+    "slug": "metro-mover-station-salton",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4277684,
+      0.4946245
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Salton, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3148",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0R4W5KQQWPFA3VE95Y",
+    "slug": "train-station-draper-island",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.2748321,
+      0.3439353
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Draper Island",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3149",
+      "train"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RSQ3FS633N5W2X3EM",
+    "slug": "gas-station-southside-l3166",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.448145,
+      0.5662569
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3166",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RA5R2JSYAB7RA65KY",
+    "slug": "tennis-court-y-vice-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5590279,
+      0.4510391
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Y Vice Beach, Washington Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3189",
+      "tennis"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RTRQYQ0HZTJTCNKZJ",
+    "slug": "metro-station-crosstown",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4803615,
+      0.4695893
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Crosstown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3205",
+      "metromover"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RSA44QCAC0ZF32NKF",
+    "slug": "mammacita-s-downtown",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4842738,
+      0.5143483
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Downtown, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3228",
+      "food"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0REMSF1A154GESX7C4",
+    "slug": "bus-stop-tequesta",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4808108,
+      0.5262661
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Tequesta",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3246",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0RGX1NZ8SN08B924NN",
+    "slug": "arrow-gas-station-route-1-l3283",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4353022,
+      0.6591703
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Route 1, Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3283",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S7BW9ZK2S2CNQ8WS2",
+    "slug": "gas-station-waning-sands",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4907622,
+      0.3706379
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Waning Sands",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3287",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SNY9SVCVND7TDJTKV",
+    "slug": "arrow-gas-station-belville-l3288",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4752065,
+      0.4136176
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Belville",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3288",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0ST2Q6D13AQZP8PVXH",
+    "slug": "xero-gas-station-capri-l3289",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.3001915,
+      0.5058448
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Capri",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3289",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SYBF843V4MYK51QDJ",
+    "slug": "tattoo-parlor-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4358917,
+      0.6668412
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3290",
+      "tattoos"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S3G7XBMKQBFB55FN2",
+    "slug": "fast-food-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4392441,
+      0.6623484
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3291",
+      "fastfood"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S5H7TSAY23F3EF4YW",
+    "slug": "restaurant-southside",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4458809,
+      0.5748662
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3294",
+      "food"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S87F4HAMJ442RGWGB",
+    "slug": "gas-station-southside-l3295",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4482059,
+      0.5540011
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3295",
+      "gas"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SR47QVBDT8RZ2M22E",
+    "slug": "bus-stop-sw-4th-st",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4682574,
+      0.5327607
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "SW 4th St, Tequesta",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3298",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S1ZR378AQ6QK9R1J0",
+    "slug": "bus-stop-calderone-ave-l3299",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.4465431,
+      0.5547627
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Calderone Ave, Southside, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3299",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SS57KTCM52K810J5R",
+    "slug": "shoe-store-vice-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4934309,
+      0.4317839
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3302",
+      "shoes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SA0VBBJNEDZGQEJJQ",
+    "slug": "clothing-store-vice-decor-district-l3303",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4927935,
+      0.4291969
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Vice Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3303",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SM6794CGK10KX1TW8",
+    "slug": "xero-gas-station-ambrosia-l3304",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.41803,
+      0.371932
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ambrosia",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3304",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SMG2T62R2PHZ4S7NT",
+    "slug": "bus-stop-thompson-ave",
+    "mapId": "map_main",
+    "categoryId": "cat_transport",
+    "coord": [
+      0.553143,
+      0.4579875
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Thompson Ave, Ocean Beach, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3312",
+      "bus"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S99G98X0ZM6CK6SQM",
+    "slug": "vendor-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5657905,
+      0.4998045
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3338",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SD1KBRREP1H2N13RR",
+    "slug": "vendor-ocean-beach-l3339",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5650598,
+      0.4912898
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3339",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S1YB78FDQF5V08KQR",
+    "slug": "vendor-ocean-beach-l3340",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5648309,
+      0.4901403
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3340",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SWNRSTK3K6QZRTZEM",
+    "slug": "vendor-ocean-beach-l3341",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5671023,
+      0.4668501
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3341",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0STZ2ZHTFZYQFEN2FZ",
+    "slug": "vendor-washington-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.5453694,
+      0.4127533
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Washington Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3343",
+      "vendor"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SZ31MCPHB69PKKY07",
+    "slug": "beach-volleyball-ocean-beach",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5617639,
+      0.4896906
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Ocean Beach, Vice Beach",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3352",
+      "volleyball"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SPAXSJP4G744N4AYG",
+    "slug": "the-old-mill-barber-shop-millport",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.466696,
+      0.3020047
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Millport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3396",
+      "hair"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SP0HSHAHXP1W8ETRN",
+    "slug": "trotman-s-super-market-millport",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4671795,
+      0.3019597
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Millport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3397",
+      "supermarket"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S1ABYS16KGQPNKEJE",
+    "slug": "jacob-s-tavern-bar-millport",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.4676686,
+      0.3019525
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Millport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3398",
+      "bar"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0S2CPNP42XC0100KTV",
+    "slug": "reynold-s-pharmacy-millport",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4682494,
+      0.3020055
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Millport",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3399",
+      "pharmacy"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SWRGFGZM9YKFMNS2Q",
+    "slug": "tennis-courts-port-vice-city",
+    "mapId": "map_main",
+    "categoryId": "cat_landmarks",
+    "coord": [
+      0.5147846,
+      0.5156264
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Port Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3402",
+      "tennis"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SWQTG0263V5GCW0N7",
+    "slug": "mod-shop-key-lento",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4056137,
+      0.7022986
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Key Lento",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3492",
+      "modshop"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SWY84BRFVMWCCNDGM",
+    "slug": "restaurant-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4903117,
+      0.4298514
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3745",
+      "food"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SCDJ8CZEKKWYH050F",
+    "slug": "restaurant-decor-district-l3746",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4915615,
+      0.4297331
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3746",
+      "food"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  },
+  {
+    "id": "pin_01M7SZJV0SZZ40G4TBDCZMF9VW",
+    "slug": "clothing-store-decor-district",
+    "mapId": "map_main",
+    "categoryId": "cat_shops",
+    "coord": [
+      0.4925918,
+      0.4337973
+    ],
+    "source": "community",
+    "credit": {
+      "name": "GTADB.org",
+      "url": "https://map.gtadb.org"
+    },
+    "region": "Decor District, Vice City",
+    "status": "unverified",
+    "spoilerLevel": "none",
+    "provenance": {
+      "sourceUrl": "https://map.gtadb.org",
+      "retrievedAt": "2026-11-19",
+      "confidence": "medium",
+      "extractedBy": "ai"
+    },
+    "tags": [
+      "gtadb:L3747",
+      "clothes"
+    ],
+    "addedAt": "2026-11-19",
+    "dataVersion": 1
+  }
+]
