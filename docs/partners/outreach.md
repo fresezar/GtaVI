@@ -53,4 +53,4 @@ What I can promise: when ads or subscriptions start, founding partners get a sha
 
 | Hesap | Platform | Takipçi | İlk mesaj | Cevap | Sayfa | Gönderi | Gelen kişi | Pin |
 |---|---|---|---|---|---|---|---|---|
-| Gaming Universe | Instagram | 50K | 2026-11-19 | soru sordu | - | - | - | - |
+| Gaming Universe | Instagram | 50K | 2026-11-19 | iptal (kurucu: sohbet geçersiz, 2026-11-20) | - | - | - | - |

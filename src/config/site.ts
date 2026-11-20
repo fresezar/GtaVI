@@ -30,12 +30,12 @@ export const SITE = {
    * Cloudflare Turnstile site key (public). Empty = no bot check in the "Suggest a pin" form. The matching
    * secret goes to the Worker: npx wrangler secret put TURNSTILE_SECRET (the API then requires a token).
    */
-  turnstileSiteKey: "",
+  turnstileSiteKey: "0x4AAAAAAGJgflbpEt2IgAxK",
   /** Community links: empty = hidden. Fill when the accounts exist. */
   links: {
     youtube: "https://www.youtube.com/@SixStarGTAMap",
     tiktok: "",
-    discord: "https://discord.gg/tDg6hTqFk",
+    discord: "https://discord.gg/UXjhBDaXMH",
     x: "",
     donate: "",
   },

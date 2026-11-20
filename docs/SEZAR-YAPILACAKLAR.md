@@ -3,35 +3,24 @@
 Kurucunun yapması ya da karar vermesi gereken açık işler. Claude her oturumda günceller; biten iş silinmez, "Bitti" bölümüne taşınır.
 Son güncelleme: 2026-11-20.
 
-## Acil
+## Açık
 
-1. **Bot doğrulaması (Turnstile).** Cloudflare paneli > Turnstile > Add widget. Ad: `Six Star suggest`. Hostname: `sixstargta.com` ve `www.sixstargta.com`. Mod: Managed.
-   - Site key'i Claude'a gönder (herkese açık bir anahtar).
-   - Secret key'i Claude'a yazma. Proje klasöründe `npx wrangler secret put TURNSTILE_SECRET` komutunu çalıştır, sorunca yapıştır.
-   - İkisi aynı gün yapılmalı: sadece secret girilirse öneri formu çalışmaz.
-2. **Süresi dolmayan Discord davet linki.** Şu anki `discord.gg/tDg6hTqFk` varsayılan ayarlarla oluşturulduysa 7 günde geçersiz olur ve sitedeki tüm Discord düğmeleri bozulur. Discord > davet ayarları > "Süresi dolmasın" seçeneğiyle yeni link oluştur, Claude'a gönder.
-3. **Gaming Universe'e cevap.** "What type of advantage?" sorusu cevapsız. Önerilen mesaj: `docs/partners/outreach.md` bölüm 4. Partner sayfası sadece anlaşma olursa açılır.
+1. **R2'yi aç (ekran görüntüsü yükleme için).** Cloudflare paneli > R2 Object Storage > "Purchase R2" / "Enable". Ücretsiz katman (10 GB) yeter; Cloudflare kart bilgisi isteyebilir. Açınca Claude'a haber ver: kovayı oluşturup yüklemeyi yayına alır. (Claude açamıyor: API "R2'yi panelden etkinleştirin" diyor.)
+2. **GTA 6 Intel kurucusu** (Sezar: yarın). Pinlerini atıfla kullanmak için izin iste; hile sayfası için teşekkürle başla.
+3. **Partner adayları** (Sezar: yarın). 10 bin+ takipçili 3-5 GTA hesabına `docs/partners/outreach.md` 1. mesajı. Olumlu cevapta Claude'a ad, profil linki, logo.
+4. **Bot doğrulamasını bir kez dene.** Telefonda ve bilgisayarda `sixstargta.com/map?suggest=1` aç. "Gönder" düğmesinin üstünde Cloudflare kutusu ve yeşil tik görünmeli. Görünmüyorsa Turnstile panelinde hostname listesinde `sixstargta.com` ve `www.sixstargta.com` olduğunu kontrol et. Kutu çıkmazsa öneri gönderilemez.
+5. **Onay kuyruğu (`/admin`).** Gelen önerileri düzenli onayla ya da reddet.
 
-## Karar bekleyenler
+## Hatırlatılacak
 
-4. **Öneri formunda kanıt linki isteğe bağlı olsun mu?** Telefondan gelen kullanıcı ekran görüntüsü linki bulamayıp vazgeçebilir. İsteğe bağlı olursa onay sırasında daha dikkatli bakarsın. Daha iyi çözüm: formdan doğrudan ekran görüntüsü yükleme; bunun için Cloudflare R2 depolama alanının açılması gerekiyor.
-5. **Topluluk Aşama 2'ye geçelim mi?** Discord ile giriş, "Ben de buldum" onayları, hesaba bağlı rütbe ve puan (düzeltme +5, onay +2 puanları bununla açılır).
-
-## İletişim
-
-6. **GTA 6 Intel kurucusu.** Pinlerini (248 adet) atıfla kullanmak için izin iste. Hile sayfası için teşekkür etmek iyi bir giriş olur.
-7. **Partner adayları.** 10 bin+ takipçili 3-5 GTA hesabı seç, `docs/partners/outreach.md` 1. mesajı gönder. Mesajı göndermeden önce kişiye özel ikinci satırı yaz. Olumlu cevap gelince Claude'a hesabın adını, profil linkini ve logosunu ver; partner sayfası öyle açılır.
-
-## Kontrol
-
-8. **Sekme ve sayfa geçiş animasyonu.** Telefonda ve bilgisayarda bir kez dene; Claude ekran görüntüsüyle hareketi test edemiyor.
-9. **Onay kuyruğu (`/admin`).** Gelen önerileri düzenli onayla ya da reddet. "Yakında N kayıt var" uyarısı kopya olabilecek önerileri gösteriyor.
-
-## Hatırlatma
-
-10. **FiveM pazar araştırması.** Harita işi büyük ölçüde bitti; plan `docs/BACKLOG.md` "Mod ve sunucu" bölümünde. Ne zaman başlamak istediğini söyle.
+- **2026-11-21: Topluluk Aşama 2** (Sezar: "yarın geçeriz, hatırlat"). Discord ile giriş, "Ben de buldum" onayları, hesaba bağlı puan ve rütbe.
+- **Gelir ve FiveM konuşması.** Notlar `docs/business/GELIR.md`; Claude arka planda geliştiriyor.
 
 ## Bitti
 
+- 2026-11-20: Turnstile anahtarları (site key sitede, secret Worker'da). Yeni Discord linki `discord.gg/UXjhBDaXMH` sitede.
+- 2026-11-20: Kanıt için ekran görüntüsü yükleme kararı: R2, doğrulamadan sonra görsel silinir.
+- 2026-11-20: Animasyonlar kontrol edildi (şimdilik tamam).
+- İptal: Gaming Universe sohbeti (Sezar: geçersiz).
 - Search Console kurulumu ve site haritası (52 sayfa kabul edildi).
 - Logo seçimi, YouTube ve Discord hesapları.
