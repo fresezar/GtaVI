@@ -7,6 +7,7 @@ import { categoryKey } from "@/i18n/keys";
 import { SITE } from "@/config/site";
 import { PARTNER_BY_SLUG, currentRef } from "@/data/partners";
 import Turnstile from "./Turnstile";
+import { shrinkImage } from "./shrinkImage";
 
 const NAME_KEY = "sixstar.suggest.name";
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; code: string };
@@ -39,6 +40,11 @@ export default function SuggestPanel({
   const needsCaptcha = Boolean(SITE.turnstileSiteKey);
   const [attempt, setAttempt] = useState(0); // remounts the widget after a failed send (tokens are single-use)
   const [state, setState] = useState<State>({ kind: "idle" });
+  // Screenshot proof (only when SITE.proofUploads): shrunk in the browser, sent with the form.
+  const uploads = SITE.proofUploads;
+  const [image, setImage] = useState<Blob | null>(null);
+  const [preview, setPreview] = useState("");
+  const [imageBusy, setImageBusy] = useState(false);
   const [ref, setRef] = useState(""); // partner page the visitor came from (/p/<slug>), if any
   const partner = PARTNER_BY_SLUG.get(ref);
 
@@ -51,6 +57,23 @@ export default function SuggestPanel({
     }
   }, []);
 
+  useEffect(() => () => (preview ? URL.revokeObjectURL(preview) : undefined), [preview]);
+  const pickImage = async (file: File | undefined) => {
+    setImage(null);
+    setPreview("");
+    if (!file) return;
+    setImageBusy(true);
+    try {
+      const small = await shrinkImage(file);
+      setImage(small);
+      setPreview(URL.createObjectURL(small));
+    } catch {
+      setState({ kind: "error", code: "image" });
+    } finally {
+      setImageBusy(false);
+    }
+  };
+
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!coord) return setState({ kind: "error", code: "position" });
@@ -60,12 +83,19 @@ export default function SuggestPanel({
     } catch {
       /* not remembered */
     }
+    if (!proofUrl.trim() && !image) return setState({ kind: "error", code: "proof" });
     try {
-      const r = await fetch("/api/suggest", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1], turnstile: captcha, ref }),
-      });
+      const fields = { categoryId, title, proofUrl, note, name, website, locale, x: coord[0], y: coord[1], turnstile: captcha, ref };
+      let init: RequestInit;
+      if (image) {
+        const form = new FormData();
+        for (const [k, v] of Object.entries(fields)) form.append(k, String(v));
+        form.append("image", image, "proof.jpg");
+        init = { method: "POST", body: form };
+      } else {
+        init = { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(fields) };
+      }
+      const r = await fetch("/api/suggest", init);
       const data = (await r.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (r.ok && data.ok) {
         setState({ kind: "sent" });
@@ -73,6 +103,8 @@ export default function SuggestPanel({
         setProofUrl("");
         setNote("");
         setCaptcha("");
+        setImage(null);
+        setPreview("");
         onSent();
       } else {
         setCaptcha(""); // a token is single-use: the widget re-issues one
@@ -147,11 +179,30 @@ export default function SuggestPanel({
             />
           </label>
 
+          {uploads && (
+            <div className="text-xs font-bold">
+              <label htmlFor="sg-image">{t("ui.suggest.screenshot")}</label>
+              <input
+                id="sg-image"
+                type="file"
+                accept="image/*"
+                onChange={(e) => void pickImage(e.target.files?.[0])}
+                className="mt-1 block w-full text-sm font-normal file:mr-3 file:border file:border-[#B9A993] file:bg-white file:px-3 file:py-2 file:font-bold"
+              />
+              {imageBusy && <span className="mt-1 block font-normal text-[#5a4f42]">{t("ui.suggest.imageWorking")}</span>}
+              {preview && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={preview} alt="" className="mt-2 max-h-40 w-auto border border-[#B9A993]" />
+              )}
+              <span className="mt-1 block font-normal text-[#5a4f42]">{t("ui.suggest.screenshotHint")}</span>
+            </div>
+          )}
+
           <label className="block text-xs font-bold">
-            {t("ui.suggest.proof")}
+            {uploads ? t("ui.suggest.proofOptional") : t("ui.suggest.proof")}
             <input
               id="sg-proof"
-              required
+              required={!uploads || !image}
               type="url"
               maxLength={500}
               value={proofUrl}
@@ -204,12 +255,12 @@ export default function SuggestPanel({
 
           {state.kind === "error" && (
             <p className="border border-[#B23A2A] p-2 text-xs text-[#B23A2A]" role="alert">
-              {t(`ui.suggest.error.${["category", "title", "proof", "position", "rate_limited", "captcha"].includes(state.code) ? state.code : "server"}`)}
+              {t(`ui.suggest.error.${["category", "title", "proof", "position", "rate_limited", "captcha", "image"].includes(state.code) ? state.code : "server"}`)}
             </p>
           )}
 
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <button type="submit" className="btn-paper btn-paper-primary" disabled={state.kind === "sending" || !coord || (needsCaptcha && !captcha)}>
+            <button type="submit" className="btn-paper btn-paper-primary" disabled={state.kind === "sending" || imageBusy || !coord || (needsCaptcha && !captcha)}>
               {state.kind === "sending" ? t("ui.suggest.sending") : t("ui.suggest.send")}
             </button>
             <button type="button" className="btn-paper" onClick={onClose}>{t("ui.suggest.cancel")}</button>

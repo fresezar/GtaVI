@@ -57,7 +57,8 @@ for (const s of items) {
       ...(s.name ? { credit: { name: s.name } } : {}),
       status: "unverified",
       spoilerLevel: "none",
-      provenance: { sourceUrl: s.proof_url, retrievedAt: today(), confidence: "medium", extractedBy: "human" },
+      // Screenshot-only proofs have no link (the image is deleted after review).
+      provenance: { ...(s.proof_url ? { sourceUrl: s.proof_url } : {}), retrievedAt: today(), confidence: "medium", extractedBy: "human" },
       addedAt: (s.reviewed_at ?? new Date().toISOString()).slice(0, 10),
       dataVersion: 1,
       tags: [`suggestion:${s.id}`, ...(s.ref ? [`via:${s.ref}`] : [])],

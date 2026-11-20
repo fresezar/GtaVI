@@ -31,6 +31,11 @@ export const SITE = {
    * secret goes to the Worker: npx wrangler secret put TURNSTILE_SECRET (the API then requires a token).
    */
   turnstileSiteKey: "0x4AAAAAAGJgflbpEt2IgAxK",
+  /**
+   * Screenshot proof upload in the "Suggest a pin" form. Needs the R2 bucket bound in wrangler.jsonc
+   * (r2_buckets PROOFS). Images are kept until a moderator decides, then deleted.
+   */
+  proofUploads: false,
   /** Community links: empty = hidden. Fill when the accounts exist. */
   links: {
     youtube: "https://www.youtube.com/@SixStarGTAMap",

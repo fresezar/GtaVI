@@ -2,13 +2,15 @@
  * Six Star API (community phase 1). Only /api/* reaches this script (wrangler.jsonc run_worker_first);
  * every other request is served straight from the static export by the assets layer.
  *
- *   POST /api/suggest                 public: send a pin suggestion (no account)
+ *   POST /api/suggest                 public: send a pin suggestion (no account); JSON, or multipart with an "image"
+ *                                     screenshot when the PROOFS bucket is bound (stored until review, then deleted)
  *   GET  /api/community/pins          public: approved suggestions not yet baked into the site
  *   GET  /api/admin/queue?status=     moderator: list suggestions
  *   POST /api/admin/review            moderator: approve / reject (optionally edit title, category, name)
  *   POST /api/admin/published         moderator: mark approved rows as copied into content/pins.json
  *   POST /api/ref/visit               public: count a unique daily visit to a partner page (/p/<slug>)
  *   GET  /api/admin/partners          moderator: visits and suggestions per partner
+ *   GET  /api/admin/proof?id=         moderator: the screenshot uploaded with a suggestion
  *
  * Moderator auth: "Authorization: Bearer <ADMIN_TOKEN>" (wrangler secret). Spam guards: honeypot field,
  * per-IP rate limit (salted daily hash, the IP itself is never stored), optional Turnstile.
@@ -23,6 +25,8 @@ export interface Env {
   IP_SALT: string;
   /** Optional: set it (wrangler secret) and the site's NEXT_PUBLIC_TURNSTILE_SITE_KEY to require Turnstile. */
   TURNSTILE_SECRET?: string;
+  /** Optional R2 bucket for screenshot proofs (wrangler.jsonc r2_buckets). Without it, uploads are refused. */
+  PROOFS?: R2Bucket;
 }
 
 const CATEGORY_IDS = new Set((categories as { id: string }[]).map((c) => c.id));
@@ -35,6 +39,16 @@ const partnerRef = (v: unknown) => {
 const VIEW = { x: [17 / 128, 84 / 128], y: [17 / 128, 104 / 128] } as const;
 const RATE_PER_HOUR = 8;
 const MAX_BODY = 8 * 1024;
+const MAX_IMAGE = 5 * 1024 * 1024;
+const MAX_UPLOAD = MAX_IMAGE + 16 * 1024;
+/** Accepted screenshot formats, checked by their first bytes (not the browser's claim). */
+function imageType(b: Uint8Array): { mime: string; ext: string } | null {
+  if (b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff) return { mime: "image/jpeg", ext: "jpg" };
+  if (b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47) return { mime: "image/png", ext: "png" };
+  if (b[0] === 0x52 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x46 && b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50)
+    return { mime: "image/webp", ext: "webp" };
+  return null;
+}
 
 const json = (data: unknown, status = 200, headers: Record<string, string> = {}) =>
   new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...headers } });
@@ -92,9 +106,28 @@ async function readBody(req: Request): Promise<Record<string, unknown> | null> {
   }
 }
 
+/** Multipart suggestion: the same fields as the JSON body, plus an optional "image" file. */
+async function readUpload(req: Request): Promise<{ body: Record<string, unknown>; image: File | null } | null> {
+  if (Number(req.headers.get("content-length") ?? 0) > MAX_UPLOAD) return null;
+  let form: FormData;
+  try {
+    form = await req.formData();
+  } catch {
+    return null;
+  }
+  const body: Record<string, unknown> = {};
+  for (const [k, v] of form.entries()) if (typeof v === "string") body[k] = v;
+  const file = form.get("image");
+  return { body, image: file && typeof file !== "string" && file.size > 0 ? file : null };
+}
+
 async function suggest(req: Request, env: Env): Promise<Response> {
-  const body = await readBody(req);
+  const multipart = (req.headers.get("content-type") ?? "").startsWith("multipart/form-data");
+  const upload = multipart ? await readUpload(req) : null;
+  if (multipart && !upload) return fail(400, "image");
+  const body = upload ? upload.body : await readBody(req);
   if (!body) return fail(400, "bad_request");
+  const image = upload?.image ?? null;
   // Honeypot: a field people never see. Bots fill it; pretend success so they don't adapt.
   if (clean(body.website, 200)) return json({ ok: true });
 
@@ -110,7 +143,17 @@ async function suggest(req: Request, env: Env): Promise<Response> {
 
   if (!CATEGORY_IDS.has(categoryId)) return fail(400, "category");
   if (title.length < 3) return fail(400, "title");
-  if (!isHttpUrl(proofUrl)) return fail(400, "proof");
+  if (proofUrl && !isHttpUrl(proofUrl)) return fail(400, "proof");
+  if (!proofUrl && !image) return fail(400, "proof");
+  let bytes: Uint8Array | null = null;
+  let kind: { mime: string; ext: string } | null = null;
+  if (image) {
+    if (!env.PROOFS) return fail(400, "image");
+    if (image.size > MAX_IMAGE) return fail(400, "image");
+    bytes = new Uint8Array(await image.arrayBuffer());
+    kind = imageType(bytes);
+    if (!kind) return fail(400, "image");
+  }
   if (!(x >= VIEW.x[0] && x <= VIEW.x[1] && y >= VIEW.y[0] && y <= VIEW.y[1])) return fail(400, "position");
 
   const ip = clientIp(req);
@@ -131,10 +174,15 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   if ((recent?.n ?? 0) >= RATE_PER_HOUR) return fail(429, "rate_limited");
 
   const id = `sug_${ulid(now.getTime())}`;
+  let proofKey: string | null = null;
+  if (bytes && kind && env.PROOFS) {
+    proofKey = `proofs/${id}.${kind.ext}`;
+    await env.PROOFS.put(proofKey, bytes, { httpMetadata: { contentType: kind.mime } });
+  }
   await env.DB.prepare(
-    "INSERT INTO suggestions (id, created_at, category_id, title, x, y, proof_url, note, name, locale, ip_hash, ref) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO suggestions (id, created_at, category_id, title, x, y, proof_url, note, name, locale, ip_hash, ref, proof_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
   )
-    .bind(id, now.toISOString(), categoryId, title, x, y, proofUrl, note || null, name || null, locale, ipHash, ref)
+    .bind(id, now.toISOString(), categoryId, title, x, y, proofUrl, note || null, name || null, locale, ipHash, ref, proofKey)
     .run();
   return json({ ok: true, id }, 201);
 }
@@ -155,6 +203,7 @@ interface Row {
   reviewed_at: string | null;
   reason: string | null;
   ref: string | null;
+  proof_image: string | null;
 }
 
 async function communityPins(env: Env): Promise<Response> {
@@ -178,7 +227,7 @@ async function queue(url: URL, env: Env): Promise<Response> {
   const status = url.searchParams.get("status") ?? "pending";
   if (!["pending", "approved", "rejected", "published"].includes(status)) return fail(400, "status");
   const { results } = await env.DB.prepare(
-    "SELECT id, created_at, status, category_id, title, x, y, proof_url, note, name, locale, pin_id, reviewed_at, reason, ref FROM suggestions WHERE status = ? ORDER BY created_at ASC LIMIT 200",
+    "SELECT id, created_at, status, category_id, title, x, y, proof_url, note, name, locale, pin_id, reviewed_at, reason, ref, proof_image FROM suggestions WHERE status = ? ORDER BY created_at ASC LIMIT 200",
   )
     .bind(status)
     .all<Row>();
@@ -194,11 +243,18 @@ async function review(req: Request, env: Env): Promise<Response> {
   const row = await env.DB.prepare("SELECT * FROM suggestions WHERE id = ?").bind(id).first<Row>();
   if (!row) return fail(404, "not_found");
   const now = new Date().toISOString();
+  // A screenshot only lives until the decision (founder, 2026-11-20): delete it on approve and on reject.
+  const dropProof = async () => {
+    if (!row.proof_image) return;
+    if (env.PROOFS) await env.PROOFS.delete(row.proof_image);
+    await env.DB.prepare("UPDATE suggestions SET proof_image = NULL WHERE id = ?").bind(id).run();
+  };
 
   if (action === "reject") {
     await env.DB.prepare("UPDATE suggestions SET status = 'rejected', reviewed_at = ?, reason = ? WHERE id = ?")
       .bind(now, clean(body.reason, 200) || null, id)
       .run();
+    await dropProof();
     return json({ ok: true });
   }
   if (action !== "approve") return fail(400, "action");
@@ -211,6 +267,7 @@ async function review(req: Request, env: Env): Promise<Response> {
   await env.DB.prepare("UPDATE suggestions SET status = 'approved', reviewed_at = ?, title = ?, category_id = ?, name = ?, pin_id = ?, reason = NULL WHERE id = ?")
     .bind(now, title, categoryId, name, pinId, id)
     .run();
+  await dropProof();
   return json({ ok: true, pinId });
 }
 
@@ -250,6 +307,17 @@ async function partnerStats(env: Env): Promise<Response> {
   return json({ partners: out });
 }
 
+async function proof(url: URL, env: Env): Promise<Response> {
+  const id = clean(url.searchParams.get("id"), 40);
+  const row = await env.DB.prepare("SELECT proof_image FROM suggestions WHERE id = ?").bind(id).first<{ proof_image: string | null }>();
+  if (!row?.proof_image || !env.PROOFS) return fail(404, "not_found");
+  const obj = await env.PROOFS.get(row.proof_image);
+  if (!obj) return fail(404, "not_found");
+  return new Response(obj.body, {
+    headers: { "content-type": obj.httpMetadata?.contentType ?? "application/octet-stream", "cache-control": "private, no-store", "x-content-type-options": "nosniff" },
+  });
+}
+
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url);
@@ -264,6 +332,7 @@ export default {
         if (path === "/api/admin/review" && req.method === "POST") return await review(req, env);
         if (path === "/api/admin/published" && req.method === "POST") return await markPublished(req, env);
         if (path === "/api/admin/partners" && req.method === "GET") return await partnerStats(env);
+        if (path === "/api/admin/proof" && req.method === "GET") return await proof(url, env);
       }
       if (path.startsWith("/api/")) return fail(404, "not_found");
       return env.ASSETS.fetch(req);

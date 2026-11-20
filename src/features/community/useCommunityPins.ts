@@ -46,7 +46,7 @@ export function useCommunityPins(): readonly PlacedPin[] {
               ...(r.name ? { credit: { name: r.name } } : {}),
               status: "unverified",
               spoilerLevel: "none",
-              provenance: { sourceUrl: r.proofUrl, confidence: "medium", extractedBy: "human" },
+              provenance: { ...(r.proofUrl ? { sourceUrl: r.proofUrl } : {}), confidence: "medium", extractedBy: "human" },
               addedAt: (r.approvedAt ?? new Date().toISOString()).slice(0, 10),
               dataVersion: 1,
               tags: [LIVE_TAG, ...(r.via ? [`${VIA_PREFIX}${r.via}`] : [])],

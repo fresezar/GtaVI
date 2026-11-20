@@ -37,6 +37,7 @@ interface Item {
   reviewed_at: string | null;
   reason: string | null;
   ref: string | null;
+  proof_image: string | null;
 }
 
 const catName = (id: string) => translate(categoryKey(id as never), undefined, "tr");
@@ -90,6 +91,33 @@ function Preview({ x, y }: { x: number; y: number }) {
         aria-hidden="true"
       />
     </div>
+  );
+}
+
+/** The uploaded screenshot, fetched with the moderator token (never public). Deleted on approve or reject. */
+function ProofImage({ id, token }: { id: string; token: string }) {
+  const [src, setSrc] = useState("");
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let url = "";
+    fetch(`/api/admin/proof?id=${encodeURIComponent(id)}`, { headers: { authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.blob() : Promise.reject(new Error(String(r.status)))))
+      .then((b) => {
+        url = URL.createObjectURL(b);
+        setSrc(url);
+      })
+      .catch(() => setFailed(true));
+    return () => {
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [id, token]);
+  if (failed) return <p className="text-xs text-muted">Görsel açılamadı.</p>;
+  if (!src) return <p className="text-xs text-muted">Görsel yükleniyor…</p>;
+  return (
+    <a href={src} target="_blank" rel="noopener" className="block">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt="Kanıt ekran görüntüsü" className="max-h-72 w-auto border border-line" />
+    </a>
   );
 }
 
@@ -147,10 +175,18 @@ function Row({ item, token, onDone, others }: { item: Item; token: string; onDon
           Bulan (boş = anonim)
           <input value={name} onChange={(e) => setName(e.target.value)} maxLength={40} />
         </label>
-        <p>
-          <b>Kanıt:</b>{" "}
-          <a href={item.proof_url} target="_blank" rel="noopener noreferrer ugc" className="break-all text-accent underline">{item.proof_url}</a>
-        </p>
+        {item.proof_image && (
+          <div>
+            <b>Kanıt (ekran görüntüsü, karardan sonra silinir):</b>
+            <ProofImage id={item.id} token={token} />
+          </div>
+        )}
+        {item.proof_url && (
+          <p>
+            <b>Kanıt:</b>{" "}
+            <a href={item.proof_url} target="_blank" rel="noopener noreferrer ugc" className="break-all text-accent underline">{item.proof_url}</a>
+          </p>
+        )}
         {item.note && <p><b>Not:</b> {item.note}</p>}
         <p className="text-xs text-muted">
           Konum: {item.x.toFixed(5)}, {item.y.toFixed(5)}
