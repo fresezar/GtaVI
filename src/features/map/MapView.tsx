@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import type { Category, CategoryId, Coord, MapDef, PinId, PlacedPin as Pin } from "@/domain";
 import type { Translate } from "@/i18n";
 import { createProjection, type MapProjection } from "./projection";
+import type { MapOverlays } from "./overlays";
 import { CATEGORY_COLORS, PIN_OUTLINE } from "./tokens";
 
 interface Props {
@@ -27,6 +28,12 @@ interface Props {
   calibrationMarkers?: readonly (readonly [number, number])[];
   /** Change `nonce` to re-focus the same pin (e.g. picking it twice from search). */
   focus?: { id: PinId; nonce: number } | null;
+  /** Regions, district labels and named places (GTADB). Drawn under the pins; never part of progress. */
+  overlays?: MapOverlays | null;
+  showRegions?: boolean;
+  showPlaces?: boolean;
+  /** Change `nonce` to fly to a named place and open its label. */
+  placeFocus?: { id: string; nonce: number } | null;
 }
 
 export type MapFocus = NonNullable<Props["focus"]>;
@@ -79,7 +86,28 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string, t
   return node;
 }
 
-export default function MapView({ def, pins, categories, isDone, onSelect, selectedId, t, onMapClick, devMarkers, calibrationMarkers, focus }: Props) {
+/** Zoom bands under native zoom: regions only (far), + districts and place dots (mid), + place names (near). */
+const MID_BELOW = 2.5;
+const NEAR_BELOW = 1;
+const MAX_PLACE_LABELS = 220;
+
+export default function MapView({
+  def,
+  pins,
+  categories,
+  isDone,
+  onSelect,
+  selectedId,
+  t,
+  onMapClick,
+  devMarkers,
+  calibrationMarkers,
+  focus,
+  overlays,
+  showRegions = true,
+  showPlaces = true,
+  placeFocus,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const projRef = useRef<MapProjection | null>(null);
@@ -89,6 +117,8 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
   const markersRef = useRef(new Map<PinId, L.CircleMarker>());
   const focusedRef = useRef<number | null>(null);
   const renderRef = useRef<() => void>(() => {});
+  const overlayRef = useRef<() => void>(() => {});
+  const placeMarkersRef = useRef(new Map<string, L.CircleMarker>());
 
   // Latest callbacks/state for event handlers without re-binding.
   const live = useRef({ isDone, onSelect, onMapClick, categories, selectedId });
@@ -155,6 +185,10 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
 
     rendererRef.current = L.canvas({ padding: 0.5, tolerance: 8 });
     pinGroupRef.current = L.layerGroup().addTo(map);
+    // Text labels sit above the pins' canvas and never catch the pointer.
+    const labelPane = map.createPane("labels");
+    labelPane.style.zIndex = "450";
+    labelPane.style.pointerEvents = "none";
     devGroupRef.current = L.layerGroup().addTo(map);
 
     map.on("click", (e: L.LeafletMouseEvent) => {
@@ -168,8 +202,17 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
       handler(proj.toCoord(e.latlng), image);
     });
 
-    // Re-cluster after every zoom/pan (cheap: a grid pass over the pins in view).
-    map.on("zoomend moveend", () => renderRef.current());
+    // After every zoom/pan: overlays first, then pins (re-added last, so they stay on top in the shared canvas).
+    const band = () => {
+      const z = map.getZoom();
+      container.dataset.band = z < proj.nativeZoom - MID_BELOW ? "far" : z < proj.nativeZoom - NEAR_BELOW ? "mid" : "near";
+    };
+    band();
+    map.on("zoomend moveend", () => {
+      band();
+      overlayRef.current();
+      renderRef.current();
+    });
 
     mapRef.current = map;
     const markers = markersRef.current;
@@ -272,6 +315,123 @@ export default function MapView({ def, pins, categories, isDone, onSelect, selec
     map.setView(marker.getLatLng(), Math.max(map.getZoom(), proj.nativeZoom - 1));
     marker.fire("click");
   }, [focus, pins]);
+
+  // 6) Overlays: coloured regions (hover lights the border), region and district names, named places.
+  useEffect(() => {
+    const map = mapRef.current;
+    const proj = projRef.current;
+    const renderer = rendererRef.current;
+    if (!map || !proj || !renderer || !overlays) return;
+    const n = proj.nativeZoom;
+    const regionGroup = L.layerGroup();
+    const regionLabels = L.layerGroup();
+    const districtLabels = L.layerGroup();
+    const placeGroup = L.layerGroup();
+    const placeLabels = L.layerGroup();
+    const placeMarkers = placeMarkersRef.current;
+    const label = (latlng: L.LatLng, node: HTMLElement) =>
+      L.marker(latlng, { pane: "labels", interactive: false, keyboard: false, icon: L.divIcon({ className: "map-label-anchor", html: node, iconSize: [0, 0] }) });
+
+    // Fill strength by zoom: strong far out (the colours tell regions apart), faint up close (the map shows through).
+    let fill = 0.16;
+    const polys: { poly: L.Polygon; hot: boolean }[] = [];
+    for (const r of overlays.regions) {
+      const base = (): L.PathOptions => ({ renderer, color: r.color, weight: 1.5, opacity: 0.75, fillColor: r.color, fillOpacity: fill });
+      const poly = L.polygon(
+        r.rings.map((ring) => ring.map((c) => proj.toLatLng(c))),
+        base(),
+      );
+      const entry = { poly, hot: false };
+      polys.push(entry);
+      const name = el("span", "map-label map-label-region", r.name);
+      name.style.setProperty("--region", r.color);
+      poly.on("mouseover", () => {
+        entry.hot = true;
+        poly.setStyle({ weight: 3.5, opacity: 1, fillOpacity: fill + 0.14 });
+        name.classList.add("is-hot");
+      });
+      poly.on("mouseout", () => {
+        entry.hot = false;
+        poly.setStyle(base());
+        name.classList.remove("is-hot");
+      });
+      // Far out, a tap on a region zooms into it (not while picking a spot for a suggestion).
+      poly.on("click", () => {
+        if (!live.current.onMapClick && map.getZoom() < n - MID_BELOW) map.fitBounds(poly.getBounds(), { padding: [32, 32] });
+      });
+      regionGroup.addLayer(poly);
+      regionLabels.addLayer(label(proj.toLatLng(r.label), name));
+    }
+    for (const d of overlays.districts) districtLabels.addLayer(label(proj.toLatLng(d.label), el("span", "map-label map-label-district", d.name)));
+
+    placeMarkers.clear();
+    for (const p of overlays.places) {
+      const tip = el("span", "place-tip-body");
+      tip.append(el("b", undefined, p.name));
+      const where = [p.district, p.area].filter((x) => x && x !== p.name).join(", ");
+      if (where) tip.append(el("span", undefined, where));
+      if (p.unconfirmed) tip.append(el("em", undefined, t("ui.map.place.unconfirmed")));
+      const m = L.circleMarker(proj.toLatLng(p.coord), {
+        renderer,
+        radius: 3.5,
+        color: "#0B1422",
+        weight: 1.5,
+        fillColor: p.unconfirmed ? "#9aa6b6" : "#fff4ec",
+        fillOpacity: 0.95,
+      }).bindTooltip(tip, { direction: "top", offset: [0, -4], className: "place-tip" });
+      placeGroup.addLayer(m);
+      placeMarkers.set(p.id, m);
+    }
+
+    const show = (g: L.LayerGroup, on: boolean) => {
+      if (on && !map.hasLayer(g)) g.addTo(map);
+      if (!on && map.hasLayer(g)) map.removeLayer(g);
+    };
+    overlayRef.current = () => {
+      const z = map.getZoom();
+      const nextFill = z < n - MID_BELOW ? 0.16 : z < n - NEAR_BELOW ? 0.1 : 0.05;
+      if (nextFill !== fill) {
+        fill = nextFill;
+        for (const p of polys) if (!p.hot) p.poly.setStyle({ fillOpacity: fill });
+      }
+      show(regionGroup, showRegions);
+      show(regionLabels, showRegions);
+      show(districtLabels, showRegions && z >= n - MID_BELOW);
+      show(placeGroup, showPlaces && z >= n - MID_BELOW);
+      placeLabels.clearLayers();
+      if (showPlaces && z >= n - NEAR_BELOW) {
+        const view = map.getBounds().pad(0.15);
+        let count = 0;
+        for (const p of overlays.places) {
+          const ll = proj.toLatLng(p.coord);
+          if (!view.contains(ll)) continue;
+          placeLabels.addLayer(label(ll, el("span", "map-label map-label-place", p.name)));
+          if (++count >= MAX_PLACE_LABELS) break;
+        }
+      }
+      show(placeLabels, showPlaces && z >= n - NEAR_BELOW);
+    };
+    overlayRef.current();
+    renderRef.current(); // pins back on top of the newly drawn overlays
+
+    return () => {
+      overlayRef.current = () => {};
+      for (const g of [regionGroup, regionLabels, districtLabels, placeGroup, placeLabels]) map.removeLayer(g);
+      placeMarkers.clear();
+    };
+  }, [overlays, def, showRegions, showPlaces, t]);
+
+  // 7) Fly to a named place (search pick) and open its label.
+  useEffect(() => {
+    const map = mapRef.current;
+    const proj = projRef.current;
+    if (!map || !proj || !placeFocus) return;
+    const marker = placeMarkersRef.current.get(placeFocus.id);
+    if (!marker) return;
+    map.setView(marker.getLatLng(), Math.max(map.getZoom(), proj.nativeZoom - NEAR_BELOW));
+    const id = window.setTimeout(() => map.hasLayer(marker) && marker.openTooltip(), 450);
+    return () => window.clearTimeout(id);
+  }, [placeFocus, overlays]);
 
   // 5) Dev-mode markers (this session's captured points).
   useEffect(() => {

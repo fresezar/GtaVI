@@ -20,6 +20,7 @@ import SuggestPanel from "@/features/community/SuggestPanel";
 import { useCommunityPins } from "@/features/community/useCommunityPins";
 import { useProgress } from "@/hooks/useProgress";
 import { CATEGORY_COLORS } from "./tokens";
+import { useMapOverlays, type Place } from "./overlays";
 
 const DEF = MAPS[0];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
@@ -44,6 +45,18 @@ export default function MapExplorer() {
     () => placed.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
     [t, locale, placed],
   );
+  const overlays = useMapOverlays();
+  const [showRegions, setShowRegions] = useState(true);
+  const [showPlaces, setShowPlaces] = useState(true);
+  const [placeFocus, setPlaceFocus] = useState<{ id: string; nonce: number } | null>(null);
+  const placeIndex = useMemo(
+    () => (overlays?.places ?? []).map((p) => ({ place: p, haystack: `${p.name} ${p.district} ${p.area}`.toLocaleLowerCase(locale) })),
+    [overlays, locale],
+  );
+  const focusPlace = useCallback((p: Place) => {
+    setShowPlaces(true);
+    setPlaceFocus((f) => ({ id: p.id, nonce: (f?.nonce ?? 0) + 1 }));
+  }, []);
   const [dev, setDev] = useState(false);
   const [focus, setFocus] = useState<MapFocus | null>(null);
   const [hidden, setHidden] = useState<ReadonlySet<CategoryId>>(DEFAULT_HIDDEN);
@@ -97,6 +110,12 @@ export default function MapExplorer() {
     if (q.length < 2) return [];
     return searchIndex.filter((r) => r.haystack.includes(q)).slice(0, SEARCH_LIMIT);
   }, [query, searchIndex, locale]);
+  /** Named places fill the rest of the result list (pins first: they are what players track). */
+  const placeResults = useMemo(() => {
+    const q = query.trim().toLocaleLowerCase(locale);
+    if (q.length < 2) return [];
+    return placeIndex.filter((r) => r.haystack.includes(q)).slice(0, Math.max(3, SEARCH_LIMIT - results.length));
+  }, [query, placeIndex, locale, results.length]);
 
   /** Jump to the next not-yet-found pin in a category (cycles), turning the layer on if needed. */
   const nextUnfound = useCallback(
@@ -163,6 +182,10 @@ export default function MapExplorer() {
           devMarkers={dev ? devMarkers : suggesting && draft ? [draft] : undefined}
           calibrationMarkers={dev && devTool.calib.active ? calibrationMarkers : undefined}
           focus={focus}
+          overlays={overlays}
+          showRegions={showRegions}
+          showPlaces={showPlaces}
+          placeFocus={placeFocus}
         />
         {dev && (
           <span className="pointer-events-none absolute right-3 top-3 z-[500] rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-white shadow-neon">
@@ -253,7 +276,7 @@ export default function MapExplorer() {
           </label>
           {query.trim().length >= 2 && (
             <ul className="mt-2 space-y-1">
-              {results.length === 0 && <li className="text-sm text-muted">{t("ui.search.empty")}</li>}
+              {results.length === 0 && placeResults.length === 0 && <li className="text-sm text-muted">{t("ui.search.empty")}</li>}
               {results.map(({ pin, title }) => {
                 const c = CATEGORY_MAP[pin.categoryId];
                 return (
@@ -266,8 +289,37 @@ export default function MapExplorer() {
                   </li>
                 );
               })}
+              {placeResults.map(({ place }) => (
+                <li key={place.id}>
+                  <button type="button" className="row min-h-[40px] text-sm" onClick={() => focusPlace(place)}>
+                    <span className="dot !h-3 !w-3 border-2 border-ink bg-transparent" />
+                    <span className="min-w-0 flex-1 text-left">
+                      <span className="block truncate">{place.name}</span>
+                      <span className="block truncate text-[11px] text-muted">{[place.district, place.area].filter(Boolean).join(", ")}</span>
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted">{t("ui.search.place")}</span>
+                  </button>
+                </li>
+              ))}
             </ul>
           )}
+        </section>
+
+        <section aria-label={t("ui.map.layers.title")}>
+          <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-muted">{t("ui.map.layers.title")}</h2>
+          <div className="space-y-1.5">
+            <button type="button" aria-pressed={showRegions} onClick={() => setShowRegions((v) => !v)} className={`row w-full ${showRegions ? "" : "row-off"}`}>
+              <span className="dot" style={{ background: "linear-gradient(135deg,#FF6A55,#9B7BFF,#2EE6D0)" }} />
+              <span className="flex-1 text-left">{t("ui.map.layers.regions")}</span>
+              <span className="text-sm tabular-nums text-muted">{overlays?.regions.length ?? ""}</span>
+            </button>
+            <button type="button" aria-pressed={showPlaces} onClick={() => setShowPlaces((v) => !v)} className={`row w-full ${showPlaces ? "" : "row-off"}`}>
+              <span className="dot border-2 border-[#0B1422]" style={{ background: "#fff4ec" }} />
+              <span className="flex-1 text-left">{t("ui.map.layers.places")}</span>
+              <span className="text-sm tabular-nums text-muted">{overlays?.places.length ?? ""}</span>
+            </button>
+          </div>
+          <p className="mt-2 text-[11px] leading-snug text-muted">{t("ui.map.layers.note")}</p>
         </section>
 
         <section aria-label={t("ui.filters.title")}>

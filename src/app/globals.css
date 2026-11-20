@@ -459,3 +459,81 @@ code {
     animation: none !important;
   }
 }
+
+/* ---- Map overlays: region, district and place names (MapView effect 6) ---- */
+.map-label-anchor {
+  background: none;
+  border: 0;
+}
+.map-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  color: #fff;
+  text-shadow: 0 0 2px #050d18, 0 0 4px #050d18, 0 1px 3px rgba(5, 13, 24, 0.9);
+  transition: color 0.15s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+.map-label-region {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--region);
+  padding-bottom: 1px;
+}
+.map-label-region.is-hot {
+  color: var(--region);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+[data-band="far"] .map-label-region {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+[data-band="near"] .map-label-region {
+  font-size: 20px;
+  opacity: 0.45;
+}
+.map-label-district {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 244, 236, 0.85);
+}
+.map-label-place {
+  font-size: 11px;
+  font-weight: 600;
+  transform: translate(-50%, 7px);
+}
+.leaflet-tooltip.place-tip {
+  background: rgba(9, 17, 30, 0.92);
+  color: #fff4ec;
+  border: 1px solid rgba(255, 244, 236, 0.25);
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(2, 6, 12, 0.5);
+  padding: 6px 9px;
+}
+.leaflet-tooltip.place-tip::before {
+  border-top-color: rgba(9, 17, 30, 0.92);
+}
+.place-tip-body {
+  display: grid;
+  gap: 1px;
+  font-size: 12px;
+}
+.place-tip-body b {
+  font-size: 13px;
+}
+.place-tip-body span {
+  color: #9aa6b6;
+}
+.place-tip-body em {
+  color: #ffc857;
+  font-style: normal;
+  font-size: 11px;
+}

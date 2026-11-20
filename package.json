@@ -19,7 +19,8 @@
     "import:gtadb": "node scripts/import-gtadb.mjs",
     "import:community": "node scripts/import-community.mjs",
     "partners:report": "node scripts/partner-report.mjs",
-    "cheats:check": "node scripts/check-cheats.mjs"
+    "cheats:check": "node scripts/check-cheats.mjs",
+    "build:places": "node scripts/build-places.mjs"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
