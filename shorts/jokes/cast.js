@@ -1,9 +1,9 @@
 // Shared cast and sets for the joke shorts. Every episode loads this file, so a character looks the same everywhere.
 // Format rules: shorts/jokes/STYLE.md. Change a character here, never inside an episode.
 // ---------- helpers ----------
-// Look of the whole channel. Locked 2026-11-21: black-and-white silent film. Others stay for reference only:
-// ?style=clean | notebook | chalk (render.mjs --style)
-const STYLE = new URLSearchParams(location.search).get("style") || "silent";
+// Look of the whole channel: color cartoon by default ("clean"). The black-and-white silent film look is kept as an option
+// (render.mjs --style silent); notebook and chalk are reference only. Iris out + "The End" card are in every style.
+const STYLE = new URLSearchParams(location.search).get("style") || "clean";
 const FILM_FPS = STYLE === "silent" ? 18 : 0; // silent-film motion: the picture moves at 18 fps inside a 30 fps video
 const O = { notebook: "#1d3a8f", chalk: "#f3f0e6" }[STYLE] || "#2a2238";
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -338,7 +338,9 @@ const DEFS = `<defs>
       .cap{font-family:Sketch!important;color:#f6f3ea!important;-webkit-text-stroke:14px #2c4437!important;text-shadow:none!important}
       .cap b{color:#ffe08a!important}`,
   }[STYLE];
-  if (css) { const el = document.createElement("style"); el.textContent = css; document.head.appendChild(el); }
+  const el = document.createElement("style");
+  el.textContent = `@font-face{font-family:Lime;src:url("../fonts/limelight.woff2")}` + (css || "");
+  document.head.appendChild(el);
 })();
 
 function stylize(inner, t) {
@@ -363,12 +365,7 @@ function stylize(inner, t) {
     if (rnd(4) < 0.5) s += `<path d="M${(rnd(5) * 1080).toFixed(0)},0 v1920" stroke="#fff" stroke-width="${(1 + rnd(6) * 2).toFixed(1)}" opacity="${(0.25 + rnd(7) * 0.3).toFixed(2)}"/>`;
     for (let k = 0; k < 3; k++) if (rnd(10 + k) < 0.4) s += `<circle cx="${(rnd(20 + k) * 1080).toFixed(0)}" cy="${(rnd(30 + k) * 1920).toFixed(0)}" r="${(2 + rnd(40 + k) * 5).toFixed(1)}" fill="#1a120a" opacity=".6"/>`;
     s += `<rect width="1080" height="1920" fill="#000" opacity="${(0.09 * rnd(3)).toFixed(3)}"/><rect width="1080" height="1920" fill="url(#vigHard)"/>`;
-    // iris in at the start, iris out before the end card
-    const total = typeof D !== "undefined" && D ? D.total : 999, endAt = total - 1.3;
-    const iris = t < 0.6 ? 80 + 1300 * (t / 0.6) : t > endAt - 0.7 ? Math.max(0, 1380 * (1 - (t - (endAt - 0.7)) / 0.7)) : 0;
-    if (iris) s += `<path d="M-50,-50 H1130 V1970 H-50 Z M540,${960 - iris} a${iris},${iris} 0 1,0 0.1,0 Z" fill="#000" fill-rule="evenodd"/>`;
-    if (t >= endAt) s += filmEnd(t - endAt);
-    return s;
+    return s + irisEnd(t, true);
   }
   if (STYLE === "chalk") {
     let s = `<defs><filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
@@ -382,7 +379,16 @@ function stylize(inner, t) {
     s += `<rect width="1080" height="1920" fill="#2c4437"/><rect width="1080" height="1920" filter="url(#smudge)"/>`;
     return s + `<g filter="url(#chalk)" opacity="0.9">${inner}</g>`;
   }
-  return inner + `<rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>`;
+  return inner + `<rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>` + irisEnd(t, false);
+}
+
+// iris in at the start (silent only), iris out and the "The End" card in the last 2 s of every episode
+function irisEnd(t, irisIn) {
+  const total = typeof D !== "undefined" && D ? D.total : 999, endAt = total - 1.3;
+  const r = irisIn && t < 0.6 ? 80 + 1300 * (t / 0.6) : t > endAt - 0.7 ? Math.max(0, 1380 * (1 - (t - (endAt - 0.7)) / 0.7)) : 0;
+  let s = r ? `<path d="M-50,-50 H1130 V1970 H-50 Z M540,${960 - r} a${r},${r} 0 1,0 0.1,0 Z" fill="#0b0b0b" fill-rule="evenodd"/>` : "";
+  if (t >= endAt) s += filmEnd(t - endAt);
+  return s;
 }
 
 // silent-film "The End" card
@@ -392,6 +398,6 @@ function filmEnd(u) {
     <rect x="150" y="700" width="780" height="420" fill="none" stroke="#f1f1ee" stroke-width="5"/>
     <rect x="168" y="718" width="744" height="384" fill="none" stroke="#f1f1ee" stroke-width="2"/>
     <path d="M150,700 l60,0 M150,700 l0,60 M930,700 l-60,0 M930,700 l0,60 M150,1120 l60,0 M150,1120 l0,-60 M930,1120 l-60,0 M930,1120 l0,-60" stroke="#f1f1ee" stroke-width="12"/>
-    <text x="540" y="950" font-size="150" fill="#f1f1ee" text-anchor="middle">The End</text>
+    <text x="540" y="950" font-size="150" fill="#f1f1ee" text-anchor="middle" style="font-family:Lime">The End</text>
     <path d="M380,1010 h320 M440,1035 h200" stroke="#f1f1ee" stroke-width="3"/></g>`;
 }

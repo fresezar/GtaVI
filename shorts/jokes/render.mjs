@@ -3,7 +3,7 @@
 // Voice: one wav per line in <ep>/voice/<id>.wav. Missing ones are made with Windows voices (placeholder, tts.ps1).
 // The page exposes setup(data), render(t) and sfx(T); this script owns timing, captions, mouth flaps and audio.
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -25,6 +25,69 @@ const spec = JSON.parse(readFileSync(join(ep, "lines.json"), "utf8"));
 const only = process.argv.includes("--still") ? process.argv[process.argv.indexOf("--still") + 1].split(",").map(Number) : null;
 
 // ---------- voice ----------
+// Own voice, one take: <ep>/voice/take.(wav|m4a|mp3) holds the whole script read in order. Whisper finds the words,
+// the take is cut into one wav per line, and the pronunciation check goes to accent-log.csv (progress over episodes).
+const take = ["wav", "m4a", "mp3", "ogg"].map((x) => join(vdir, "take." + x)).find(existsSync);
+if (take) splitTake(take);
+
+function writeWav(file, a) {
+  const n = a.length, b = Buffer.alloc(44 + n * 2);
+  b.write("RIFF", 0); b.writeUInt32LE(36 + n * 2, 4); b.write("WAVEfmt ", 8); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20);
+  b.writeUInt16LE(1, 22); b.writeUInt32LE(RATE, 24); b.writeUInt32LE(RATE * 2, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34);
+  b.write("data", 36); b.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(Math.max(-1, Math.min(1, a[i])) * 32767), 44 + i * 2);
+  writeFileSync(file, b);
+}
+
+function splitTake(file) {
+  const { mtimeMs } = statSync(file);
+  const stampFile = join(vdir, "take.stamp"), stamp = JSON.stringify([mtimeMs, spec.lines.map((l) => l.text)]);
+  if (existsSync(stampFile) && readFileSync(stampFile, "utf8") === stamp) return;
+  const pcm = spawnSync(FF, ["-v", "error", "-i", file, "-ac", "1", "-ar", String(RATE), "-f", "f32le", "-"], { maxBuffer: 1 << 30 }).stdout;
+  const audio = new Float32Array(pcm.buffer, pcm.byteOffset, pcm.length / 4);
+  const wj = join(work, "take-words.json");
+  // no script hint on purpose: the check should hear what a listener hears
+  const r = spawnSync("py", ["-3", join(ROOT, "shorts/tools/words.py"), file, wj], { stdio: "inherit", env: { ...process.env, FFMPEG: FF } });
+  if (r.status) { console.error("whisper failed"); process.exit(1); }
+  const heard = JSON.parse(readFileSync(wj, "utf8"));
+  const NUM = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+  const norm = (w) => { const x = w.toLowerCase().replace(/[^a-z0-9']/g, "").replace(/'/g, ""); return /^\d+$/.test(x) && +x <= 10 ? NUM[+x] : x; };
+  const script = []; spec.lines.forEach((l, li) => l.text.split(/\s+/).forEach((w) => { const n = norm(w); if (n) script.push({ w, n, li }); }));
+  const hw = heard.map((h) => ({ ...h, n: norm(h.w) })).filter((h) => h.n);
+  // edit-distance alignment of script words to heard words
+  const A = script.length, B = hw.length, dp = Array.from({ length: A + 1 }, (_, i) => Int32Array.from({ length: B + 1 }, (_, j) => i + j));
+  for (let i = 1; i <= A; i++) for (let j = 1; j <= B; j++)
+    dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (script[i - 1].n === hw[j - 1].n ? 0 : 1));
+  const pair = new Array(A).fill(null);
+  for (let i = A, j = B; i > 0 && j >= 0;) {
+    if (j > 0 && dp[i][j] === dp[i - 1][j - 1] + (script[i - 1].n === hw[j - 1].n ? 0 : 1)) { pair[i - 1] = j - 1; i--; j--; }
+    else if (dp[i][j] === dp[i - 1][j] + 1) i--;
+    else j--;
+  }
+  const bad = [];
+  script.forEach((s, i) => { if (pair[i] === null) bad.push(`"${s.w}" not heard`); else if (hw[pair[i]].n !== s.n) bad.push(`"${s.w}" heard as "${hw[pair[i]].w}"`); });
+  const exact = A - bad.length, pct = (100 * exact / A).toFixed(1);
+  // line spans from matched words; cut halfway into the pauses between lines
+  const span = spec.lines.map((_, li) => {
+    const js = script.map((s, i) => (s.li === li ? pair[i] : null)).filter((j) => j !== null);
+    if (!js.length) { console.error(`line ${spec.lines[li].id} not found in the take`); process.exit(1); }
+    return [hw[Math.min(...js)].s, hw[Math.max(...js)].e];
+  });
+  span.forEach(([s, e], li) => {
+    const a = li ? Math.max((span[li - 1][1] + s) / 2, s - 0.25) : Math.max(0, s - 0.25);
+    const b = li + 1 < span.length ? Math.min((e + span[li + 1][0]) / 2, e + 0.3) : e + 0.3;
+    const l = spec.lines[li];
+    writeWav(join(vdir, l.id + ".wav"), audio.subarray(Math.floor(a * RATE), Math.ceil(b * RATE)));
+    writeFileSync(join(vdir, l.id + ".txt"), `${l.who}|${l.text}`);
+  });
+  writeFileSync(stampFile, stamp);
+  console.log(`TAKE split into ${span.length} lines. Pronunciation: ${exact}/${A} words as written (${pct}%)`);
+  if (bad.length) console.log("CHECK " + bad.join(", "));
+  const log = join(ROOT, "shorts/jokes/accent-log.csv");
+  if (!existsSync(log)) writeFileSync(log, "date,episode,words,as_written,percent,misses\n");
+  writeFileSync(log, readFileSync(log, "utf8") + `${new Date().toISOString().slice(0, 10)},${basename(ep)},${A},${exact},${pct},"${bad.join("; ").replace(/"/g, "'")}"\n`);
+}
+
 const stale = spec.lines.filter((l) => {
   const stamp = join(vdir, l.id + ".txt"), want = `${l.who}|${l.text}`;
   return !existsSync(join(vdir, l.id + ".wav")) || (existsSync(stamp) && readFileSync(stamp, "utf8") !== want);

@@ -48,7 +48,7 @@ function sStreet(t) {
   const bar = t > barAt ? "×1" : null;
   s += hero({ x: 470, y: 1510, s: 1.12, t, expr: t > S("L02") ? "sad" : "neutral", look: t > S("L02") ? 0 : -0.3, bar, barScale: back(U(t, barAt, barAt + 0.3)) });
   s += rainCloud(470, 440, t, 1.3, (t % 2.2) < 0.18);
-  if (t > S("L01") + 1.3 && t < S("L02")) s += word(800, 640, "WORST|LUCK", 84, "#ff6a55", -8, back(U(t, S("L01") + 1.3, S("L01") + 1.6)));
+  if (t > MID("L01", 0.55) && t < S("L02")) s += word(800, 640, "WORST|LUCK", 84, "#ff6a55", -8, back(U(t, MID("L01", 0.55), MID("L01", 0.55) + 0.3)));
   return cam(540, 960, z, 0, 0, 0, s);
 }
 
