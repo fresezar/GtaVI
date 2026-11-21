@@ -18,10 +18,12 @@ Format ve roller: `shorts/README.md`. Fikirler: `shorts/ideas.md`. Önceki planl
      ~10 dk) ve yarının planına aday video ("New GTA 6 cheat code: ..."). Değişiklik yoksa sadece pazartesi deploy et
      (sitedeki "Kodlar kontrol edildi" etiketi deploy ile yenilenir). Rapor "TR çevirisi gerekli" diyorsa
      `content/cheats.json` içindeki `tr` alanlarını Türkçeye çevir, yeni hilede `effect.en`'i kendi cümlemizle yaz.
-3. **5 video seç.** En az 2'si zamansız (Kaçırma/Sistem/Sayılar), en fazla 1'i haber. Her gün en az 1 Bulgu (harita pini varsa).
+3. **5 video seç.** ~%70 geniş kitle (mit testi, sırlar, sıralama, komik an, önce/sonra; harita adımı yok, ses
+   "link in bio" ile biter), ~%30 site rehberi (harita pini). En az 2'si zamansız (Kaçırma/Sistem/Sayılar), en fazla 1'i haber. Her gün en az 1 Bulgu (harita pini varsa).
    Aynı sütundan art arda 3 video koyma. Bir video bir testi taşır (tek değişken).
 4. **Yaz:** `shorts/plans/YYYY-MM-DD.md` (yarının tarihi), `shorts/plans/2026-11-19.md` biçiminde. Her video için:
-   giriş cümlesi (İngilizce, ekranda, 10 kelimeyi geçmesin), tam olarak ne çekileceği ve kaç saniye, alt satır, harita yeri,
+   giriş cümlesi (İngilizce, ekranda, 10 kelimeyi geçmesin), **görüntü kaynağı** (kurucu oynamıyor: izinli klip için yayıncı adı + link + İngilizce DM
+   şablonu, ya da Rockstar resmî materyali ya da site haritası; izinsiz klip yok) ve kaç saniye, alt satır, harita yeri,
    hedef uzunluk, **Seslendirme** (İngilizce metin; ~2,5 kelime/sn, görüntü + harita süresine sığsın; girişle başlar,
    kaynaksız iddia yok, basın = "reportedly"), açıklama metni (İngilizce), 3-5 etiket, kaynak linki. Dosya numaraları son plandan devam eder.
    Bir yedek video ekle.
