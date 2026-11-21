@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/news",
     "/guides",
     "/cheats",
+    "/online",
     "/guides/missables",
     ...GUIDES.map((g) => `/guides/${g.slug}`),
     ...CHECKLISTS.filter((c) => c.status !== "deprecated").map((c) => `/checklists/${c.slug}`),

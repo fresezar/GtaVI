@@ -537,3 +537,18 @@ code {
   font-style: normal;
   font-size: 11px;
 }
+
+/* Play mode (map "second screen"): the map takes the whole screen. */
+html[data-play="1"] [data-site-header] {
+  display: none;
+}
+html[data-play="1"] .leaflet-control-zoom {
+  display: none; /* pinch to zoom; the play bar owns the bottom edge */
+}
+@media (max-width: 640px) {
+  [data-band="far"] .map-label-region {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    border-bottom-width: 1px;
+  }
+}

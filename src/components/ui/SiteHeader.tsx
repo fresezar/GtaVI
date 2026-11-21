@@ -3,6 +3,7 @@ import { ViewTransition } from "react";
 import { SITE } from "@/config/site";
 import { localePath, tFor, type Locale } from "@/i18n";
 import { ThemeToggle, WantedStars } from "./HeaderWidgets";
+import LanguageHint from "./LanguageHint";
 
 /** Community-first sections. Progress lives behind the stars (top right), not in a tab. */
 const TABS = [
@@ -10,6 +11,7 @@ const TABS = [
   { path: "/finds", key: "ui.nav.finds" },
   { path: "/guides", key: "ui.nav.guides" },
   { path: "/cheats", key: "ui.nav.cheats" },
+  { path: "/online", key: "ui.nav.online" },
   { path: "/community", key: "ui.nav.community" },
   { path: "/news", key: "ui.nav.news" },
 ] as const;
@@ -28,6 +30,7 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
     <header
       className="sticky top-0 z-[1000] border-b border-line bg-panel/60 backdrop-blur-xl backdrop-saturate-150"
       style={{ viewTransitionName: "site-header" }}
+      data-site-header
     >
       <div className="flex items-center gap-3 px-4 pb-1 pt-2">
         <Link href={localePath(locale, "/")} className="flex min-w-0 items-center gap-2.5">
@@ -91,6 +94,7 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
           })}
         </ul>
       </nav>
+      {locale === "en" && <LanguageHint trHref={localePath("tr", path)} />}
     </header>
   );
 }

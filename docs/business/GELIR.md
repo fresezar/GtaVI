@@ -69,3 +69,4 @@ Puan: kazanç potansiyeli (1-5), emek (1-5, düşük = kolay), ne zaman.
 ## Günlük
 
 - 2026-11-20: Belge açıldı. Kurucu: "pazarda yer var, kitleyi geç olmadan kazanmalıyız, tüm para yolları masaya yatsın."
+- 2026-11-21: Üç fikir siteye girdi: Online merkezi + e-posta listesi (sahip olunan kitle), harita "Oyun modu" + ana ekrana ekleme (ikinci ekran), Türkçe öneri bandı. Sıradaki: ilk e-postayı gönderecek altyapı (gönderici seçimi), web push bildirimleri (Online "Telefon bildirimleri" vaadi), Online çıkınca haftalık takip verisi.

@@ -265,6 +265,47 @@ function PartnerStats({ token }: { token: string }) {
   );
 }
 
+interface SubStats {
+  active: number;
+  online: number;
+  weekly: number;
+  tr: number;
+  unsubscribed: number;
+}
+
+/** E-mail list size, and the active list as CSV (fetched with the token, saved by the browser). */
+function SubscriberStats({ token }: { token: string }) {
+  const [stats, setStats] = useState<SubStats | null>(null);
+  useEffect(() => {
+    fetch("/api/admin/subscribers", { headers: { authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? (r.json() as Promise<SubStats>) : null))
+      .then(setStats)
+      .catch(() => setStats(null));
+  }, [token]);
+  if (!stats) return null;
+  const download = async () => {
+    const r = await fetch("/api/admin/subscribers?format=csv", { headers: { authorization: `Bearer ${token}` } });
+    if (!r.ok) return;
+    const url = URL.createObjectURL(await r.blob());
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "sixstar-subscribers.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <section className="card flex flex-wrap items-center gap-x-6 gap-y-2 !p-4" aria-label="E-posta listesi">
+      <h2 className="font-display text-xl">E-posta listesi</h2>
+      <span className="text-sm tabular-nums">Aktif <b>{stats.active}</b></span>
+      <span className="text-sm tabular-nums">Online haberi <b>{stats.online}</b></span>
+      <span className="text-sm tabular-nums">Haftalık <b>{stats.weekly}</b></span>
+      <span className="text-sm tabular-nums">Türkçe <b>{stats.tr}</b></span>
+      <span className="text-sm tabular-nums text-muted">Ayrılan {stats.unsubscribed}</span>
+      <button type="button" className="btn ml-auto" onClick={() => void download()} disabled={!stats.active}>CSV indir</button>
+    </section>
+  );
+}
+
 export default function AdminQueue() {
   const [token, setToken] = useState("");
   const [input, setInput] = useState("");
@@ -352,6 +393,7 @@ export default function AdminQueue() {
           </button>
         </div>
       </div>
+      <SubscriberStats token={token} />
       <PartnerStats token={token} />
       <nav className="flex flex-wrap gap-1" aria-label="Durum">
         {STATUSES.map(([s, label]) => (

@@ -28,6 +28,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
         <nav aria-label={t("ui.footer.links")} className="flex flex-wrap items-start gap-x-5 gap-y-2 text-sm font-bold text-muted">
           <Link href={localePath(locale, "/map")} className="hover:text-ink">{t("ui.nav.map")}</Link>
           <Link href={localePath(locale, "/finds")} className="hover:text-ink">{t("ui.nav.finds")}</Link>
+          <Link href={localePath(locale, "/online")} className="hover:text-ink">{t("ui.nav.online")}</Link>
           <Link href={localePath(locale, "/community")} className="hover:text-ink">{t("ui.nav.community")}</Link>
           <Link href={localePath(locale, "/checklists")} className="hover:text-ink">{t("ui.nav.checklists")}</Link>
           <Link href={localePath(locale, "/news")} className="hover:text-ink">{t("ui.nav.news")}</Link>

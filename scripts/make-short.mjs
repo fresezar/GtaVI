@@ -9,6 +9,7 @@
 //   clips     [{ clip, in, out }, ...]    optional; several shots cut back to back (replaces clip/in/out)
 //   voice     { file, at, text }          optional; English voiceover (wav/mp3/m4a) starting `at` s into the video
 //                                         (default 0). `text` = the script, a spelling hint for the captions.
+//                                         Pauses over 0.3 s are cut to 0.25 s unless `tighten: false`.
 //                                         Game audio ducks under the voice; word captions are burned in.
 //   captions  false                       optional; turn the voice captions off
 //   credit    "@creator"                  optional; shown under the clip
@@ -78,9 +79,19 @@ const bodySec = clipSec + (spec.map ? MAP_SEC : 0);
 const total = bodySec + END_SEC;
 
 // ---- voice: word timings (Whisper, cached) and caption chunks ----
-const voice = spec.voice ? { at: 0, ...spec.voice, path: abs(spec.voice.file) } : null;
+const voice = spec.voice ? { at: 0, tighten: true, ...spec.voice, path: abs(spec.voice.file) } : null;
 let chunks = [];
 if (voice) {
+  if (voice.tighten) {
+    // Shorts pacing: drop leading silence and shorten every pause over 0.3 s to 0.25 s.
+    const tight = join(work, "voice.wav");
+    const raw = probe(voice.path).sec;
+    ff(["-y", "-i", voice.path, "-af",
+      "silenceremove=start_periods=1:start_threshold=-40dB:stop_periods=-1:stop_duration=0.3:stop_threshold=-40dB:stop_silence=0.25",
+      "-ar", "48000", "-ac", "1", tight]);
+    voice.path = tight;
+    console.log(`Voice tightened: ${raw.toFixed(1)} s -> ${probe(tight).sec.toFixed(1)} s`);
+  }
   voice.sec = probe(voice.path).sec;
   const end = voice.at + voice.sec;
   if (end > total) fail(`voice ends at ${end.toFixed(1)} s but the video is ${total.toFixed(1)} s: add footage or trim the voice`);
@@ -88,7 +99,7 @@ if (voice) {
   if (spec.captions !== false) {
     const wordsFile = join(work, "words.json");
     const stamp = join(work, "words.stamp");
-    const key = JSON.stringify([voice.file, statSync(voice.path).mtimeMs, voice.text ?? ""]);
+    const key = JSON.stringify([voice.file, statSync(abs(voice.file)).mtimeMs, voice.tighten, voice.text ?? ""]);
     if (!existsSync(wordsFile) || !existsSync(stamp) || readFileSync(stamp, "utf8") !== key) {
       console.log("Transcribing voice (Whisper, CPU)...");
       const args = ["-3", join(ROOT, "shorts", "tools", "words.py"), voice.path, wordsFile];

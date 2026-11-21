@@ -6,6 +6,7 @@ import LaunchCountdown from "@/components/ui/LaunchCountdown";
 import type { ArtName } from "@/config/art";
 import PageShell from "@/components/ui/PageShell";
 import { SITE } from "@/config/site";
+import SubscribeForm from "@/features/subscribe/SubscribeForm";
 import { CATEGORIES } from "@/data/categories";
 import { NEWS, TIMELINE } from "@/data/editorial";
 import { PINS, SAMPLE_MODE } from "@/data/pins";
@@ -202,9 +203,14 @@ export default function HomeView({ locale }: { locale: Locale }) {
         <Explore locale={locale} t={t} />
       </div>
 
-      <section className="card mt-10 !p-5" aria-labelledby="join-title">
-        <h2 id="join-title" className="section-title">{t("ui.home.community")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted">{t("ui.home.communityLead")}</p>
+      <section className="card mt-10 grid gap-6 !p-5 lg:grid-cols-[1fr_1.1fr]" aria-labelledby="online-title">
+        <div>
+          <p className="eyebrow">GTA 6 Online</p>
+          <h2 id="online-title" className="section-title mt-1">{t("ui.home.online.title")}</h2>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{t("ui.home.online.lead")}</p>
+          <Link href={localePath(locale, "/online")} className="mt-3 inline-block text-sm font-bold underline">{t("ui.home.online.more")} →</Link>
+        </div>
+        <SubscribeForm topics={["online", "weekly"]} source="/" />
       </section>
     </PageShell>
   );

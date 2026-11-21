@@ -8,6 +8,9 @@
  *   GET  /api/admin/queue?status=     moderator: list suggestions
  *   POST /api/admin/review            moderator: approve / reject (optionally edit title, category, name)
  *   POST /api/admin/published         moderator: mark approved rows as copied into content/pins.json
+ *   POST /api/subscribe               public: join the e-mail list (topics: online, weekly)
+ *   GET  /api/unsubscribe?t=          public: leave the list (link in every mail)
+ *   GET  /api/admin/subscribers       moderator: counts per topic; ?format=csv for the active list
  *   POST /api/ref/visit               public: count a unique daily visit to a partner page (/p/<slug>)
  *   GET  /api/admin/partners          moderator: visits and suggestions per partner
  *   GET  /api/admin/proof?id=         moderator: the screenshot uploaded with a suggestion
@@ -68,6 +71,18 @@ function ulid(now = Date.now()): string {
 
 const clientIp = (req: Request) => req.headers.get("cf-connecting-ip") ?? "0.0.0.0";
 const dailyIpHash = (env: Env, ip: string, now: Date) => sha256(`${env.IP_SALT}|${ip}|${now.toISOString().slice(0, 10)}`);
+
+/** Turnstile siteverify; passes when no secret is configured. */
+async function humanCheck(env: Env, token: unknown, ip: string): Promise<boolean> {
+  if (!env.TURNSTILE_SECRET) return true;
+  const form = new FormData();
+  form.append("secret", env.TURNSTILE_SECRET);
+  form.append("response", clean(token, 4096));
+  form.append("remoteip", ip);
+  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form });
+  const v = (await r.json()) as { success?: boolean };
+  return v.success === true;
+}
 
 async function sha256(text: string): Promise<string> {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -157,15 +172,7 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   if (!(x >= VIEW.x[0] && x <= VIEW.x[1] && y >= VIEW.y[0] && y <= VIEW.y[1])) return fail(400, "position");
 
   const ip = clientIp(req);
-  if (env.TURNSTILE_SECRET) {
-    const form = new FormData();
-    form.append("secret", env.TURNSTILE_SECRET);
-    form.append("response", clean(body.turnstile, 4096));
-    form.append("remoteip", ip);
-    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form });
-    const v = (await r.json()) as { success?: boolean };
-    if (!v.success) return fail(403, "captcha");
-  }
+  if (!(await humanCheck(env, body.turnstile, ip))) return fail(403, "captcha");
 
   const now = new Date();
   const ipHash = await dailyIpHash(env, ip, now);
@@ -280,6 +287,90 @@ async function markPublished(req: Request, env: Env): Promise<Response> {
   return json({ ok: true, count: ids.length });
 }
 
+const TOPICS = ["online", "weekly"] as const;
+const SUBS_PER_HOUR = 5;
+const EMAIL = /^[^\s@<>()",;:]{1,64}@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,24}$/;
+
+async function subscribe(req: Request, env: Env): Promise<Response> {
+  const body = await readBody(req);
+  if (!body) return fail(400, "bad_request");
+  if (clean(body.website, 200)) return json({ ok: true }); // honeypot
+  const email = clean(body.email, 254).toLowerCase();
+  if (!EMAIL.test(email)) return fail(400, "email");
+  const asked = Array.isArray(body.topics) ? body.topics.map((v) => clean(v, 20)) : [];
+  const topics = TOPICS.filter((t) => asked.includes(t));
+  if (!topics.length) return fail(400, "topics");
+  const ip = clientIp(req);
+  if (!(await humanCheck(env, body.turnstile, ip))) return fail(403, "captcha");
+
+  const now = new Date();
+  const ipHash = await dailyIpHash(env, ip, now);
+  const hourAgo = new Date(now.getTime() - 3600_000).toISOString();
+  const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM subscribers WHERE ip_hash = ? AND created_at > ?").bind(ipHash, hourAgo).first<{ n: number }>();
+  if ((recent?.n ?? 0) >= SUBS_PER_HOUR) return fail(429, "rate_limited");
+
+  const old = await env.DB.prepare("SELECT topics FROM subscribers WHERE email = ?").bind(email).first<{ topics: string }>();
+  const merged = [...new Set([...(old?.topics.split(",") ?? []), ...topics])].filter(Boolean).join(",");
+  const locale = body.locale === "tr" ? "tr" : "en";
+  const source = clean(body.source, 120) || null;
+  if (old) {
+    await env.DB.prepare("UPDATE subscribers SET topics = ?, locale = ?, unsubscribed_at = NULL WHERE email = ?").bind(merged, locale, email).run();
+  } else {
+    const token = Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+    await env.DB.prepare("INSERT INTO subscribers (email, created_at, topics, locale, source, ip_hash, token) VALUES (?, ?, ?, ?, ?, ?, ?)")
+      .bind(email, now.toISOString(), merged, locale, source, ipHash, token)
+      .run();
+  }
+  // Same answer whether the address was new or known: the API never tells who is on the list.
+  return json({ ok: true });
+}
+
+const UNSUB_PAGE = '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Six Star</title>' +
+  '<body style="font-family:system-ui,sans-serif;background:#0B1422;color:#fff4ec;display:grid;place-items:center;min-height:100vh;margin:0;padding:16px;text-align:center">' +
+  '<div><h1 style="font-size:22px">You are off the list.</h1><p>Listeden çıktın. No more mails from Six Star.</p><p><a href="/" style="color:#FF6A55">sixstargta.com</a></p></div></body>';
+
+async function unsubscribe(url: URL, env: Env): Promise<Response> {
+  const token = clean(url.searchParams.get("t"), 64);
+  if (/^[0-9a-f]{32}$/.test(token)) {
+    await env.DB.prepare("UPDATE subscribers SET unsubscribed_at = ? WHERE token = ? AND unsubscribed_at IS NULL").bind(new Date().toISOString(), token).run();
+  }
+  return new Response(UNSUB_PAGE, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+}
+
+interface SubRow {
+  email: string;
+  created_at: string;
+  topics: string;
+  locale: string;
+  source: string | null;
+}
+
+async function subscribersAdmin(url: URL, env: Env): Promise<Response> {
+  const { results } = await env.DB.prepare(
+    "SELECT email, created_at, topics, locale, source FROM subscribers WHERE unsubscribed_at IS NULL ORDER BY created_at",
+  ).all<SubRow>();
+  if (url.searchParams.get("format") === "csv") {
+    const q = (v: string | null) => '"' + (v ?? "").replace(/"/g, '""') + '"';
+    const lines = ["email,topics,locale,created_at,source", ...results.map((r) => [r.email, r.topics, r.locale, r.created_at, r.source].map(q).join(","))];
+    return new Response(lines.join("\n"), {
+      headers: {
+        "content-type": "text/csv; charset=utf-8",
+        "cache-control": "no-store",
+        "content-disposition": 'attachment; filename="sixstar-subscribers.csv"',
+      },
+    });
+  }
+  const count = (t: string) => results.filter((r) => r.topics.split(",").includes(t)).length;
+  const gone = await env.DB.prepare("SELECT COUNT(*) AS n FROM subscribers WHERE unsubscribed_at IS NOT NULL").first<{ n: number }>();
+  return json({
+    active: results.length,
+    online: count("online"),
+    weekly: count("weekly"),
+    tr: results.filter((r) => r.locale === "tr").length,
+    unsubscribed: gone?.n ?? 0,
+  });
+}
+
 async function refVisit(req: Request, env: Env): Promise<Response> {
   const body = await readBody(req);
   const slug = partnerRef(body?.slug);
@@ -326,6 +417,8 @@ export default {
       if (path === "/api/suggest" && req.method === "POST") return await suggest(req, env);
       if (path === "/api/community/pins" && req.method === "GET") return await communityPins(env);
       if (path === "/api/ref/visit" && req.method === "POST") return await refVisit(req, env);
+      if (path === "/api/subscribe" && req.method === "POST") return await subscribe(req, env);
+      if (path === "/api/unsubscribe" && req.method === "GET") return await unsubscribe(url, env);
       if (path.startsWith("/api/admin/")) {
         if (!isAdmin(req, env)) return fail(401, "unauthorized");
         if (path === "/api/admin/queue" && req.method === "GET") return await queue(url, env);
@@ -333,6 +426,7 @@ export default {
         if (path === "/api/admin/published" && req.method === "POST") return await markPublished(req, env);
         if (path === "/api/admin/partners" && req.method === "GET") return await partnerStats(env);
         if (path === "/api/admin/proof" && req.method === "GET") return await proof(url, env);
+        if (path === "/api/admin/subscribers" && req.method === "GET") return await subscribersAdmin(url, env);
       }
       if (path.startsWith("/api/")) return fail(404, "not_found");
       return env.ASSETS.fetch(req);

@@ -21,6 +21,8 @@ import { useCommunityPins } from "@/features/community/useCommunityPins";
 import { useProgress } from "@/hooks/useProgress";
 import { CATEGORY_COLORS } from "./tokens";
 import { useMapOverlays, type Place } from "./overlays";
+import PlayBar from "./PlayBar";
+import InstallButton from "@/components/ui/InstallButton";
 
 const DEF = MAPS[0];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
@@ -57,6 +59,8 @@ export default function MapExplorer() {
     setShowPlaces(true);
     setPlaceFocus((f) => ({ id: p.id, nonce: (f?.nonce ?? 0) + 1 }));
   }, []);
+  // Play mode ("second screen"): full-screen map on the phone next to the TV, big next/found controls.
+  const [play, setPlay] = useState(false);
   const [dev, setDev] = useState(false);
   const [focus, setFocus] = useState<MapFocus | null>(null);
   const [hidden, setHidden] = useState<ReadonlySet<CategoryId>>(DEFAULT_HIDDEN);
@@ -87,6 +91,7 @@ export default function MapExplorer() {
     const q = new URLSearchParams(window.location.search);
     setDev(q.get("dev") === "true");
     if (q.get("suggest") === "1") setSuggesting(true);
+    if (q.get("play") === "1") setPlay(true);
     const pin = q.get("pin");
     if (pin) focusPin(pin as PinId);
   }, [focusPin]);
@@ -162,6 +167,19 @@ export default function MapExplorer() {
     }
   };
 
+  useEffect(() => {
+    const html = document.documentElement;
+    if (play) html.dataset.play = "1";
+    else delete html.dataset.play;
+    const url = new URL(window.location.href);
+    if (play) url.searchParams.set("play", "1");
+    else url.searchParams.delete("play");
+    window.history.replaceState(null, "", url);
+    return () => {
+      delete html.dataset.play;
+    };
+  }, [play]);
+
   const devMarkers = devTool.markers;
   const calibrationMarkers = useMemo(() => devTool.calib.points.map((p) => p.image), [devTool.calib.points]);
 
@@ -192,7 +210,27 @@ export default function MapExplorer() {
             {devTool.calib.active ? "Kalibrasyon" : "Veri girişi"}
           </span>
         )}
-        {!dev && !suggesting && (
+        {!dev && !suggesting && !play && (
+          <button
+            type="button"
+            className="btn absolute bottom-[5.5rem] left-3 z-[500] bg-panel/90"
+            onClick={() => {
+              select(null);
+              setPlay(true);
+            }}
+          >
+            ▶ {t("ui.play.enter")}
+          </button>
+        )}
+        {play && (
+          <PlayBar
+            percent={ready ? summary.percent : 0}
+            categories={CATEGORIES.filter((c) => (summary.byCategory[c.id]?.total ?? 0) > (summary.byCategory[c.id]?.done ?? 0))}
+            onNext={nextUnfound}
+            onExit={() => setPlay(false)}
+          />
+        )}
+        {!dev && !suggesting && !play && (
           <button
             type="button"
             className="btn btn-primary absolute bottom-9 left-3 z-[500]"
@@ -236,6 +274,7 @@ export default function MapExplorer() {
       </main>
 
       <aside
+        hidden={play}
         className="order-2 max-h-[46dvh] w-full shrink-0 space-y-4 overflow-y-auto border-t border-line bg-panel p-4 md:order-1 md:max-h-none md:w-[360px] md:border-r md:border-t-0"
         aria-label="Map controls"
       >
@@ -260,6 +299,8 @@ export default function MapExplorer() {
             </Link>
           )}
         </section>
+
+        <InstallButton />
 
         {dev && <DevPanel dev={devTool} categories={CATEGORIES} />}
 

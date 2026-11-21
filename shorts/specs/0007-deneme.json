@@ -1,0 +1,35 @@
+{
+  "file": "0007",
+  "hook": "6 stars in GTA 6. Can you escape?",
+  "clips": [
+    {
+      "clip": "shorts/raw/test-clip.mp4",
+      "in": 0,
+      "out": 8
+    },
+    {
+      "clip": "shorts/raw/test-clip.mp4",
+      "in": 0,
+      "out": 8
+    },
+    {
+      "clip": "shorts/raw/test-clip.mp4",
+      "in": 0,
+      "out": 8
+    },
+    {
+      "clip": "shorts/raw/test-clip.mp4",
+      "in": 0,
+      "out": 4
+    }
+  ],
+  "voice": {
+    "file": "shorts/raw/0007-vo-deneme.m4a",
+    "at": 0.1,
+    "text": "Six stars in GTA 6. Can you escape? GTA 6 brings back the six-star wanted level, and at six stars the military joins the chase. Reports say there's no way out. So we tried. We broke line of sight. We hid. The stars never stopped. Busted or wasted. That's the only way out. Full Heat guide on sixstargta.com."
+  },
+  "fact": "Reportedly: Busted or Wasted",
+  "end": {
+    "line": "Wanted level + Heat guide"
+  }
+}

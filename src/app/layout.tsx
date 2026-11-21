@@ -8,6 +8,8 @@ import "./globals.css";
 import { SITE } from "@/config/site";
 
 // ?theme=vice|dark in the URL wins (and is remembered); otherwise the saved choice.
+/** Android/desktop Chrome fire this once, early: keep it for the "Install app" button (InstallButton). */
+const INSTALL_INIT = `window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__sixstarInstall=e;window.dispatchEvent(new Event("sixstar:install"))});`;
 const THEME_INIT = `try{var q=new URLSearchParams(location.search).get("theme"),t=q==="vice"||q==="dark"?q:localStorage.getItem("theme");if(q===t)localStorage.setItem("theme",t);if(t==="vice"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
 export const metadata: Metadata = {
@@ -38,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Apply the saved theme before first paint (no flash). Kept tiny and dependency-free. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+        <script dangerouslySetInnerHTML={{ __html: INSTALL_INIT }} />
       </head>
       <body className="min-h-dvh">
         {children}
