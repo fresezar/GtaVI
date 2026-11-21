@@ -201,9 +201,9 @@ function sFall(t, t0) {
   s += g(`rotate(${t * 140} 470 ${dy - 350})`, hero({ x: 470, y: dy, s: 0.5, t, expr: "shock", pose: "flail" }));
   s += rainCloud(470 + Math.sin(t * 3) * 20, dy - 640, t, 0.6, (t % 0.6) < 0.2);
   if (t > t0 + 0.3) s += word(760, dy - 520, "AAAAA!", 72, "#fff", 10, back(U(t, t0 + 0.3, t0 + 0.6)));
-  if (t > D.total - 0.65) {
-    const [sx, sy] = shake(t, 18 * (1 - U(t, D.total - 0.65, D.total - 0.2)));
-    s = g(`translate(${sx} ${sy})`, s) + word(540, 1100, "THUD.", 160, "#fff", -4, back(U(t, D.total - 0.65, D.total - 0.4)));
+  if (t > D.total - 2.3) {
+    const [sx, sy] = shake(t, 18 * (1 - U(t, D.total - 2.3, D.total - 1.85)));
+    s = g(`translate(${sx} ${sy})`, s) + word(540, 1100, "THUD.", 160, "#fff", -4, back(U(t, D.total - 2.3, D.total - 2.05)));
   }
   return s;
 }
@@ -215,10 +215,11 @@ let SC = null;
 function render(t) {
   SC = SC || scenes();
   let i = 0; while (i + 1 < SC.length && t >= SC[i + 1].at) i++;
-  let body = SC[i].f(t, SC[i].at);
+  const tq = FILM_FPS ? Math.floor(t * FILM_FPS) / FILM_FPS : t;
+  let body = SC[i].f(Math.max(tq, SC[i].at), SC[i].at);
   const inCabin = [sCaptain, sAsk, sLaugh, sOne, sThree].includes(SC[i].f);
   if (inCabin) body += `<rect x="0" y="0" width="1080" height="1920" fill="url(#alarm)"/>`;
-  document.getElementById("v").innerHTML = DEFS + body + `<rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>`;
+  document.getElementById("v").innerHTML = stylize(DEFS + body, t);
   const c = D.caps.find((c) => t >= c.s && t < c.e);
   const esc = (s) => s.replace(/[&<>]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m]);
   document.getElementById("cap").innerHTML = c ? esc(c.text).replace(/\b(\d+|ONE|THREE|FOUR|FIVE|Four|One|Three|Five|four|one|three|five)\b/g, "<b>$1</b>") : "";
@@ -241,7 +242,7 @@ function sfx() {
     { name: "pop", at: S("L17") + 0.05 }, { name: "pop", at: MID("L17", 0.35) }, { name: "ding", at: MID("L17", 0.8) },
     { name: "trombone", at: E("L17") + 0.1, gain: 0.8 },
     { name: "whistle", at: S("L18") - 0.1, gain: 0.7 },
-    { name: "thud", at: D.total - 0.65, gain: 1.4 },
+    { name: "thud", at: D.total - 2.3, gain: 1.4 },
   ];
 }
 </script>

@@ -16,7 +16,8 @@ const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Des
 
 const ep = resolve(process.argv[2] || "");
 if (!existsSync(join(ep, "lines.json"))) { console.error("usage: node shorts/jokes/render.mjs shorts/jokes/<ep>"); process.exit(1); }
-const name = "joke-" + basename(ep);
+const style = process.argv.includes("--style") ? process.argv[process.argv.indexOf("--style") + 1] : null;
+const name = "joke-" + basename(ep) + (style ? "-" + style : "");
 const work = join(ROOT, "shorts/work", name);
 const vdir = join(ep, "voice");
 mkdirSync(work, { recursive: true }); mkdirSync(vdir, { recursive: true });
@@ -130,7 +131,7 @@ const js = async (expression) => {
 };
 
 await cdp("Emulation.setDeviceMetricsOverride", { width: W, height: H, deviceScaleFactor: 1, mobile: false });
-await cdp("Page.navigate", { url: pathToFileURL(join(ep, "index.html")).href });
+await cdp("Page.navigate", { url: pathToFileURL(join(ep, "index.html")).href + (style ? "?style=" + style : "") });
 for (let i = 0; i < 100 && (await js("document.readyState").catch(() => "")) !== "complete"; i++) await new Promise((r) => setTimeout(r, 100));
 await js("document.fonts.ready.then(() => true)");
 await js(`setup(${JSON.stringify({ T, total, talk, caps, fps: FPS })})`);
@@ -161,6 +162,10 @@ const synth = {
   },
 };
 const cues = await js("sfx()");
+const filmStyle = await js("STYLE");
+if (filmStyle === "silent") { // quiet projector clatter: short noise ticks at 18 per second
+  for (let i = 0; i < N; i++) { const ph = (i / RATE * 18) % 1; voice[i] += ph < 0.06 ? (Math.random() * 2 - 1) * 0.018 * (1 - ph / 0.06) : 0; }
+}
 const mix = Float32Array.from(voice);
 
 // sad piano bed under the whole story (the format's signature): Am - F - Dm - E arpeggios at 66 bpm, ducked under the voice
