@@ -1,0 +1,18 @@
+{
+  "title": "The Man Who Bought a Talking Dog",
+  "tail": 3.9,
+  "musicEnd": "L11",
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "A man saw a sign. Talking dog for sale. Ten dollars." },
+    { "id": "L02", "who": "nar", "text": "The old owner pointed to the backyard.", "post": 0.4 },
+    { "id": "L03", "who": "hero", "text": "Can you... talk?", "post": 0.3 },
+    { "id": "L04", "who": "dog", "text": "Sure! I used to work for the CIA." },
+    { "id": "L05", "who": "dog", "text": "I caught spies in twelve countries." },
+    { "id": "L06", "who": "dog", "text": "Then I flew planes. Then I saved forty people from a fire." },
+    { "id": "L07", "who": "dog", "text": "Now I'm retired. I like the sun.", "post": 0.5 },
+    { "id": "L08", "who": "nar", "text": "The man ran back to the owner." },
+    { "id": "L09", "who": "hero", "text": "That dog is amazing! Why only ten dollars?", "post": 0.5 },
+    { "id": "L10", "who": "owner", "text": "Because he's a liar.", "post": 0.35 },
+    { "id": "L11", "who": "owner", "text": "He never did any of that." }
+  ]
+}

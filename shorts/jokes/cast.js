@@ -401,6 +401,63 @@ function doctor(o) {
   return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);
 }
 
+// sitting dog, front view: feet on (x, y), ~430 tall at s = 1. Props: glasses, cap (pilot), medal, suit
+function dog(o) {
+  const t = o.t || 0, tk = o.talk || 0, fur = "#d9a35f", lite = "#f3d6a8", dark = "#8a5a2a";
+  let s = g(`rotate(${Math.sin(t * 12) * 22} 70 -70)`, P("M70,-70 q60,-20 70,-110 q10,-20 22,0 q0,100 -80,130 z", fur, 6));
+  s += ell(0, -150, 112, 142, o.suit ? "#24242c" : fur, 6);
+  s += o.suit ? P("M-30,-280 L0,-190 L30,-280 Z", "#fff", 5) + P("M-8,-262 L0,-200 L8,-262 Z", O, 0) : ell(0, -150, 62, 92, lite, 0);
+  s += `<rect x="-86" y="-120" width="54" height="120" rx="24" fill="${fur}" stroke="${O}" stroke-width="6"/><rect x="32" y="-120" width="54" height="120" rx="24" fill="${fur}" stroke="${O}" stroke-width="6"/>`;
+  s += ell(-59, -6, 38, 16, lite, 5) + ell(59, -6, 38, 16, lite, 5);
+  s += `<path d="M-80,-262 q80,30 160,0" stroke="#e8473b" stroke-width="18" fill="none" stroke-linecap="round"/>` + circ(0, -240, 16, "#f2c14e", 4);
+  if (o.medal) s += `<path d="M-20,-232 l20,50 l20,-50" stroke="#3f5bd1" stroke-width="12" fill="none"/>` + circ(0, -170, 30, "#f2c14e", 5) + `<text x="0" y="-160" font-size="30" fill="${O}" text-anchor="middle">1</text>`;
+  // head
+  const tilt = o.tilt ?? Math.sin(t * 1.7) * 4;
+  let h = g("rotate(20 -88 -10)", ell(-88, 20, 36, 80, dark, 6)) + g("rotate(-20 88 -10)", ell(88, 20, 36, 80, dark, 6));
+  h += circ(0, 0, 96, fur, 6) + ell(0, 44, 58, 42, lite, 5);
+  h += eyes(o.expr === "happy" ? "laugh" : "n", blink(t, 1.3), o.look || 0, fur, -20, 38, 0.72);
+  if (tk > 0.12) h += ell(0, 72, 24 + 6 * tk, 6 + 22 * tk, "#8a1f2b", 4) + `<ellipse cx="0" cy="${80 + 14 * tk}" rx="12" ry="${3 + 7 * tk}" fill="#ef7d8a"/>`;
+  else h += P("M-30,62 q15,14 30,0 q15,14 30,0", "none", 5) + P("M8,72 q8,26 22,4", "#ef7d8a", 4);
+  h += ell(0, 22, 22, 15, O, 0) + ell(-6, 17, 6, 4, "#fff", 0);
+  if (o.glasses) h += P("M-72,-36 h60 q4,40 -30,40 q-32,0 -30,-40 z M12,-36 h60 q4,40 -30,40 q-32,0 -30,-40 z", O, 4) + `<path d="M-12,-30 h24" stroke="${O}" stroke-width="6"/>`;
+  if (o.cap) h += P("M-90,-50 q0,-86 90,-88 q90,2 90,88 z", "#8a5a2a", 6) + ell(-36, -56, 30, 22, "#9fd3f2", 5) + ell(36, -56, 30, 22, "#9fd3f2", 5) + `<path d="M-66,-56 h-30 M66,-56 h30" stroke="${O}" stroke-width="6"/>`;
+  s += g(`translate(0 -330) rotate(${tilt})`, h);
+  return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);
+}
+
+// back yard: sky, fence, grass, doghouse
+function backyard(t) {
+  let s = sky(t, 0.15);
+  for (let x = -60; x < 1140; x += 90) s += P(`M${x},1290 v-300 l40,-40 l40,40 v300 z`, "#e9d2a8", 5);
+  s += `<rect x="-400" y="1060" width="1880" height="26" fill="#c9ab7a" stroke="${O}" stroke-width="4"/><rect x="-400" y="1200" width="1880" height="26" fill="#c9ab7a" stroke="${O}" stroke-width="4"/>`;
+  s += `<rect x="-400" y="1280" width="1880" height="1100" fill="#7cc35a" stroke="${O}" stroke-width="6"/>`;
+  for (let i = 0; i < 24; i++) s += `<path d="M${(i * 97) % 1100},${1340 + (i * 53) % 420} l8,-24 l8,24" stroke="#5aa03e" stroke-width="5" fill="none"/>`;
+  s += P("M760,1380 v-260 l170,-120 l170,120 v260 z", "#c0503a", 7) + P("M840,1380 v-120 q90,-90 180,0 v120 z", "#2a2238", 0);
+  return s;
+}
+
+// front of a house with a for-sale sign on the lawn
+function housefront(t, sign = "") {
+  let s = sky(t, 0.15);
+  s += `<rect x="-100" y="560" width="1280" height="900" fill="#e9d7b8" stroke="${O}" stroke-width="7"/>`;
+  for (let y = 600; y < 1460; y += 50) s += `<path d="M-100,${y} H1180" stroke="#d6c09a" stroke-width="4"/>`;
+  s += P("M-160,600 L540,260 L1240,600 Z", "#8a4a3a", 7);
+  s += `<rect x="420" y="1020" width="220" height="440" fill="#3f5bd1" stroke="${O}" stroke-width="7"/>` + circ(600, 1250, 14, "#f2c14e", 4);
+  s += `<rect x="90" y="820" width="220" height="200" fill="url(#sky)" stroke="${O}" stroke-width="7"/><rect x="770" y="820" width="220" height="200" fill="url(#sky)" stroke="${O}" stroke-width="7"/>`;
+  s += `<rect x="-400" y="1460" width="1880" height="900" fill="#7cc35a" stroke="${O}" stroke-width="6"/>`;
+  if (sign) s += `<rect x="200" y="1180" width="22" height="420" fill="#8a5a2a" stroke="${O}" stroke-width="4"/>` +
+    g("translate(210 1180) rotate(-4)", `<rect x="-190" y="-150" width="380" height="200" rx="10" fill="#fffdf5" stroke="${O}" stroke-width="7"/>` +
+      sign.split("|").map((l, i) => `<text x="0" y="${-82 + i * 62}" font-size="50" fill="${i === 2 ? "#e8473b" : O}" text-anchor="middle">${l}</text>`).join(""));
+  return s;
+}
+
+function rockingChair(x, y, t, inner = "") {
+  const a = Math.sin(t * 2.2) * 5;
+  return g(`translate(${x} ${y}) rotate(${a} 0 120)`, `<rect x="-150" y="-300" width="300" height="320" rx="30" fill="#a5643a" stroke="${O}" stroke-width="7"/>` + inner +
+    `<rect x="-170" y="0" width="340" height="60" rx="16" fill="#8a4f2e" stroke="${O}" stroke-width="7"/><path d="M-200,150 Q0,200 200,150" stroke="${O}" stroke-width="14" fill="none"/>` +
+    `<path d="M-140,60 v80 M140,60 v80" stroke="${O}" stroke-width="14"/>`);
+}
+
 // generic passenger bust (head centre at 0,0)
 function passenger(o) {
   const { skin = "#f3cfb2", hair = "#6b3e26", style = "short", shirt = "#9ad17a", expr = "neutral", t = 0, seed = 0 } = o;
@@ -420,8 +477,10 @@ function passenger(o) {
   } else if (expr === "pray") {
     h += eyes("closed", false, 0, skin, -6, 26, 0.7) + P("M-12,38 q12,7 24,0", "none", 5);
   } else {
-    h += eyes("n", blink(t, seed), 0, skin, -6, 26, 0.7) + P("M-18,38 q18,8 36,0", "none", 6);
+    h += eyes(o.glasses ? "n" : "n", blink(t, seed), 0, skin, -6, 26, 0.7);
+    h += (o.talk || 0) > 0.12 ? ell(0, 44, 18 + 6 * o.talk, 5 + 18 * o.talk, "#8a1f2b", 4) : P("M-18,38 q18,8 36,0", "none", 6);
   }
+  if (o.beard) h += P("M-62,10 q0,90 62,92 q62,-2 62,-92 q-20,40 -62,40 q-42,0 -62,-40 z", o.beard, 5) + ((o.talk || 0) > 0.12 ? ell(0, 44, 18 + 6 * o.talk, 5 + 18 * o.talk, "#8a1f2b", 4) : "");
   if (o.glasses) h += `<circle cx="-26" cy="-6" r="22" fill="none" stroke="${O}" stroke-width="4"/><circle cx="26" cy="-6" r="22" fill="none" stroke="${O}" stroke-width="4"/>`;
   s += g(`translate(0 ${bob})`, h);
   return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);

@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- Joke short #5, "The Man Who Bought a Talking Dog". Driven by shorts/jokes/render.mjs: setup(data), render(t), sfx(). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Display"; src: url("../../../node_modules/@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2"); }
+  @font-face { font-family: "Sans"; src: url("../../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"); font-weight: 100 1000; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1a1430; }
+  svg { display: block; position: absolute; inset: 0; }
+  text { font-family: "Display"; }
+  .cap { position: absolute; left: 70px; right: 150px; top: 1370px; text-align: center; font-family: "Sans"; font-weight: 900;
+         font-size: 84px; line-height: 1.04; color: #fff; text-transform: uppercase;
+         -webkit-text-stroke: 16px #2a2238; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.45); }
+  .cap b { color: #ffd23f; }
+</style>
+</head>
+<body>
+<svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="cap" id="cap"></div>
+<script src="../cast.js"></script>
+<script>
+let D = null;
+function setup(d) { D = d; }
+
+const owner = (x, y, s, t, talk = 0, expr = "neutral") =>
+  rockingChair(x, y, t, passenger({ x: 0, y: -150, s: 1.0 * s, skin: "#f1c9a5", hair: "#c9c6d6", style: "cap", shirt: "#6b8f3a", expr, t, seed: 4, talk, beard: "#e9e6f0" }));
+
+function scenes() {
+  return [
+    { at: 0, f: sSign },
+    { at: S("L03") - 0.15, f: sYard },
+    { at: S("L04") + 0.6, f: sSpy },
+    { at: S("L06") - 0.05, f: sPilot },
+    { at: MID("L06", 0.5), f: sFire },
+    { at: S("L07") - 0.05, f: sSun },
+    { at: S("L08") - 0.1, f: sRun },
+    { at: S("L10") - 0.1, f: sLiar },
+  ];
+}
+
+function sSign(t) {
+  let s = housefront(t, "TALKING DOG|FOR SALE|$10");
+  s += g("translate(860 1300)", rockingChair(0, 0, t, passenger({ x: 0, y: -150, s: 0.9, skin: "#f1c9a5", hair: "#c9c6d6", style: "cap", shirt: "#6b8f3a", t, seed: 4, beard: "#e9e6f0" })));
+  s += hero({ x: 580, y: 1700, s: 0.95, t, expr: t > MID("L01", 0.5) ? "shock" : "neutral", look: t > S("L02") ? 0.8 : -0.7, pose: "down" });
+  if (t > MID("L01", 0.3) && t < S("L02")) s += word(520, 760, "!", 140, "#ffd23f", 0, back(U(t, MID("L01", 0.3), MID("L01", 0.3) + 0.25)));
+  // the sign first, then pull back to the old man
+  const k = ease(U(t, 0.2, 1.4)) * (1 - ease(U(t, S("L02"), S("L02") + 0.6)));
+  return cam(lerp(540, 300, k), lerp(1050, 1060, k), lerp(1.0, 1.6, k), 0, 0, 0, s);
+}
+
+function sYard(t) {
+  let s = backyard(t);
+  s += dog({ x: 720, y: 1560, s: 1.15, t, talk: talkOf("dog", t), look: -0.6 });
+  s += hero({ x: 260, y: 1700, s: 1.0, t, expr: t > S("L04") ? "shock" : "neutral", talk: talkOf("hero", t), pose: t > S("L03") && t < S("L04") ? "point" : "down" });
+  return s;
+}
+
+// the dog's stories: one picture each
+function panel(bg, label, t, at) {
+  return `<rect x="-100" y="-100" width="1280" height="2120" fill="${bg}"/>` + word(540, 360, label, 110, "#ffd23f", -5, back(U(t, at, at + 0.3)));
+}
+
+function sSpy(t, t0) {
+  let s = panel("#1c1830", "TOP SECRET", t, t0);
+  s += `<path d="M540,0 L180,1700 L900,1700 Z" fill="#fff3a0" opacity=".18"/>`;
+  s += dog({ x: 540, y: 1500, s: 1.4, t, talk: talkOf("dog", t), glasses: true, suit: true });
+  if (t > S("L05") + 0.3) s += word(780, 640, "×12", 150, "#fff", 8, back(U(t, S("L05") + 0.3, S("L05") + 0.55)));
+  for (let i = 0; i < 4; i++) if (t > S("L05") + 0.4 + i * 0.25) s += word(200 + (i % 2) * 130, 900 + i * 110, "📁", 70, "#fff", 0, 1);
+  return s;
+}
+
+function sPilot(t, t0) {
+  let s = sky(t, 2.2);
+  s += word(540, 360, "PILOT", 120, "#ffd23f", -5, back(U(t, t0, t0 + 0.3)));
+  s += plane({ x: 540, y: 1050, s: 1.4, t, ang: Math.sin(t * 3) * 6, faces: false });
+  s += dog({ x: 560, y: 980, s: 0.32, t, cap: true, talk: talkOf("dog", t) });
+  return s;
+}
+
+function sFire(t, t0) {
+  let s = `<rect x="-100" y="-100" width="1280" height="2120" fill="#3a1e2a"/>`;
+  s += `<rect x="560" y="500" width="420" height="1100" fill="#7b5a6a" stroke="${O}" stroke-width="7"/>`;
+  for (let i = 0; i < 8; i++) {
+    const fx = 600 + (i % 4) * 100, fy = 600 + Math.floor(i / 4) * 300, f = 1 + 0.2 * Math.sin(t * 14 + i);
+    s += g(`translate(${fx} ${fy}) scale(${f})`, P("M0,-80 q40,40 30,80 q-30,30 -60,0 q-10,-50 30,-80 z", "#ff7a2a", 5) + P("M0,-36 q18,20 12,40 q-14,12 -26,0 q-4,-24 14,-40 z", "#ffd23f", 0));
+  }
+  s += dog({ x: 330, y: 1560, s: 1.1, t, talk: talkOf("dog", t), medal: true });
+  if (t > MID("L06", 0.78)) s += word(320, 480, "×40", 170, "#fff", -6, back(U(t, MID("L06", 0.78), MID("L06", 0.78) + 0.3)));
+  return s;
+}
+
+function sSun(t) {
+  let s = backyard(t);
+  s += dog({ x: 640, y: 1560, s: 1.15, t, talk: talkOf("dog", t), glasses: true, expr: talkOf("dog", t) > 0 ? "n" : "happy", tilt: 10 });
+  s += hero({ x: 240, y: 1700, s: 1.0, t, expr: "shock", pose: "down" });
+  return s;
+}
+
+function sRun(t, t0) {
+  const u = U(t, t0, S("L09") + 0.3);
+  let s = housefront(t, "TALKING DOG|FOR SALE|$10");
+  s += g("translate(760 1300)", rockingChair(0, 0, t, passenger({ x: 0, y: -150, s: 0.9, skin: "#f1c9a5", hair: "#c9c6d6", style: "cap", shirt: "#6b8f3a", t, seed: 4, beard: "#e9e6f0" })));
+  s += hero({ x: lerp(-150, 420, ease(u)), y: 1700, s: 0.95, t, walk: u < 1 ? t * 16 : undefined, expr: talkOf("hero", t) > 0 ? "shout" : "happy", talk: talkOf("hero", t), pose: t > S("L09") ? "fists" : "down" });
+  return s;
+}
+
+function sLiar(t, t0) {
+  let s = housefront(t, "TALKING DOG|FOR SALE|$10");
+  s += g("translate(640 1350) scale(1.45)", rockingChair(0, 0, t, passenger({ x: 0, y: -150, s: 0.9, skin: "#f1c9a5", hair: "#c9c6d6", style: "cap", shirt: "#6b8f3a", t, seed: 4, beard: "#e9e6f0", talk: talkOf("owner", t) })));
+  if (t > E("L11") + 0.2) {
+    // cut-in: the dog, caught, looks away and whistles
+    s += g("translate(250 1250)", `<rect x="-230" y="-430" width="460" height="460" rx="20" fill="#7cc35a" stroke="${O}" stroke-width="8"/>` + dog({ x: 0, y: 0, s: 0.95, t, look: 1, tilt: -8 }));
+    s += word(420, 760, "♪", 110, "#fff", 10, back(U(t, E("L11") + 0.4, E("L11") + 0.6)));
+  }
+  return cam(600, 1000, 1.1, 0, 0, 0, s);
+}
+
+// ---------- page api ----------
+let SC = null;
+function render(t) {
+  SC = SC || scenes();
+  let i = 0; while (i + 1 < SC.length && t >= SC[i + 1].at) i++;
+  const tq = FILM_FPS ? Math.floor(t * FILM_FPS) / FILM_FPS : t;
+  const body = SC[i].f(Math.max(tq, SC[i].at), SC[i].at);
+  document.getElementById("v").innerHTML = stylize(DEFS + body, t);
+  const c = D.caps.find((c) => t >= c.s && t < c.e);
+  const esc = (s) => s.replace(/[&<>]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m]);
+  document.getElementById("cap").innerHTML = c ? esc(c.text).replace(/\b(TEN|ten|Ten|twelve|forty|liar|CIA)\b/g, "<b>$1</b>") : "";
+}
+
+function sfx() {
+  return [
+    { name: "pop", at: MID("L01", 0.3) },
+    { name: "ding", at: S("L04") + 0.6 },
+    { name: "pop", at: S("L05") + 0.3 },
+    { name: "whoosh", at: S("L06") - 0.05, gain: 0.8 },
+    { name: "boom", at: MID("L06", 0.5), gain: 0.5 },
+    { name: "pop", at: MID("L06", 0.78) },
+    { name: "whoosh", at: S("L08"), gain: 0.5 },
+    { name: "trombone", at: E("L11") + 0.3, gain: 0.7 },
+  ];
+}
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ Mark used ones with `→ epNN`. Sezar's own jokes go under "Own".
 3. **"I think I'm a moth."** A man at the doctor's: "I think I'm a moth." "You need a psychiatrist, not a doctor.
    Why did you come in here?" "The light was on." (~20 s) → ep04 (made 2026-11-21)
 4. **Talking dog for sale.** The dog tells of spying for the CIA, saving lives, flying planes. "Why sell such a dog?"
-   "Because he's a liar. He never did any of that." (~40 s, montage) → ep05
+   "Because he's a liar. He never did any of that." (~40 s, montage) → ep05 (made 2026-11-21)
 5. **Two boats and a helicopter.** Flood; a man refuses a boat, another boat, a helicopter: "God will save me." In
    heaven: "Why didn't you save me?" "I sent you two boats and a helicopter!" (~40 s)
 6. **Three wishes on an island.** Three men, one genie. Two wish to go home. The third is lonely: "I wish my friends
