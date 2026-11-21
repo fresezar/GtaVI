@@ -1,0 +1,24 @@
+{
+  "title": "The Unluckiest Man",
+  "tail": 2.6,
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "This is Dave. Dave has the worst luck in the world." },
+    { "id": "L02", "who": "nar", "text": "Oh, and Dave only has one ball.", "post": 0.5 },
+    { "id": "L03", "who": "nar", "text": "One day, Dave takes a flight." },
+    { "id": "L04", "who": "nar", "text": "Halfway there, the engine dies.", "post": 0.7 },
+    { "id": "L05", "who": "captain", "text": "Someone has to jump!", "post": 0.5 },
+    { "id": "L06", "who": "nar", "text": "So they draw a name. It's Dave." },
+    { "id": "L07", "who": "dave", "text": "No way!", "post": 0.35 },
+    { "id": "L08", "who": "nar", "text": "They draw again. Dave. Again. Dave. Five times in a row!", "post": 0.5 },
+    { "id": "L09", "who": "nar", "text": "Finally, Dave says:" },
+    { "id": "L10", "who": "dave", "text": "Fine. One question. Get it right, and I'll jump." },
+    { "id": "L11", "who": "dave", "text": "How many balls do this guy and I have, together?", "post": 0.4 },
+    { "id": "L12", "who": "crowd", "text": "Ha ha ha! Four!", "caption": "HA HA HA! FOUR!", "post": 0.4 },
+    { "id": "L13", "who": "dave", "text": "Wrong!", "post": 0.2 },
+    { "id": "L14", "who": "nar", "text": "Dave shows his one ball.", "post": 0.6 },
+    { "id": "L15", "who": "nar", "text": "Then the guy across the aisle stands up,", "post": 0.7 },
+    { "id": "L16", "who": "nar", "text": "and shows his three.", "post": 0.9 },
+    { "id": "L17", "who": "nar", "text": "One plus three. Four.", "post": 0.6 },
+    { "id": "L18", "who": "nar", "text": "Bye, Dave." }
+  ]
+}

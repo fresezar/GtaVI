@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- Style frame for the joke shorts: one still from "The Unluckiest Man". Rendered by headless Chrome at 1080x1920. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Display"; src: url("../../../node_modules/@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2"); }
+  @font-face { font-family: "Sans"; src: url("../../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"); font-weight: 100 1000; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  svg { display: block; }
+  .o { stroke: #2a2238; stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
+  .t { stroke: #2a2238; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+  .n { stroke: none; }
+  .shout { font-family: "Display"; font-size: 66px; fill: #2a2238; text-anchor: middle; }
+  .cap { position: absolute; left: 70px; right: 150px; top: 1360px; text-align: center; font-family: "Sans"; font-weight: 900;
+         font-size: 84px; line-height: 1.04; color: #fff; text-transform: uppercase;
+         -webkit-text-stroke: 16px #2a2238; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.45); }
+  .cap b { color: #ffd23f; }
+</style>
+</head>
+<body>
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallL" x1="0" x2="1"><stop offset="0" stop-color="#e9d9bd"/><stop offset="1" stop-color="#f6ecdb"/></linearGradient>
+    <linearGradient id="wallR" x1="1" x2="0"><stop offset="0" stop-color="#e3d2b4"/><stop offset="1" stop-color="#f6ecdb"/></linearGradient>
+    <linearGradient id="ceil" y1="0" y2="1"><stop offset="0" stop-color="#fbf5ea"/><stop offset="1" stop-color="#efe4d1"/></linearGradient>
+    <linearGradient id="floor" y1="0" y2="1"><stop offset="0" stop-color="#3a4688"/><stop offset="1" stop-color="#232a5c"/></linearGradient>
+    <linearGradient id="sky" y1="0" y2="1"><stop offset="0" stop-color="#5fb4f0"/><stop offset="1" stop-color="#bfe6ff"/></linearGradient>
+    <linearGradient id="seat" y1="0" y2="1"><stop offset="0" stop-color="#4a68e0"/><stop offset="1" stop-color="#2f46a8"/></linearGradient>
+    <radialGradient id="alarm" cx="0.5" cy="0.12" r="0.75"><stop offset="0" stop-color="#ff3030" stop-opacity=".34"/><stop offset="1" stop-color="#ff3030" stop-opacity="0"/></radialGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#1a0f2e" stop-opacity=".45"/></radialGradient>
+    <clipPath id="winL1"><ellipse cx="120" cy="640" rx="62" ry="92" transform="skewY(14)"/></clipPath>
+  </defs>
+
+  <!-- whole cabin tilts: the plane is going down -->
+  <g transform="rotate(-7 540 960) translate(540 1010) scale(1.18) translate(-540 -960)">
+    <!-- cabin shell in perspective -->
+    <polygon points="0,0 1080,0 700,470 380,470" fill="url(#ceil)" class="t"/>
+    <polygon points="0,0 380,470 380,1010 0,1540" fill="url(#wallL)" class="t"/>
+    <polygon points="1080,0 700,470 700,1010 1080,1540" fill="url(#wallR)" class="t"/>
+    <polygon points="0,1540 380,1010 700,1010 1080,1540 1080,2100 0,2100" fill="url(#floor)" class="t"/>
+    <polygon points="470,1010 610,1010 760,2100 320,2100" fill="#4a57a0" class="n" opacity=".55"/>
+    <!-- back wall + cockpit door -->
+    <rect x="380" y="470" width="320" height="540" fill="#eadcc4" class="t"/>
+    <rect x="465" y="560" width="150" height="450" rx="10" fill="#d4c4a6" class="t"/>
+    <rect x="505" y="600" width="70" height="44" rx="8" fill="#9fd3f2" class="t"/>
+    <circle cx="595" cy="790" r="9" fill="#a88f62" class="t"/>
+    <!-- seatbelt sign -->
+    <rect x="455" y="482" width="170" height="54" rx="12" fill="#2a2238" class="n"/>
+    <rect x="463" y="490" width="154" height="38" rx="8" fill="#ff4b3e" class="n"/>
+    <text x="540" y="518" font-family="Sans" font-weight="900" font-size="22" fill="#fff" text-anchor="middle" letter-spacing="2">BRACE! BRACE!</text>
+
+    <!-- windows: clouds rushing up past the plane -->
+    <g>
+      <ellipse cx="110" cy="700" rx="58" ry="84" fill="url(#sky)" class="o"/>
+      <path d="M85 760 v-60 M118 790 v-90 M140 740 v-50" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+      <ellipse cx="262" cy="770" rx="40" ry="60" fill="url(#sky)" class="o"/>
+      <path d="M250 800 v-45 M272 815 v-60" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+      <ellipse cx="970" cy="700" rx="58" ry="84" fill="url(#sky)" class="o"/>
+      <path d="M950 765 v-70 M985 790 v-95" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+      <ellipse cx="818" cy="770" rx="40" ry="60" fill="url(#sky)" class="o"/>
+    </g>
+    <!-- overhead bins -->
+    <polygon points="0,110 380,470 380,520 0,330" fill="#f1e9dc" class="t"/>
+    <polygon points="1080,110 700,470 700,520 1080,330" fill="#ebe1d0" class="t"/>
+    <!-- dropped oxygen masks -->
+    <g class="t" fill="none">
+      <path d="M150 290 q-14 40 6 70 q18 30 -2 70" />
+      <path d="M300 400 q12 30 -4 55 q-14 24 4 48" />
+      <path d="M930 290 q14 40 -6 70 q-18 30 2 70" />
+      <path d="M790 400 q-12 30 4 55 q14 24 -4 48" />
+    </g>
+    <g fill="#ffd23f" class="t">
+      <path d="M134 430 h44 l-6 34 h-32 z"/><path d="M286 502 h36 l-5 26 h-26 z"/>
+      <path d="M902 430 h44 l-6 34 h-32 z"/><path d="M776 502 h36 l-5 26 h-26 z"/>
+    </g>
+
+    <!-- back rows -->
+    <g fill="url(#seat)" class="t">
+      <rect x="250" y="880" width="110" height="190" rx="22"/><rect x="720" y="880" width="110" height="190" rx="22"/>
+      <rect x="120" y="900" width="150" height="250" rx="28"/><rect x="810" y="900" width="150" height="250" rx="28"/>
+    </g>
+    <rect x="262" y="888" width="86" height="40" rx="12" fill="#f4f1ea" class="t"/>
+    <rect x="732" y="888" width="86" height="40" rx="12" fill="#f4f1ea" class="t"/>
+
+    <!-- old lady praying, back left -->
+    <g>
+      <ellipse cx="195" cy="935" rx="50" ry="56" fill="#f3cfb2" class="o"/>
+      <circle cx="195" cy="868" r="30" fill="#c9c6d6" class="o"/>
+      <path d="M150 925 q45 -55 92 0" fill="#c9c6d6" class="o"/>
+      <circle cx="177" cy="940" r="15" fill="none" class="t"/><circle cx="213" cy="940" r="15" fill="none" class="t"/>
+      <path d="M170 941 q7 6 14 0 M206 941 q7 6 14 0" fill="none" class="t"/>
+      <path d="M185 968 q10 7 20 0" fill="none" class="t"/>
+      <path d="M150 990 q45 -20 90 0 v120 h-90 z" fill="#b5689a" class="o"/>
+      <path d="M185 1035 l10 -42 l10 42 z" fill="#f3cfb2" class="t"/>
+    </g>
+
+    <!-- captain, panicking in the aisle -->
+    <g>
+      <path d="M498 1050 l-10 150 h40 l8 -150 z M582 1050 l10 150 h-40 l-8 -150 z" fill="#1f2a55" class="o"/>
+      <path d="M488 1196 h48 v18 h-56 z M552 1196 h48 l8 18 h-56 z" fill="#2a2238" class="n"/>
+      <!-- arms up -->
+      <path d="M478 905 q-70 -40 -78 -140" fill="none" stroke="#2a2238" stroke-width="40" stroke-linecap="round"/>
+      <path d="M478 905 q-70 -40 -78 -140" fill="none" stroke="#24336e" stroke-width="28" stroke-linecap="round"/>
+      <path d="M602 905 q70 -40 78 -140" fill="none" stroke="#2a2238" stroke-width="40" stroke-linecap="round"/>
+      <path d="M602 905 q70 -40 78 -140" fill="none" stroke="#24336e" stroke-width="28" stroke-linecap="round"/>
+      <g><path d="M400 752 L426 735" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M400 752 L413 721" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M400 752 L395 719" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M400 752 L379 728" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M400 752 L426 735" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M400 752 L413 721" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M400 752 L395 719" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M400 752 L379 728" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><circle cx="400" cy="752" r="24" fill="#f1bf96" class="t"/></g>
+      <g><path d="M680 752 L654 735" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M680 752 L667 721" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M680 752 L685 719" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M680 752 L701 728" stroke="#2a2238" stroke-width="22" stroke-linecap="round"/><path d="M680 752 L654 735" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M680 752 L667 721" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M680 752 L685 719" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><path d="M680 752 L701 728" stroke="#f1bf96" stroke-width="12" stroke-linecap="round"/><circle cx="680" cy="752" r="24" fill="#f1bf96" class="t"/></g>
+      <!-- jacket -->
+      <path d="M470 880 q70 -30 140 0 l12 180 h-164 z" fill="#24336e" class="o"/>
+      <path d="M515 870 l25 70 l25 -70 z" fill="#fff" class="t"/>
+      <path d="M533 885 l7 60 l7 -60 z" fill="#2a2238" class="n"/>
+      <rect x="455" y="872" width="40" height="16" rx="5" fill="#f2c14e" class="t"/>
+      <rect x="585" y="872" width="40" height="16" rx="5" fill="#f2c14e" class="t"/>
+      <path d="M470 1035 h152" stroke="#f2c14e" stroke-width="8"/>
+      <circle cx="560" cy="985" r="6" fill="#f2c14e"/><circle cx="560" cy="1010" r="6" fill="#f2c14e"/>
+      <!-- head -->
+      <ellipse cx="540" cy="790" rx="70" ry="78" fill="#f1bf96" class="o"/>
+      <ellipse cx="472" cy="800" rx="14" ry="20" fill="#f1bf96" class="t"/>
+      <ellipse cx="608" cy="800" rx="14" ry="20" fill="#f1bf96" class="t"/>
+      <!-- cap knocked crooked -->
+      <g transform="rotate(14 540 720)">
+        <path d="M478 735 q0 -70 62 -72 q62 2 62 72 z" fill="#24336e" class="o"/>
+        <path d="M470 735 h140 q6 14 -8 20 h-124 q-14 -6 -8 -20 z" fill="#2a2238" class="t"/>
+        <circle cx="540" cy="703" r="13" fill="#f2c14e" class="t"/>
+      </g>
+      <!-- wide eyes -->
+      <ellipse cx="514" cy="782" rx="20" ry="25" fill="#fff" class="t"/><circle cx="516" cy="784" r="6" fill="#2a2238"/>
+      <ellipse cx="566" cy="782" rx="20" ry="25" fill="#fff" class="t"/><circle cx="564" cy="784" r="6" fill="#2a2238"/>
+      <path d="M492 748 l40 6 M588 748 l-40 6" stroke="#2a2238" stroke-width="7" stroke-linecap="round"/>
+      <!-- screaming mouth under a big moustache -->
+      <path d="M512 832 q28 -10 56 0 q8 52 -28 60 q-36 -8 -28 -60 z" fill="#8a1f2b" class="t"/>
+      <path d="M522 874 q18 -16 36 0 q-6 14 -18 14 q-12 0 -18 -14 z" fill="#ef7d8a" class="n"/>
+      <path d="M492 828 q22 -22 48 -8 q26 -14 48 8 q-14 14 -48 6 q-34 8 -48 -6 z" fill="#7b4a2b" class="t"/>
+      <ellipse cx="540" cy="808" rx="12" ry="9" fill="#e9a87c" class="t"/>
+      <!-- flying sweat -->
+      <path d="M450 740 q-12 16 0 24 q12 -8 0 -24 z M630 732 q-12 16 0 24 q12 -8 0 -24 z M622 690 q-9 12 0 18 q9 -6 0 -18 z" fill="#7fd0ff" class="t"/>
+    </g>
+
+    <!-- shout bubble -->
+    <g>
+      <polygon transform="translate(556 420) scale(1.2) translate(-556 -420)" points="300,300 360,262 420,300 480,250 540,292 610,248 662,296 728,262 760,318 812,330 772,384 820,430 760,452 770,510 700,500 676,552 615,516 590,600 548,520 486,556 470,506 402,520 410,462 340,470 362,414 296,396 340,352"
+               fill="#fff" class="o"/>
+      <text class="shout" x="556" y="392">SOMEONE</text>
+      <text class="shout" x="556" y="468">HAS TO JUMP!</text>
+    </g>
+
+    <!-- foreground: the big guy, totally calm -->
+    <g>
+      <rect x="70" y="1000" width="380" height="900" rx="56" fill="url(#seat)" class="o"/>
+      <rect x="110" y="1012" width="300" height="80" rx="24" fill="#f4f1ea" class="t"/>
+      <path d="M40 1330 q40 -110 160 -120 h140 q120 10 150 120 l20 600 h-490 z" fill="#c98a5e" class="o"/>
+      <path d="M120 1300 q90 -40 180 0 l20 600 h-220 z" fill="#fbfbf6" class="o"/>
+      <path d="M180 1240 q60 70 120 0" fill="none" stroke="#f2c14e" stroke-width="10" stroke-linecap="round"/>
+      <rect x="225" y="1170" width="70" height="80" fill="#c98a5e" class="t"/>
+      <ellipse cx="260" cy="1110" rx="76" ry="86" fill="#c98a5e" class="o"/>
+      <path d="M186 1095 q-2 -90 74 -92 q76 2 74 92 q-20 -40 -74 -42 q-54 2 -74 42 z" fill="#2a2238" class="n"/>
+      <path d="M210 1090 h100" stroke="#2a2238" stroke-width="14" stroke-linecap="round"/>
+      <!-- bored, half-shut eyes -->
+      <ellipse cx="234" cy="1112" rx="16" ry="11" fill="#fff" class="t"/><path d="M218 1110 h32" stroke="#2a2238" stroke-width="6"/>
+      <circle cx="236" cy="1116" r="5" fill="#2a2238"/>
+      <ellipse cx="288" cy="1112" rx="16" ry="11" fill="#fff" class="t"/><path d="M272 1110 h32" stroke="#2a2238" stroke-width="6"/>
+      <circle cx="290" cy="1116" r="5" fill="#2a2238"/>
+      <path d="M248 1152 q14 -5 30 2" fill="none" class="t"/>
+      <path d="M232 1140 h2 M246 1146 h2 M276 1146 h2 M290 1140 h2 M240 1166 h2 M262 1170 h2 M284 1166 h2" stroke="#7a4a2c" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="262" cy="1130" rx="11" ry="8" fill="#b9784d" class="t"/>
+      <!-- peanut bag -->
+      <path d="M380 1290 l70 -16 l18 100 l-72 14 z" fill="#ff7a59" class="o"/>
+      <text x="425" y="1338" font-family="Sans" font-weight="900" font-size="22" fill="#fff" text-anchor="middle" transform="rotate(-12 425 1338)">NUTS</text>
+      <ellipse cx="356" cy="1380" rx="46" ry="34" fill="#c98a5e" class="o"/>
+    </g>
+
+    <!-- foreground: our unlucky man, frozen in his seat -->
+    <g>
+      <rect x="640" y="1000" width="340" height="900" rx="56" fill="url(#seat)" class="o"/>
+      <rect x="676" y="1012" width="268" height="80" rx="24" fill="#f4f1ea" class="t"/>
+      <!-- his personal rain cloud -->
+      <g>
+        <path d="M720 900 q-50 0 -40 -40 q6 -36 50 -30 q14 -46 66 -40 q48 6 52 44 q44 -6 48 34 q2 32 -36 32 z" fill="#8d93a6" class="o"/>
+        <path d="M740 920 l-10 28 M790 920 l-10 28 M840 920 l-10 28 M765 950 l-8 22 M815 950 l-8 22" stroke="#5fb4f0" stroke-width="7" stroke-linecap="round"/>
+        <path d="M800 905 l-14 28 h16 l-12 30 l32 -40 h-18 l10 -18 z" fill="#ffd23f" class="t"/>
+      </g>
+      <path d="M640 1340 q30 -110 130 -120 h40 q100 10 130 120 l10 600 h-420 z" fill="#d8e9f7" class="o"/>
+      <path d="M745 1225 l45 50 l45 -50" fill="#fff" class="t"/>
+      <path d="M782 1262 l-20 110 l28 26 l28 -26 l-20 -110 z" fill="#e8473b" class="t" transform="rotate(10 790 1300)"/>
+      <rect x="768" y="1175" width="44" height="64" fill="#f6c9a4" class="t"/>
+      <!-- head -->
+      <ellipse cx="682" cy="1100" rx="18" ry="28" fill="#f6c9a4" class="o"/>
+      <ellipse cx="898" cy="1100" rx="18" ry="28" fill="#f6c9a4" class="o"/>
+      <ellipse cx="790" cy="1090" rx="106" ry="118" fill="#f6c9a4" class="o"/>
+      <path d="M700 1040 q20 -30 60 -46 M716 1026 q40 -40 100 -44 M740 1006 q60 -36 120 -10" fill="none" stroke="#2a2238" stroke-width="5" stroke-linecap="round"/>
+      <!-- terrified eyes -->
+      <path d="M716 1022 q22 -24 52 -12 M812 1010 q30 -12 52 12" fill="none" stroke="#2a2238" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="744" cy="1072" rx="34" ry="42" fill="#fff" class="o"/><circle cx="748" cy="1076" r="7" fill="#2a2238"/>
+      <ellipse cx="836" cy="1072" rx="34" ry="42" fill="#fff" class="o"/><circle cx="832" cy="1076" r="7" fill="#2a2238"/>
+      <path d="M716 1124 q26 10 52 0 M812 1124 q26 10 52 0" fill="none" stroke="#d9a07a" stroke-width="5" stroke-linecap="round"/>
+      <!-- big nose -->
+      <path d="M790 1088 q-30 34 -12 58 q16 14 34 0 q10 -20 -22 -58 z" fill="#f0b48b" class="t"/>
+      <!-- clenched teeth -->
+      <rect x="742" y="1158" width="96" height="40" rx="16" fill="#fff" class="o"/>
+      <path d="M742 1178 h96 M766 1160 v36 M790 1160 v36 M814 1160 v36" stroke="#2a2238" stroke-width="4"/>
+      <!-- sweat -->
+      <path d="M700 1060 q-14 18 0 28 q14 -10 0 -28 z M884 1040 q-14 18 0 28 q14 -10 0 -28 z M720 1140 q-10 14 0 21 q10 -7 0 -21 z" fill="#7fd0ff" class="t"/>
+      <!-- white-knuckle grip on the armrest -->
+      <rect x="640" y="1420" width="60" height="140" rx="20" fill="#2f46a8" class="o"/>
+      <ellipse cx="672" cy="1420" rx="42" ry="30" fill="#f6c9a4" class="o"/>
+      <path d="M650 1410 v18 M666 1406 v20 M682 1406 v20" stroke="#2a2238" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <rect x="-200" y="-200" width="1480" height="2320" fill="url(#alarm)" class="n"/>
+  </g>
+  <rect x="0" y="0" width="1080" height="1920" fill="url(#vig)"/>
+</svg>
+<div class="cap">The plane is <b>going down</b></div>
+</body>
+</html>
