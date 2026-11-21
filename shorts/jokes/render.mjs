@@ -11,7 +11,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const FF = join(ROOT, "node_modules/ffmpeg-static/ffmpeg.exe");
 const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const FPS = 30, W = 1080, H = 1920, RATE = 24000;
-const VOICES = { nar: ["Microsoft Hazel Desktop", 0], dave: ["Microsoft Zira Desktop", 1], captain: ["Microsoft Hazel Desktop", 2],
+const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Desktop", 1], captain: ["Microsoft Hazel Desktop", 2],
                  crowd: ["Microsoft Zira Desktop", 1], big: ["Microsoft Hazel Desktop", -2] };
 
 const ep = resolve(process.argv[2] || "");
@@ -162,6 +162,36 @@ const synth = {
 };
 const cues = await js("sfx()");
 const mix = Float32Array.from(voice);
+
+// sad piano bed under the whole story (the format's signature): Am - F - Dm - E arpeggios at 66 bpm, ducked under the voice
+if (spec.music !== false) {
+  const bed = new Float32Array(N), beat = 60 / 66, hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
+  const prog = [[45, [57, 60, 64, 69]], [41, [53, 57, 60, 65]], [38, [50, 53, 57, 62]], [40, [52, 56, 59, 64]]];
+  const note = (at, m, vel, dur) => {
+    const f = hz(m), i0 = Math.round(at * RATE), n = Math.min(Math.round(dur * RATE), N - i0);
+    for (let i = 0; i < n; i++) {
+      const u = i / RATE; let x = 0;
+      for (let h = 1; h <= 5; h++) x += Math.sin(2 * Math.PI * f * h * u) * Math.exp(-u * (1.4 + h * 0.9)) / (h * h * 0.6 + 0.4);
+      bed[i0 + i] += x * vel * Math.min(1, u * 200);
+    }
+  };
+  for (let b = 0, at = 0.15; at < total; b++, at += beat * 4) {
+    const [bass, tones] = prog[b % 4];
+    note(at, bass, 0.5, 4); note(at, bass + 12, 0.22, 4);
+    [0, 1, 2, 3, 2, 1, 0, 1].forEach((k, j) => note(at + j * beat / 2, tones[k], j ? 0.22 : 0.3, 2.5));
+  }
+  for (const [d, gn] of [[0.11, 0.25], [0.23, 0.15]]) { const k = Math.round(d * RATE); for (let i = N - 1; i >= k; i--) bed[i] += bed[i - k] * gn; }
+  let pk = 0; for (const v of bed) pk = Math.max(pk, Math.abs(v));
+  const end = spec.musicEnd ? T[spec.musicEnd].e : total - 1.5;
+  let duck = 0;
+  for (let i = 0; i < N; i++) {
+    const tt = i / RATE, e = env[Math.min(env.length - 1, Math.floor(tt * FPS))] / emax;
+    duck += ((e > 0.08 ? 1 : 0) - duck) * (e > 0.08 ? 0.002 : 0.00008);
+    const fade = Math.min(1, tt / 0.4) * clamp01(1 - (tt - end) / 0.8);
+    mix[i] += bed[i] / pk * 0.16 * (1 - 0.45 * duck) * fade;
+  }
+}
+function clamp01(x) { return Math.max(0, Math.min(1, x)); }
 for (const c of cues) {
   const fn = synth[c.name]; if (!fn) throw new Error("unknown sfx " + c.name);
   const i0 = Math.round(c.at * RATE), g = c.gain ?? 1;
