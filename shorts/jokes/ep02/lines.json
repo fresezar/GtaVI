@@ -1,0 +1,18 @@
+{
+  "title": "The Man Who Found a Penguin",
+  "tail": 3.9,
+  "musicEnd": "L11",
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "One morning, a man was walking down the street," },
+    { "id": "L02", "who": "nar", "text": "when he found a penguin.", "post": 0.5 },
+    { "id": "L03", "who": "nar", "text": "Just a penguin. Standing there. Looking at him.", "post": 0.4 },
+    { "id": "L04", "who": "nar", "text": "A police officer walked by." },
+    { "id": "L05", "who": "hero", "text": "Officer! What do I do with this penguin?" },
+    { "id": "L06", "who": "cop", "text": "Take him to the zoo!", "post": 0.6 },
+    { "id": "L07", "who": "nar", "text": "The next day, the officer saw them again." },
+    { "id": "L08", "who": "nar", "text": "Same man. Same penguin. Holding hands. Eating ice cream.", "post": 0.3 },
+    { "id": "L09", "who": "cop", "text": "I told you to take him to the zoo!", "post": 0.3 },
+    { "id": "L10", "who": "hero", "text": "I did! He loved it.", "post": 0.35 },
+    { "id": "L11", "who": "hero", "text": "Today, we're going to the movies." }
+  ]
+}

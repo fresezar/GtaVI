@@ -113,7 +113,8 @@ function hero(o) {
     flail: [[-290 + 40 * Math.sin(t * 14), -600], [-340, -770 + 70 * Math.sin(t * 17)], [290, -600 + 40 * Math.sin(t * 15)], [340, -770 + 70 * Math.cos(t * 16)]],
   }[o.pose || "down"];
   let s = "";
-  const kick = o.pose === "flail" ? 30 * Math.sin(t * 13) : 0;
+  // o.walk: walking phase in radians (legs swing); flail kicks on its own
+  const kick = o.pose === "flail" ? 30 * Math.sin(t * 13) : o.walk !== undefined ? 34 * Math.sin(o.walk) : 0;
   s += P(`M-150,-260 L${-140 - kick},-30 L${-25 - kick},-30 L-15,-260 Z`, pa, 6) + P(`M150,-260 L${140 + kick},-30 L${25 + kick},-30 L15,-260 Z`, pa, 6);
   s += ell(-95 - kick, -12, 85, 30, O, 0) + ell(95 + kick, -12, 85, 30, O, 0);
   s += P("M-150,-575 Q-182,-570 -178,-520 L-160,-245 L160,-245 L178,-520 Q182,-570 150,-575 Z", sh, 6);
@@ -125,6 +126,7 @@ function hero(o) {
   s += arm([-160, -540], A[0], A[1]) + arm([160, -540], A[2], A[3]);
   if (o.pose === "finger") s += limb("M250,-780 L250,-850", sk, 20);
   if (o.pose === "point") s += limb("M466,-562 L530,-568", sk, 20);
+  if (o.hold) s += holdProp(o.hold, A[3][0], A[3][1], t);
   if (o.bar) s += censor(0, -232, o.bar, o.barScale ?? 1);
   s += g(`translate(0 ${-700 + Math.sin(t * 2.2) * 3})`, heroHead(o));
   return g(`translate(${o.x} ${o.y}) rotate(${o.rot || 0}) scale(${o.s})`, s);
@@ -194,6 +196,92 @@ function captain(o) {
   h += P("M-48,38 q22,-22 48,-8 q26,-14 48,8 q-14,14 -48,6 q-34,8 -48,-6 z", "#7b4a2b", 4) + ell(0, 18, 12, 9, "#e9a87c", 4);
   s += g("translate(0 -410)", h);
   return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);
+}
+
+// things a hand can hold (drawn at the hand point)
+function holdProp(kind, x, y, t = 0) {
+  if (kind === "icecream") return iceCream(x + 10, y - 40, 1);
+  if (kind === "tickets") return g(`translate(${x + 20} ${y - 50}) rotate(-12)`, ticket(0, 0) + ticket(22, 16));
+  if (kind === "popcorn") return popcorn(x + 10, y - 60, 1);
+  return "";
+}
+function iceCream(x, y, s = 1) {
+  return g(`translate(${x} ${y}) scale(${s})`, P("M-26,0 L0,70 L26,0 Z", "#e8b46a", 5) + `<path d="M-16,12 l24,30 M2,8 l14,22 M-8,4 l-10,14" stroke="#b8833f" stroke-width="3"/>` +
+    circ(0, -18, 28, "#ffb3c7", 5) + circ(-12, -44, 18, "#fff3d6", 4) + circ(14, -46, 16, "#9fdcb4", 4) + circ(6, -66, 7, "#e8473b", 3));
+}
+function ticket(x, y) {
+  return g(`translate(${x} ${y})`, P("M-50,-26 h100 v14 a10,10 0 0,0 0,24 v14 h-100 v-14 a10,10 0 0,0 0,-24 z", "#ffd23f", 5) +
+    `<text x="0" y="9" font-family="Sans" font-weight="900" font-size="20" fill="${O}" text-anchor="middle">ADMIT 1</text>`);
+}
+function popcorn(x, y, s = 1) {
+  let k = "";
+  for (let i = 0; i < 9; i++) k += circ(-30 + (i % 5) * 15, -6 - Math.floor(i / 5) * 16 - (i % 2) * 6, 13, "#fff6d8", 3);
+  return g(`translate(${x} ${y}) scale(${s})`, k + P("M-42,0 h84 l-10,90 h-64 z", "#fff", 5) +
+    `<path d="M-26,2 l6,86 M0,2 v88 M26,2 l-6,86" stroke="#e8473b" stroke-width="12"/>` + P("M-42,0 h84 l-10,90 h-64 z", "none", 5));
+}
+
+// police officer, full body, same scale as hero(): feet on (x, y), head near -700
+function cop(o) {
+  const t = o.t || 0, e = o.expr || "calm", tk = o.talk || 0, sk = "#e9b48c", nv = "#1d2b52";
+  const shakeFist = Math.sin(t * 22) * 14;
+  const A = {
+    down: [[-205, -400], [-195, -265], [205, -400], [195, -265]],
+    point: [[-205, -400], [-195, -265], [300, -540], [440, -560]],
+    fist: [[-205, -400], [-195, -265], [270, -600], [255 + shakeFist, -770]],
+    stop: [[-205, -400], [-195, -265], [280, -560], [380, -700]],
+  }[o.pose || "down"];
+  let s = "";
+  s += P("M-150,-260 L-140,-30 L-25,-30 L-15,-260 Z", nv, 6) + P("M150,-260 L140,-30 L25,-30 L15,-260 Z", nv, 6);
+  s += ell(-95, -12, 85, 30, O, 0) + ell(95, -12, 85, 30, O, 0);
+  s += P("M-150,-575 Q-182,-570 -178,-520 L-160,-245 L160,-245 L178,-520 Q182,-570 150,-575 Z", nv, 6);
+  s += `<rect x="-168" y="-282" width="336" height="40" rx="8" fill="${O}"/><rect x="-22" y="-278" width="44" height="32" rx="5" fill="#c9ccd6" stroke="${O}" stroke-width="4"/>`;
+  s += P("M-48,-575 L0,-525 L48,-575 Z", "#c9d6ea", 5) + `<path d="M0,-525 V-290" stroke="${O}" stroke-width="5"/><circle cx="0" cy="-470" r="6" fill="#c9ccd6"/><circle cx="0" cy="-400" r="6" fill="#c9ccd6"/>`;
+  const star = Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? 14 : 34; return `${(-90 + Math.cos(a) * r).toFixed(1)},${(-470 + Math.sin(a) * r).toFixed(1)}`; }).join(" ");
+  s += `<polygon points="${star}" fill="#f2c14e" stroke="${O}" stroke-width="4" stroke-linejoin="round"/>`;
+  s += `<rect x="100" y="-560" width="40" height="60" rx="8" fill="${O}"/><path d="M128,-560 v-34" stroke="${O}" stroke-width="6" stroke-linecap="round"/>`;
+  s += `<rect x="-26" y="-612" width="52" height="52" fill="${sk}" stroke="${O}" stroke-width="5"/>`;
+  const arm = (a, el, ha) => limb(`M${a[0]},${a[1]} Q${el[0]},${el[1]} ${ha[0]},${ha[1]}`, nv, 46) + circ(ha[0], ha[1], 30, sk, 6);
+  s += arm([-160, -540], A[0], A[1]) + arm([160, -540], A[2], A[3]);
+  if (o.pose === "point") s += limb("M466,-562 L530,-568", sk, 20);
+  if (o.pose === "stop") s += P("M350,-740 h60 v60 h-60 z", sk, 0);
+  // head
+  let h = ell(-92, 10, 16, 24, sk) + ell(92, 10, 16, 24, sk) + ell(0, 0, 92, 104, sk);
+  if (e === "angry") h += P("M-66,-46 L-14,-26 M14,-26 L66,-46", "none", 10);
+  else if (e === "shock") h += P("M-66,-62 q22,-20 48,-8 M18,-70 q26,-12 48,8", "none", 8);
+  else h += P("M-64,-44 q22,-10 46,-2 M18,-46 q24,-8 46,2", "none", 8);
+  h += o.glasses ? P("M-74,-24 h60 q4,36 -30,36 q-32,0 -30,-36 z M14,-24 h60 q4,36 -30,36 q-32,0 -30,-36 z", O, 4) + `<path d="M-14,-18 h28" stroke="${O}" stroke-width="6"/>`
+                 : eyes(e === "shock" ? "shock" : "n", blink(t, 2.4), 0, sk, -10, 38, 0.8);
+  h += P("M0,6 q-18,26 -6,40 q12,8 24,0 q6,-14 -18,-40 z", "#d99a72", 4);
+  const open = tk > 0.12 ? tk : e === "angry" ? 0.35 : 0;
+  if (open) h += ell(0, 78, 24 + 8 * open, 8 + 26 * open, "#8a1f2b", 4);
+  else h += P("M-24,80 q24,8 48,0", "none", 6);
+  h += P("M-52,60 q26,-20 52,-6 q26,-14 52,6 q-16,14 -52,6 q-36,8 -52,-6 z", "#4a2f1d", 4);
+  h += P("M-104,-82 q0,-84 104,-86 q104,2 104,86 z", nv, 6) + `<rect x="-106" y="-88" width="212" height="26" fill="${O}"/>`;
+  h += P("M-96,-62 q96,40 192,0 l8,12 q-104,48 -208,0 z", O, 4) + circ(0, -118, 16, "#f2c14e", 4);
+  if (e === "angry") h += `<ellipse cx="0" cy="-10" rx="80" ry="70" fill="#ff3b3b" opacity=".18"/>`;
+  s += g(`translate(0 ${-700 + Math.sin(t * 2.1) * 3})`, h);
+  return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);
+}
+
+// penguin, front view: feet on (x, y), about 380 tall at s = 1
+function penguin(o) {
+  const t = o.t || 0, wad = o.waddle ? Math.sin(t * 9) * 7 : 0, flap = o.flap ? Math.sin(t * 16) * 22 : 0;
+  let s = "";
+  s += ell(-44, -6, 40, 15, "#ff9a2e", 5) + ell(44, -6, 40, 15, "#ff9a2e", 5);
+  s += g(`rotate(${-18 - flap} -96 -200)`, ell(-96, -150, 24, 82, "#20202a", 6));
+  s += g(`rotate(${18 + flap} 96 -200)`, ell(96, -150, 24, 82, "#20202a", 6));
+  s += ell(0, -180, 108, 170, "#20202a", 6) + ell(0, -150, 78, 128, "#fbfbf6", 0);
+  s += P("M-78,-150 q0,-130 78,-132 q78,2 78,132", "none", 0);
+  const pupil = o.look ?? 0;
+  if (o.glasses) s += P("M-64,-282 h54 q4,40 -26,40 q-30,0 -28,-40 z M10,-282 h54 q4,40 -26,40 q-30,0 -28,-40 z", O, 4) + `<path d="M-10,-276 h20" stroke="${O}" stroke-width="6"/>`;
+  else if (o.expr === "happy") s += P("M-56,-262 q18,-20 36,0 M20,-262 q18,-20 36,0", "none", 7);
+  else s += ell(-34, -264, 20, 24, "#fff", 5) + circ(-34 + pupil * 8, -260, 9, O, 0) + ell(34, -264, 20, 24, "#fff", 5) + circ(34 + pupil * 8, -260, 9, O, 0);
+  s += P("M-24,-226 q24,-14 48,0 q-24,26 -48,0 z", "#ff9a2e", 5);
+  s += ell(-56, -214, 14, 9, "#ffb3c7", 0) + ell(56, -214, 14, 9, "#ffb3c7", 0);
+  if (o.hold === "icecream") s += iceCream(112, -230, 0.9);
+  if (o.hold === "tickets") s += g("translate(120 -230) rotate(-14) scale(0.9)", ticket(0, 0) + ticket(22, 16));
+  if (o.hold === "popcorn") s += popcorn(116, -200, 0.85);
+  return g(`translate(${o.x} ${o.y}) rotate(${wad}) scale(${o.s})`, s);
 }
 
 // generic passenger bust (head centre at 0,0)

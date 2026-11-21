@@ -11,7 +11,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const FF = join(ROOT, "node_modules/ffmpeg-static/ffmpeg.exe");
 const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const FPS = 30, W = 1080, H = 1920, RATE = 24000;
-const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Desktop", 1], captain: ["Microsoft Hazel Desktop", 2],
+const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Desktop", 1], cop: ["Microsoft Hazel Desktop", -1], captain: ["Microsoft Hazel Desktop", 2],
                  crowd: ["Microsoft Zira Desktop", 1], big: ["Microsoft Hazel Desktop", -2] };
 
 const ep = resolve(process.argv[2] || "");

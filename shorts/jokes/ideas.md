@@ -7,7 +7,7 @@ Mark used ones with `→ epNN`. Sezar's own jokes go under "Own".
 ## Strongest (make first)
 
 1. **The penguin and the zoo.** A man finds a penguin; a cop says "take him to the zoo". Next day the cop sees them
-   again: "I told you to take him to the zoo!" "I did. He loved it. Today we're going to the movies." (~30 s) → ep02
+   again: "I told you to take him to the zoo!" "I did. He loved it. Today we're going to the movies." (~30 s) → ep02 (made 2026-11-21)
 2. **The swearing parrot.** A man's parrot swears at everyone. He puts it in the freezer for a minute. The parrot
    comes out polite: "I'm sorry for my words... may I ask what the chicken did?" (~35 s) → ep03
 3. **"I think I'm a moth."** A man at the doctor's: "I think I'm a moth." "You need a psychiatrist, not a doctor.
