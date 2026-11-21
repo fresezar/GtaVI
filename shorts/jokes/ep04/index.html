@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Joke short #4, "The Man Who Thought He Was a Moth". Driven by shorts/jokes/render.mjs: setup(data), render(t), sfx(). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Display"; src: url("../../../node_modules/@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2"); }
+  @font-face { font-family: "Sans"; src: url("../../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"); font-weight: 100 1000; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1a1430; }
+  svg { display: block; position: absolute; inset: 0; }
+  text { font-family: "Display"; }
+  .cap { position: absolute; left: 70px; right: 150px; top: 1370px; text-align: center; font-family: "Sans"; font-weight: 900;
+         font-size: 84px; line-height: 1.04; color: #fff; text-transform: uppercase;
+         -webkit-text-stroke: 16px #2a2238; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.45); }
+  .cap b { color: #ffd23f; }
+</style>
+</head>
+<body>
+<svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="cap" id="cap"></div>
+<script src="../cast.js"></script>
+<script>
+let D = null;
+function setup(d) { D = d; }
+
+function scenes() {
+  return [
+    { at: 0, f: sEnter },
+    { at: S("L02") - 0.1, f: sMoth },
+    { at: S("L03") - 0.1, f: sDoc },
+    { at: S("L06") - 0.1, f: sLight },
+  ];
+}
+
+function sEnter(t) {
+  const u = U(t, 0.2, E("L01") - 0.1);
+  let s = office(t, 1);
+  s += doctor({ x: 790, y: 1060, s: 1.0, t, expr: "neutral" }) + desk(790, 1200, 0.9);
+  s += hero({ x: lerp(170, 330, u), y: 1640, s: 1.0, t, walk: u < 1 ? t * 8 : undefined, expr: "neutral", look: 0.6 });
+  return s;
+}
+
+function sMoth(t, t0) {
+  let s = office(t, 1);
+  s += hero({ x: 470, y: 1900, s: 1.35, t, expr: "neutral", talk: talkOf("hero", t), look: 0.3 });
+  // a long, serious push in
+  const k = ease(U(t, t0, E("L02") + 0.6));
+  return cam(470, lerp(1000, 950, k), lerp(1.0, 1.25, k), 0, 0, 0, s);
+}
+
+function sDoc(t, t0) {
+  let s = office(t, 1);
+  const e = t < S("L04") ? "doubt" : talkOf("doc", t) > 0 ? "neutral" : "doubt";
+  s += doctor({ x: 540, y: 1000, s: 1.5, t, expr: e, talk: talkOf("doc", t) }) + desk(540, 1330, 1.3);
+  if (t > MID("L03", 0.5) && t < S("L04")) s += word(820, 600, "...", 140, "#fff", 0, back(U(t, MID("L03", 0.5), MID("L03", 0.5) + 0.3)));
+  const k = ease(U(t, t0, S("L04")));
+  return cam(540, lerp(960, 900, k), lerp(1.0, 1.15, k), 0, 0, 0, s);
+}
+
+function sLight(t, t0) {
+  // he answers, then forgets everything and flutters up to the lamp
+  const up = U(t, E("L06") + 0.2, D.total - 2.3), bonk = D.total - 2.3;
+  let s = office(t, 1);
+  s += doctor({ x: 790, y: 1060, s: 1.0, t, expr: t > E("L06") + 0.2 ? "shock" : "doubt" }) + desk(790, 1200, 0.9);
+  const hx = lerp(330, 540, ease(up)), hy = lerp(1640, 860, ease(up));
+  s += hero({ x: hx, y: hy, s: lerp(1.0, 0.6, ease(up)), t, expr: up > 0 ? "happy" : "neutral", talk: talkOf("hero", t), pose: up > 0 ? "flail" : "finger", rot: up > 0 ? Math.sin(t * 9) * 8 : 0 });
+  if (up > 0) for (let i = 0; i < 6; i++) { const a = ((t * 1.3 + i / 6) % 1); s += circ(hx + Math.sin(i * 2 + t * 5) * 140, hy - 400 + a * 300, 6, "#e9e2d2", 2); }
+  if (t > bonk) {
+    const [sx, sy] = shake(t, 16 * (1 - U(t, bonk, bonk + 0.4)));
+    s = g(`translate(${sx} ${sy})`, s) + word(540, 640, "BONK!", 150, "#ff6a55", -6, back(U(t, bonk, bonk + 0.25)));
+  }
+  return s;
+}
+
+// ---------- page api ----------
+let SC = null;
+function render(t) {
+  SC = SC || scenes();
+  let i = 0; while (i + 1 < SC.length && t >= SC[i + 1].at) i++;
+  const tq = FILM_FPS ? Math.floor(t * FILM_FPS) / FILM_FPS : t;
+  const body = SC[i].f(Math.max(tq, SC[i].at), SC[i].at);
+  document.getElementById("v").innerHTML = stylize(DEFS + body, t);
+  const c = D.caps.find((c) => t >= c.s && t < c.e);
+  const esc = (s) => s.replace(/[&<>]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m]);
+  document.getElementById("cap").innerHTML = c ? esc(c.text).replace(/\b(moth|MOTH|light|LIGHT)\b/gi, "<b>$1</b>") : "";
+}
+
+function sfx() {
+  return [
+    { name: "pop", at: MID("L03", 0.5) },
+    { name: "ding", at: E("L06") + 0.15 },
+    { name: "whoosh", at: E("L06") + 0.3, gain: 0.6 },
+    { name: "thud", at: D.total - 2.3, gain: 1.3 },
+    { name: "trombone", at: D.total - 2.1, gain: 0.6 },
+  ];
+}
+</script>
+</body>
+</html>

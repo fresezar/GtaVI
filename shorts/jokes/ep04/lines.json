@@ -1,0 +1,13 @@
+{
+  "title": "The Man Who Thought He Was a Moth",
+  "tail": 3.9,
+  "musicEnd": "L06",
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "A man walked into a doctor's office." },
+    { "id": "L02", "who": "hero", "text": "Doctor, I think I'm a moth.", "post": 0.7 },
+    { "id": "L03", "who": "nar", "text": "The doctor looked at him for a long time.", "post": 0.4 },
+    { "id": "L04", "who": "doc", "text": "Sir, you don't need a doctor. You need a psychiatrist.", "post": 0.3 },
+    { "id": "L05", "who": "doc", "text": "So why did you come in here?", "post": 0.6 },
+    { "id": "L06", "who": "hero", "text": "The light was on." }
+  ]
+}

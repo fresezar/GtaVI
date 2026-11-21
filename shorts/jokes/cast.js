@@ -360,6 +360,47 @@ function frozenChicken(x, y, s = 1) {
     P("M-60,74 l-6,24 l-6,-22 M20,80 l-5,20 l-6,-18 M100,70 l-5,20 l-6,-18", "#e8fbff", 3));
 }
 
+// doctor's office: pale wall, framed diplomas, door on the left, a ceiling lamp (glow 0..1)
+function office(t, glow = 0) {
+  let s = `<rect x="-400" y="-400" width="1880" height="2720" fill="#d7ecea"/>`;
+  s += `<rect x="-400" y="1560" width="1880" height="900" fill="#9aa7b8" stroke="${O}" stroke-width="6"/>`;
+  for (let x = -400; x < 1500; x += 120) s += `<path d="M${x},1560 l-60,900" stroke="#8592a3" stroke-width="4"/>`;
+  s += `<rect x="20" y="620" width="300" height="940" fill="#c98a5e" stroke="${O}" stroke-width="7"/><circle cx="270" cy="1100" r="16" fill="#f2c14e" stroke="${O}" stroke-width="4"/>`;
+  for (const [x, y] of [[520, 560], [760, 600]]) s += `<rect x="${x}" y="${y}" width="190" height="140" fill="#fffdf5" stroke="#8a6a2a" stroke-width="10"/><path d="M${x + 30},${y + 50} h130 M${x + 30},${y + 80} h100" stroke="#b8b0a0" stroke-width="6"/>` + circ(x + 150, y + 110, 14, "#e8473b", 3);
+  // lamp
+  s += `<path d="M540,-400 V250" stroke="${O}" stroke-width="8"/>`;
+  if (glow > 0) {
+    s += `<circle cx="540" cy="330" r="${260 + 30 * Math.sin(t * 8)}" fill="#fff3a0" opacity="${0.35 * glow}"/>`;
+    for (let i = 0; i < 10; i++) { const a = Math.PI * (0.1 + 0.8 * i / 9); s += `<path d="M${540 + Math.cos(a) * 140},${330 + Math.sin(a) * 140} L${540 + Math.cos(a) * 300},${330 + Math.sin(a) * 300}" stroke="#ffd23f" stroke-width="12" stroke-linecap="round" opacity="${glow}"/>`; }
+  }
+  s += P("M430,330 q0,-90 110,-90 q110,0 110,90 z", "#3f5bd1", 7) + `<ellipse cx="540" cy="336" rx="56" ry="26" fill="${glow ? "#fff3a0" : "#e9e2d2"}" stroke="${O}" stroke-width="5"/>`;
+  return s;
+}
+
+function desk(x, y, s = 1) {
+  return g(`translate(${x} ${y}) scale(${s})`, `<rect x="-300" y="0" width="600" height="420" fill="#8a5a3a" stroke="${O}" stroke-width="7"/><rect x="-330" y="-30" width="660" height="40" rx="8" fill="#a56c46" stroke="${O}" stroke-width="7"/>` +
+    `<rect x="-220" y="-70" width="150" height="44" fill="#fff" stroke="${O}" stroke-width="4" transform="rotate(-6 -145 -48)"/><rect x="120" y="-90" width="120" height="64" rx="6" fill="#f2c14e" stroke="${O}" stroke-width="5"/>` +
+    `<text x="180" y="-44" font-family="Sans" font-weight="900" font-size="34" fill="${O}" text-anchor="middle">DR.</text>`);
+}
+
+// doctor bust (head centre 0,0): white coat, stethoscope, glasses, grey hair. expr: neutral, doubt, shock
+function doctor(o) {
+  const t = o.t || 0, tk = o.talk || 0, e = o.expr || "neutral", sk = "#f1c9a5";
+  let s = P("M-200,230 q0,-130 200,-130 q200,0 200,130 v400 h-400 z", "#fbfbf8", 6);
+  s += P("M-40,104 L0,190 L40,104 Z", "#9fd3f2", 5) + P("M-70,110 q-20,140 50,170 q60,10 70,-60", "none", 8) + circ(50, 220, 18, "#c9ccd6", 5);
+  let h = ell(-78, 6, 14, 22, sk) + ell(78, 6, 14, 22, sk) + ell(0, 0, 80, 92, sk);
+  h += P("M-82,-10 q-14,-70 30,-86 M82,-10 q14,-70 -30,-86", "#c9c6d6", 0) + P("M-84,-4 q-18,-74 34,-92 q-30,30 -24,92 z M84,-4 q18,-74 -34,-92 q30,30 24,92 z", "#d8d6e2", 5);
+  const lift = e === "doubt" ? -12 : 0;
+  h += eyes(e === "shock" ? "shock" : e === "doubt" ? "smug" : "n", blink(t, 3.1), 0, sk, -6, 32, 0.72);
+  h += P(`M-58,${-40 + lift} q24,-10 44,0 M14,-46 q24,-14 44,-2`, "none", 7);
+  h += `<g transform="translate(0 ${e === "doubt" ? 22 : 0})"><circle cx="-32" cy="-6" r="24" fill="none" stroke="${O}" stroke-width="5"/><circle cx="32" cy="-6" r="24" fill="none" stroke="${O}" stroke-width="5"/><path d="M-8,-6 h16" stroke="${O}" stroke-width="5"/></g>`;
+  h += P("M0,6 q-16,24 -6,36 q10,8 20,0 q6,-12 -14,-36 z", "#dfa880", 4);
+  if (tk > 0.12) h += ell(0, 64, 22 + 6 * tk, 6 + 22 * tk, "#8a1f2b", 4);
+  else h += P("M-22,64 q22,6 44,0", "none", 6);
+  s += g("translate(0 -10)", h);
+  return g(`translate(${o.x} ${o.y}) scale(${o.s})`, s);
+}
+
 // generic passenger bust (head centre at 0,0)
 function passenger(o) {
   const { skin = "#f3cfb2", hair = "#6b3e26", style = "short", shirt = "#9ad17a", expr = "neutral", t = 0, seed = 0 } = o;
