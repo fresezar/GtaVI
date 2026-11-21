@@ -1,0 +1,149 @@
+<!doctype html>
+<!-- Joke short #3, "The Man Who Bought a Parrot". Driven by shorts/jokes/render.mjs: setup(data), render(t), sfx(). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Display"; src: url("../../../node_modules/@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2"); }
+  @font-face { font-family: "Sans"; src: url("../../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"); font-weight: 100 1000; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1a1430; }
+  svg { display: block; position: absolute; inset: 0; }
+  text { font-family: "Display"; }
+  .cap { position: absolute; left: 70px; right: 150px; top: 1370px; text-align: center; font-family: "Sans"; font-weight: 900;
+         font-size: 84px; line-height: 1.04; color: #fff; text-transform: uppercase;
+         -webkit-text-stroke: 16px #2a2238; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.45); }
+  .cap b { color: #ff6a55; }
+</style>
+</head>
+<body>
+<svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="cap" id="cap"></div>
+<script src="../cast.js"></script>
+<script>
+let D = null;
+function setup(d) { D = d; }
+
+// swear symbols popping around the bird
+function swears(x, y, t, from, n = 5) {
+  const marks = ["#@$%!", "&!#*", "%$@!", "#!", "@#$%"];
+  let s = "";
+  for (let i = 0; i < n; i++) {
+    const at = from + i * 0.28;
+    if (t < at) continue;
+    const a = i * 2.1, r = 230 + (i % 2) * 70;
+    s += word(x + Math.cos(a) * r, y + Math.sin(a) * r * 0.6 - 60, marks[i % 5], 70 + (i % 3) * 14, i % 2 ? "#ff6a55" : "#ffd23f", (i % 2 ? -1 : 1) * 10, back(U(t, at, at + 0.2)));
+  }
+  return s;
+}
+
+function scenes() {
+  return [
+    { at: 0, f: sBuy },
+    { at: S("L03") - 0.1, f: sSwear },
+    { at: S("L04") - 0.1, f: sPlease },
+    { at: S("L07") - 0.1, f: sFreezer },
+    { at: MID("L08", 0.45), f: sMinute },
+    { at: S("L09") - 0.1, f: sOpen },
+    { at: S("L11") - 0.1, f: sChicken },
+  ];
+}
+
+function sBuy(t) {
+  let s = kitchen(t);
+  s += cage(700, 1150, 1, false) + parrot({ x: 700, y: 850, s: 1.1, t, expr: t > MID("L02", 0.6) ? "angry" : "neutral" }) + cage(700, 1150, 1, true);
+  s += hero({ x: 300, y: 1640, s: 1.0, t, expr: "happy", look: 0.6 });
+  if (t > MID("L02", 0.1) && t < MID("L02", 0.6)) for (let i = 0; i < 3; i++) s += word(560 + i * 150, 380 + (i % 2) * 70, "✦", 70, "#ffd23f", 0, back(U(t, MID("L02", 0.1) + i * 0.1, MID("L02", 0.1) + i * 0.1 + 0.2)));
+  return s;
+}
+
+function sSwear(t, t0) {
+  const [sx, sy] = shake(t, 4);
+  let s = kitchen(t);
+  s += cage(560, 1250, 1.25, false) + parrot({ x: 560, y: 875, s: 1.45, t, expr: "angry", talk: talkOf("parrot", t), wing: "up" }) + cage(560, 1250, 1.25, true);
+  s += swears(560, 520, t, t0 + 0.2, 5);
+  return cam(560, 900, 1.05, 0, sx, sy, s);
+}
+
+function sPlease(t) {
+  let s = kitchen(t);
+  s += cage(740, 1150, 1, false) + parrot({ x: 740, y: 850, s: 1.1, t, expr: t > S("L06") - 0.1 ? "angry" : "neutral", talk: talkOf("parrot", t), wing: t > S("L06") ? "up" : undefined }) + cage(740, 1150, 1, true);
+  s += hero({ x: 290, y: 1640, s: 1.0, t, expr: t > S("L06") ? "shock" : "sad", talk: talkOf("hero", t), pose: t < S("L06") && t > S("L05") - 0.1 ? "finger" : "down" });
+  if (t < S("L05")) s += word(300, 520, "KINDNESS", 80, "#9fdcb4", -6, back(U(t, MID("L04", 0.5), MID("L04", 0.5) + 0.25)));
+  if (t > S("L06")) s += swears(740, 470, t, S("L06") + 0.05, 3);
+  return s;
+}
+
+function sFreezer(t) {
+  // he grabs the bird, opens the freezer, shuts it in
+  const grab = MID("L07", 0.45), shut = E("L07") - 0.2;
+  const open = t < grab ? 0 : t < shut ? ease(U(t, grab, grab + 0.4)) : 1 - ease(U(t, shut, shut + 0.25));
+  let s = kitchen(t);
+  s += fridge(560, 1600, 1, open, t);
+  const bx = t < grab ? 330 : lerp(330, 760, ease(U(t, grab, shut)));
+  const by = t < grab ? 1090 : lerp(1090, 820, ease(U(t, grab, shut)));
+  if (t < shut) s += parrot({ x: bx, y: by, s: 0.8, t, expr: t > grab ? "shock" : "angry", wing: "up" });
+  s += hero({ x: 260, y: 1700, s: 1.05, t, expr: "shout", pose: t > grab ? "point" : "fists" });
+  if (t < MID("L07", 0.4)) s += word(260, 480, "ENOUGH!", 110, "#ff6a55", -6, back(U(t, S("L07"), S("L07") + 0.25)));
+  if (t > shut) { const [sx, sy] = shake(t, 5 * (1 - U(t, shut, shut + 0.4))); return g(`translate(${sx} ${sy})`, s); }
+  return s;
+}
+
+function sMinute(t, t0) {
+  let s = `<rect x="0" y="0" width="1080" height="1920" fill="#2d2350"/>`;
+  s += word(540, 620, "ONE MINUTE|LATER...", 130, "#fff", -4, back(U(t, t0, t0 + 0.3)));
+  // a clock face ticking round
+  s += g("translate(540 1050)", circ(0, 0, 170, "#fff", 9) + `<path d="M0,0 V-120" stroke="${O}" stroke-width="12" stroke-linecap="round" transform="rotate(${(t - t0) * 360})"/>` + circ(0, 0, 14, O, 0));
+  return s;
+}
+
+function sOpen(t) {
+  const step = U(t, MID("L09", 0.45), E("L09"));
+  let s = kitchen(t);
+  s += fridge(560, 1600, 1, ease(U(t, S("L09"), S("L09") + 0.5)), t);
+  s += hero({ x: 260, y: 1700, s: 1.05, t, expr: "shock", pose: "down" });
+  const px = lerp(760, 420, ease(step)), py = lerp(820, 1150, ease(step));
+  s += parrot({ x: px, y: py, s: 0.9, t, frozen: true, expr: t > S("L10") ? "polite" : "shock", talk: talkOf("parrot", t), wing: t > S("L10") ? "chest" : undefined });
+  if (t > S("L10")) return cam(470, 1000, lerp(1, 1.35, ease(U(t, S("L10"), S("L10") + 0.5))), 0, 0, 0, s);
+  return s;
+}
+
+function sChicken(t, t0) {
+  const look = MID("L11", 0.55);
+  let s = kitchen(t);
+  s += fridge(560, 1600, 1, 1, t);
+  s += hero({ x: 260, y: 1700, s: 1.05, t, expr: "shock", pose: "down" });
+  s += parrot({ x: 420, y: 1150, s: 0.9, t, frozen: true, expr: t > look ? "shock" : "polite", talk: talkOf("parrot", t), wing: "chest" });
+  // camera swings from the parrot to the frozen chicken
+  const k = ease(U(t, look, look + 0.5));
+  return cam(lerp(560, 750, k), lerp(980, 880, k), lerp(1.25, 1.9, k), 0, 0, 0, s);
+}
+
+// ---------- page api ----------
+let SC = null;
+function render(t) {
+  SC = SC || scenes();
+  let i = 0; while (i + 1 < SC.length && t >= SC[i + 1].at) i++;
+  const tq = FILM_FPS ? Math.floor(t * FILM_FPS) / FILM_FPS : t;
+  const body = SC[i].f(Math.max(tq, SC[i].at), SC[i].at);
+  document.getElementById("v").innerHTML = stylize(DEFS + body, t);
+  const c = D.caps.find((c) => t >= c.s && t < c.e);
+  const esc = (s) => s.replace(/[&<>]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m]);
+  document.getElementById("cap").innerHTML = c ? esc(c.text).replace(/([#@$%&!*]{2,}(?:-ING)?)/g, "<b>$1</b>") : "";
+}
+
+function sfx() {
+  const bleeps = [S("L03") + 0.05, MID("L03", 0.45), MID("L03", 0.62), S("L06") + 0.02];
+  return [
+    ...bleeps.map((at) => ({ name: "bleep", at, gain: 0.9 })),
+    { name: "pop", at: S("L07") },
+    { name: "whoosh", at: MID("L07", 0.45), gain: 0.7 },
+    { name: "thud", at: E("L07") - 0.2, gain: 1.1 },
+    { name: "ding", at: MID("L08", 0.45) },
+    { name: "whoosh", at: S("L09"), gain: 0.5 },
+    { name: "pop", at: E("L11") + 0.2 },
+    { name: "trombone", at: E("L11") + 0.35, gain: 0.7 },
+  ];
+}
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ Mark used ones with `→ epNN`. Sezar's own jokes go under "Own".
 1. **The penguin and the zoo.** A man finds a penguin; a cop says "take him to the zoo". Next day the cop sees them
    again: "I told you to take him to the zoo!" "I did. He loved it. Today we're going to the movies." (~30 s) → ep02 (made 2026-11-21)
 2. **The swearing parrot.** A man's parrot swears at everyone. He puts it in the freezer for a minute. The parrot
-   comes out polite: "I'm sorry for my words... may I ask what the chicken did?" (~35 s) → ep03
+   comes out polite: "I'm sorry for my words... may I ask what the chicken did?" (~35 s) → ep03 (made 2026-11-21)
 3. **"I think I'm a moth."** A man at the doctor's: "I think I'm a moth." "You need a psychiatrist, not a doctor.
    Why did you come in here?" "The light was on." (~20 s) → ep04
 4. **Talking dog for sale.** The dog tells of spying for the CIA, saving lives, flying planes. "Why sell such a dog?"

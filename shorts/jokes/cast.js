@@ -284,6 +284,82 @@ function penguin(o) {
   return g(`translate(${o.x} ${o.y}) rotate(${wad}) scale(${o.s})`, s);
 }
 
+// parrot on a perch: feet on (x, y), ~320 tall at s = 1. expr: neutral, angry, polite, shock. o.frozen: blue + icicles + shiver
+function parrot(o) {
+  const t = o.t || 0, tk = o.talk || 0, e = o.expr || "neutral";
+  const fz = o.frozen ? 1 : 0, sh = fz ? Math.sin(t * 60) * 4 : 0, ruff = e === "angry" ? Math.sin(t * 30) * 3 : 0;
+  const G = fz ? "#7fb8c9" : "#2fb34a", G2 = fz ? "#5f97ab" : "#1f8a38", R = fz ? "#9fc6d8" : "#e8473b";
+  let s = "";
+  s += P("M-30,-60 q-40,90 -20,170 l30,-10 q-10,-80 20,-150 z", fz ? "#6aa3b8" : "#3f6fd8", 5);
+  s += P("M-10,-60 q-10,100 20,160 l26,-14 q-30,-70 -16,-140 z", R, 5);
+  s += ell(0, -120, 72, 108, G, 6) + ell(10, -100, 44, 70, fz ? "#cfe6ee" : "#ffd23f", 0);
+  const wing = o.wing === "chest" ? 'rotate(-40 -20 -170) translate(30 -10)' : o.wing === "up" ? `rotate(${-70 + Math.sin(t * 18) * 15} -20 -170)` : `rotate(${8 + ruff} -20 -170)`;
+  s += g(wing, P("M-20,-180 q-60,30 -50,120 q30,30 50,10 q20,-60 0,-130 z", G2, 5) + P("M-62,-80 q20,24 40,12", "none", 4));
+  // head
+  let h = circ(0, 0, 66, G, 6);
+  h += P("M-20,-58 l-14,-44 l26,30 l2,-46 l18,44 l18,-36 l-4,48 z", R, 5);
+  h += ell(24, -8, 28, 26, "#fff", 4);
+  if (e === "polite") h += P("M10,-8 q14,10 28,0", "none", 6) + ell(36, 22, 12, 7, "#ffb3c7", 0);
+  else if (e === "shock") h += circ(26, -8, 10, O, 0);
+  else h += circ(30, -6, 8, O, 0);
+  if (e === "angry") h += P("M2,-36 L50,-20", "none", 9);
+  if (e === "shock") h += P("M4,-44 q20,-12 44,2", "none", 7);
+  const open = Math.max(tk, e === "angry" ? 0.3 : 0);
+  h += g(`rotate(${open * 26} 48 22)`, P("M46,20 q30,4 38,24 q-22,8 -42,-6 z", fz ? "#b8c6cc" : "#d8a43c", 5));
+  h += P("M44,-30 q56,-8 60,46 q-16,-26 -46,-16 q-12,-10 -14,-30 z", fz ? "#c9d4d8" : "#f2c14e", 5);
+  if (fz) h += P("M70,46 l-6,26 l-6,-24 M86,40 l-4,18 l-6,-16", "#e8fbff", 3);
+  s += g(`translate(${8 + ruff} -236)`, h);
+  s += P("M-30,-12 q-10,14 -24,16 M-16,-12 q-4,16 -10,20 M18,-12 q10,14 24,16 M30,-12 q6,16 14,18", "none", 7);
+  if (fz) s += `<ellipse cx="0" cy="-150" rx="110" ry="190" fill="#bfe9ff" opacity=".25"/>` + P("M-40,-20 l-6,30 l-6,-28 M40,-30 l-5,24 l-6,-22", "#e8fbff", 3);
+  return g(`translate(${o.x + sh} ${o.y}) scale(${o.s})`, s);
+}
+
+// round birdcage drawn over the bird: centre bottom on (x, y)
+function cage(x, y, s = 1, front = true) {
+  let k = "";
+  if (!front) return g(`translate(${x} ${y}) scale(${s})`, ell(0, -10, 190, 24, "#c9a04a", 6) + `<path d="M-150,-300 h300" stroke="#8a6a2a" stroke-width="14" stroke-linecap="round"/>`);
+  for (let i = -4; i <= 4; i++) k += `<path d="M${i * 40},-10 V-400 Q${i * 20},-520 0,-540" fill="none" stroke="#c9a04a" stroke-width="6"/>`;
+  return g(`translate(${x} ${y}) scale(${s})`, k + `<path d="M-180,-400 h360" stroke="#c9a04a" stroke-width="8"/>` + circ(0, -556, 18, "#c9a04a", 5));
+}
+
+// kitchen wall, window, counter, floor
+function kitchen(t) {
+  let s = `<rect x="-400" y="-400" width="1880" height="2720" fill="#f6e6c8"/>`;
+  for (let y = 1000; y < 1560; y += 70) for (let x = -70 + ((y / 70) % 2) * 35; x < 1150; x += 70) s += `<rect x="${x}" y="${y}" width="66" height="66" fill="#fff8ea" stroke="#e6d3b0" stroke-width="3"/>`;
+  s += `<rect x="60" y="300" width="300" height="360" fill="url(#sky)" stroke="${O}" stroke-width="8"/><path d="M210,300 V660 M60,480 H360" stroke="${O}" stroke-width="8"/>`;
+  s += P("M40,290 h340 l-20,40 h-300 z", "#e8473b", 6);
+  s += `<rect x="-400" y="1560" width="1880" height="900" fill="#b88a5e" stroke="${O}" stroke-width="6"/>`;
+  for (let x = -400; x < 1500; x += 160) s += `<path d="M${x},1560 v900" stroke="#a27650" stroke-width="4"/>`;
+  s += `<rect x="-40" y="1180" width="560" height="380" fill="#8fb7d8" stroke="${O}" stroke-width="6"/><rect x="-60" y="1150" width="600" height="40" rx="8" fill="#e9e2d2" stroke="${O}" stroke-width="6"/>`;
+  s += `<rect x="60" y="1250" width="160" height="240" rx="8" fill="#a5c8e4" stroke="${O}" stroke-width="5"/><rect x="260" y="1250" width="160" height="240" rx="8" fill="#a5c8e4" stroke="${O}" stroke-width="5"/>`;
+  return s;
+}
+
+// tall fridge, freezer on top. open: 0..1 swings the freezer door; inside shows a frozen chicken
+function fridge(x, y, s = 1, open = 0, t = 0) {
+  let k = `<rect x="0" y="-980" width="380" height="980" rx="30" fill="#eef1f5" stroke="${O}" stroke-width="7"/>`;
+  k += `<path d="M0,-650 H380" stroke="${O}" stroke-width="6"/><rect x="330" y="-560" width="18" height="200" rx="8" fill="#c9ced8" stroke="${O}" stroke-width="4"/>`;
+  if (open > 0) {
+    k += `<rect x="18" y="-962" width="344" height="296" rx="12" fill="#cfefff" stroke="${O}" stroke-width="5"/><path d="M18,-810 H362" stroke="#9fc7de" stroke-width="8"/>`;
+    k += frozenChicken(190, -700, 0.9);
+    for (let i = 0; i < 5; i++) { const a = ((t * 0.7 + i * 0.2) % 1); k += `<ellipse cx="${190 + Math.sin(i * 3) * 120 + a * 60}" cy="${-700 + a * 160}" rx="${60 + a * 70}" ry="${26 + a * 30}" fill="#fff" opacity="${(0.55 * (1 - a) * open).toFixed(2)}"/>`; }
+  }
+  const w = 380 * (1 - open * 0.92);
+  k += `<rect x="${380 - w}" y="-980" width="${w}" height="330" rx="${Math.min(30, w / 2)}" fill="#f7f9fb" stroke="${O}" stroke-width="7"/>`;
+  if (open < 0.5) k += `<rect x="${380 - w + 24}" y="-830" width="18" height="140" rx="8" fill="#c9ced8" stroke="${O}" stroke-width="4"/>`;
+  return g(`translate(${x} ${y}) scale(${s})`, k);
+}
+
+function frozenChicken(x, y, s = 1) {
+  return g(`translate(${x} ${y}) scale(${s})`,
+    P("M-100,10 q-10,-90 90,-100 q110,0 110,80 q0,60 -100,64 q-90,0 -100,-44 z", "#f4c9a0", 6) +
+    P("M80,-30 q60,-30 80,-10 q10,20 -16,28 q-20,-10 -54,6 z", "#f4c9a0", 5) + circ(162, -12, 14, "#fff", 4) +
+    P("M-80,20 q-60,10 -70,40 q20,16 40,0 q10,-24 40,-26 z", "#f4c9a0", 5) + circ(-150, 62, 14, "#fff", 4) +
+    `<path d="M-60,-40 q30,-20 60,-10 M0,-60 q40,-10 70,10" stroke="#d9a77a" stroke-width="5" fill="none"/>` +
+    `<rect x="-120" y="-110" width="300" height="190" rx="30" fill="#bfe9ff" opacity=".35" stroke="#e8fbff" stroke-width="4"/>` +
+    P("M-60,74 l-6,24 l-6,-22 M20,80 l-5,20 l-6,-18 M100,70 l-5,20 l-6,-18", "#e8fbff", 3));
+}
+
 // generic passenger bust (head centre at 0,0)
 function passenger(o) {
   const { skin = "#f3cfb2", hair = "#6b3e26", style = "short", shirt = "#9ad17a", expr = "neutral", t = 0, seed = 0 } = o;

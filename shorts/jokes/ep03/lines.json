@@ -1,0 +1,18 @@
+{
+  "title": "The Man Who Bought a Parrot",
+  "tail": 3.9,
+  "musicEnd": "L11",
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "A man bought a parrot." },
+    { "id": "L02", "who": "nar", "text": "Beautiful bird. Terrible mouth.", "post": 0.4 },
+    { "id": "L03", "who": "parrot", "text": "Bleep you! Bleep your bleeping shoes!", "caption": "#@$%! YOU! #@$% YOUR #@$%-ING SHOES!", "post": 0.4 },
+    { "id": "L04", "who": "nar", "text": "He tried everything. Kindness." },
+    { "id": "L05", "who": "hero", "text": "Please, be nice." },
+    { "id": "L06", "who": "parrot", "text": "Bleep off!", "caption": "#@$% OFF!", "post": 0.5 },
+    { "id": "L07", "who": "nar", "text": "Finally, he lost it. He put the parrot in the freezer." },
+    { "id": "L08", "who": "nar", "text": "One minute. Silence.", "post": 0.9 },
+    { "id": "L09", "who": "nar", "text": "He opened the door. The parrot stepped out.", "post": 0.3 },
+    { "id": "L10", "who": "parrot", "text": "I am deeply sorry for my language, sir. It will never happen again.", "post": 0.5 },
+    { "id": "L11", "who": "parrot", "text": "May I ask... what did the chicken do?" }
+  ]
+}

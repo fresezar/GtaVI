@@ -11,7 +11,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const FF = join(ROOT, "node_modules/ffmpeg-static/ffmpeg.exe");
 const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const FPS = 30, W = 1080, H = 1920, RATE = 24000;
-const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Desktop", 1], cop: ["Microsoft Hazel Desktop", -1], captain: ["Microsoft Hazel Desktop", 2],
+const VOICES = { nar: ["Microsoft Hazel Desktop", 0], hero: ["Microsoft Zira Desktop", 1], cop: ["Microsoft Hazel Desktop", -1], parrot: ["Microsoft Zira Desktop", 3], captain: ["Microsoft Hazel Desktop", 2],
                  crowd: ["Microsoft Zira Desktop", 1], big: ["Microsoft Hazel Desktop", -2] };
 
 const ep = resolve(process.argv[2] || "");
@@ -213,6 +213,7 @@ const synth = {
   boom: (() => { let lp = 0; return (u) => { lp += 0.04 * ((Math.random() * 2 - 1) - lp); return u < 1.6 ? lp * 6 * Math.exp(-2.6 * u) + Math.sin(2 * Math.PI * 55 * u) * Math.exp(-5 * u) * 0.5 : 0; }; })(),
   alarm: (u) => (u < 2.4 ? 0.22 * Math.sign(Math.sin(2 * Math.PI * (Math.floor(u / 0.3) % 2 ? 660 : 880) * u)) * (u % 0.3 < 0.26 ? 1 : 0) : 0),
   whistle: (u) => (u < 2.2 ? Math.sin(2 * Math.PI * (1900 * u - 260 * u * u)) * 0.35 * Math.min(1, u * 8) * Math.min(1, (2.2 - u) * 4) : 0),
+  bleep: (u) => (u < 0.32 ? Math.sin(2 * Math.PI * 1000 * u) * 0.45 * Math.min(1, u * 200) * Math.min(1, (0.32 - u) * 200) : 0),
   thud: (u) => (u < 0.35 ? Math.sin(2 * Math.PI * (120 * u - 120 * u * u)) * Math.exp(-11 * u) * 0.9 : 0),
   trombone: (u) => {
     const notes = [[0, 0.42, 293.66], [0.46, 0.42, 277.18], [0.92, 0.42, 261.63], [1.38, 1.3, 246.94]];
