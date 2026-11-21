@@ -26,6 +26,11 @@
                   text-shadow: 0 4px 0 var(--navy), 0 0 24px rgba(0,0,0,.6); }
   .label-cta { position: absolute; left: 60px; right: 140px; top: 1380px; color: var(--cream); font-weight: 800; font-size: 46px;
                text-shadow: 0 2px 10px rgba(0,0,0,.9); }
+  /* Voice captions: lower third of the 16:9 picture (which sits at y 656-1264), clear of hook and fact lines. */
+  .cap { position: absolute; left: 70px; right: 150px; top: 1060px; text-align: center; color: var(--cream);
+         font-weight: 900; font-size: 84px; line-height: 1.04; text-transform: uppercase; letter-spacing: .01em;
+         -webkit-text-stroke: 16px var(--navy); paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.55); }
+  .cap .num { color: var(--coral); }
   .end { position: absolute; inset: 0; background: var(--navy); color: var(--cream); display: flex; flex-direction: column;
          align-items: center; justify-content: center; text-align: center; padding: 0 90px 200px; box-sizing: border-box; }
   .end img { width: 360px; }
@@ -44,6 +49,7 @@
     hook: `<div class="hook">${file}<div class="box">${esc(d.text)}</div></div>`,
     credit: `<div class="wm">sixstargta.com</div><div class="credit">${d.credit ? "Clip: " + esc(d.credit) : ""}${d.fact ? `<span class="fact">${esc(d.fact)}</span>` : ""}</div>`,
     label: `<div class="label">${file}<div class="place">${esc(d.place)}</div></div><div class="label-cta">${esc(d.cta || "Pinned on sixstargta.com")}</div>`,
+    caption: `<div class="cap">${esc(d.text).replace(/(\S*\d\S*)/g, '<span class="num">$1</span>')}</div>`,
     end: `<div class="end"><img src="../../public/brand/logo.svg" alt=""><div class="file">${file}</div>
           <div class="line">${esc(d.line || "Map pin + full guide")}</div><div class="url">sixstargta.com</div>
           <div class="small">Unofficial fan site. Not affiliated with Rockstar Games.</div></div>`,

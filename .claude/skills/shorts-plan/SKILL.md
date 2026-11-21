@@ -22,7 +22,8 @@ Format ve roller: `shorts/README.md`. Fikirler: `shorts/ideas.md`. Önceki planl
    Aynı sütundan art arda 3 video koyma. Bir video bir testi taşır (tek değişken).
 4. **Yaz:** `shorts/plans/YYYY-MM-DD.md` (yarının tarihi), `shorts/plans/2026-11-19.md` biçiminde. Her video için:
    giriş cümlesi (İngilizce, ekranda, 10 kelimeyi geçmesin), tam olarak ne çekileceği ve kaç saniye, alt satır, harita yeri,
-   hedef uzunluk, açıklama metni (İngilizce), 3-5 etiket, kaynak linki. Dosya numaraları son plandan devam eder.
+   hedef uzunluk, **Seslendirme** (İngilizce metin; ~2,5 kelime/sn, görüntü + harita süresine sığsın; girişle başlar,
+   kaynaksız iddia yok, basın = "reportedly"), açıklama metni (İngilizce), 3-5 etiket, kaynak linki. Dosya numaraları son plandan devam eder.
    Bir yedek video ekle.
 5. **Doğruluk:** kaynağı olmayan bilgiyi yazma. Basın = "reportedly". Kurucunun oyunda doğrulaması gerekenleri **kalın** işaretle.
 6. **Fikir havuzu:** kullanılan fikirleri `→ #dosya` ile işaretle, gündemden çıkan yeni fikirleri ekle.
