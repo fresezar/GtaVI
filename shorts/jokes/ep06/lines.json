@@ -1,0 +1,12 @@
+{
+  "title": "The Man Who Hurt Everywhere",
+  "tail": 3.9,
+  "musicEnd": "L05",
+  "lines": [
+    { "id": "L01", "who": "nar", "text": "A man went to the doctor." },
+    { "id": "L02", "who": "hero", "text": "Doctor, it hurts everywhere!", "post": 0.3 },
+    { "id": "L03", "who": "hero", "text": "I touch my knee... ouch! My head... ouch! My belly... ouch!", "post": 0.5 },
+    { "id": "L04", "who": "nar", "text": "The doctor looked very closely.", "post": 0.5 },
+    { "id": "L05", "who": "doc", "text": "Sir. Your finger is broken." }
+  ]
+}

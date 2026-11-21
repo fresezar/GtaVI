@@ -123,12 +123,15 @@ function hero(o) {
   s += P("M-14,-540 L-30,-400 L0,-370 L30,-400 L14,-540 Z", "#e8473b", 5, `transform="rotate(${8 + 4 * Math.sin(t * 3)} 0 -540)"`);
   s += `<rect x="-26" y="-612" width="52" height="52" fill="${sk}" stroke="${O}" stroke-width="5"/>`;
   const arm = (a, el, ha) => limb(`M${a[0]},${a[1]} Q${el[0]},${el[1]} ${ha[0]},${ha[1]}`, sh, 46) + circ(ha[0], ha[1], 30, sk, 6);
-  s += arm([-160, -540], A[0], A[1]) + arm([160, -540], A[2], A[3]);
+  // o.hand = [x, y]: the right hand reaches that point (drawn over the head), finger pointing at it
+  const reach = o.hand ? arm([160, -540], [320, (-540 + o.hand[1]) / 2 + 40], [o.hand[0] + 50, o.hand[1]]) + limb(`M${o.hand[0] + 30},${o.hand[1]} L${o.hand[0] - 6},${o.hand[1] - 4}`, sk, 18) : "";
+  s += arm([-160, -540], A[0], A[1]) + (o.hand ? "" : arm([160, -540], A[2], A[3]));
   if (o.pose === "finger") s += limb("M250,-780 L250,-850", sk, 20);
+  if (o.pose === "finger" && o.sore) s += circ(250, -856, 16 + 6 * Math.abs(Math.sin(t * 9)), "#ff3b3b", 4) + `<path d="M226,-826 l-26,-10 M276,-826 l26,-10 M250,-890 v-26" stroke="#ff3b3b" stroke-width="7" stroke-linecap="round"/>`;
   if (o.pose === "point") s += limb("M466,-562 L530,-568", sk, 20);
   if (o.hold) s += holdProp(o.hold, A[3][0], A[3][1], t);
   if (o.bar) s += censor(0, -232, o.bar, o.barScale ?? 1);
-  s += g(`translate(0 ${-700 + Math.sin(t * 2.2) * 3})`, heroHead(o));
+  s += g(`translate(0 ${-700 + Math.sin(t * 2.2) * 3})`, heroHead(o)) + reach;
   return g(`translate(${o.x} ${o.y}) rotate(${o.rot || 0}) scale(${o.s})`, s);
 }
 

@@ -19,7 +19,7 @@ Mark used ones with `→ epNN`. Sezar's own jokes go under "Own".
 6. **Three wishes on an island.** Three men, one genie. Two wish to go home. The third is lonely: "I wish my friends
    were back." (~35 s)
 7. **It hurts everywhere.** "Doctor, it hurts when I touch my knee, my head, my belly..." "Your finger is broken."
-   (~20 s)
+   (~20 s) → ep06 (made 2026-11-21)
 8. **The snail and the turtles.** A snail is robbed by two turtles. Police: "What happened?" "I don't know. It all
    happened so fast." (~15 s)
 9. **Keys under the streetlight.** A man looks for his keys under a lamp. "Did you lose them here?" "No, over there.

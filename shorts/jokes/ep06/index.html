@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- Joke short #6, "The Man Who Hurt Everywhere". Driven by shorts/jokes/render.mjs: setup(data), render(t), sfx(). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Display"; src: url("../../../node_modules/@fontsource/shrikhand/files/shrikhand-latin-400-normal.woff2"); }
+  @font-face { font-family: "Sans"; src: url("../../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2"); font-weight: 100 1000; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1a1430; }
+  svg { display: block; position: absolute; inset: 0; }
+  text { font-family: "Display"; }
+  .cap { position: absolute; left: 70px; right: 150px; top: 1370px; text-align: center; font-family: "Sans"; font-weight: 900;
+         font-size: 84px; line-height: 1.04; color: #fff; text-transform: uppercase;
+         -webkit-text-stroke: 16px #2a2238; paint-order: stroke fill; text-shadow: 0 6px 18px rgba(0,0,0,.45); }
+  .cap b { color: #ff6a55; }
+</style>
+</head>
+<body>
+<svg id="v" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="cap" id="cap"></div>
+<script src="../cast.js"></script>
+<script>
+let D = null;
+function setup(d) { D = d; }
+
+// where the finger goes during "knee... ouch! head... ouch! belly... ouch!" (hero coordinates)
+const BEATS = () => [
+  { at: MID("L03", 0.12), hand: [-70, -150], ouch: MID("L03", 0.3) },
+  { at: MID("L03", 0.4), hand: [-70, -770], ouch: MID("L03", 0.55) },
+  { at: MID("L03", 0.65), hand: [-40, -400], ouch: MID("L03", 0.84) },
+];
+
+function stars(x, y, t, at) {
+  let s = "";
+  for (let i = 0; i < 5; i++) { const a = i * 1.256 + t * 3, r = 70 + 50 * U(t, at, at + 0.4); s += word(x + Math.cos(a) * r, y + Math.sin(a) * r * 0.6, "✦", 40, "#ffd23f", 0, 1); }
+  return s;
+}
+
+function scenes() {
+  return [
+    { at: 0, f: sEnter },
+    { at: S("L02") - 0.1, f: sOuch },
+    { at: S("L04") - 0.1, f: sLook },
+    { at: S("L05") - 0.1, f: sFinger },
+  ];
+}
+
+function sEnter(t) {
+  const u = U(t, 0.2, E("L01") - 0.1);
+  let s = office(t, 1);
+  s += doctor({ x: 790, y: 1060, s: 1.0, t }) + desk(790, 1200, 0.9);
+  s += hero({ x: lerp(170, 320, u), y: 1640, s: 1.0, t, walk: u < 1 ? t * 8 : undefined, expr: "sad", look: 0.6 });
+  return s;
+}
+
+function sOuch(t) {
+  let s = office(t, 1);
+  const beats = BEATS().filter((b) => t >= b.at);
+  const b = beats[beats.length - 1];
+  const hurt = b && t >= b.ouch && t < b.ouch + 0.5;
+  s += hero({ x: 460, y: 1800, s: 1.15, t, expr: hurt ? "shout" : t < S("L03") ? "sad" : "neutral", talk: talkOf("hero", t), hand: b ? b.hand : undefined, pose: b ? "down" : "fists" });
+  if (hurt) {
+    const hx = 460 + b.hand[0] * 1.15, hy = 1800 + b.hand[1] * 1.15;
+    s += stars(hx, hy, t, b.ouch) + word(hx + 260, hy - 60, "OUCH!", 100, "#ff6a55", -8, back(U(t, b.ouch, b.ouch + 0.2)));
+  }
+  return cam(500, 1050, 1.12, 0, 0, 0, s);
+}
+
+function sLook(t, t0) {
+  let s = office(t, 1);
+  s += doctor({ x: 540, y: 1000, s: 1.5, t, expr: "doubt" }) + desk(540, 1330, 1.3);
+  const k = ease(U(t, t0, E("L04")));
+  return cam(540, lerp(960, 880, k), lerp(1.0, 1.35, k), 0, 0, 0, s);
+}
+
+function sFinger(t, t0) {
+  const reveal = E("L05") + 0.1;
+  let s = office(t, 1);
+  if (t < reveal) {
+    s += doctor({ x: 540, y: 1000, s: 1.5, t, expr: "neutral", talk: talkOf("doc", t) }) + desk(540, 1330, 1.3);
+    return cam(540, 900, 1.3, 0, 0, 0, s);
+  }
+  // he looks at his finger: it throbs
+  s += hero({ x: 470, y: 1800, s: 1.15, t, expr: "shock", pose: "finger", sore: true, look: 0.6 });
+  s += word(540, 640, "OH.", 150, "#fff", -6, back(U(t, reveal + 0.3, reveal + 0.55)));
+  const k = ease(U(t, reveal, reveal + 0.6));
+  return cam(lerp(470, 680, k), lerp(1050, 860, k), lerp(1.0, 1.6, k), 0, 0, 0, s);
+}
+
+// ---------- page api ----------
+let SC = null;
+function render(t) {
+  SC = SC || scenes();
+  let i = 0; while (i + 1 < SC.length && t >= SC[i + 1].at) i++;
+  const tq = FILM_FPS ? Math.floor(t * FILM_FPS) / FILM_FPS : t;
+  const body = SC[i].f(Math.max(tq, SC[i].at), SC[i].at);
+  document.getElementById("v").innerHTML = stylize(DEFS + body, t);
+  const c = D.caps.find((c) => t >= c.s && t < c.e);
+  const esc = (s) => s.replace(/[&<>]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m]);
+  document.getElementById("cap").innerHTML = c ? esc(c.text).replace(/\b(ouch|OUCH|Ouch|finger|broken)\b/g, "<b>$1</b>") : "";
+}
+
+function sfx() {
+  return [
+    ...BEATS().map((b) => ({ name: "pop", at: b.ouch })),
+    { name: "ding", at: E("L05") + 0.1 },
+    { name: "trombone", at: E("L05") + 0.5, gain: 0.7 },
+  ];
+}
+</script>
+</body>
+</html>
