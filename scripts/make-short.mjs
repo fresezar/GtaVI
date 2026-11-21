@@ -67,6 +67,39 @@ const probe = (file) => {
   return { sec: m ? +m[1] * 3600 + +m[2] * 60 + +m[3] : 0, hasAudio: /Stream #.*Audio:/.test(err) };
 };
 
+// Caption words come from the script (right spelling), timings from Whisper (what was heard). Word-level edit-distance
+// alignment; a script word Whisper missed gets the gap between its neighbours. Reports words that did not match.
+const NUM = { 0: "zero", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten" };
+const norm = (w) => { const t = w.toLowerCase().replace(/[^a-z0-9]/g, ""); return NUM[t] ?? t; };
+function alignScript(text, heard) {
+  const S = text.split(/\s+/).filter(Boolean);
+  const a = S.map(norm), b = heard.map((h) => norm(h.w));
+  const D = Array.from({ length: a.length + 1 }, (_, i) => Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)));
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++)
+      D[i][j] = Math.min(D[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1), D[i - 1][j] + 1, D[i][j - 1] + 1);
+  const pair = new Array(a.length).fill(-1);
+  const off = [];
+  for (let i = a.length, j = b.length; i > 0 || j > 0; ) {
+    if (i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)) {
+      pair[i - 1] = j - 1;
+      if (a[i - 1] !== b[j - 1]) off.push(`"${S[i - 1]}" heard as "${heard[j - 1].w}"`);
+      i--, j--;
+    } else if (i > 0 && D[i][j] === D[i - 1][j] + 1) off.push(`"${S[--i]}" not heard`);
+    else j--;
+  }
+  if (off.length) console.log(`CHECK ${off.length} words differ from the script: ${off.reverse().join(", ")}`);
+  const out = S.map((w, i) => (pair[i] >= 0 ? { w, s: heard[pair[i]].s, e: heard[pair[i]].e } : { w, s: null, e: null }));
+  out.forEach((o, i) => {
+    if (o.s !== null) return;
+    const prev = out.slice(0, i).reverse().find((x) => x.s !== null);
+    const next = out.slice(i + 1).find((x) => x.s !== null);
+    o.s = prev ? prev.e : next ? Math.max(0, next.s - 0.3) : 0;
+    o.e = next ? next.s : o.s + 0.3;
+  });
+  return out;
+}
+
 // ---- lengths ----
 for (const s of shots) {
   const p = probe(abs(s.clip));
@@ -108,7 +141,8 @@ if (voice) {
       if (r.status !== 0) fail("Whisper failed:", r.stderr);
       writeFileSync(stamp, key);
     }
-    const words = JSON.parse(readFileSync(wordsFile, "utf8"));
+    const heard = JSON.parse(readFileSync(wordsFile, "utf8"));
+    const words = voice.text ? alignScript(voice.text, heard) : heard;
     // Captions follow phrases: split at punctuation, then cut long phrases into even pieces of up to 3 words.
     // A piece never ends on a small word ("the", "is", "or"...): that word moves to the next piece.
     const small = /^(a|an|the|is|are|was|or|and|but|to|of|in|on|at|for|with|your|you|its|this|that)$/i;
@@ -228,7 +262,7 @@ let aLast = "a0";
 if (voice) {
   const ms = Math.round(voice.at * 1000);
   g.push(
-    `[${iVoice}:a]${A},loudnorm=I=-16:TP=-2:LRA=7,${A},adelay=delays=${ms}:all=1,apad,atrim=0:${total.toFixed(3)},asplit[vo1][vo2]`,
+    `[${iVoice}:a]${A},loudnorm=I=-16:TP=-2:LRA=7,${A},alimiter=limit=0.7:attack=2:release=60:level=false,adelay=delays=${ms}:all=1,apad,atrim=0:${total.toFixed(3)},asplit[vo1][vo2]`,
     `[a0]volume=0.5[gm]`,
     `[gm][vo1]sidechaincompress=threshold=0.02:ratio=8:attack=15:release=300[duck]`,
     `[duck][vo2]amix=inputs=2:normalize=0:duration=first[am]`,
@@ -243,22 +277,27 @@ ff([
   "-c:a", "pcm_s16le", "-t", total.toFixed(3), mov,
 ]);
 
-// ---- master: two-pass loudnorm to -14 LUFS / -1.5 dBTP ----
-const loud = (file, af = "") => {
-  const err = ff(["-i", file, "-vn", "-af", `${af}loudnorm=I=${LUFS}:TP=${PEAK}:LRA=11:print_format=json`, "-f", "null", "-"]);
+// ---- master: -14 LUFS / -1.5 dBTP. Measure, apply gain, catch peaks with a limiter, measure the AAC result,
+// correct once more if it is still off by more than 0.3 LU. (loudnorm alone falls short on peaky phone voices.)
+const loud = (file) => {
+  const err = ff(["-i", file, "-vn", "-af", `loudnorm=I=${LUFS}:TP=${PEAK}:LRA=11:print_format=json`, "-f", "null", "-"]);
   return JSON.parse(err.slice(err.lastIndexOf("{"), err.lastIndexOf("}") + 1));
 };
 const out = join(outDir, `${spec.file}.mp4`);
-const m = loud(mov);
-const silent = !(Number(m.input_i) > -60);
-const af = silent ? "anull" :
-  `loudnorm=I=${LUFS}:TP=${PEAK}:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}` +
-  `:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true,${A},alimiter=limit=0.82:level=false`;
-ff(["-y", "-i", mov, "-map", "0:v", "-map", "0:a", "-c:v", "copy", "-af", af,
-  "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-movflags", "+faststart", out]);
+const silent = !(Number(loud(mov).input_i) > -60);
+let gain = silent ? 0 : LUFS - Number(loud(mov).input_i);
+let f;
+for (let pass = 0; pass < 3; pass++) {
+  const af = silent ? "anull" : `volume=${gain.toFixed(2)}dB,alimiter=limit=0.75:attack=2:release=60:level=false`;
+  ff(["-y", "-i", mov, "-map", "0:v", "-map", "0:a", "-c:v", "copy", "-af", af,
+    "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-movflags", "+faststart", out]);
+  f = loud(out);
+  const miss = LUFS - Number(f.input_i);
+  if (silent || Math.abs(miss) <= 0.3) break;
+  gain += miss;
+}
 
 // ---- review: loudness + 8-frame sheet ----
-const f = loud(out);
 const sheet = join(work, "sheet.jpg");
 ff(["-y", "-i", out, "-vf", `fps=${(8 / total).toFixed(5)},scale=270:480,tile=8x1:padding=6:color=white`, "-frames:v", "1", sheet]);
 const times = Array.from({ length: 8 }, (_, k) => ((k + 0.5) * total / 8).toFixed(1)).join(", ");
