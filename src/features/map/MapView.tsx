@@ -370,6 +370,7 @@ export default function MapView({
       const entry = { poly, hot: false };
       polys.push(entry);
       const name = el("span", "map-label map-label-region", r.name);
+      name.lang = "en"; // proper names: uppercase them with English rules (no Turkish dotted İ)
       name.style.setProperty("--region", r.color);
       poly.on("mouseover", () => {
         entry.hot = true;
@@ -391,6 +392,7 @@ export default function MapView({
     }
     for (const d of overlays.districts) {
       const node = el("span", "map-label map-label-district", d.name);
+      node.lang = "en";
       districtLabels.addLayer(label(proj.toLatLng(d.label), node));
       districtEls.push(node);
     }
