@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { SITE } from "@/config/site";
-import { localePath, tFor, type Locale } from "@/i18n";
+import { LOCALES, localePath, tFor, type Locale } from "@/i18n/server";
 import { ThemeToggle, WantedStars } from "./HeaderWidgets";
 import LanguageHint from "./LanguageHint";
+
+/** Each language named in itself, so a reader can always find their own. */
+const LANGUAGE_NAMES: Record<Locale, string> = { en: "English", tr: "Türkçe", es: "Español" };
 
 /** Community-first sections. Progress lives behind the stars (top right), not in a tab. */
 const TABS = [
@@ -22,7 +25,6 @@ const TABS = [
  */
 export default function SiteHeader({ locale, path }: { locale: Locale; path: string; compact?: boolean }) {
   const t = tFor(locale);
-  const other: Locale = locale === "en" ? "tr" : "en";
   const activeIndex = TABS.findIndex((tab) => path === tab.path || path.startsWith(`${tab.path}/`));
 
   return (
@@ -60,15 +62,35 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
         )}
         <WantedStars locale={locale} />
         <ThemeToggle locale={locale} />
-        <Link
-          href={localePath(other, path)}
-          hrefLang={other}
-          lang={other}
-          className="border border-line-strong px-2 py-1.5 font-display text-[13px] tracking-[0.14em] text-muted transition hover:text-ink"
-          title={t("ui.lang.other")}
-        >
-          {t("ui.lang.otherShort")}
-        </Link>
+        {/* Language menu: a native disclosure, works without JavaScript. Names are in their own language. */}
+        <details className="lang-menu relative">
+          <summary
+            className="flex cursor-pointer list-none items-center gap-1 border border-line-strong px-2 py-1.5 font-display text-[13px] tracking-[0.14em] text-muted transition hover:text-ink"
+            aria-label={t("ui.lang.label")}
+            title={t("ui.lang.label")}
+          >
+            {locale.toUpperCase()}
+            <svg viewBox="0 0 10 6" width="9" height="6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </summary>
+          <ul className="glass absolute right-0 top-full z-[1100] mt-1 min-w-[150px] py-1">
+            {LOCALES.map((l) => (
+              <li key={l}>
+                <Link
+                  href={localePath(l, path)}
+                  hrefLang={l}
+                  lang={l}
+                  aria-current={l === locale ? "true" : undefined}
+                  className={`flex items-center justify-between gap-3 px-3 py-2 text-sm hover:bg-white/10 ${l === locale ? "font-bold text-ink" : "text-muted"}`}
+                >
+                  {LANGUAGE_NAMES[l]}
+                  <span className="font-display text-[11px] tracking-[0.14em]">{l.toUpperCase()}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </details>
       </div>
       <nav aria-label="Main" className="no-scrollbar overflow-x-auto px-2">
         <ul className="flex gap-1 py-1">
@@ -94,7 +116,7 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
           })}
         </ul>
       </nav>
-      {locale === "en" && <LanguageHint trHref={localePath("tr", path)} />}
+      {locale === "en" && <LanguageHint hrefs={{ tr: localePath("tr", path), es: localePath("es", path) }} />}
     </header>
   );
 }

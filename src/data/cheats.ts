@@ -14,9 +14,9 @@ export interface Cheat {
   name: string;
   kind: CheatKind;
   code: Dir[] | null;
-  effect: { en: string; tr: string };
+  effect: { en: string; tr: string; es?: string };
   /** null = available as soon as the story is finished. */
-  unlock: { en: string; tr: string } | null;
+  unlock: { en: string; tr: string; es?: string } | null;
 }
 
 const data = raw as { checkedAt: string; source: string; cheats: Cheat[] };

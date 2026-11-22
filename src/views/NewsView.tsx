@@ -3,7 +3,7 @@ import { NewsList, RoadTimeline } from "@/components/editorial";
 import PageBanner from "@/components/ui/PageBanner";
 import PageShell from "@/components/ui/PageShell";
 import { NEWS, TIMELINE } from "@/data/editorial";
-import { alternates, tFor, type Locale } from "@/i18n";
+import { alternates, tFor, type Locale } from "@/i18n/server";
 
 export function newsMetadata(locale: Locale): Metadata {
   const t = tFor(locale);

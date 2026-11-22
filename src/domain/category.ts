@@ -27,7 +27,15 @@ export type ColorToken =
   | "copper"
   | "salmon"
   | "orange"
-  | "teal";
+  | "teal"
+  | "berry"
+  | "amber"
+  | "lavender"
+  | "olive"
+  | "aqua"
+  | "brick"
+  | "violet"
+  | "steel";
 
 /** Text lives in i18n: `category.<id>.name`. Data lives in content/categories.json. */
 export interface Category {

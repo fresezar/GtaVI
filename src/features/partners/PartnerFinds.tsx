@@ -7,7 +7,8 @@ import { pinKey } from "@/i18n/keys";
 
 export interface StaticFind {
   id: string;
-  slug: string;
+  /** English path: the pin page or its spot on the map (pinPath). */
+  path: string;
   title: string;
   by?: string;
 }
@@ -19,7 +20,7 @@ export default function PartnerFinds({ slug, name, baked }: { slug: string; name
   const live = useCommunityPins().filter((p) => p.tags?.includes(`${VIA_PREFIX}${slug}`));
   const rows = [
     ...live.map((p) => ({ id: p.id, title: t(pinKey(p.id, "title")), by: p.credit?.name, to: `${href("/map")}?pin=${p.id}` })),
-    ...baked.map((p) => ({ id: p.id, title: p.title, by: p.by, to: href(`/pins/${p.slug}`) })),
+    ...baked.map((p) => ({ id: p.id, title: p.title, by: p.by, to: href(p.path) })),
   ];
 
   if (rows.length === 0) return <p className="card mt-4 text-sm leading-relaxed text-muted">{t("ui.partner.finds.empty", { name })}</p>;

@@ -29,7 +29,7 @@ function Key({ dir, label }: { dir: Dir; label: string }) {
 export default function CheatList() {
   const t = useT();
   const locale = useLocale();
-  const lang = locale === "tr" ? "tr" : "en";
+  const lang = locale;
   const [platform, setPlatform] = useState<Platform>("ps5");
   const [kind, setKind] = useState<CheatKind | "all">("all");
   const [query, setQuery] = useState("");
@@ -61,7 +61,7 @@ export default function CheatList() {
         (c) =>
           (kind === "all" || c.kind === kind) &&
           (!knownOnly || c.code) &&
-          (!q || `${c.name} ${c.effect[lang]} ${c.unlock?.[lang] ?? ""}`.toLocaleLowerCase(locale).includes(q)),
+          (!q || `${c.name} ${(c.effect[lang] ?? c.effect.en)} ${(c.unlock?.[lang] ?? c.unlock?.en) ?? ""}`.toLocaleLowerCase(locale).includes(q)),
       ),
     [kind, knownOnly, q, lang, locale],
   );
@@ -136,9 +136,9 @@ export default function CheatList() {
               <li key={c.id} id={c.slug} className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center">
                 <div className="min-w-0 flex-1">
                   <h3 className="font-display text-xl leading-tight normal-case" lang="en">{c.name}</h3>
-                  <p className="mt-0.5 text-sm text-muted">{c.effect[lang]}</p>
+                  <p className="mt-0.5 text-sm text-muted">{(c.effect[lang] ?? c.effect.en)}</p>
                   <p className="mt-1 text-xs">
-                    <span className="font-bold">{t("ui.cheats.unlock")}:</span> {c.unlock ? c.unlock[lang] : t("ui.cheats.afterStory")}
+                    <span className="font-bold">{t("ui.cheats.unlock")}:</span> {c.unlock ? (c.unlock[lang] ?? c.unlock.en) : t("ui.cheats.afterStory")}
                   </p>
                 </div>
                 {c.code ? (

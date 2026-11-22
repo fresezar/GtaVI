@@ -151,7 +151,7 @@ async function suggest(req: Request, env: Env): Promise<Response> {
   const proofUrl = clean(body.proofUrl, 500);
   const note = clean(body.note, 500);
   const name = clean(body.name, 40);
-  const locale = body.locale === "tr" ? "tr" : "en";
+  const locale = body.locale === "tr" || body.locale === "es" ? body.locale : "en";
   const ref = partnerRef(body.ref);
   const x = Number(body.x);
   const y = Number(body.y);
@@ -311,7 +311,7 @@ async function subscribe(req: Request, env: Env): Promise<Response> {
 
   const old = await env.DB.prepare("SELECT topics FROM subscribers WHERE email = ?").bind(email).first<{ topics: string }>();
   const merged = [...new Set([...(old?.topics.split(",") ?? []), ...topics])].filter(Boolean).join(",");
-  const locale = body.locale === "tr" ? "tr" : "en";
+  const locale = body.locale === "tr" || body.locale === "es" ? body.locale : "en";
   const source = clean(body.source, 120) || null;
   if (old) {
     await env.DB.prepare("UPDATE subscribers SET topics = ?, locale = ?, unsubscribed_at = NULL WHERE email = ?").bind(merged, locale, email).run();
@@ -367,6 +367,7 @@ async function subscribersAdmin(url: URL, env: Env): Promise<Response> {
     online: count("online"),
     weekly: count("weekly"),
     tr: results.filter((r) => r.locale === "tr").length,
+    es: results.filter((r) => r.locale === "es").length,
     unsubscribed: gone?.n ?? 0,
   });
 }

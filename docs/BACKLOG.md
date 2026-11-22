@@ -133,3 +133,9 @@ yerleşti, pin girişi oturdu). O zaman Claude hatırlatır. Amaç: GTA VI'ya Fi
 - Her bilgiye "Düzeltme öner" (sadece pin değil).
 - Discord bağlantısı: rütbe Discord rolü olur (Aşama 2-3).
 - Eksik hile kodu bildirimi için formda "hile kodu" türü (şu an Discord'a yönlendiriyor).
+
+## Harita (2026-11-22)
+- [ ] z6 keskin karolar (GTADB day, 23.182 dosya): R2'de `tiles` kovası + alt alan adı; Leaflet z6'yı oradan çeker. R2 ya da Workers Paid gerekiyor.
+- [ ] Pin açıklamalarının Türkçe/İspanyolca çevirisi (şu an İngilizce; ~1.000 kısa metin).
+- [ ] Kategori paneli gruplama (Koleksiyonlar / Aktiviteler / Suç / Yerler): 36 kategori uzun bir liste.
+- [ ] Open GTA 6 Map güncellemelerini haftalık çek (`npm run import:opengta6 -- --update`), akşam rutinine eklenebilir.

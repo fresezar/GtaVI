@@ -1,26 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { CHECKLISTS } from "@/data/checklists";
 import { useProgress } from "@/hooks/useProgress";
 import { SITE } from "@/config/site";
-import { useHref, useT } from "@/i18n/client";
-import { checklistKey } from "@/i18n/keys";
-import { computeChecklistProgress } from "@/lib/progress";
+import { useHref } from "@/i18n/client";
 
-export default function ChecklistIndex() {
-  const t = useT();
+/** A checklist as the index needs it: title and the progress refs of its items (all weight 1). */
+export interface ChecklistCard {
+  id: string;
+  slug: string;
+  title: string;
+  refs: string[];
+}
+
+export default function ChecklistIndex({ lists }: { lists: ChecklistCard[] }) {
   const href = useHref();
   const { ready, progress } = useProgress(SITE.gameId);
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
-      {CHECKLISTS.map((c) => {
-        const s = computeChecklistProgress(c, progress);
-        const percent = ready ? s.percent : 0;
+      {lists.map((c) => {
+        const done = c.refs.filter((r) => progress[r]?.done === true).length;
+        const percent = ready && c.refs.length ? Math.floor((done / c.refs.length) * 100) : 0;
         return (
           <li key={c.id}>
             <Link href={href(`/checklists/${c.slug}`)} className="card block transition hover:-translate-y-0.5">
-              <h2 className="font-display text-2xl leading-tight">{t(checklistKey(c.id))}</h2>
+              <h2 className="font-display text-2xl leading-tight">{c.title}</h2>
               <p className="mt-3 font-display text-4xl leading-none">{percent}%</p>
               <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-surface-2">
                 <div className="h-full rounded-full bg-gradient-to-r from-accent to-sun" style={{ width: `${percent}%` }} />

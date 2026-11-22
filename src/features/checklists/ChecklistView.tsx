@@ -2,20 +2,35 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { isPlaced, type Checklist } from "@/domain";
-import { PIN_BY_ID } from "@/data/pins";
+import type { Checklist } from "@/domain";
 import { useProgress } from "@/hooks/useProgress";
 import { SITE } from "@/config/site";
 import { useHref, useT } from "@/i18n/client";
-import { checklistItemKey, checklistKey, checklistSectionKey, pinKey } from "@/i18n/keys";
+import { checklistItemKey, checklistKey, checklistSectionKey } from "@/i18n/keys";
 import { checklistRef, computeChecklistProgress } from "@/lib/progress";
 import type { ChecklistItem } from "@/domain";
 
-export default function ChecklistView({ checklist }: { checklist: Checklist }) {
-  const t = useT();
+/** Where a linked pin can be opened: its spot on the map when placed, else its page (English path). */
+export type ChecklistPinLink = { placed: boolean; path: string };
+
+/**
+ * One checklist with ticks. Texts (title, sections, item labels) and pin links come from the server page,
+ * so the browser never loads the full pin list for it.
+ */
+export default function ChecklistView({
+  checklist,
+  labels,
+  pinLinks,
+}: {
+  checklist: Checklist;
+  labels: Record<string, string>;
+  pinLinks: Record<string, ChecklistPinLink>;
+}) {
+  const ui = useT();
+  const t = (key: string) => labels[key] ?? ui(key);
   const href = useHref();
-  /** Pin-linked items reuse the pin's title, so text is written once. */
-  const itemLabel = (item: ChecklistItem) => t(item.linkedPinId ? pinKey(item.linkedPinId, "title") : checklistItemKey(item.id));
+  /** Pin-linked items reuse the pin's title (resolved on the server under the item key). */
+  const itemLabel = (item: ChecklistItem) => t(checklistItemKey(item.id));
   const { ready, progress, isDone, toggle } = useProgress(SITE.gameId);
   const [hideDone, setHideDone] = useState(false);
   const summary = useMemo(() => computeChecklistProgress(checklist, progress), [checklist, progress]);
@@ -69,13 +84,13 @@ export default function ChecklistView({ checklist }: { checklist: Checklist }) {
                       <span className={`flex-1 text-left ${done ? "line-through" : ""}`}>{itemLabel(item)}</span>
                     </button>
                     {item.linkedPinId && (() => {
-                      const pin = PIN_BY_ID.get(item.linkedPinId);
-                      if (!pin) return null;
+                      const link = pinLinks[item.linkedPinId];
+                      if (!link) return null;
                       // Not on the map yet: the pin page still has the clip and the credit.
-                      return isPlaced(pin) ? (
-                        <Link href={`${href("/map")}?pin=${pin.id}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
+                      return link.placed ? (
+                        <Link href={`${href("/map")}?pin=${item.linkedPinId}`} className="btn shrink-0">{t("ui.checklist.onMap")}</Link>
                       ) : (
-                        <Link href={href(`/pins/${pin.slug}`)} className="btn shrink-0 border-dashed">{t("ui.checklist.details")}</Link>
+                        <Link prefetch={false} href={href(link.path)} className="btn shrink-0 border-dashed">{t("ui.checklist.details")}</Link>
                       );
                     })()}
                   </li>

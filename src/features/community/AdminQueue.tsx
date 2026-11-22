@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import { PARTNER_BY_SLUG } from "@/data/partners";
 import { PINS } from "@/data/pins";
+import pinTextEn from "@content/pin-text.en.json";
 import { pinKey } from "@/i18n/keys";
 import { t as translate } from "@/i18n";
 import { categoryKey } from "@/i18n/keys";
@@ -53,7 +54,7 @@ function nearby(item: Item, others: Item[]) {
   for (const p of PINS) {
     if (!p.coord || p.id === item.pin_id) continue;
     const d = metres(item, { x: p.coord[0], y: p.coord[1] });
-    if (d <= NEAR_M) out.push(`${translate(pinKey(p.id, "title"), undefined, "tr")} (pin, ${Math.round(d)} m)`);
+    if (d <= NEAR_M) out.push(`${(pinTextEn as Record<string, string>)[pinKey(p.id, "title")] ?? p.slug} (pin, ${Math.round(d)} m)`);
   }
   for (const o of others) {
     if (o.id === item.id || o.created_at >= item.created_at) continue;

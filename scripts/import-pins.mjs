@@ -73,8 +73,8 @@ if (!headers.includes("category") || !headers.includes("title")) {
 
 const pins = readJson(PATHS.pins);
 const categories = readJson(PATHS.categories);
-const text = readJson(PATHS.text);
-const textTr = readJson(PATHS.textTr);
+const text = readJson(PATHS.pinText);
+const textTr = readJson(PATHS.pinTextTr);
 /** Optional Turkish text (title_tr / description_tr columns). Missing Turkish falls back to English on the site. */
 const setTr = (id, get) => {
   if (get("title_tr")) textTr[`pin.${id}.title`] = get("title_tr");
@@ -292,8 +292,8 @@ if (report.updated.length) {
 
 if (WRITE) {
   writeJson(PATHS.pins, [...pins, ...batch]);
-  writeJson(PATHS.text, text);
-  writeJson(PATHS.textTr, textTr);
+  writeJson(PATHS.pinText, text);
+  writeJson(PATHS.pinTextTr, textTr);
   line(`\nWrote content/pins.json, text.en.json and text.tr.json. Next: npm run validate`);
 } else {
   line(`\nNothing written. Re-run with --write to apply.`);

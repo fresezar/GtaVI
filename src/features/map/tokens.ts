@@ -29,6 +29,14 @@ export const CATEGORY_COLORS: Record<ColorToken, string> = {
   salmon: "#FF9A8B",
   orange: "#FF7A00",
   teal: "#00897B",
+  berry: "#C2185B",
+  amber: "#FFB300",
+  lavender: "#9575CD",
+  olive: "#9E9D24",
+  aqua: "#26C6DA",
+  brick: "#C0392B",
+  violet: "#8E24AA",
+  steel: "#90A4AE",
 };
 
 /** Light outline reads on both dark night tiles and bright community map art. */

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import type { CategoryId, PinId, PlacedPin } from "@/domain";
-import { PIN_BY_ID } from "@/data/pins";
 import { VIA_PREFIX } from "@/data/partners";
 import { registerText } from "@/i18n";
 import { pinKey } from "@/i18n/keys";
@@ -34,7 +33,7 @@ export function useCommunityPins(): readonly PlacedPin[] {
       .then(({ pins: rows }) => {
         if (!alive) return;
         const live = rows
-          .filter((r) => /^pin_[0-9A-Z]{26}$/.test(r.id) && !PIN_BY_ID.has(r.id as PinId))
+          .filter((r) => /^pin_[0-9A-Z]{26}$/.test(r.id))
           .map(
             (r): PlacedPin => ({
               id: r.id as PinId,

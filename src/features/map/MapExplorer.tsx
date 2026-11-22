@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { isPlaced, type Category, type CategoryId, type PinId } from "@/domain";
+import { isPlaced, type Category, type CategoryId, type PinId, type PlacedPin } from "@/domain";
 import { CATEGORIES } from "@/data/categories";
 import { MAPS } from "@/data/maps";
-import { PINS } from "@/data/pins";
+import { usePins, usePinText } from "@/features/pins/pinData";
 import { SITE } from "@/config/site";
 import Link from "next/link";
 import { useHref, useLocale, useT } from "@/i18n/client";
@@ -27,11 +27,8 @@ import InstallButton from "@/components/ui/InstallButton";
 const DEF = MAPS[0];
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
 /** Every pin of this map: progress counts them all, placed or not. */
-const MAP_PINS = PINS.filter((p) => p.mapId === DEF.id);
+/** Pins arrive from /pin-data (usePins); these split them for the map. */
 /** Only these can be drawn, focused or searched on the map. */
-const PLACED = MAP_PINS.filter(isPlaced);
-const UNPLACED_COUNT = MAP_PINS.length - PLACED.length;
-const LANDMARKS = PLACED.filter((p) => p.categoryId === "cat_landmarks");
 const DEFAULT_HIDDEN = new Set(CATEGORIES.filter((c) => c.hiddenByDefault).map((c) => c.id));
 const SEARCH_LIMIT = 8;
 
@@ -41,11 +38,22 @@ export default function MapExplorer() {
   const href = useHref();
   // Approved community pins that are not baked into the static site yet (live from the API).
   const live = useCommunityPins();
-  const placed = useMemo(() => [...PLACED, ...live], [live]);
-  const allMapPins = useMemo(() => [...MAP_PINS, ...live], [live]);
+  const { pins: loaded } = usePins();
+  const textReady = usePinText(locale);
+  const MAP_PINS = useMemo(() => loaded.filter((p) => p.mapId === DEF.id), [loaded]);
+  const PLACED = useMemo(() => MAP_PINS.filter((p): p is typeof p & PlacedPin => isPlaced(p)), [MAP_PINS]);
+  const UNPLACED_COUNT = MAP_PINS.length - PLACED.length;
+  const LANDMARKS = useMemo(() => PLACED.filter((p) => p.categoryId === "cat_landmarks"), [PLACED]);
+  // Live community pins already baked into the site are skipped (the static copy wins).
+  const liveNew = useMemo(() => {
+    const known = new Set(loaded.map((p) => p.id));
+    return live.filter((p) => !known.has(p.id));
+  }, [live, loaded]);
+  const placed = useMemo(() => [...PLACED, ...liveNew], [PLACED, liveNew]);
+  const allMapPins = useMemo(() => [...MAP_PINS, ...liveNew], [MAP_PINS, liveNew]);
   const searchIndex = useMemo(
     () => placed.map((p) => ({ pin: p, title: t(pinKey(p.id, "title")), haystack: t(pinKey(p.id, "title")).toLocaleLowerCase(locale) })),
-    [t, locale, placed],
+    [t, locale, placed, textReady],
   );
   const overlays = useMapOverlays();
   const [showRegions, setShowRegions] = useState(true);

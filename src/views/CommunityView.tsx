@@ -5,7 +5,7 @@ import ViceBand from "@/components/ui/ViceBand";
 import { SITE } from "@/config/site";
 import { COMMUNITY_STATS, CONTRIBUTORS, POINTS, RANKS, rankFor } from "@/data/community";
 import { ACTIVE_PARTNERS, partnerUrl } from "@/data/partners";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 import { PartnerBadge } from "./PartnerView";
 
 const STAR = "M12 2.6l2.8 6 6.5.7-4.9 4.4 1.4 6.4L12 16.9 6.2 20.1l1.4-6.4L2.7 9.3l6.5-.7z";

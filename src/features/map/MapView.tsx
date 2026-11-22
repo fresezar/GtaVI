@@ -65,7 +65,7 @@ const DiamondMarker = L.CircleMarker.extend({
 
 /** Screen-space clustering: below this many zoom levels under native, nearby pins merge into a counted bubble. */
 const CLUSTER_BELOW = 1;
-const CLUSTER_CELL_PX = 56;
+const CLUSTER_CELL_PX = 72;
 
 function markerStyle(pin: Pin, category: Category | undefined, done: boolean, selected: boolean): L.CircleMarkerOptions {
   const color = category ? CATEGORY_COLORS[category.colorToken] : "#888888";
@@ -84,6 +84,23 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string, t
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text; // textContent only: no HTML injection
   return node;
+}
+
+/**
+ * Hide labels that would overlap one already shown. Elements come in priority order (largest region first);
+ * hidden ones get "is-hidden" (CSS), and a hovered region's name always shows (".is-hot").
+ */
+function declutter(labels: readonly HTMLElement[], pad = 4) {
+  const kept: DOMRect[] = [];
+  for (const el of labels) {
+    if (!el.isConnected) continue;
+    el.classList.remove("is-hidden");
+    const r = el.getBoundingClientRect();
+    if (!r.width) continue;
+    const hit = kept.some((k) => r.left < k.right + pad && r.right > k.left - pad && r.top < k.bottom + pad && r.bottom > k.top - pad);
+    if (hit) el.classList.add("is-hidden");
+    else kept.push(r);
+  }
 }
 
 /** Zoom bands under native zoom: regions only (far), + districts and place dots (mid), + place names (near). */
@@ -151,11 +168,14 @@ export default function MapView({
       const credit = L.control.attribution({ position: "bottomleft", prefix: false }).addTo(map);
       const box = document.createElement("span");
       const text = t("ui.map.attribution", { name: def.attribution.name });
-      if (def.attribution.url && /^https?:\/\//.test(def.attribution.url)) {
+      // An https link opens the source; a site path ("/privacy/#credits") opens our credits page.
+      if (def.attribution.url && /^(https:\/\/|\/)/.test(def.attribution.url)) {
         const a = el("a", undefined, text);
         a.href = def.attribution.url;
-        a.target = "_blank";
-        a.rel = "noopener";
+        if (def.attribution.url.startsWith("https://")) {
+          a.target = "_blank";
+          a.rel = "noopener";
+        }
         box.append(a);
       } else box.textContent = text;
       credit.getContainer()?.append(box);
@@ -186,8 +206,9 @@ export default function MapView({
     rendererRef.current = L.canvas({ padding: 0.5, tolerance: 8 });
     pinGroupRef.current = L.layerGroup().addTo(map);
     // Text labels sit above the pins' canvas and never catch the pointer.
+    // Above the cluster bubbles (markerPane 600) so region names stay readable; clicks pass through.
     const labelPane = map.createPane("labels");
-    labelPane.style.zIndex = "450";
+    labelPane.style.zIndex = "650";
     labelPane.style.pointerEvents = "none";
     devGroupRef.current = L.layerGroup().addTo(map);
 
@@ -261,7 +282,7 @@ export default function MapView({
           L.point(pts.reduce((s, p) => s + p.x, 0) / pts.length, pts.reduce((s, p) => s + p.y, 0) / pts.length),
           zoom,
         );
-        const size = Math.round(28 + Math.min(20, Math.log2(members.length) * 5));
+        const size = Math.round(20 + Math.min(14, Math.log2(members.length) * 3.2));
         L.marker(center, {
           icon: L.divIcon({
             className: "",
@@ -329,6 +350,11 @@ export default function MapView({
     const placeGroup = L.layerGroup();
     const placeLabels = L.layerGroup();
     const placeMarkers = placeMarkersRef.current;
+    // Label elements in priority order for decluttering: regions (largest first), then districts, then places.
+    const regionEls: HTMLElement[] = [];
+    const districtEls: HTMLElement[] = [];
+    let placeEls: HTMLElement[] = [];
+    let raf = 0;
     const label = (latlng: L.LatLng, node: HTMLElement) =>
       L.marker(latlng, { pane: "labels", interactive: false, keyboard: false, icon: L.divIcon({ className: "map-label-anchor", html: node, iconSize: [0, 0] }) });
 
@@ -361,8 +387,13 @@ export default function MapView({
       });
       regionGroup.addLayer(poly);
       regionLabels.addLayer(label(proj.toLatLng(r.label), name));
+      regionEls.push(name);
     }
-    for (const d of overlays.districts) districtLabels.addLayer(label(proj.toLatLng(d.label), el("span", "map-label map-label-district", d.name)));
+    for (const d of overlays.districts) {
+      const node = el("span", "map-label map-label-district", d.name);
+      districtLabels.addLayer(label(proj.toLatLng(d.label), node));
+      districtEls.push(node);
+    }
 
     placeMarkers.clear();
     for (const p of overlays.places) {
@@ -399,23 +430,29 @@ export default function MapView({
       show(districtLabels, showRegions && z >= n - MID_BELOW);
       show(placeGroup, showPlaces && z >= n - MID_BELOW);
       placeLabels.clearLayers();
+      placeEls = [];
       if (showPlaces && z >= n - NEAR_BELOW) {
         const view = map.getBounds().pad(0.15);
         let count = 0;
         for (const p of overlays.places) {
           const ll = proj.toLatLng(p.coord);
           if (!view.contains(ll)) continue;
-          placeLabels.addLayer(label(ll, el("span", "map-label map-label-place", p.name)));
+          const node = el("span", "map-label map-label-place", p.name);
+          placeLabels.addLayer(label(ll, node));
+          placeEls.push(node);
           if (++count >= MAX_PLACE_LABELS) break;
         }
       }
       show(placeLabels, showPlaces && z >= n - NEAR_BELOW);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => declutter([...regionEls, ...districtEls, ...placeEls]));
     };
     overlayRef.current();
     renderRef.current(); // pins back on top of the newly drawn overlays
 
     return () => {
       overlayRef.current = () => {};
+      cancelAnimationFrame(raf);
       for (const g of [regionGroup, regionLabels, districtLabels, placeGroup, placeLabels]) map.removeLayer(g);
       placeMarkers.clear();
     };

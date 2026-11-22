@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SITE } from "@/config/site";
 import { CATEGORIES } from "@/data/categories";
-import { PINS } from "@/data/pins";
+import { usePins } from "@/features/pins/pinData";
 import { useProgress } from "@/hooks/useProgress";
 import { localePath, tFor, type Locale } from "@/i18n";
 import { computeProgress } from "@/lib/progress";
@@ -15,7 +15,8 @@ const STAR = "M12 2.6l2.8 6 6.5.7-4.9 4.4 1.4 6.4L12 16.9 6.2 20.1l1.4-6.4L2.7 9
 export function WantedStars({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   const { ready, progress } = useProgress(SITE.gameId);
-  const pct = useMemo(() => computeProgress(PINS, CATEGORIES, progress).percent, [progress]);
+  const { pins } = usePins();
+  const pct = useMemo(() => computeProgress(pins, CATEGORIES, progress).percent, [pins, progress]);
   const lit = ready ? Math.min(6, Math.floor(pct / (100 / 6))) : 0;
   return (
     <Link

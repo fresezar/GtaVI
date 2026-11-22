@@ -1,6 +1,7 @@
 import type { Pin, PinId } from "@/domain";
 import raw from "@content/pins.json";
 import { CATEGORIES } from "./categories";
+import { hasPage } from "@/lib/pinIndex";
 
 /** Source of truth: content/pins.json, filled by `npm run import:pins` (see docs/INGEST.md). */
 const REAL = raw as unknown as Pin[];
@@ -43,6 +44,14 @@ export const ALL_PINS: readonly Pin[] = SAMPLE_MODE ? samplePins() : REAL;
 /** Pins that should be shown and counted. */
 export const PINS: readonly Pin[] = ALL_PINS.filter((p) => p.status !== "deprecated");
 export const PIN_BY_ID: ReadonlyMap<PinId, Pin> = new Map(ALL_PINS.map((p) => [p.id, p]));
+
+/**
+ * Own page or not. Bulk imports give a page only to pins with something to show (a screenshot or a real
+ * description) and tag the rest "nopage", to stay inside the host's file limit; live community pins have
+ * no page until they are baked in. Every pin can still be linked on the map: /map?pin=<id>.
+ */
+export { hasPage, pinPath } from "@/lib/pinIndex";
+export const PAGE_PINS: readonly Pin[] = PINS.filter(hasPage);
 
 /**
  * "Six Star File #0142": a pin's case number = its position in content/pins.json (1-based).

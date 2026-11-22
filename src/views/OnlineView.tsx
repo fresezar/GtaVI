@@ -5,7 +5,7 @@ import ViceBand from "@/components/ui/ViceBand";
 import { SITE } from "@/config/site";
 import { ONLINE_FEATURES, WEEKLY } from "@/data/online";
 import SubscribeForm from "@/features/subscribe/SubscribeForm";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 
 export function onlineMetadata(locale: Locale): Metadata {
   const t = tFor(locale);
@@ -18,7 +18,7 @@ const KIND_COLOR = { bonus: "text-sun", discount: "text-accent-2", event: "text-
 export default function OnlineView({ locale }: { locale: Locale }) {
   const t = tFor(locale);
   const latest = WEEKLY[0];
-  const lang = locale === "tr" ? "tr" : "en";
+  const lang = locale;
 
   return (
     <PageShell locale={locale} path="/online">
@@ -74,8 +74,8 @@ export default function OnlineView({ locale }: { locale: Locale }) {
                   {latest.items.map((it, i) => (
                     <li key={i} className="border border-line bg-surface-2 px-3 py-2">
                       <span className={`text-[10px] font-bold uppercase tracking-wider ${KIND_COLOR[it.kind]}`}>{t(`ui.online.kind.${it.kind}`)}</span>
-                      <p className="text-sm font-bold">{it.title[lang]}</p>
-                      {it.detail && <p className="text-xs text-muted">{it.detail[lang]}</p>}
+                      <p className="text-sm font-bold">{it.title[lang] ?? it.title.en}</p>
+                      {it.detail && <p className="text-xs text-muted">{it.detail[lang] ?? it.detail.en}</p>}
                     </li>
                   ))}
                 </ul>

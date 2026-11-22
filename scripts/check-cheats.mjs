@@ -58,8 +58,8 @@ for (const r of rows) {
         name: r.name,
         kind: r.kind,
         code: r.code,
-        effect: { en: r.effect, tr: r.effect },
-        unlock: r.unlock ? { en: r.unlock, tr: r.unlock } : null,
+        effect: { en: r.effect, tr: r.effect, es: r.effect },
+        unlock: r.unlock ? { en: r.unlock, tr: r.unlock, es: r.unlock } : null,
       });
     continue;
   }
@@ -72,7 +72,7 @@ for (const r of rows) {
   }
   if ((r.unlock ?? null) !== (c.unlock?.en ?? null)) {
     report.changedUnlocks.push(`${r.name}: "${c.unlock?.en ?? "after story"}" -> "${r.unlock ?? "after story"}"`);
-    if (write) c.unlock = r.unlock ? { en: r.unlock, tr: r.unlock } : null;
+    if (write) c.unlock = r.unlock ? { en: r.unlock, tr: r.unlock, es: r.unlock } : null;
   }
 }
 const theirs = new Set(rows.map((r) => r.id));
@@ -82,8 +82,8 @@ const section = (title, list) => list.length && console.log(`\n${title} (${list.
 console.log(`Source: ${rows.length} cheats, ${rows.filter((r) => r.code).length} with codes. Ours: ${data.cheats.length}, ${data.cheats.filter((c) => c.code).length} with codes.`);
 section("New codes", report.newCodes);
 section("Changed codes", report.changedCodes);
-section("Changed unlock rules (TR needs translating)", report.changedUnlocks);
-section("New cheats (rewrite effect.en, translate TR)", report.added);
+section("Changed unlock rules (TR and ES need translating)", report.changedUnlocks);
+section("New cheats (rewrite effect.en, translate TR and ES)", report.added);
 section("Not on the source any more (left as is)", report.missing);
 const changes = report.newCodes.length + report.changedCodes.length + report.changedUnlocks.length + report.added.length;
 if (!changes) console.log("\nNo changes.");

@@ -20,12 +20,13 @@ export const tFor =
     t(key, vars, locale);
 
 /**
- * Add text at runtime (browser only): titles of approved community pins that are not baked into the
- * static site yet. Written to English, which every locale falls back to. Existing keys are kept.
+ * Add text at runtime (browser only): pin titles and descriptions fetched by the map (/pin-data/text.<locale>.json)
+ * and approved community pins not baked into the site yet. Existing keys are kept.
  */
-export function registerText(entries: Record<string, string>) {
+export function registerText(entries: Record<string, string>, locale: Locale = DEFAULT_LOCALE) {
+  const dict = DICTIONARIES[locale];
   for (const [key, value] of Object.entries(entries)) {
-    if (DICTIONARIES.en[key] === undefined) DICTIONARIES.en[key] = value;
+    if (dict[key] === undefined) dict[key] = value;
   }
 }
 

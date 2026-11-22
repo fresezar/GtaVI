@@ -24,7 +24,7 @@ export const MAPS: readonly MapDef[] = [
     source: { kind: "tiles", urlTemplate: "/tiles/day/{z}/{x}/{y}.jpg", tileSize: TILE, minNativeZoom: 0, maxNativeZoom: 5 },
     view: { min: [tileToFrame(17), tileToFrame(17)], max: [tileToFrame(84), tileToFrame(104)] },
     background: "#2F90B0",
-    attribution: { name: "GTADB.org (CC BY 4.0) · © Rockstar Games", url: "https://map.gtadb.org" },
+    attribution: { name: "GTADB.org · Open GTA 6 Map (CC BY 4.0) · © Rockstar Games", url: "/privacy/#credits" },
     revision: 2,
   },
 ];

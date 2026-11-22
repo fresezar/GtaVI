@@ -8,7 +8,7 @@ import { ART, type ArtName } from "@/config/art";
 import { GUIDE_BY_SLUG, GUIDES } from "@/data/guides";
 import { MISSABLES } from "@/data/missables";
 import type { Guide, VerificationStatus } from "@/domain";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 
 const DEFAULT_ART: ArtName = "banner-guides";
 const artOf = (g: Guide): ArtName => (g.art && g.art in ART ? (g.art as ArtName) : DEFAULT_ART);

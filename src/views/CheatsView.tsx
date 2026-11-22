@@ -4,7 +4,7 @@ import PageShell from "@/components/ui/PageShell";
 import Freshness from "@/components/ui/Freshness";
 import { CHEATS, CHEATS_CHECKED_AT, CHEAT_SOURCE } from "@/data/cheats";
 import CheatList from "@/features/cheats/CheatList";
-import { alternates, tFor, type Locale } from "@/i18n";
+import { alternates, tFor, type Locale } from "@/i18n/server";
 
 const KNOWN = CHEATS.filter((c) => c.code).length;
 

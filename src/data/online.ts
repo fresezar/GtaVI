@@ -10,8 +10,8 @@ export interface OnlineWeek {
   weekOf: string;
   items: {
     kind: "bonus" | "discount" | "event" | "new";
-    title: { en: string; tr: string };
-    detail?: { en: string; tr: string };
+    title: { en: string; tr: string; es?: string };
+    detail?: { en: string; tr: string; es?: string };
   }[];
   sourceName: string;
   sourceUrl: string;

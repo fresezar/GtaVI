@@ -1,12 +1,12 @@
-export const LOCALES = ["en", "tr"] as const;
+export const LOCALES = ["en", "tr", "es"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 
 /** BCP 47 tags for dates/numbers and <html lang>. */
-export const LOCALE_TAG: Record<Locale, string> = { en: "en-US", tr: "tr-TR" };
+export const LOCALE_TAG: Record<Locale, string> = { en: "en-US", tr: "tr-TR", es: "es-ES" };
 
 /**
- * English lives at the root (/map), Turkish under /tr (/tr/map).
+ * English lives at the root (/map), Turkish under /tr (/tr/map), Spanish under /es (/es/map).
  * `path` is the English path, always starting with "/".
  */
 export function localePath(locale: Locale, path: string): string {
@@ -26,8 +26,7 @@ export function alternates(locale: Locale, path: string) {
   return {
     canonical: slashed(localePath(locale, path)),
     languages: {
-      en: slashed(localePath("en", path)),
-      tr: slashed(localePath("tr", path)),
+      ...Object.fromEntries(LOCALES.map((l) => [l, slashed(localePath(l, path))])),
       "x-default": slashed(localePath("en", path)),
     },
   };

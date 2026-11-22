@@ -4,9 +4,9 @@ import PageShell from "@/components/ui/PageShell";
 import ViceBand from "@/components/ui/ViceBand";
 import { CATEGORY_BY_ID } from "@/data/categories";
 import { COMMUNITY_STATS, LATEST_PINS } from "@/data/community";
-import { fileNumber } from "@/data/pins";
+import { fileNumber, pinPath } from "@/data/pins";
 import { CATEGORY_COLORS } from "@/features/map/tokens";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 import { categoryKey, pinKey } from "@/i18n/keys";
 
 const SHOW = 80;
@@ -52,7 +52,7 @@ export default function FindsView({ locale }: { locale: Locale }) {
                 <p className="file-no text-muted">
                   <span lang="en">SIX STAR</span> · {caps(t("ui.file.label"))} <b className="text-accent">#{fileNumber(pin.id)}</b>
                 </p>
-                <Link href={href(`/pins/${pin.slug}`)} className="block truncate font-display text-[21px] normal-case leading-tight hover:text-accent">
+                <Link prefetch={false} href={href(pinPath(pin))} className="block truncate font-display text-[21px] normal-case leading-tight hover:text-accent">
                   {t(pinKey(pin.id, "title"))}
                 </Link>
                 <p className="truncate text-xs text-muted">

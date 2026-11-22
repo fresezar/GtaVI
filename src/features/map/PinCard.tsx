@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Category, Pin } from "@/domain";
-import { fileNumber } from "@/data/pins";
+import { hasPage } from "@/lib/pinIndex";
 import { partnerOf, partnerUrl } from "@/data/partners";
 import { useHref, useLocale, useT } from "@/i18n/client";
 import { categoryKey, pinKey } from "@/i18n/keys";
@@ -51,7 +51,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
   const desc = t(descKey);
   const description = desc !== descKey ? desc : "";
   const source = parseSource(pin.provenance?.sourceUrl);
-  const image = pin.media?.find((m) => m.kind === "image" && /^https?:\/\//.test(m.url));
+  const image = pin.media?.find((m) => m.kind === "image" && /^(https:\/\/|\/)/.test(m.url));
   const creditUrl = pin.credit?.url && /^https?:\/\//.test(pin.credit.url) ? pin.credit.url : undefined;
   const pageHref = href(`/pins/${pin.slug}`);
   const via = partnerOf(pin.tags);
@@ -80,7 +80,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
     >
       <div className="flex items-center justify-between border-b border-dashed border-[#B9A993] px-4 py-2.5">
         <span className="file-no">
-          <span lang="en">SIX STAR</span> · {caps(t("ui.file.label"))} <b className="text-[#B23A2A]">#{fileNumber(pin.id)}</b>
+          <span lang="en">SIX STAR</span> · {caps(t("ui.file.label"))} <b className="text-[#B23A2A]">#{((pin as { fileNo?: string }).fileNo ?? "----")}</b>
         </span>
         <button type="button" onClick={onClose} className="px-1 text-xl leading-none" aria-label={t("ui.card.close")}>
           ×
@@ -188,7 +188,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
           </button>
           <button type="button" onClick={share} className="btn-paper">{t("ui.card.share")}</button>
           {/* Live community pins have no static page until they are baked into the site. */}
-          {!pin.tags?.includes("live") && <a href={pageHref} className="ml-auto text-xs font-bold underline">{t("ui.pin.openPage")} →</a>}
+          {hasPage(pin) && <a href={pageHref} className="ml-auto text-xs font-bold underline">{t("ui.pin.openPage")} →</a>}
         </div>
         <p className="h-4 text-xs font-bold" role="status" aria-live="polite">{note}</p>
       </div>

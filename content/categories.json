@@ -184,9 +184,65 @@
     "countsForProgress": false
   },
   {
+    "id": "cat_collectible_cards",
+    "slug": "collectible-cards",
+    "colorToken": "berry",
+    "iconToken": "card",
+    "countsForProgress": true,
+    "sortOrder": 24
+  },
+  {
+    "id": "cat_hidden_packages",
+    "slug": "hidden-packages",
+    "colorToken": "amber",
+    "iconToken": "package",
+    "countsForProgress": true,
+    "sortOrder": 25
+  },
+  {
+    "id": "cat_meteorites",
+    "slug": "meteorites",
+    "colorToken": "lavender",
+    "iconToken": "star",
+    "countsForProgress": true,
+    "sortOrder": 26
+  },
+  {
+    "id": "cat_street_art",
+    "slug": "street-art",
+    "colorToken": "violet",
+    "iconToken": "spray",
+    "countsForProgress": true,
+    "sortOrder": 27
+  },
+  {
+    "id": "cat_races",
+    "slug": "races",
+    "colorToken": "aqua",
+    "iconToken": "flag",
+    "countsForProgress": true,
+    "sortOrder": 28
+  },
+  {
+    "id": "cat_drone_trials",
+    "slug": "drone-trials",
+    "colorToken": "olive",
+    "iconToken": "drone",
+    "countsForProgress": true,
+    "sortOrder": 29
+  },
+  {
+    "id": "cat_safes",
+    "slug": "safes",
+    "colorToken": "brick",
+    "iconToken": "lock",
+    "countsForProgress": false,
+    "sortOrder": 30
+  },
+  {
     "id": "cat_transport",
     "slug": "transport",
-    "sortOrder": 24,
+    "sortOrder": 31,
     "colorToken": "sand",
     "iconToken": "train",
     "countsForProgress": false,
@@ -195,7 +251,7 @@
   {
     "id": "cat_shops",
     "slug": "shops",
-    "sortOrder": 25,
+    "sortOrder": 32,
     "colorToken": "peach",
     "iconToken": "bag",
     "countsForProgress": false,
@@ -204,7 +260,7 @@
   {
     "id": "cat_atms",
     "slug": "atms",
-    "sortOrder": 26,
+    "sortOrder": 33,
     "colorToken": "gold",
     "iconToken": "atm",
     "countsForProgress": false,
@@ -213,10 +269,28 @@
   {
     "id": "cat_landmarks",
     "slug": "landmarks",
-    "sortOrder": 27,
+    "sortOrder": 34,
     "colorToken": "slate",
     "iconToken": "pin",
     "countsForProgress": false,
     "hiddenByDefault": true
+  },
+  {
+    "id": "cat_food",
+    "slug": "food-bars-clubs",
+    "colorToken": "steel",
+    "iconToken": "cup",
+    "countsForProgress": false,
+    "hiddenByDefault": true,
+    "sortOrder": 35
+  },
+  {
+    "id": "cat_civic",
+    "slug": "police-hospitals",
+    "colorToken": "slate",
+    "iconToken": "shield",
+    "countsForProgress": false,
+    "hiddenByDefault": true,
+    "sortOrder": 36
   }
 ]

@@ -5,10 +5,10 @@ import PageShell from "@/components/ui/PageShell";
 import ViceBand from "@/components/ui/ViceBand";
 import { SITE } from "@/config/site";
 import { PARTNERS, PARTNER_BY_SLUG, VIA_PREFIX, initials, partnerUrl, type Partner } from "@/data/partners";
-import { PINS } from "@/data/pins";
+import { PINS, pinPath } from "@/data/pins";
 import PartnerFinds, { type StaticFind } from "@/features/partners/PartnerFinds";
 import RefCapture from "@/features/partners/RefCapture";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 import { pinKey } from "@/i18n/keys";
 
 /** Static export needs at least one path: with no partners yet, one placeholder that renders the 404 page. */
@@ -61,7 +61,7 @@ export default function PartnerView({ locale, slug }: { locale: Locale; slug: st
   const profile = partnerUrl(p);
   const baked: StaticFind[] = PINS.filter((pin) => pin.tags?.includes(`${VIA_PREFIX}${slug}`)).map((pin) => ({
     id: pin.id,
-    slug: pin.slug,
+    path: pinPath(pin),
     title: t(pinKey(pin.id, "title")),
     by: pin.credit?.name,
   }));

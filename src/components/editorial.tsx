@@ -1,5 +1,5 @@
 import type { EditorialKind, NewsItem, TimelineEvent } from "@/domain";
-import { LOCALE_TAG, localePath, type Locale, type Translate } from "@/i18n";
+import { LOCALE_TAG, localePath, type Locale, type Translate } from "@/i18n/server";
 
 /** Shared by the home hub and the news page: same badges and source lines everywhere. */
 

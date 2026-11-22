@@ -11,6 +11,11 @@ export const PATHS = {
   categories: join(CONTENT, "categories.json"),
   text: join(CONTENT, "text.en.json"),
   textTr: join(CONTENT, "text.tr.json"),
+  textEs: join(CONTENT, "text.es.json"),
+  /** Pin titles and descriptions live apart from the UI text so pages don't ship them to the browser. */
+  pinText: join(CONTENT, "pin-text.en.json"),
+  pinTextTr: join(CONTENT, "pin-text.tr.json"),
+  pinTextEs: join(CONTENT, "pin-text.es.json"),
   timeline: join(CONTENT, "timeline.json"),
   news: join(CONTENT, "news.json"),
   missables: join(CONTENT, "missables.json"),
@@ -24,6 +29,7 @@ export const SOURCES = ["stream", "community", "self", "datamine", "official"];
 export const COLOR_TOKENS = [
   "coral", "orchid", "sky", "sun", "lime", "rose", "turquoise", "plum", "rust", "mint", "peach", "slate",
   "indigo", "ice", "green", "crimson", "magenta", "navy", "sand", "gold", "jade", "cobalt", "lilac", "copper", "salmon", "orange", "teal",
+  "berry", "amber", "lavender", "olive", "aqua", "brick", "violet", "steel",
 ];
 /** Frame coordinates may sit slightly outside 0..1 once a calibrated map is wider than the first one. */
 export const COORD_MIN = -0.5;

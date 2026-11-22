@@ -445,13 +445,18 @@ code {
   display: grid;
   place-items: center;
   border-radius: 9999px;
-  background: var(--select-ink);
+  background: rgba(9, 17, 30, 0.72);
   color: #fff4ec;
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
-  font-weight: 800;
-  font-size: 13px;
-  border: 2px solid #fff4ec;
-  box-shadow: 0 0 0 3px rgba(255, 106, 85, 0.55), 0 6px 18px -4px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  font-size: 11px;
+  border: 1.5px solid rgba(255, 244, 236, 0.75);
+  box-shadow: 0 0 0 2px rgba(255, 106, 85, 0.35), 0 4px 12px -4px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  transition: transform 0.12s ease;
+}
+.atlas-cluster:hover {
+  transform: scale(1.12);
 }
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -551,4 +556,11 @@ html[data-play="1"] .leaflet-control-zoom {
     letter-spacing: 0.06em;
     border-bottom-width: 1px;
   }
+}
+.map-label.is-hidden {
+  visibility: hidden;
+}
+.map-label-region.is-hot {
+  visibility: visible;
+  z-index: 1;
 }

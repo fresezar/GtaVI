@@ -19,7 +19,8 @@
       ],
       "effect": {
         "en": "$250,000 in cash, right away.",
-        "tr": "Anında 250.000 $ nakit."
+        "tr": "Anında 250.000 $ nakit.",
+        "es": "250.000 $ en efectivo, al momento."
       },
       "unlock": null
     },
@@ -42,11 +43,13 @@
       ],
       "effect": {
         "en": "Full body armour in your loadout.",
-        "tr": "Ekipmanına tam zırh ekler."
+        "tr": "Ekipmanına tam zırh ekler.",
+        "es": "Chaleco antibalas completo en tu equipo."
       },
       "unlock": {
         "en": "Complete 100 workouts",
-        "tr": "100 antrenman tamamla"
+        "tr": "100 antrenman tamamla",
+        "es": "Completa 100 entrenamientos"
       }
     },
     {
@@ -65,11 +68,13 @@
       ],
       "effect": {
         "en": "Raises your Heat across the whole map.",
-        "tr": "Tüm haritada Heat seviyeni yükseltir."
+        "tr": "Tüm haritada Heat seviyeni yükseltir.",
+        "es": "Sube tu Heat en todo el mapa."
       },
       "unlock": {
         "en": "Lose a three-star wanted level 25 times",
-        "tr": "Üç yıldızlı aramadan 25 kez kurtul"
+        "tr": "Üç yıldızlı aramadan 25 kez kurtul",
+        "es": "Escapa 25 veces de un nivel de búsqueda de tres estrellas"
       }
     },
     {
@@ -88,11 +93,13 @@
       ],
       "effect": {
         "en": "Adds wanted stars.",
-        "tr": "Aranma yıldızı ekler."
+        "tr": "Aranma yıldızı ekler.",
+        "es": "Añade estrellas de búsqueda."
       },
       "unlock": {
         "en": "Lose a three-star wanted level 50 times",
-        "tr": "Üç yıldızlı aramadan 50 kez kurtul"
+        "tr": "Üç yıldızlı aramadan 50 kez kurtul",
+        "es": "Escapa 50 veces de un nivel de búsqueda de tres estrellas"
       }
     },
     {
@@ -114,7 +121,8 @@
       ],
       "effect": {
         "en": "Focus never drains.",
-        "tr": "Focus hiç bitmez."
+        "tr": "Focus hiç bitmez.",
+        "es": "El Focus no se agota nunca."
       },
       "unlock": null
     },
@@ -126,11 +134,13 @@
       "code": null,
       "effect": {
         "en": "You and your partner get drunk on the spot.",
-        "tr": "Sen ve partnerin anında sarhoş olursunuz."
+        "tr": "Sen ve partnerin anında sarhoş olursunuz.",
+        "es": "Tú y tu pareja os emborracháis al instante."
       },
       "unlock": {
         "en": "Spend $2,500 on alcohol",
-        "tr": "Alkole 2.500 $ harca"
+        "tr": "Alkole 2.500 $ harca",
+        "es": "Gasta 2.500 $ en alcohol"
       }
     },
     {
@@ -141,11 +151,13 @@
       "code": null,
       "effect": {
         "en": "Falls stop hurting you.",
-        "tr": "Düşünce hasar almazsın."
+        "tr": "Düşünce hasar almazsın.",
+        "es": "Las caídas dejan de hacerte daño."
       },
       "unlock": {
         "en": "Survive a 40-foot freefall 20 times",
-        "tr": "40 fit yüksekten serbest düşüşten 20 kez sağ çık"
+        "tr": "40 fit yüksekten serbest düşüşten 20 kez sağ çık",
+        "es": "Sobrevive 20 veces a una caída libre de 40 pies"
       }
     },
     {
@@ -156,11 +168,13 @@
       "code": null,
       "effect": {
         "en": "A parachute in your loadout.",
-        "tr": "Ekipmanına paraşüt ekler."
+        "tr": "Ekipmanına paraşüt ekler.",
+        "es": "Un paracaídas en tu equipo."
       },
       "unlock": {
         "en": "Finish 50 skydives or BASE jumps from 300 feet or more",
-        "tr": "300 fit ya da daha yüksekten 50 paraşüt veya BASE atlayışı yap"
+        "tr": "300 fit ya da daha yüksekten 50 paraşüt veya BASE atlayışı yap",
+        "es": "Haz 50 saltos en paracaídas o BASE desde 300 pies o más"
       }
     },
     {
@@ -181,7 +195,8 @@
       ],
       "effect": {
         "en": "Bullets and melee hits launch people.",
-        "tr": "Kurşunlar ve yakın dövüş vuruşları insanları uçurur."
+        "tr": "Kurşunlar ve yakın dövüş vuruşları insanları uçurur.",
+        "es": "Las balas y los golpes cuerpo a cuerpo lanzan a la gente por los aires."
       },
       "unlock": null
     },
@@ -203,11 +218,13 @@
       ],
       "effect": {
         "en": "Sports balls explode on impact.",
-        "tr": "Spor topları çarpınca patlar."
+        "tr": "Spor topları çarpınca patlar.",
+        "es": "Las pelotas explotan al chocar."
       },
       "unlock": {
         "en": "Hit 20 enemies with explosive damage",
-        "tr": "20 düşmanı patlayıcı hasarıyla vur"
+        "tr": "20 düşmanı patlayıcı hasarıyla vur",
+        "es": "Alcanza a 20 enemigos con daño explosivo"
       }
     },
     {
@@ -229,11 +246,13 @@
       ],
       "effect": {
         "en": "Ammo never runs out.",
-        "tr": "Mermi hiç bitmez."
+        "tr": "Mermi hiç bitmez.",
+        "es": "La munición no se acaba nunca."
       },
       "unlock": {
         "en": "Earn 25 silver-or-better medals at the shooting ranges",
-        "tr": "Atış poligonlarında 25 gümüş ya da daha iyi madalya al"
+        "tr": "Atış poligonlarında 25 gümüş ya da daha iyi madalya al",
+        "es": "Consigue 25 medallas de plata o mejores en los campos de tiro"
       }
     },
     {
@@ -255,11 +274,13 @@
       ],
       "effect": {
         "en": "Refills ammo for every weapon.",
-        "tr": "Tüm silahların mermisini doldurur."
+        "tr": "Tüm silahların mermisini doldurur.",
+        "es": "Rellena la munición de todas las armas."
       },
       "unlock": {
         "en": "Earn 25 bronze-or-better medals at the shooting ranges",
-        "tr": "Atış poligonlarında 25 bronz ya da daha iyi madalya al"
+        "tr": "Atış poligonlarında 25 bronz ya da daha iyi madalya al",
+        "es": "Consigue 25 medallas de bronce o mejores en los campos de tiro"
       }
     },
     {
@@ -281,11 +302,13 @@
       ],
       "effect": {
         "en": "Fire without ever reloading.",
-        "tr": "Hiç şarjör değiştirmeden ateş et."
+        "tr": "Hiç şarjör değiştirmeden ateş et.",
+        "es": "Dispara sin recargar nunca."
       },
       "unlock": {
         "en": "Earn 25 gold medals at the shooting ranges",
-        "tr": "Atış poligonlarında 25 altın madalya al"
+        "tr": "Atış poligonlarında 25 altın madalya al",
+        "es": "Consigue 25 medallas de oro en los campos de tiro"
       }
     },
     {
@@ -296,11 +319,13 @@
       "code": null,
       "effect": {
         "en": "Every explosive weapon, fully loaded.",
-        "tr": "Tüm patlayıcı silahlar, dolu mermiyle."
+        "tr": "Tüm patlayıcı silahlar, dolu mermiyle.",
+        "es": "Todas las armas explosivas, con munición completa."
       },
       "unlock": {
         "en": "Throw 100 grenades",
-        "tr": "100 el bombası at"
+        "tr": "100 el bombası at",
+        "es": "Lanza 100 granadas"
       }
     },
     {
@@ -311,11 +336,13 @@
       "code": null,
       "effect": {
         "en": "Bottles explode when they take damage.",
-        "tr": "Şişeler hasar alınca patlar."
+        "tr": "Şişeler hasar alınca patlar.",
+        "es": "Las botellas explotan al recibir daño."
       },
       "unlock": {
         "en": "Throw 100 Molotovs",
-        "tr": "100 molotof at"
+        "tr": "100 molotof at",
+        "es": "Lanza 100 cócteles molotov"
       }
     },
     {
@@ -326,11 +353,13 @@
       "code": null,
       "effect": {
         "en": "A Mason & Keen Shortstraw firing explosive shells.",
-        "tr": "Patlayıcı fişek atan Mason & Keen Shortstraw."
+        "tr": "Patlayıcı fişek atan Mason & Keen Shortstraw.",
+        "es": "Una Mason & Keen Shortstraw con cartuchos explosivos."
       },
       "unlock": {
         "en": "Hit 100 enemies with explosive damage",
-        "tr": "100 düşmanı patlayıcı hasarıyla vur"
+        "tr": "100 düşmanı patlayıcı hasarıyla vur",
+        "es": "Alcanza a 100 enemigos con daño explosivo"
       }
     },
     {
@@ -341,11 +370,13 @@
       "code": null,
       "effect": {
         "en": "A Hauners H-AT in your loadout.",
-        "tr": "Ekipmanına Hauners H-AT ekler."
+        "tr": "Ekipmanına Hauners H-AT ekler.",
+        "es": "Un Hauners H-AT en tu equipo."
       },
       "unlock": {
         "en": "Blow up 100 vehicles",
-        "tr": "100 araç patlat"
+        "tr": "100 araç patlat",
+        "es": "Haz explotar 100 vehículos"
       }
     },
     {
@@ -356,11 +387,13 @@
       "code": null,
       "effect": {
         "en": "Every bullet starts a fire.",
-        "tr": "Her kurşun yangın çıkarır."
+        "tr": "Her kurşun yangın çıkarır.",
+        "es": "Cada bala prende fuego."
       },
       "unlock": {
         "en": "Burn 100 enemies with fire",
-        "tr": "100 düşmanı ateşle yak"
+        "tr": "100 düşmanı ateşle yak",
+        "es": "Quema a 100 enemigos"
       }
     },
     {
@@ -380,11 +413,13 @@
       ],
       "effect": {
         "en": "Spawns a HVY Bulldozer.",
-        "tr": "HVY Bulldozer çağırır."
+        "tr": "HVY Bulldozer çağırır.",
+        "es": "Aparece una HVY Bulldozer."
       },
       "unlock": {
         "en": "Discover the HVY Bulldozer (it then shows in the Progress menu)",
-        "tr": "HVY Bulldozer'ı keşfet (sonra İlerleme menüsünde görünür)"
+        "tr": "HVY Bulldozer'ı keşfet (sonra İlerleme menüsünde görünür)",
+        "es": "Descubre la HVY Bulldozer (luego aparece en el menú de Progreso)"
       }
     },
     {
@@ -404,11 +439,13 @@
       ],
       "effect": {
         "en": "An MTL Pumper fire truck.",
-        "tr": "MTL Pumper itfaiye aracı."
+        "tr": "MTL Pumper itfaiye aracı.",
+        "es": "Aparece un camión de bomberos MTL Pumper."
       },
       "unlock": {
         "en": "Not clear yet: guides differ on what unlocks it",
-        "tr": "Belli değil: rehberler farklı şey söylüyor"
+        "tr": "Belli değil: rehberler farklı şey söylüyor",
+        "es": "Aún no está claro: las guías no coinciden"
       }
     },
     {
@@ -428,11 +465,13 @@
       ],
       "effect": {
         "en": "A Maibatsu Boomazoom scooter.",
-        "tr": "Maibatsu Boomazoom scooter."
+        "tr": "Maibatsu Boomazoom scooter.",
+        "es": "Aparece un scooter Maibatsu Boomazoom."
       },
       "unlock": {
         "en": "Complete 5 shopping challenges",
-        "tr": "5 alışveriş görevi tamamla"
+        "tr": "5 alışveriş görevi tamamla",
+        "es": "Completa 5 desafíos de compras"
       }
     },
     {
@@ -453,11 +492,13 @@
       ],
       "effect": {
         "en": "Anyone you hit with a vehicle goes flying.",
-        "tr": "Araçla çarptığın herkes uçar."
+        "tr": "Araçla çarptığın herkes uçar.",
+        "es": "Quien atropellas sale volando."
       },
       "unlock": {
         "en": "Kill 25 enemies with a vehicle",
-        "tr": "Araçla 25 düşman öldür"
+        "tr": "Araçla 25 düşman öldür",
+        "es": "Mata a 25 enemigos con un vehículo"
       }
     },
     {
@@ -468,11 +509,13 @@
       "code": null,
       "effect": {
         "en": "Fully repairs the vehicle you're in.",
-        "tr": "Bindiğin aracı tamamen onarır."
+        "tr": "Bindiğin aracı tamamen onarır.",
+        "es": "Repara por completo el vehículo en el que vas."
       },
       "unlock": {
         "en": "Win 10 races at Gellhorn Raceway, Thrillbilly Mud Club and Boone Speedway",
-        "tr": "Gellhorn Raceway, Thrillbilly Mud Club ve Boone Speedway'de 10 yarış kazan"
+        "tr": "Gellhorn Raceway, Thrillbilly Mud Club ve Boone Speedway'de 10 yarış kazan",
+        "es": "Gana 10 carreras en Gellhorn Raceway, Thrillbilly Mud Club y Boone Speedway"
       }
     },
     {
@@ -483,11 +526,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a '65 Vapid Dominator.",
-        "tr": "'65 Vapid Dominator çağırır."
+        "tr": "'65 Vapid Dominator çağırır.",
+        "es": "Aparece un '65 Vapid Dominator."
       },
       "unlock": {
         "en": "Complete every fitness challenge",
-        "tr": "Tüm fitness görevlerini tamamla"
+        "tr": "Tüm fitness görevlerini tamamla",
+        "es": "Completa todos los desafíos de forma física"
       }
     },
     {
@@ -498,11 +543,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Airboat 09.",
-        "tr": "Airboat 09 çağırır."
+        "tr": "Airboat 09 çağırır.",
+        "es": "Aparece un Airboat 09."
       },
       "unlock": {
         "en": "Complete 5 survival challenges",
-        "tr": "5 hayatta kalma görevi tamamla"
+        "tr": "5 hayatta kalma görevi tamamla",
+        "es": "Completa 5 desafíos de supervivencia"
       }
     },
     {
@@ -513,11 +560,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Bravado Banshee.",
-        "tr": "Bravado Banshee çağırır."
+        "tr": "Bravado Banshee çağırır.",
+        "es": "Aparece un Bravado Banshee."
       },
       "unlock": {
         "en": "Complete every combat challenge",
-        "tr": "Tüm dövüş görevlerini tamamla"
+        "tr": "Tüm dövüş görevlerini tamamla",
+        "es": "Completa todos los desafíos de combate"
       }
     },
     {
@@ -528,11 +577,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Brimstone Golfer.",
-        "tr": "Brimstone Golfer çağırır."
+        "tr": "Brimstone Golfer çağırır.",
+        "es": "Aparece un Brimstone Golfer."
       },
       "unlock": {
         "en": "Complete every sports challenge",
-        "tr": "Tüm spor görevlerini tamamla"
+        "tr": "Tüm spor görevlerini tamamla",
+        "es": "Completa todos los desafíos deportivos"
       }
     },
     {
@@ -543,11 +594,13 @@
       "code": null,
       "effect": {
         "en": "A Hauners P-996 Lazer jet.",
-        "tr": "Hauners P-996 Lazer jeti."
+        "tr": "Hauners P-996 Lazer jeti.",
+        "es": "Aparece un caza Hauners P-996 Lazer."
       },
       "unlock": {
         "en": "Complete every challenge",
-        "tr": "Tüm görevleri tamamla"
+        "tr": "Tüm görevleri tamamla",
+        "es": "Completa todos los desafíos"
       }
     },
     {
@@ -558,11 +611,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Hauners Rhino Tank.",
-        "tr": "Hauners Rhino Tank çağırır."
+        "tr": "Hauners Rhino Tank çağırır.",
+        "es": "Aparece un tanque Hauners Rhino."
       },
       "unlock": {
         "en": "Complete every survival challenge",
-        "tr": "Tüm hayatta kalma görevlerini tamamla"
+        "tr": "Tüm hayatta kalma görevlerini tamamla",
+        "es": "Completa todos los desafíos de supervivencia"
       }
     },
     {
@@ -573,11 +628,13 @@
       "code": null,
       "effect": {
         "en": "An inflatable flamingo.",
-        "tr": "Şişme flamingo."
+        "tr": "Şişme flamingo.",
+        "es": "Aparece un flamenco hinchable."
       },
       "unlock": {
         "en": "Destroy 50 cocaine flamingos",
-        "tr": "50 kokain flamingosu yok et"
+        "tr": "50 kokain flamingosu yok et",
+        "es": "Destruye 50 flamencos de cocaína"
       }
     },
     {
@@ -588,11 +645,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Interstate Ambulance.",
-        "tr": "Interstate Ambulance çağırır."
+        "tr": "Interstate Ambulance çağırır.",
+        "es": "Aparece una ambulancia Interstate."
       },
       "unlock": {
         "en": "Discover the Interstate Ambulance in the Progress menu",
-        "tr": "Interstate Ambulance'ı keşfet (İlerleme menüsünde)"
+        "tr": "Interstate Ambulance'ı keşfet (İlerleme menüsünde)",
+        "es": "Descubre la Interstate Ambulance en el menú de Progreso"
       }
     },
     {
@@ -603,11 +662,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Lapwing Mallard.",
-        "tr": "Lapwing Mallard çağırır."
+        "tr": "Lapwing Mallard çağırır.",
+        "es": "Aparece un Lapwing Mallard."
       },
       "unlock": {
         "en": "Complete 5 vehicle challenges",
-        "tr": "5 araç görevi tamamla"
+        "tr": "5 araç görevi tamamla",
+        "es": "Completa 5 desafíos de vehículos"
       }
     },
     {
@@ -618,11 +679,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Maibatsu Sanchez.",
-        "tr": "Maibatsu Sanchez çağırır."
+        "tr": "Maibatsu Sanchez çağırır.",
+        "es": "Aparece una Maibatsu Sanchez."
       },
       "unlock": {
         "en": "Complete 5 criminal challenges",
-        "tr": "5 suç görevi tamamla"
+        "tr": "5 suç görevi tamamla",
+        "es": "Completa 5 desafíos criminales"
       }
     },
     {
@@ -633,11 +696,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Nagasaki Carbon RS.",
-        "tr": "Nagasaki Carbon RS çağırır."
+        "tr": "Nagasaki Carbon RS çağırır.",
+        "es": "Aparece una Nagasaki Carbon RS."
       },
       "unlock": {
         "en": "Complete every exploration challenge",
-        "tr": "Tüm keşif görevlerini tamamla"
+        "tr": "Tüm keşif görevlerini tamamla",
+        "es": "Completa todos los desafíos de exploración"
       }
     },
     {
@@ -648,11 +713,13 @@
       "code": null,
       "effect": {
         "en": "A Nagasaki Sea Sparrow helicopter.",
-        "tr": "Nagasaki Sea Sparrow helikopteri."
+        "tr": "Nagasaki Sea Sparrow helikopteri.",
+        "es": "Aparece un helicóptero Nagasaki Sea Sparrow."
       },
       "unlock": {
         "en": "Complete 5 exploration challenges",
-        "tr": "5 keşif görevi tamamla"
+        "tr": "5 keşif görevi tamamla",
+        "es": "Completa 5 desafíos de exploración"
       }
     },
     {
@@ -663,11 +730,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Progen Emerus.",
-        "tr": "Progen Emerus çağırır."
+        "tr": "Progen Emerus çağırır.",
+        "es": "Aparece un Progen Emerus."
       },
       "unlock": {
         "en": "Complete every vehicle challenge",
-        "tr": "Tüm araç görevlerini tamamla"
+        "tr": "Tüm araç görevlerini tamamla",
+        "es": "Completa todos los desafíos de vehículos"
       }
     },
     {
@@ -678,11 +747,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Speeder 700 GT.",
-        "tr": "Speeder 700 GT çağırır."
+        "tr": "Speeder 700 GT çağırır.",
+        "es": "Aparece un Speeder 700 GT."
       },
       "unlock": {
         "en": "Complete 5 combat challenges",
-        "tr": "5 dövüş görevi tamamla"
+        "tr": "5 dövüş görevi tamamla",
+        "es": "Completa 5 desafíos de combate"
       }
     },
     {
@@ -693,11 +764,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Truffade Thrax.",
-        "tr": "Truffade Thrax çağırır."
+        "tr": "Truffade Thrax çağırır.",
+        "es": "Aparece un Truffade Thrax."
       },
       "unlock": {
         "en": "Complete every shopping challenge",
-        "tr": "Tüm alışveriş görevlerini tamamla"
+        "tr": "Tüm alışveriş görevlerini tamamla",
+        "es": "Completa todos los desafíos de compras"
       }
     },
     {
@@ -708,11 +781,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Tuff BMX.",
-        "tr": "Tuff BMX çağırır."
+        "tr": "Tuff BMX çağırır.",
+        "es": "Aparece una Tuff BMX."
       },
       "unlock": {
         "en": "Complete 5 fitness challenges",
-        "tr": "5 fitness görevi tamamla"
+        "tr": "5 fitness görevi tamamla",
+        "es": "Completa 5 desafíos de forma física"
       }
     },
     {
@@ -723,11 +798,13 @@
       "code": null,
       "effect": {
         "en": "A Vapid Stanier G2 taxi.",
-        "tr": "Vapid Stanier G2 taksi."
+        "tr": "Vapid Stanier G2 taksi.",
+        "es": "Aparece un taxi Vapid Stanier G2."
       },
       "unlock": {
         "en": "Complete 5 sports challenges",
-        "tr": "5 spor görevi tamamla"
+        "tr": "5 spor görevi tamamla",
+        "es": "Completa 5 desafíos deportivos"
       }
     },
     {
@@ -738,11 +815,13 @@
       "code": null,
       "effect": {
         "en": "Spawns a Western Zombie Bobber.",
-        "tr": "Western Zombie Bobber çağırır."
+        "tr": "Western Zombie Bobber çağırır.",
+        "es": "Aparece una Western Zombie Bobber."
       },
       "unlock": {
         "en": "Complete every criminal challenge",
-        "tr": "Tüm suç görevlerini tamamla"
+        "tr": "Tüm suç görevlerini tamamla",
+        "es": "Completa todos los desafíos criminales"
       }
     },
     {
@@ -753,11 +832,13 @@
       "code": null,
       "effect": {
         "en": "Vehicles never run out of nitrous or fuel.",
-        "tr": "Araçlarda nitro ve yakıt hiç bitmez."
+        "tr": "Araçlarda nitro ve yakıt hiç bitmez.",
+        "es": "Los vehículos nunca se quedan sin nitro ni combustible."
       },
       "unlock": {
         "en": "Complete 50 stunt jumps",
-        "tr": "50 akrobatik atlayış yap"
+        "tr": "50 akrobatik atlayış yap",
+        "es": "Haz 50 saltos acrobáticos"
       }
     },
     {
@@ -779,11 +860,13 @@
       ],
       "effect": {
         "en": "Screen filter: thick, murky smoke.",
-        "tr": "Ekran filtresi: yoğun, bulanık duman."
+        "tr": "Ekran filtresi: yoğun, bulanık duman.",
+        "es": "Filtro de pantalla: humo espeso y turbio."
       },
       "unlock": {
         "en": "Discover Martha's Vamos (it then shows in the Progress menu)",
-        "tr": "Martha's Vamos'u keşfet (sonra İlerleme menüsünde görünür)"
+        "tr": "Martha's Vamos'u keşfet (sonra İlerleme menüsünde görünür)",
+        "es": "Descubre el Martha's Vamos (luego aparece en el menú de Progreso)"
       }
     },
     {
@@ -802,7 +885,8 @@
       ],
       "effect": {
         "en": "Switches to the next weather.",
-        "tr": "Bir sonraki hava durumuna geçer."
+        "tr": "Bir sonraki hava durumuna geçer.",
+        "es": "Pasa al siguiente tipo de clima."
       },
       "unlock": null
     },
@@ -825,11 +909,13 @@
       ],
       "effect": {
         "en": "Screen filter: vivid colours, narrow frame.",
-        "tr": "Ekran filtresi: canlı renkler, dar kadraj."
+        "tr": "Ekran filtresi: canlı renkler, dar kadraj.",
+        "es": "Filtro de pantalla: colores vivos y encuadre estrecho."
       },
       "unlock": {
         "en": "Spend 8 hours with your partner",
-        "tr": "Partnerinle 8 saat geçir"
+        "tr": "Partnerinle 8 saat geçir",
+        "es": "Pasa 8 horas con tu pareja"
       }
     },
     {
@@ -851,11 +937,13 @@
       ],
       "effect": {
         "en": "Screen filter: old colour CRT TV.",
-        "tr": "Ekran filtresi: eski renkli tüplü TV."
+        "tr": "Ekran filtresi: eski renkli tüplü TV.",
+        "es": "Filtro de pantalla: tele de tubo antigua en color."
       },
       "unlock": {
         "en": "Rob 50 stores with your partner",
-        "tr": "Partnerinle 50 dükkân soy"
+        "tr": "Partnerinle 50 dükkân soy",
+        "es": "Roba 50 tiendas con tu pareja"
       }
     },
     {
@@ -866,11 +954,13 @@
       "code": null,
       "effect": {
         "en": "The world turns purple and yellow, with sparkles.",
-        "tr": "Dünya mor ve sarıya döner, parıltılarla."
+        "tr": "Dünya mor ve sarıya döner, parıltılarla.",
+        "es": "El mundo se vuelve morado y amarillo, con destellos."
       },
       "unlock": {
         "en": "Find all 24 Vice City Flamingos collectible cards",
-        "tr": "24 Vice City Flamingos kartının hepsini bul"
+        "tr": "24 Vice City Flamingos kartının hepsini bul",
+        "es": "Encuentra las 24 cartas coleccionables Vice City Flamingos"
       }
     },
     {
@@ -881,11 +971,13 @@
       "code": null,
       "effect": {
         "en": "The world turns upside down and black.",
-        "tr": "Dünya ters döner ve kararır."
+        "tr": "Dünya ters döner ve kararır.",
+        "es": "El mundo se pone del revés y a oscuras."
       },
       "unlock": {
         "en": "Make $500,000 selling vehicles",
-        "tr": "Araç satarak 500.000 $ kazan"
+        "tr": "Araç satarak 500.000 $ kazan",
+        "es": "Gana 500.000 $ vendiendo vehículos"
       }
     },
     {
@@ -896,11 +988,13 @@
       "code": null,
       "effect": {
         "en": "Motion blur and faster clouds.",
-        "tr": "Hareket bulanıklığı ve hızlı akan bulutlar."
+        "tr": "Hareket bulanıklığı ve hızlı akan bulutlar.",
+        "es": "Desenfoque de movimiento y nubes más rápidas."
       },
       "unlock": {
         "en": "Complete 50 meditations",
-        "tr": "50 meditasyon tamamla"
+        "tr": "50 meditasyon tamamla",
+        "es": "Completa 50 meditaciones"
       }
     },
     {
@@ -911,11 +1005,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: fisheye lens.",
-        "tr": "Ekran filtresi: balıkgözü lens."
+        "tr": "Ekran filtresi: balıkgözü lens.",
+        "es": "Filtro de pantalla: ojo de pez."
       },
       "unlock": {
         "en": "Catch 100 fish",
-        "tr": "100 balık tut"
+        "tr": "100 balık tut",
+        "es": "Pesca 100 peces"
       }
     },
     {
@@ -926,11 +1022,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: golden widescreen.",
-        "tr": "Ekran filtresi: altın tonlu geniş ekran."
+        "tr": "Ekran filtresi: altın tonlu geniş ekran.",
+        "es": "Filtro de pantalla: dorado y panorámico."
       },
       "unlock": {
         "en": "Spend 4 hours holding hands",
-        "tr": "4 saat el ele yürü"
+        "tr": "4 saat el ele yürü",
+        "es": "Pasa 4 horas cogidos de la mano"
       }
     },
     {
@@ -941,11 +1039,13 @@
       "code": null,
       "effect": {
         "en": "The world turns red and orange, with heat haze.",
-        "tr": "Dünya kırmızı ve turuncuya döner, sıcak buğusuyla."
+        "tr": "Dünya kırmızı ve turuncuya döner, sıcak buğusuyla.",
+        "es": "El mundo se vuelve rojo y naranja, con calima."
       },
       "unlock": {
         "en": "Steal 100 police vehicles",
-        "tr": "100 polis aracı çal"
+        "tr": "100 polis aracı çal",
+        "es": "Roba 100 vehículos de policía"
       }
     },
     {
@@ -956,11 +1056,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: blurred and warped.",
-        "tr": "Ekran filtresi: bulanık ve çarpık."
+        "tr": "Ekran filtresi: bulanık ve çarpık.",
+        "es": "Filtro de pantalla: borroso y deformado."
       },
       "unlock": {
         "en": "Survive 6 minutes at a 6-star wanted level",
-        "tr": "6 yıldızlı aramada 6 dakika hayatta kal"
+        "tr": "6 yıldızlı aramada 6 dakika hayatta kal",
+        "es": "Sobrevive 6 minutos con seis estrellas de búsqueda"
       }
     },
     {
@@ -971,11 +1073,13 @@
       "code": null,
       "effect": {
         "en": "Skips the clock ahead.",
-        "tr": "Saati ileri sarar."
+        "tr": "Saati ileri sarar.",
+        "es": "Adelanta la hora del día."
       },
       "unlock": {
         "en": "Find 10 collectible watches",
-        "tr": "10 koleksiyon saati bul"
+        "tr": "10 koleksiyon saati bul",
+        "es": "Encuentra 10 relojes coleccionables"
       }
     },
     {
@@ -986,11 +1090,13 @@
       "code": null,
       "effect": {
         "en": "Neon highlights everywhere.",
-        "tr": "Her yerde neon parıltılar."
+        "tr": "Her yerde neon parıltılar.",
+        "es": "Destellos de neón por todas partes."
       },
       "unlock": {
         "en": "Discover all 16 Girlypop vehicles",
-        "tr": "16 Girlypop aracının hepsini keşfet"
+        "tr": "16 Girlypop aracının hepsini keşfet",
+        "es": "Descubre los 16 vehículos Girlypop"
       }
     },
     {
@@ -1001,11 +1107,13 @@
       "code": null,
       "effect": {
         "en": "Freezes the time of day.",
-        "tr": "Günün saatini dondurur."
+        "tr": "Günün saatini dondurur.",
+        "es": "Congela la hora del día."
       },
       "unlock": {
         "en": "Find 20 collectible watches",
-        "tr": "20 koleksiyon saati bul"
+        "tr": "20 koleksiyon saati bul",
+        "es": "Encuentra 20 relojes coleccionables"
       }
     },
     {
@@ -1016,11 +1124,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: pinhole camera.",
-        "tr": "Ekran filtresi: iğne deliği kamera."
+        "tr": "Ekran filtresi: iğne deliği kamera.",
+        "es": "Filtro de pantalla: cámara estenopeica."
       },
       "unlock": {
         "en": "Clear 25 gang operations with your partner",
-        "tr": "Partnerinle 25 çete operasyonu temizle"
+        "tr": "Partnerinle 25 çete operasyonu temizle",
+        "es": "Limpia 25 operaciones de bandas con tu pareja"
       }
     },
     {
@@ -1031,11 +1141,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: pixelated.",
-        "tr": "Ekran filtresi: pikselli."
+        "tr": "Ekran filtresi: pikselli.",
+        "es": "Filtro de pantalla: pixelado."
       },
       "unlock": {
         "en": "Make $250,000 selling collectibles",
-        "tr": "Koleksiyon eşyası satarak 250.000 $ kazan"
+        "tr": "Koleksiyon eşyası satarak 250.000 $ kazan",
+        "es": "Gana 250.000 $ vendiendo coleccionables"
       }
     },
     {
@@ -1046,11 +1158,13 @@
       "code": null,
       "effect": {
         "en": "The world turns white, with sparkles.",
-        "tr": "Dünya beyaza döner, parıltılarla."
+        "tr": "Dünya beyaza döner, parıltılarla.",
+        "es": "El mundo se vuelve blanco, con destellos."
       },
       "unlock": {
         "en": "Scan all the space debris with WAiNK",
-        "tr": "WAiNK ile tüm uzay enkazını tara"
+        "tr": "WAiNK ile tüm uzay enkazını tara",
+        "es": "Escanea todos los restos espaciales con WAiNK"
       }
     },
     {
@@ -1061,11 +1175,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: old videotape.",
-        "tr": "Ekran filtresi: eski video kaseti."
+        "tr": "Ekran filtresi: eski video kaseti.",
+        "es": "Filtro de pantalla: cinta de vídeo antigua."
       },
       "unlock": {
         "en": "Complete 50 activities with your partner",
-        "tr": "Partnerinle 50 aktivite tamamla"
+        "tr": "Partnerinle 50 aktivite tamamla",
+        "es": "Completa 50 actividades con tu pareja"
       }
     },
     {
@@ -1076,11 +1192,13 @@
       "code": null,
       "effect": {
         "en": "Screen filter: black-and-white old TV.",
-        "tr": "Ekran filtresi: siyah beyaz eski TV."
+        "tr": "Ekran filtresi: siyah beyaz eski TV.",
+        "es": "Filtro de pantalla: tele antigua en blanco y negro."
       },
       "unlock": {
         "en": "Discover the Ridgway",
-        "tr": "Ridgway'i keşfet"
+        "tr": "Ridgway'i keşfet",
+        "es": "Descubre el Ridgway"
       }
     }
   ]

@@ -4,17 +4,17 @@ import { notFound } from "next/navigation";
 import PageShell from "@/components/ui/PageShell";
 import { CATEGORIES } from "@/data/categories";
 import { CHECKLISTS } from "@/data/checklists";
-import { PINS } from "@/data/pins";
+import { PINS, PAGE_PINS, pinPath } from "@/data/pins";
 import { isPlaced, type Pin } from "@/domain";
 import { CATEGORY_COLORS } from "@/features/map/tokens";
-import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n";
+import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n/server";
 import { categoryKey, pinKey } from "@/i18n/keys";
 import { formatTimestamp, parseSource, type SourceInfo } from "@/lib/source";
 
 const NEARBY = 5;
 
-export const pinStaticParams = () => PINS.map((p) => ({ slug: p.slug }));
-const find = (slug: string) => PINS.find((p) => p.slug === slug);
+export const pinStaticParams = () => PAGE_PINS.map((p) => ({ slug: p.slug }));
+const find = (slug: string) => PAGE_PINS.find((p) => p.slug === slug);
 
 function text(pin: Pin, t: Translate) {
   const title = t(pinKey(pin.id, "title"));
@@ -103,6 +103,7 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
   const category = CATEGORIES.find((c) => c.id === pin.categoryId);
   const { title, description } = text(pin, t);
   const source = parseSource(pin.provenance?.sourceUrl);
+  const image = pin.media?.find((m) => m.kind === "image" && /^(https:\/\/|\/)/.test(m.url));
   const creditUrl = pin.credit?.url && /^https?:\/\//.test(pin.credit.url) ? pin.credit.url : undefined;
   const categoryChecklist = category ? CHECKLISTS.find((c) => c.slug === category.slug) : undefined;
   const hint =
@@ -135,6 +136,11 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
             <summary className="cursor-pointer font-bold text-accent">{t("ui.pin.spoiler")}</summary>
             <p className="mt-2">{description}</p>
           </details>
+        )}
+
+        {image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={image.url} alt={image.alt ?? title} className="mt-4 w-full border border-line object-cover" loading="lazy" />
         )}
 
         {source && <SourceBlock source={source} t={t} />}
@@ -172,7 +178,7 @@ export default function PinView({ locale, slug }: { locale: Locale; slug: string
               const c = CATEGORIES.find((x) => x.id === p.categoryId);
               return (
                 <li key={p.id}>
-                  <Link href={href(`/pins/${p.slug}`)} className="row">
+                  <Link prefetch={false} href={href(pinPath(p))} className="row">
                     <span className="dot" style={{ background: c ? CATEGORY_COLORS[c.colorToken] : undefined }} />
                     <span className="flex-1">{t(pinKey(p.id, "title"))}</span>
                     <span className="text-xs text-muted">{c ? t(categoryKey(c.id)) : ""}</span>

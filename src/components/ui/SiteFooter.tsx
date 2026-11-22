@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/config/site";
-import { localePath, tFor, type Locale } from "@/i18n";
+import { localePath, tFor, type Locale } from "@/i18n/server";
 
 const SOCIAL = [
   { key: "youtube", label: "YouTube" },
@@ -32,6 +32,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           <Link href={localePath(locale, "/community")} className="hover:text-ink">{t("ui.nav.community")}</Link>
           <Link href={localePath(locale, "/checklists")} className="hover:text-ink">{t("ui.nav.checklists")}</Link>
           <Link href={localePath(locale, "/news")} className="hover:text-ink">{t("ui.nav.news")}</Link>
+          <Link href={localePath(locale, "/privacy")} className="hover:text-ink">{t("ui.nav.privacy")}</Link>
           {social.map((s) => (
             <a key={s.key} href={SITE.links[s.key]} target="_blank" rel="noopener" className="hover:text-ink">
               {s.label}

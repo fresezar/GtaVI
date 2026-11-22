@@ -35,7 +35,7 @@ const slugify = (s) =>
   s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/ı/g, "i").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const pins = readJson(PATHS.pins);
-const en = readJson(PATHS.text);
+const en = readJson(PATHS.pinText);
 const ids = new Set(pins.map((p) => p.id));
 const slugs = new Set(pins.map((p) => p.slug));
 const done = [];
@@ -72,7 +72,7 @@ for (const s of items) {
 }
 
 writeJson(PATHS.pins, pins);
-writeJson(PATHS.text, en);
+writeJson(PATHS.pinText, en);
 
 const mark = await fetch(`${API}/api/admin/published`, {
   method: "POST",

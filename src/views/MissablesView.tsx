@@ -3,9 +3,9 @@ import Link from "next/link";
 import PageBanner from "@/components/ui/PageBanner";
 import PageShell from "@/components/ui/PageShell";
 import { MISSABLES } from "@/data/missables";
-import { PIN_BY_ID } from "@/data/pins";
+import { PIN_BY_ID, pinPath } from "@/data/pins";
 import type { VerificationStatus } from "@/domain";
-import { alternates, localePath, tFor, type Locale } from "@/i18n";
+import { alternates, localePath, tFor, type Locale } from "@/i18n/server";
 
 const PATH = "/guides/missables";
 /** Where the "no replay" claim comes from (several reviews, IGN among them). */
@@ -71,7 +71,7 @@ export default function MissablesView({ locale }: { locale: Locale }) {
                             {t("ui.source")}: {m.sourceName}
                           </a>
                           {pin && (
-                            <Link href={localePath(locale, `/pins/${pin.slug}`)} className="text-accent2 underline">
+                            <Link prefetch={false} href={localePath(locale, pinPath(pin))} className="text-accent2 underline">
                               {t("ui.missables.pin")} →
                             </Link>
                           )}

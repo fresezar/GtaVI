@@ -22,7 +22,7 @@ const warn = (m) => warnings.push(m);
 
 const pins = readJson(PATHS.pins);
 const categories = readJson(PATHS.categories);
-const text = readJson(PATHS.text);
+const text = { ...readJson(PATHS.text), ...readJson(PATHS.pinText) };
 
 // ---- categories ----
 const catIds = new Set();
@@ -75,7 +75,7 @@ for (const p of pins) {
   } else if (p.source !== "self") {
     warn(`${at}: source "${p.source}" but no provenance.sourceUrl`);
   }
-  if (p.status !== "deprecated" && !text[`pin.${p.id}.title`]) err(`${at}: missing title in text.en.json`);
+  if (p.status !== "deprecated" && !text[`pin.${p.id}.title`]) err(`${at}: missing title in pin-text.en.json`);
 }
 
 // ---- editorial: timeline + news ----
@@ -146,7 +146,7 @@ for (const [file, prefix, fields] of [
 }
 
 // ---- text: orphan keys are harmless but usually a typo. Turkish keys must also exist in English. ----
-const textTr = readJson(PATHS.textTr);
+const textTr = { ...readJson(PATHS.textTr), ...readJson(PATHS.pinTextTr) };
 for (const key of Object.keys(text)) {
   const m = key.match(/^pin\.(pin_[^.]+)\./);
   if (m && !pinIds.has(m[1])) warn(`text key ${key}: no such pin`);

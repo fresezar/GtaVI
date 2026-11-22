@@ -1,4 +1,4 @@
-import type { Locale } from "@/i18n";
+import type { Locale } from "@/i18n/server";
 import { LocaleProvider } from "@/i18n/client";
 import Backdrop from "./Backdrop";
 import PageTransition from "./PageTransition";

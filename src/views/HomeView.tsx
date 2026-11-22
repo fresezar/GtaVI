@@ -9,10 +9,10 @@ import { SITE } from "@/config/site";
 import SubscribeForm from "@/features/subscribe/SubscribeForm";
 import { CATEGORIES } from "@/data/categories";
 import { NEWS, TIMELINE } from "@/data/editorial";
-import { PINS, SAMPLE_MODE } from "@/data/pins";
+import { PINS, SAMPLE_MODE, pinPath } from "@/data/pins";
 import type { Pin } from "@/domain";
 import { CATEGORY_COLORS } from "@/features/map/tokens";
-import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n";
+import { alternates, localePath, tFor, type Locale, type Translate } from "@/i18n/server";
 import { categoryKey, pinKey } from "@/i18n/keys";
 
 const LATEST = 6;
@@ -78,7 +78,7 @@ function LatestFinds({ locale, t }: { locale: Locale; t: Translate }) {
           const c = CATEGORIES.find((x) => x.id === pin.categoryId);
           return (
             <li key={pin.id}>
-              <Link href={localePath(locale, `/pins/${pin.slug}`)} className="card flex h-full flex-col gap-2 !p-3 transition hover:border-line-strong">
+              <Link prefetch={false} href={localePath(locale, pinPath(pin))} className="card flex h-full flex-col gap-2 !p-3 transition hover:border-line-strong">
                 <div className="flex items-center justify-between gap-2">
                   <span className="chip" style={{ ["--dot" as string]: c ? CATEGORY_COLORS[c.colorToken] : undefined }}>
                     {c ? t(categoryKey(c.id)) : ""}

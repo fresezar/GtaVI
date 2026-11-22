@@ -67,8 +67,8 @@ const slugify = (s) =>
 
 const landmarks = readJson(DATA);
 const pins = readJson(PATHS.pins);
-const en = readJson(PATHS.text);
-const tr = readJson(PATHS.textTr);
+const en = readJson(PATHS.pinText);
+const tr = readJson(PATHS.pinTextTr);
 const byTag = new Map(pins.flatMap((p) => (p.tags ?? []).filter((t) => t.startsWith("gtadb:")).map((t) => [t, p])));
 const slugs = new Set(pins.map((p) => p.slug));
 const day = today();
@@ -126,6 +126,6 @@ for (const [gid, row] of Object.entries(landmarks)) {
 }
 
 writeJson(PATHS.pins, pins);
-writeJson(PATHS.text, en);
-writeJson(PATHS.textTr, tr);
+writeJson(PATHS.pinText, en);
+writeJson(PATHS.pinTextTr, tr);
 console.log(`gtadb: ${added} added, ${updated} updated, ${pins.length} pins total`);
