@@ -1,10 +1,11 @@
 # Sezar'ın yapacakları
 
 Kurucunun yapması ya da karar vermesi gereken açık işler. Claude her oturumda günceller; biten iş silinmez, "Bitti" bölümüne taşınır.
-Son güncelleme: 2026-11-22.
+Son güncelleme: 2026-11-23.
 
 ## Açık
 
+0. **Yeni arayüzü incele (ön izleme).** https://atlas-preview.theshamsfr.workers.dev adresini telefonda ve bilgisayarda gez. Beğendiğin, beğenmediğin her şeyi yaz. Onay verirsen Claude canlıya alır; canlı site o zamana kadar eski haliyle kalır. (Ön izlemede formlar bilerek çalışmaz.)
 1. **R2 aç (ekran görüntüsü yükleme + 2 kat keskin harita).** Cloudflare paneli > R2 Object Storage > "Purchase R2" / "Enable". Ücretsiz katman (10 GB) yeter; Cloudflare kart bilgisi isteyebilir. Açınca Claude'a haber ver: kovayı oluşturup yüklemeyi yayına alır. (Claude açamıyor: API "R2'yi panelden etkinleştirin" diyor.)
 2. **GTA 6 Intel kurucusu** (Sezar). Pin ihtiyacı kalmadı (Open GTA 6 Map ile 3.398 pin). Hile sayfası için teşekkür edip iş birliği (karşılıklı bağlantı, bulgu paylaşımı) önermek yeterli.
 3. **Partner adayları** (Sezar: yarın). 10 bin+ takipçili 3-5 GTA hesabına `docs/partners/outreach.md` 1. mesajı. Olumlu cevapta Claude'a ad, profil linki, logo.
