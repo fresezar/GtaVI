@@ -35,7 +35,7 @@ export default function Freshness({ date, label = "ui.fresh.updated", className 
   if (!when) return null;
   return (
     <span className={`inline-flex items-center gap-1.5 ${className}`}>
-      <span className="dot !h-2 !w-2 animate-pulse bg-accent-2" aria-hidden="true" />
+      <span className="dot !h-2 !w-2 animate-pulse bg-accent2" aria-hidden="true" />
       {t(label, { when })}
     </span>
   );

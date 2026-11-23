@@ -28,7 +28,7 @@ export function WantedStars({ locale }: { locale: Locale }) {
       <span className="flex gap-[2px]" aria-hidden="true">
         {Array.from({ length: 6 }, (_, i) => (
           <svg key={i} viewBox="0 0 24 24" className="h-[15px] w-[15px] sm:h-[17px] sm:w-[17px]">
-            <path d={STAR} fill={i < lit ? "#FF6A55" : "none"} stroke={i < lit ? "#FF6A55" : "currentColor"} strokeOpacity={i < lit ? 1 : 0.45} strokeWidth="1.6" />
+            <path d={STAR} fill={i < lit ? "var(--accent)" : "none"} stroke={i < lit ? "var(--accent)" : "currentColor"} strokeOpacity={i < lit ? 1 : 0.45} strokeWidth="1.6" />
           </svg>
         ))}
       </span>

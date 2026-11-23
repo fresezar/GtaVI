@@ -37,5 +37,21 @@
   //   uncomment below, set SITE.proofUploads = true (src/config/site.ts), npm run deploy
   // "r2_buckets": [{ "binding": "PROOFS", "bucket_name": "sixstar-proofs" }],
   // Secrets (not in this file): ADMIN_TOKEN, IP_SALT, optional TURNSTILE_SECRET -> npx wrangler secret put <NAME>
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Design preview: same build on a workers.dev address, no custom domain and no database (forms return an
+  // error there, so nothing reaches the real queue). Deploy: npx wrangler deploy --env preview
+  "env": {
+    "preview": {
+      "name": "atlas-preview",
+      "workers_dev": true,
+      "routes": [],
+      "assets": {
+        "directory": "./out",
+        "binding": "ASSETS",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page",
+        "run_worker_first": ["/api/*"]
+      }
+    }
+  }
 }

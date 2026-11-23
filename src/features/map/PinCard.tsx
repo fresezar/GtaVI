@@ -76,7 +76,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
   return (
     <section
       aria-label={title}
-      className="fixed inset-x-0 bottom-0 z-[1100] max-h-[56dvh] overflow-y-auto border-t-[6px] border-accent bg-paper text-paper-ink shadow-sticker md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:z-[600] md:max-h-[calc(100%-1.5rem)] md:w-[380px]"
+      className="panel-in fixed inset-x-0 bottom-0 z-[1100] max-h-[56dvh] overflow-y-auto border-t-[6px] border-accent bg-paper text-paper-ink shadow-sticker md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:z-[600] md:max-h-[calc(100%-1.5rem)] md:w-[380px]"
     >
       <div className="flex items-center justify-between border-b border-dashed border-[#B9A993] px-4 py-2.5">
         <span className="file-no">
@@ -150,7 +150,7 @@ export default function PinCard({ pin, category, done, onToggle, onClose }: Prop
               <button type="button" onClick={() => setPlaying(true)} className="group relative block h-full w-full" aria-label={t("ui.card.play")}>
                 <img src={`https://i.ytimg.com/vi/${source.videoId}/hqdefault.jpg`} alt="" className="h-full w-full object-cover opacity-85 transition group-hover:opacity-100" loading="lazy" />
                 <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-14 w-14 place-items-center bg-accent text-2xl text-white">▶</span>
+                  <span className="grid h-14 w-14 place-items-center bg-accent text-2xl" style={{ color: "var(--on-accent)" }}>▶</span>
                 </span>
                 {source.start > 0 && (
                   <span className="absolute bottom-2 right-2 bg-black/75 px-1.5 py-0.5 text-xs font-bold text-white">{formatTimestamp(source.start)}</span>

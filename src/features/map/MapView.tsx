@@ -136,6 +136,8 @@ export default function MapView({
   const renderRef = useRef<() => void>(() => {});
   const overlayRef = useRef<() => void>(() => {});
   const placeMarkersRef = useRef(new Map<string, L.CircleMarker>());
+  /** The readout's region slot (filled while a region is hovered). */
+  const hudRegionRef = useRef<HTMLElement | null>(null);
 
   // Latest callbacks/state for event handlers without re-binding.
   const live = useRef({ isDone, onSelect, onMapClick, categories, selectedId });
@@ -163,6 +165,30 @@ export default function MapView({
       attributionControl: false,
     });
     L.control.zoom({ position: "bottomright" }).addTo(map);
+    // Instrument readout: X/Y in game metres (the frame spans 32768 m centred on the world origin), zoom,
+    // and the region under the cursor. Touch screens have no cursor, so it follows the map centre there.
+    const hud = el("div", "map-hud");
+    const hx = el("b", undefined, "0");
+    const hy = el("b", undefined, "0");
+    const hz = el("b", undefined, "0");
+    const hr = el("span", "hud-region");
+    hud.append(el("span", undefined, "X"), hx, el("span", undefined, "Y"), hy, el("span", undefined, "Z"), hz, hr);
+    hudRegionRef.current = hr;
+    const HudControl = L.Control.extend({ onAdd: () => hud });
+    new HudControl({ position: "bottomright" }).addTo(map);
+    const fmt = (v: number) => Math.round(v).toLocaleString("en-US").replace(/,/g, " ");
+    let hudRaf = 0;
+    const showAt = (ll: L.LatLng) => {
+      cancelAnimationFrame(hudRaf);
+      hudRaf = requestAnimationFrame(() => {
+        const [fx, fy] = proj.toCoord(ll);
+        hx.textContent = fmt(fx * 32768 - 16384);
+        hy.textContent = fmt(16384 - fy * 32768);
+        hz.textContent = map.getZoom().toFixed(2);
+      });
+    };
+    map.on("mousemove", (e: L.LeafletMouseEvent) => showAt(e.latlng));
+    map.on("moveend zoomend", () => showAt(map.getCenter()));
     if (def.attribution) {
       // Built with DOM nodes (textContent), never an HTML string: attribution text is data.
       const credit = L.control.attribution({ position: "bottomleft", prefix: false }).addTo(map);
@@ -374,11 +400,13 @@ export default function MapView({
       name.style.setProperty("--region", r.color);
       poly.on("mouseover", () => {
         entry.hot = true;
+        if (hudRegionRef.current) hudRegionRef.current.textContent = r.name;
         poly.setStyle({ weight: 3.5, opacity: 1, fillOpacity: fill + 0.14 });
         name.classList.add("is-hot");
       });
       poly.on("mouseout", () => {
         entry.hot = false;
+        if (hudRegionRef.current) hudRegionRef.current.textContent = "";
         poly.setStyle(base());
         name.classList.remove("is-hot");
       });

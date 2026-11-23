@@ -263,6 +263,7 @@ export default function MapExplorer() {
         )}
         {selectedPin && !suggesting && (
           <PinCard
+            key={selectedPin.id}
             pin={selectedPin}
             category={CATEGORY_MAP[selectedPin.categoryId]}
             done={isDone(selectedPin.id)}

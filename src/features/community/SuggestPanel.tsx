@@ -119,7 +119,7 @@ export default function SuggestPanel({
   return (
     <section
       aria-label={t("ui.suggest.title")}
-      className="fixed inset-x-0 bottom-0 z-[1100] max-h-[64dvh] overflow-y-auto border-t-[6px] border-accent bg-paper text-paper-ink shadow-sticker md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:z-[600] md:max-h-[calc(100%-1.5rem)] md:w-[380px]"
+      className="panel-in fixed inset-x-0 bottom-0 z-[1100] max-h-[64dvh] overflow-y-auto border-t-[6px] border-accent bg-paper text-paper-ink shadow-sticker md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:z-[600] md:max-h-[calc(100%-1.5rem)] md:w-[380px]"
     >
       <div className="flex items-center justify-between border-b border-dashed border-[#B9A993] px-4 py-2.5">
         <span className="file-no">

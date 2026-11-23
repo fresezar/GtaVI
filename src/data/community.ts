@@ -41,7 +41,7 @@ export interface Contributor {
 }
 
 /** Names that are open datasets, not players. */
-const SOURCES = new Set(["GTADB.org"]);
+const SOURCES = new Set(["GTADB.org", "Open GTA 6 Map"]);
 
 /** Everyone credited on a live pin, most points first. */
 export const CONTRIBUTORS: readonly Contributor[] = (() => {

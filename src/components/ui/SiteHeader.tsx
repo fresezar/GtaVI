@@ -4,6 +4,11 @@ import { SITE } from "@/config/site";
 import { LOCALES, localePath, tFor, type Locale } from "@/i18n/server";
 import { ThemeToggle, WantedStars } from "./HeaderWidgets";
 import LanguageHint from "./LanguageHint";
+import SystemStatus from "./SystemStatus";
+import { PINS } from "@/data/pins";
+
+/** Build facts for the status line: pin count and the newest data date. */
+const DATA_UPDATED = PINS.reduce((m, p) => ((p.updatedAt ?? p.addedAt) > m ? (p.updatedAt ?? p.addedAt) : m), "2026-11-19");
 
 /** Each language named in itself, so a reader can always find their own. */
 const LANGUAGE_NAMES: Record<Locale, string> = { en: "English", tr: "Türkçe", es: "Español" };
@@ -45,6 +50,9 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
             </span>
           </span>
         </Link>
+        <div className="ml-1 flex h-6 items-center sm:ml-2 sm:border-l sm:border-line sm:pl-4">
+          <SystemStatus pins={PINS.length} updated={DATA_UPDATED} locale={locale} />
+        </div>
         <div className="flex-1" />
         {SITE.links.discord && (
           <a href={SITE.links.discord} target="_blank" rel="noopener" aria-label="Discord" title="Discord" className="social-btn">

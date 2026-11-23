@@ -15,7 +15,7 @@ function Stars({ lit, size = 16 }: { lit: number; size?: number }) {
     <span className="inline-flex gap-[2px]" aria-hidden="true">
       {Array.from({ length: 6 }, (_, i) => (
         <svg key={i} viewBox="0 0 24 24" width={size} height={size}>
-          <path d={STAR} fill={i < lit ? "#FF6A55" : "none"} stroke={i < lit ? "#FF6A55" : "currentColor"} strokeOpacity={i < lit ? 1 : 0.4} strokeWidth="1.6" />
+          <path d={STAR} fill={i < lit ? "var(--accent)" : "none"} stroke={i < lit ? "var(--accent)" : "currentColor"} strokeOpacity={i < lit ? 1 : 0.4} strokeWidth="1.6" />
         </svg>
       ))}
     </span>

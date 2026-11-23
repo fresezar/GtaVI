@@ -12,7 +12,7 @@ export function onlineMetadata(locale: Locale): Metadata {
   return { title: t("ui.online.meta.title"), description: t("ui.online.lead"), alternates: alternates(locale, "/online") };
 }
 
-const KIND_COLOR = { bonus: "text-sun", discount: "text-accent-2", event: "text-accent", new: "text-ink" } as const;
+const KIND_COLOR = { bonus: "text-sun", discount: "text-accent2", event: "text-accent", new: "text-ink" } as const;
 
 /** GTA 6 Online hub: honest status, the launch-day list, what we are building, and the weekly tracker once live. */
 export default function OnlineView({ locale }: { locale: Locale }) {
@@ -52,7 +52,7 @@ export default function OnlineView({ locale }: { locale: Locale }) {
                 <li key={f.id} className="glass p-4">
                   <div className="flex items-center justify-between gap-2">
                     <span className="file-no text-accent">0{i + 1}</span>
-                    <span className={`text-[10px] font-bold uppercase tracking-wider ${f.when === "launch" ? "text-accent-2" : "text-sun"}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider ${f.when === "launch" ? "text-accent2" : "text-sun"}`}>
                       {t(`ui.online.when.${f.when}`)}
                     </span>
                   </div>

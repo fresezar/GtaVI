@@ -4,6 +4,8 @@
  *  - vice: the game menu's purple-pink gradient with palm silhouettes (our own SVG, no game art)
  */
 
+import FieldCanvas from "./FieldCanvas";
+
 const W = 1440;
 const H = 900;
 const LEAF = "M0 0C28-26 80-32 122 2C84-12 38-9 0 0Z";
@@ -34,9 +36,12 @@ export default function Backdrop() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="bd-dark absolute inset-0">
+        {/* The Leonida map, far back and barely there; the live contour field sits on top. */}
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, one small pre-blurred image */}
-        <img src="/brand/backdrop-map.jpg" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-bg/55 to-bg/85" />
+        <img src="/brand/backdrop-map.jpg" alt="" className="h-full w-full object-cover opacity-25 saturate-50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/80 to-bg/95" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(90% 70% at 80% -10%, rgba(240,164,58,0.07), transparent 60%)" }} />
+        <FieldCanvas />
       </div>
       <div className="bd-vice absolute inset-0" style={{ background: "linear-gradient(160deg, #5b2370 0%, #7a3a8c 45%, #a0518f 75%, #c06a95 100%)" }}>
         <svg className="absolute inset-0 h-full w-full text-[#3a1650] opacity-55" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice">

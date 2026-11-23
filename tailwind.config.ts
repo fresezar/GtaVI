@@ -18,10 +18,11 @@ const config: Config = {
         "line-strong": "var(--line-strong)",
         paper: "#F3E9DC",
         "paper-ink": "#1B1F27",
-        // Hex (not var) so Tailwind opacity modifiers like bg-accent/20 work.
-        accent: "#FF6A55",
-        accent2: "#2EE6D0",
-        sun: "#FFC857",
+        // Signal colours, per theme (globals.css). RGB channels so opacity modifiers like bg-accent/20 work.
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)", // amber: selection, primary action, progress
+        accent2: "rgb(var(--accent2-rgb) / <alpha-value>)", // mineral green: verified, done
+        sun: "rgb(var(--sun-rgb) / <alpha-value>)", // copper: unverified, caution
+        info: "rgb(var(--info-rgb) / <alpha-value>)", // cold glass blue: coordinates, data, links
         violet: "#8b5cf6",
       },
       fontFamily: {
@@ -39,7 +40,7 @@ const config: Config = {
       boxShadow: {
         sticker: "0 18px 40px -18px var(--shadow)",
         "sticker-sm": "0 8px 20px -12px var(--shadow)",
-        neon: "0 10px 26px -10px rgba(255,106,85,0.65)",
+        neon: "0 10px 28px -12px rgb(var(--accent-rgb) / 0.55)",
       },
     },
   },

@@ -64,7 +64,7 @@ export default function SubscribeForm({
 
   if (state.kind === "done") {
     return (
-      <p className="border border-accent-2/60 bg-accent-2/10 p-3 text-sm" role="status">
+      <p className="border border-accent2/60 bg-accent2/10 p-3 text-sm" role="status">
         <b>{t("ui.subscribe.doneTitle")}</b> {t("ui.subscribe.doneBody")}
       </p>
     );
